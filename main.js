@@ -72,7 +72,8 @@ class AwtrixLight extends utils.Adapter {
                 if (idNoNamespace.endsWith('.visible')) {
                     const obj = await this.getObjectAsync(idNoNamespace);
                     if (obj && obj.native?.name) {
-                        this.buildRequest('apps',
+                        this.buildRequest(
+                            'apps',
                             async (content) => {
                                 if (content === 'OK') {
                                     await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
@@ -159,7 +160,7 @@ class AwtrixLight extends utils.Adapter {
             (content) => {
                 const appPath = 'apps';
                 const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum'];
-                const currentApps = content.map(a => a.name);
+                const currentApps = content.map((a) => a.name);
 
                 this.getChannelsOf(appPath, async (err, states) => {
                     const appsAll = [];
