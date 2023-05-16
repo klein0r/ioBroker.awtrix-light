@@ -3,5 +3,7 @@
     "compilerOptions": {
         "noImplicitAny": false
     },
-    "include": ["./**/*.js"]
+    "include": [
+        "./**/*.js"
+    ]
 }
