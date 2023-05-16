@@ -331,6 +331,75 @@
                 "write": true
             },
             "native": {}
+        },
+        {
+            "_id": "apps",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": {
+                    "en": "Apps",
+                    "de": "Apps",
+                    "ru": "Программы",
+                    "pt": "Apps",
+                    "nl": "Apps",
+                    "fr": "applications",
+                    "it": "App",
+                    "es": "Aplicaciones",
+                    "pl": "Aplikacje",
+                    "uk": "Програми",
+                    "zh-cn": "应用"
+                }
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.next",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Next App",
+                    "de": "Nächste App",
+                    "ru": "Следующее приложение",
+                    "pt": "Próximo aplicativo",
+                    "nl": "Volgende app",
+                    "fr": "Application suivante",
+                    "it": "App successiva",
+                    "es": "Siguiente aplicación",
+                    "pl": "Następna aplikacja",
+                    "uk": "Додаток",
+                    "zh-cn": "下一个应用"
+                },
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
+            },
+            "native": {}
+        },
+        {
+            "_id": "apps.prev",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Previous App",
+                    "de": "Vorherige App",
+                    "ru": "Предыдущее приложение",
+                    "pt": "App anterior",
+                    "nl": "Vorige app",
+                    "fr": "Application précédente",
+                    "it": "App precedente",
+                    "es": "Aplicación anterior",
+                    "pl": "Poprzednia aplikacja",
+                    "uk": "Попередній додаток",
+                    "zh-cn": "上一个应用"
+                },
+                "type": "boolean",
+                "role": "button",
+                "read": false,
+                "write": true
+            },
+            "native": {}
         }
     ]
 }

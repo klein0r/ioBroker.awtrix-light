@@ -58,6 +58,14 @@ class AwtrixLight extends utils.Adapter {
                         power: state.val,
                     },
                 );
+            } else if (idNoNamespace === 'apps.next') {
+                this.log.debug('switching to next app');
+
+                this.buildRequest('nextapp', null, 'POST', null);
+            } else if (idNoNamespace === 'apps.prev') {
+                this.log.debug('switching to previous app');
+
+                this.buildRequest('previousapp', null, 'POST', null);
             }
         }
     }
