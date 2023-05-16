@@ -52,7 +52,7 @@ class AwtrixLight extends utils.Adapter {
                     'power',
                     async (content) => {
                         if (content === 'OK') {
-                            await this.setStateChangedAsync('display.power', { val: state.val, ack: true });
+                            await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
                         }
                     },
                     'POST',
@@ -72,7 +72,20 @@ class AwtrixLight extends utils.Adapter {
                 if (idNoNamespace.endsWith('.visible')) {
                     const obj = await this.getObjectAsync(idNoNamespace);
                     if (obj && obj.native?.name) {
-                        this.buildRequest('apps', null, 'POST', [{ name: obj.native.name, show: state.val }]);
+                        this.buildRequest('apps',
+                            async (content) => {
+                                if (content === 'OK') {
+                                    await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
+                                }
+                            },
+                            'POST',
+                            [
+                                {
+                                    name: obj.native.name,
+                                    show: state.val,
+                                },
+                            ],
+                        );
                     }
                 } else if (idNoNamespace.endsWith('.activate')) {
                     if (state.val) {
@@ -145,6 +158,8 @@ class AwtrixLight extends utils.Adapter {
             'apps',
             (content) => {
                 const appPath = 'apps';
+                const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum'];
+                const currentApps = content.map(a => a.name);
 
                 this.getChannelsOf(appPath, async (err, states) => {
                     const appsAll = [];
@@ -155,7 +170,7 @@ class AwtrixLight extends utils.Adapter {
                         for (let i = 0; i < states.length; i++) {
                             const id = this.removeNamespace(states[i]._id);
 
-                            // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                            // Check if the state is a direct child (e.g. apps.temp)
                             if (id.split('.').length === 2) {
                                 appsAll.push(id);
                             }
@@ -163,9 +178,7 @@ class AwtrixLight extends utils.Adapter {
                     }
 
                     // Create new app structure
-                    for (const app of content) {
-                        const name = app.name;
-
+                    for (const name of nativeApps.concat(currentApps)) {
                         appsKeep.push(`${appPath}.${name}`);
                         this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
 
@@ -222,13 +235,12 @@ class AwtrixLight extends utils.Adapter {
                                 role: 'indicator',
                                 read: true,
                                 write: true,
-                                def: true,
                             },
                             native: {
                                 name,
                             },
                         });
-                        //await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: widget.visible, ack: true });
+                        await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
                     }
 
                     // Delete non existent apps
