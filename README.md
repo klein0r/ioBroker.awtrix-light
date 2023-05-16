@@ -33,9 +33,14 @@ Integrates your Ulanzi TC001 via HTTP
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Allow to switch apps via state
+* (klein0r) Added more states
+
 ### 0.0.2 (2023-05-16)
 
-* (klein0r) initial release
+* (klein0r) Initial release
 
 ## License
 MIT License

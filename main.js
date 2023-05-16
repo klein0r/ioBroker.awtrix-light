@@ -18,6 +18,7 @@ class AwtrixLight extends utils.Adapter {
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
+        this.refreshAppTimeout = null;
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
@@ -31,13 +32,14 @@ class AwtrixLight extends utils.Adapter {
         await this.subscribeStatesAsync('*');
 
         this.refreshState();
+        this.refreshApps();
     }
 
     /**
      * @param {string} id
      * @param {ioBroker.State | null | undefined} state
      */
-    onStateChange(id, state) {
+    async onStateChange(id, state) {
         if (id && state && !state.ack) {
             const idNoNamespace = this.removeNamespace(id);
 
@@ -66,6 +68,20 @@ class AwtrixLight extends utils.Adapter {
                 this.log.debug('switching to previous app');
 
                 this.buildRequest('previousapp', null, 'POST', null);
+            } else if (idNoNamespace.indexOf('apps.') === 0) {
+                if (idNoNamespace.endsWith('.visible')) {
+                    const obj = await this.getObjectAsync(idNoNamespace);
+                    if (obj && obj.native?.name) {
+                        this.buildRequest('apps', null, 'POST', [{ name: obj.native.name, show: state.val }]);
+                    }
+                } else if (idNoNamespace.endsWith('.activate')) {
+                    if (state.val) {
+                        const obj = await this.getObjectAsync(idNoNamespace);
+                        if (obj && obj.native?.name) {
+                            this.buildRequest('switch', null, 'POST', { name: obj.native.name });
+                        }
+                    }
+                }
             }
         }
     }
@@ -122,6 +138,121 @@ class AwtrixLight extends utils.Adapter {
                 this.refreshStateTimeout = null;
                 this.refreshState();
             }, 60000);
+    }
+
+    refreshApps() {
+        this.buildRequest(
+            'apps',
+            (content) => {
+                const appPath = 'apps';
+
+                this.getChannelsOf(appPath, async (err, states) => {
+                    const appsAll = [];
+                    const appsKeep = [];
+
+                    // Collect all apps
+                    if (states) {
+                        for (let i = 0; i < states.length; i++) {
+                            const id = this.removeNamespace(states[i]._id);
+
+                            // Check if the state is a direct child (e.g. apps.08b8eac21074f8f7e5a29f2855ba8060)
+                            if (id.split('.').length === 2) {
+                                appsAll.push(id);
+                            }
+                        }
+                    }
+
+                    // Create new app structure
+                    for (const app of content) {
+                        const name = app.name;
+
+                        appsKeep.push(`${appPath}.${name}`);
+                        this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
+
+                        await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
+                            type: 'channel',
+                            common: {
+                                name: `App ${name}`,
+                            },
+                            native: {},
+                        });
+
+                        await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
+                            type: 'state',
+                            common: {
+                                name: {
+                                    en: 'Activate',
+                                    de: 'Aktivieren',
+                                    ru: 'Активировать',
+                                    pt: 'Ativar',
+                                    nl: 'Activeren',
+                                    fr: 'Activer',
+                                    it: 'Attivare',
+                                    es: 'Activar',
+                                    pl: 'Aktywuj',
+                                    'zh-cn': '启用',
+                                },
+                                type: 'boolean',
+                                role: 'button',
+                                read: false,
+                                write: true,
+                            },
+                            native: {
+                                name,
+                            },
+                        });
+
+                        await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
+                            type: 'state',
+                            common: {
+                                name: {
+                                    en: 'Visible',
+                                    de: 'Sichtbar',
+                                    ru: 'Видимый',
+                                    pt: 'Visível',
+                                    nl: 'Vertaling:',
+                                    fr: 'Visible',
+                                    it: 'Visibile',
+                                    es: 'Visible',
+                                    pl: 'Widoczny',
+                                    uk: 'Вибрані',
+                                    'zh-cn': '不可抗辩',
+                                },
+                                type: 'boolean',
+                                role: 'indicator',
+                                read: true,
+                                write: true,
+                                def: true,
+                            },
+                            native: {
+                                name,
+                            },
+                        });
+                        //await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: widget.visible, ack: true });
+                    }
+
+                    // Delete non existent apps
+                    for (let i = 0; i < appsAll.length; i++) {
+                        const id = appsAll[i];
+
+                        if (appsKeep.indexOf(id) === -1) {
+                            await this.delObjectAsync(id, { recursive: true });
+                            this.log.debug(`[apps] deleted: ${id}`);
+                        }
+                    }
+                });
+            },
+            'GET',
+            null,
+        );
+
+        this.log.debug('[apps] re-creating refresh timeout');
+        this.refreshAppTimeout =
+            this.refreshAppTimeout ||
+            setTimeout(() => {
+                this.refreshAppTimeout = null;
+                this.refreshApps();
+            }, 60000 * 60);
     }
 
     buildRequest(service, callback, method, data) {
@@ -182,6 +313,11 @@ class AwtrixLight extends utils.Adapter {
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
                 clearTimeout(this.refreshStateTimeout);
+            }
+
+            if (this.refreshAppTimeout) {
+                this.log.debug('clearing refresh app timeout');
+                clearTimeout(this.refreshAppTimeout);
             }
 
             callback();
