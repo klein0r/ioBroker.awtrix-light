@@ -1,6 +1,6 @@
 {
   "name": "iobroker.awtrix-light",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Integrates your Ulanzi TC001 via HTTP",
   "author": {
     "name": "Matthias Kleine",
