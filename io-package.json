@@ -84,8 +84,7 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "awtrixIp": ""
     },
     "objects": [],
     "instanceObjects": [
@@ -129,6 +128,52 @@
                 "read": true,
                 "write": false,
                 "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.name",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Name",
+                    "de": "Name",
+                    "ru": "Имя",
+                    "pt": "Nome",
+                    "nl": "Naam",
+                    "fr": "Nom",
+                    "it": "Nome",
+                    "es": "Nombre",
+                    "pl": "Nazwa",
+                    "zh-cn": "姓名"
+                },
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.version",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "OS Version",
+                    "de": "OS-Version",
+                    "ru": "Версия ОС",
+                    "pt": "Versão do sistema operacional",
+                    "nl": "OS-versie",
+                    "fr": "Version du système d'exploitation",
+                    "it": "Versione del sistema operativo",
+                    "es": "Versión del sistema operativo",
+                    "pl": "Wersja systemu operacyjnego",
+                    "zh-cn": "操作系统版本"
+                },
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false
             },
             "native": {}
         }

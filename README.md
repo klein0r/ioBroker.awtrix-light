@@ -22,7 +22,7 @@
 ![Stable](http://iobroker.live/badges/awtrix-light-stable.svg)
 ![Installed](http://iobroker.live/badges/awtrix-light-installed.svg)
 
-null
+Integrates your Ulanzi TC001 via HTTP
 
 ## Sponsored by
 

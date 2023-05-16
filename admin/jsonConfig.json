@@ -1,16 +1,29 @@
 {
     "i18n": true,
-    "type": "panel",
+    "type": "tabs",
     "items": {
-        "option1": {
-            "type": "checkbox",
-            "label": "option1",
-            "newLine": true
-        },
-        "option2": {
-            "type": "text",
-            "label": "option2",
-            "newLine": true
+        "_options": {
+            "type": "panel",
+            "label": "Options",
+            "items": {
+                "awtrixIp": {
+                    "type": "text",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "IP",
+                    "help": "IP address of your Awtrix Light device"
+                },
+                "_ioBrokerKursBanner": {
+                    "newLine": true,
+                    "type": "staticImage",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "href": "https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-awtrix-light",
+                    "src": "https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png"
+                }
+            }
         }
     }
 }
