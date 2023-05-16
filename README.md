@@ -22,7 +22,7 @@
 ![Stable](http://iobroker.live/badges/awtrix-light-stable.svg)
 ![Installed](http://iobroker.live/badges/awtrix-light-installed.svg)
 
-Integrates your Ulanzi TC001 via HTTP
+Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device (e.g. Ulanzi TC001) via HTTP
 
 ## Sponsored by
 
