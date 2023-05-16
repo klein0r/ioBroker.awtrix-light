@@ -1,0 +1,104 @@
+{
+    "common": {
+        "name": "awtrix-light",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Awtrix Light",
+        "titleLang": {
+            "en": "Awtrix Light",
+            "de": "Awtrix Licht",
+            "ru": "Автрикс Лайт",
+            "pt": "Luz Awtrix",
+            "nl": "Awtrix licht",
+            "fr": "Lumière Awtrix",
+            "it": "Awtrix Luce",
+            "es": "luz awtrix",
+            "pl": "Światło Awtrixa",
+            "uk": "Awtrix Light",
+            "zh-cn": "Awtrix 光"
+        },
+        "desc": {
+            "en": "Integrates your Ulanzi TC001 via HTTP",
+            "de": "Integriert Ihr Ulanzi TC001 über HTTP",
+            "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
+            "pt": "Integra seu Ulanzi TC001 via HTTP",
+            "nl": "Integreert uw Ulanzi TC001 via HTTP",
+            "fr": "Intègre votre Ulanzi TC001 via HTTP",
+            "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
+            "es": "Integra tu Ulanzi TC001 vía HTTP",
+            "pl": "Integruje twój Ulanzi TC001 przez HTTP",
+            "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
+            "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
+        },
+        "authors": ["Matthias Kleine <info@haus-automatisierung.com>"],
+        "keywords": ["awtrix", "ulanzi", "tc001", "pixel-clock"],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "awtrix-light.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
+        "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "hardware",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.13"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}
