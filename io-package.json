@@ -17,19 +17,18 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "Awtrix Light",
         "titleLang": {
             "en": "Awtrix Light",
-            "de": "Awtrix Licht",
-            "ru": "Автрикс Лайт",
-            "pt": "Luz Awtrix",
-            "nl": "Awtrix licht",
-            "fr": "Lumière Awtrix",
-            "it": "Awtrix Luce",
-            "es": "luz awtrix",
-            "pl": "Światło Awtrixa",
+            "de": "Awtrix Light",
+            "ru": "Awtrix Light",
+            "pt": "Awtrix Light",
+            "nl": "Awtrix Light",
+            "fr": "Awtrix Light",
+            "it": "Awtrix Light",
+            "es": "Awtrix Light",
+            "pl": "Awtrix Light",
             "uk": "Awtrix Light",
-            "zh-cn": "Awtrix 光"
+            "zh-cn": "Awtrix Light"
         },
         "desc": {
             "en": "Integrates your Ulanzi TC001 via HTTP",
@@ -44,8 +43,18 @@
             "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
             "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
         },
-        "authors": ["Matthias Kleine <info@haus-automatisierung.com>"],
-        "keywords": ["awtrix", "ulanzi", "tc001", "pixel-clock"],
+        "authors": [
+            "Matthias Kleine <info@haus-automatisierung.com>"
+        ],
+        "keywords": [
+            "hardware",
+            "clock",
+            "message",
+            "notification",
+            "awtrix",
+            "ulanzi",
+            "tc001"
+        ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
         "main": "main.js",
@@ -59,17 +68,18 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
+        "messagebox": true,
         "adminUI": {
             "config": "json"
         },
         "dependencies": [
             {
-                "js-controller": ">=3.3.22"
+                "js-controller": ">=4.0.15"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.1.13"
+                "admin": ">=6.0.0"
             }
         ]
     },
@@ -83,7 +93,18 @@
             "_id": "info",
             "type": "channel",
             "common": {
-                "name": "Information"
+                "name": {
+                    "en": "Information",
+                    "de": "Information",
+                    "ru": "Информация",
+                    "pt": "Em formação",
+                    "nl": "Informatie",
+                    "fr": "Informations",
+                    "it": "Informazione",
+                    "es": "Información",
+                    "pl": "Informacja",
+                    "zh-cn": "信息"
+                }
             },
             "native": {}
         },
@@ -91,8 +112,19 @@
             "_id": "info.connection",
             "type": "state",
             "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
+                "name": {
+                    "en": "Connected to LaMetric",
+                    "de": "Verbindung mit LaMetric",
+                    "ru": "При подключении к LaMetric",
+                    "pt": "Se conectado ao LaMetric",
+                    "nl": "Indien verbonden met LaMetric",
+                    "fr": "Si connecté à LaMetric",
+                    "it": "Se connesso a LaMetric",
+                    "es": "Si está conectado a LaMetric",
+                    "pl": "W przypadku połączenia z LaMetric",
+                    "zh-cn": "如果连接到 LaMetric"
+                },
+                "role": "indicator.reachable",
                 "type": "boolean",
                 "read": true,
                 "write": false,

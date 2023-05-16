@@ -14,14 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check if PR should be auto-merged
         uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
-          # In order to use this, you need to go to https://github.com/settings/tokens and
-          # create a Personal Access Token with the permission "public_repo".
-          # Enter this token in your repository settings under "Secrets" and name it AUTO_MERGE_TOKEN
           github-token: ${{ secrets.AUTO_MERGE_TOKEN }}
-          # By default, squash and merge, so Github chooses nice commit messages
           command: squash and merge
