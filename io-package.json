@@ -1,194 +1,336 @@
 {
-  "common": {
-    "name": "awtrix-light",
-    "version": "0.0.2",
-    "news": {
-      "0.0.2": {
-        "en": "initial release",
-        "de": "erstausstrahlung",
-        "ru": "начальный выпуск",
-        "pt": "lançamento inicial",
-        "nl": "niet",
-        "fr": "initial release",
-        "it": "rilascio iniziale",
-        "es": "liberación inicial",
-        "pl": "pierwsze wydanie",
-        "uk": "початковий реліз",
-        "zh-cn": "初步释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
-      }
+    "common": {
+        "name": "awtrix-light",
+        "version": "0.0.2",
+        "news": {
+            "0.0.2": {
+                "en": "initial release",
+                "de": "erstausstrahlung",
+                "ru": "начальный выпуск",
+                "pt": "lançamento inicial",
+                "nl": "niet",
+                "fr": "initial release",
+                "it": "rilascio iniziale",
+                "es": "liberación inicial",
+                "pl": "pierwsze wydanie",
+                "uk": "початковий реліз",
+                "zh-cn": "初步释放"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "Awtrix Light",
+            "de": "Awtrix Light",
+            "ru": "Awtrix Light",
+            "pt": "Awtrix Light",
+            "nl": "Awtrix Light",
+            "fr": "Awtrix Light",
+            "it": "Awtrix Light",
+            "es": "Awtrix Light",
+            "pl": "Awtrix Light",
+            "uk": "Awtrix Light",
+            "zh-cn": "Awtrix Light"
+        },
+        "desc": {
+            "en": "Integrates your Ulanzi TC001 via HTTP",
+            "de": "Integriert Ihr Ulanzi TC001 über HTTP",
+            "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
+            "pt": "Integra seu Ulanzi TC001 via HTTP",
+            "nl": "Integreert uw Ulanzi TC001 via HTTP",
+            "fr": "Intègre votre Ulanzi TC001 via HTTP",
+            "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
+            "es": "Integra tu Ulanzi TC001 vía HTTP",
+            "pl": "Integruje twój Ulanzi TC001 przez HTTP",
+            "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
+            "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
+        },
+        "authors": [
+            "Matthias Kleine <info@haus-automatisierung.com>"
+        ],
+        "keywords": [
+            "hardware",
+            "clock",
+            "message",
+            "notification",
+            "awtrix",
+            "ulanzi",
+            "tc001"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "awtrix-light.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
+        "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "hardware",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "messagebox": true,
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=4.0.15"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=6.0.0"
+            }
+        ]
     },
-    "titleLang": {
-      "en": "Awtrix Light",
-      "de": "Awtrix Light",
-      "ru": "Awtrix Light",
-      "pt": "Awtrix Light",
-      "nl": "Awtrix Light",
-      "fr": "Awtrix Light",
-      "it": "Awtrix Light",
-      "es": "Awtrix Light",
-      "pl": "Awtrix Light",
-      "uk": "Awtrix Light",
-      "zh-cn": "Awtrix Light"
+    "native": {
+        "awtrixIp": ""
     },
-    "desc": {
-      "en": "Integrates your Ulanzi TC001 via HTTP",
-      "de": "Integriert Ihr Ulanzi TC001 über HTTP",
-      "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
-      "pt": "Integra seu Ulanzi TC001 via HTTP",
-      "nl": "Integreert uw Ulanzi TC001 via HTTP",
-      "fr": "Intègre votre Ulanzi TC001 via HTTP",
-      "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
-      "es": "Integra tu Ulanzi TC001 vía HTTP",
-      "pl": "Integruje twój Ulanzi TC001 przez HTTP",
-      "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
-      "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
-    },
-    "authors": [
-      "Matthias Kleine <info@haus-automatisierung.com>"
-    ],
-    "keywords": [
-      "hardware",
-      "clock",
-      "message",
-      "notification",
-      "awtrix",
-      "ulanzi",
-      "tc001"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "awtrix-light.png",
-    "enabled": true,
-    "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
-    "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
-    "loglevel": "info",
-    "mode": "daemon",
-    "type": "hardware",
-    "compact": true,
-    "connectionType": "local",
-    "dataSource": "poll",
-    "messagebox": true,
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=4.0.15"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=6.0.0"
-      }
-    ]
-  },
-  "native": {
-    "awtrixIp": ""
-  },
-  "objects": [],
-  "instanceObjects": [
-    {
-      "_id": "info",
-      "type": "channel",
-      "common": {
-        "name": {
-          "en": "Information",
-          "de": "Information",
-          "ru": "Информация",
-          "pt": "Em formação",
-          "nl": "Informatie",
-          "fr": "Informations",
-          "it": "Informazione",
-          "es": "Información",
-          "pl": "Informacja",
-          "zh-cn": "信息"
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": {
+                    "en": "Information",
+                    "de": "Information",
+                    "ru": "Информация",
+                    "pt": "Em formação",
+                    "nl": "Informatie",
+                    "fr": "Informations",
+                    "it": "Informazione",
+                    "es": "Información",
+                    "pl": "Informacja",
+                    "uk": "Інформація",
+                    "zh-cn": "信息"
+                }
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Connected to Awtrix",
+                    "de": "Verbindung mit Awtrix",
+                    "ru": "При подключении к Awtrix",
+                    "pt": "Se conectado ao Awtrix",
+                    "nl": "Indien verbonden met Awtrix",
+                    "fr": "Si connecté à Awtrix",
+                    "it": "Se connesso a Awtrix",
+                    "es": "Si está conectado a Awtrix",
+                    "pl": "W przypadku połączenia z Awtrix",
+                    "uk": "Підключення до Awtrix",
+                    "zh-cn": "如果连接到 Awtrix"
+                },
+                "role": "indicator.reachable",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": {
+                    "en": "Meta information",
+                    "de": "Meta-Informationen",
+                    "ru": "Мета информация",
+                    "pt": "Meta informação",
+                    "nl": "Meta informatie",
+                    "fr": "Méta-information",
+                    "it": "Meta informazioni",
+                    "es": "Meta informacion",
+                    "pl": "Metainformacje",
+                    "uk": "Мета",
+                    "zh-cn": "元信息"
+                }
+            },
+            "native": {}
+        },
+        {
+            "_id": "meta.version",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "OS Version",
+                    "de": "OS-Version",
+                    "ru": "Версия ОС",
+                    "pt": "Versão do sistema operacional",
+                    "nl": "OS-versie",
+                    "fr": "Version du système d'exploitation",
+                    "it": "Versione del sistema operativo",
+                    "es": "Versión del sistema operativo",
+                    "pl": "Wersja systemu operacyjnego",
+                    "uk": "Версія OS",
+                    "zh-cn": "操作系统版本"
+                },
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sensor",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": {
+                    "en": "Sensor",
+                    "de": "Sensor",
+                    "ru": "Сенсор",
+                    "pt": "Sensor de sensor",
+                    "nl": "Sensor",
+                    "fr": "Senseur",
+                    "it": "Sensore",
+                    "es": "Sensor",
+                    "pl": "Sensor",
+                    "uk": "Страхування",
+                    "zh-cn": "许可证"
+                }
+            },
+            "native": {}
+        },
+        {
+            "_id": "sensor.lux",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Light sensor",
+                    "de": "Lichtsensor",
+                    "ru": "Датчик света",
+                    "pt": "Sensor de luz",
+                    "nl": "Licht",
+                    "fr": "Capteur de lumière",
+                    "it": "Sensore di luce",
+                    "es": "Sensor de luz",
+                    "pl": "Czujnik świetlny",
+                    "uk": "Датчик світла",
+                    "zh-cn": "照 传"
+                },
+                "type": "number",
+                "role": "value",
+                "unit": "Lux",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sensor.temp",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Temperature",
+                    "de": "Temperatur",
+                    "ru": "Температура",
+                    "pt": "Temperatura",
+                    "nl": "Temperatuur",
+                    "fr": "Température",
+                    "it": "Temperatura",
+                    "es": "Temperatura",
+                    "pl": "Temperatura",
+                    "uk": "Погода",
+                    "zh-cn": "模范"
+                },
+                "type": "number",
+                "role": "value",
+                "unit": "°C",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sensor.humidity",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Humidity",
+                    "de": "Luftfeuchtigkeit",
+                    "ru": "Влажность",
+                    "pt": "Humidade",
+                    "nl": "Humid",
+                    "fr": "Humidité",
+                    "it": "Umidità",
+                    "es": "Humedad",
+                    "pl": "Humity",
+                    "uk": "Вологість",
+                    "zh-cn": "死 情"
+                },
+                "type": "number",
+                "role": "value",
+                "unit": "%",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "display",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": {
+                    "en": "Display",
+                    "de": "Anzeige",
+                    "ru": "Показать",
+                    "pt": "Exposição",
+                    "nl": "Vertaling:",
+                    "fr": "Afficher",
+                    "it": "Visualizza",
+                    "es": "Visualización",
+                    "pl": "Display",
+                    "uk": "Показати",
+                    "zh-cn": "缺点"
+                }
+            },
+            "native": {}
+        },
+        {
+            "_id": "display.power",
+            "type": "state",
+            "common": {
+                "name": {
+                    "en": "Display activated",
+                    "de": "Anzeige aktiviert",
+                    "ru": "Дисплей активирован",
+                    "pt": "Display ativado",
+                    "nl": "Vertaling:",
+                    "fr": "Affichage activé",
+                    "it": "Visualizzazione attiva",
+                    "es": "Visualización activada",
+                    "pl": "Display activated",
+                    "uk": "Активація дисплея",
+                    "zh-cn": "B. 引起争议"
+                },
+                "type": "boolean",
+                "role": "indicator",
+                "read": true,
+                "write": true
+            },
+            "native": {}
         }
-      },
-      "native": {}
-    },
-    {
-      "_id": "info.connection",
-      "type": "state",
-      "common": {
-        "name": {
-          "en": "Connected to LaMetric",
-          "de": "Verbindung mit LaMetric",
-          "ru": "При подключении к LaMetric",
-          "pt": "Se conectado ao LaMetric",
-          "nl": "Indien verbonden met LaMetric",
-          "fr": "Si connecté à LaMetric",
-          "it": "Se connesso a LaMetric",
-          "es": "Si está conectado a LaMetric",
-          "pl": "W przypadku połączenia z LaMetric",
-          "zh-cn": "如果连接到 LaMetric"
-        },
-        "role": "indicator.reachable",
-        "type": "boolean",
-        "read": true,
-        "write": false,
-        "def": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "meta.name",
-      "type": "state",
-      "common": {
-        "name": {
-          "en": "Name",
-          "de": "Name",
-          "ru": "Имя",
-          "pt": "Nome",
-          "nl": "Naam",
-          "fr": "Nom",
-          "it": "Nome",
-          "es": "Nombre",
-          "pl": "Nazwa",
-          "zh-cn": "姓名"
-        },
-        "type": "string",
-        "role": "text",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "meta.version",
-      "type": "state",
-      "common": {
-        "name": {
-          "en": "OS Version",
-          "de": "OS-Version",
-          "ru": "Версия ОС",
-          "pt": "Versão do sistema operacional",
-          "nl": "OS-versie",
-          "fr": "Version du système d'exploitation",
-          "it": "Versione del sistema operativo",
-          "es": "Versión del sistema operativo",
-          "pl": "Wersja systemu operacyjnego",
-          "zh-cn": "操作系统版本"
-        },
-        "type": "string",
-        "role": "text",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    }
-  ]
+    ]
 }

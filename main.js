@@ -25,16 +25,12 @@ class AwtrixLight extends utils.Adapter {
         this.on('unload', this.onUnload.bind(this));
     }
 
-    /**
-     * Is called when databases are connected and adapter received configuration.
-     */
     async onReady() {
+        this.setState('info.connection', { val: false, ack: true });
+
         await this.subscribeStatesAsync('*');
 
         this.refreshState();
-
-        // Reset the connection indicator during startup
-        this.setState('info.connection', false, true);
     }
 
     /**
@@ -46,6 +42,23 @@ class AwtrixLight extends utils.Adapter {
             const idNoNamespace = this.removeNamespace(id);
 
             this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
+
+            if (idNoNamespace === 'display.power') {
+                this.log.debug(`changing display power to ${state.val}`);
+
+                this.buildRequest(
+                    'power',
+                    async (content) => {
+                        if (content === 'OK') {
+                            await this.setStateChangedAsync('display.power', { val: state.val, ack: true });
+                        }
+                    },
+                    'POST',
+                    {
+                        power: state.val,
+                    },
+                );
+            }
         }
     }
 
@@ -58,7 +71,7 @@ class AwtrixLight extends utils.Adapter {
         if (obj && obj.message) {
             // Notification
             if (obj.command === 'notification' && typeof obj.message === 'object') {
-
+                // Todo
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 
@@ -85,6 +98,10 @@ class AwtrixLight extends utils.Adapter {
                 }
 
                 await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
+
+                await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
+                await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
+                await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
             },
             'GET',
             null,
@@ -152,11 +169,12 @@ class AwtrixLight extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            // Here you must clear all timeouts or intervals that may still be active
-            // clearTimeout(timeout1);
-            // clearTimeout(timeout2);
-            // ...
-            // clearInterval(interval1);
+            this.setStateAsync('info.connection', { val: false, ack: true });
+
+            if (this.refreshStateTimeout) {
+                this.log.debug('clearing refresh state timeout');
+                clearTimeout(this.refreshStateTimeout);
+            }
 
             callback();
         } catch (e) {

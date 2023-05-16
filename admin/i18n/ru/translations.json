@@ -1,5 +1,4 @@
 {
-    "awtrix-light adapter settings": "Настройки адаптера для awtrix-light",
-    "option1": "Опция 1",
-    "option2": "вариант 2"
+    "Options": "Параметры",
+    "IP address of your Awtrix Light device": "IP-адрес вашего устройства Awtrix Light"
 }
