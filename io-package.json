@@ -151,8 +151,8 @@
           "uk": "Підключення до Awtrix",
           "zh-cn": "如果连接到 Awtrix"
         },
-        "role": "indicator.reachable",
         "type": "boolean",
+        "role": "indicator.reachable",
         "read": true,
         "write": false,
         "def": false
@@ -163,7 +163,6 @@
       "_id": "meta",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Meta information",
           "de": "Meta-Informationen",
@@ -208,7 +207,6 @@
       "_id": "sensor",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Sensor",
           "de": "Sensor",
@@ -304,7 +302,6 @@
       "_id": "display",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Display",
           "de": "Anzeige",
@@ -349,7 +346,6 @@
       "_id": "apps",
       "type": "channel",
       "common": {
-        "role": "",
         "name": {
           "en": "Apps",
           "de": "Apps",
@@ -411,6 +407,356 @@
         "role": "button",
         "read": false,
         "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Top right corner",
+          "de": "Rechts oben",
+          "ru": "Верхний правый угол",
+          "pt": "Canto superior direito",
+          "nl": "Bovenste hoek",
+          "fr": "Coin supérieur droit",
+          "it": "Angolo in alto a destra",
+          "es": "Esquina superior derecha",
+          "pl": "Top",
+          "uk": "Топ правий кут",
+          "zh-cn": "正确的角落"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Right side",
+          "de": "Rechte Seite",
+          "ru": "Правая сторона",
+          "pt": "Do lado direito",
+          "nl": "Rechts",
+          "fr": "Côté droit",
+          "it": "Lato destro",
+          "es": "El lado derecho",
+          "pl": "Strona internetowa",
+          "uk": "Правова сторона",
+          "zh-cn": "权利方面"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Bottom right corner",
+          "de": "Rechts unten",
+          "ru": "Нижний правый угол",
+          "pt": "Canto inferior direito",
+          "nl": "Bottom rechter hoek",
+          "fr": "Bottom right corner",
+          "it": "Angolo inferiore destro",
+          "es": "Bottom right corner",
+          "pl": "Bottom right",
+          "uk": "Підсумок правий кут",
+          "zh-cn": "Bottom权角"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
       },
       "native": {}
     }

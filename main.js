@@ -68,7 +68,7 @@ class AwtrixLight extends utils.Adapter {
                 this.log.debug('switching to previous app');
 
                 this.buildRequest('previousapp', null, 'POST', null);
-            } else if (idNoNamespace.indexOf('apps.') === 0) {
+            } else if (idNoNamespace.startsWith('apps.')) {
                 if (idNoNamespace.endsWith('.visible')) {
                     const obj = await this.getObjectAsync(idNoNamespace);
                     if (obj && obj.native?.name) {
@@ -96,6 +96,49 @@ class AwtrixLight extends utils.Adapter {
                         }
                     }
                 }
+            } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
+                const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
+                const indicatorNo = matches ? matches[1] : undefined;
+                const action = matches ? matches[2] : undefined;
+
+                this.log.debug(`Changed indicator ${indicatorNo} with action ${action}`);
+
+                const activeState = await this.getStateAsync(`indicator.${indicatorNo}.active`);
+                const colorState = await this.getStateAsync(`indicator.${indicatorNo}.color`);
+                const blinkState = await this.getStateAsync(`indicator.${indicatorNo}.blink`);
+
+                const postObj = {
+                    color: colorState && colorState.val ? colorState.val : '0',
+                };
+
+                if (action === 'color') {
+                    postObj.color = state.val;
+                }
+
+                if (action === 'active' && !state.val) {
+                    postObj.color = '0';
+                } else if (activeState && !activeState.val) {
+                    postObj.color = '0';
+                }
+
+                if (postObj.color !== '0') {
+                    if (action === 'blink' && state.val > 0) {
+                        postObj.blink = state.val;
+                    } else if (blinkState && blinkState.val > 0) {
+                        postObj.blink = blinkState.val;
+                    }
+                }
+
+                this.buildRequest(
+                    `indicator${indicatorNo}`,
+                    async (content) => {
+                        if (content === 'OK') {
+                            await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
+                        }
+                    },
+                    'POST',
+                    postObj,
+                );
             }
         }
     }

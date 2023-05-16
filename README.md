@@ -33,6 +33,10 @@ Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added indicator support
+
 ### 0.0.3 (2023-05-16)
 
 * (klein0r) Allow to switch apps via state
