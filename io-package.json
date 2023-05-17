@@ -204,6 +204,74 @@
       "native": {}
     },
     {
+      "_id": "device",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Device",
+          "de": "Gerät",
+          "ru": "Устройства",
+          "pt": "Dispositivo",
+          "nl": "Vernietiging",
+          "fr": "Dispositif",
+          "it": "Dispositivo",
+          "es": "Dispositivo",
+          "pl": "Device",
+          "uk": "Пристрої",
+          "zh-cn": "证人"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.update",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Start firmware update",
+          "de": "Firmware-Update starten",
+          "ru": "Начните обновление прошивки",
+          "pt": "Iniciar atualização de firmware",
+          "nl": "Start firmaware update",
+          "fr": "Mise à jour du firmware",
+          "it": "Avviare l'aggiornamento firmware",
+          "es": "Inicio actualización de firmware",
+          "pl": "Aktualizacja",
+          "uk": "Почати оновлення мікропрограми",
+          "zh-cn": "导 言"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.reboot",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Reboot",
+          "de": "Neustart",
+          "ru": "Перезагрузка",
+          "pt": "Reiniciar",
+          "nl": "Reboot",
+          "fr": "Reboot",
+          "it": "Reboot",
+          "es": "Reboot",
+          "pl": "Reboot",
+          "uk": "Перезавантаження",
+          "zh-cn": "Reboot"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {

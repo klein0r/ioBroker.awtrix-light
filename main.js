@@ -14,7 +14,7 @@ class AwtrixLight extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '0.62';
+        this.supportedVersion = '0.65';
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
@@ -60,6 +60,15 @@ class AwtrixLight extends utils.Adapter {
                         power: state.val,
                     },
                 );
+            } else if (idNoNamespace === 'device.update') {
+                this.log.info('performing firmware update');
+
+                this.buildRequest('doupdate', null, 'POST', null);
+            } else if (idNoNamespace === 'device.reboot') {
+                this.log.info('rebooting device');
+
+                this.setStateAsync('info.connection', { val: false, ack: true });
+                this.buildRequest('reboot', null, 'POST', null);
             } else if (idNoNamespace === 'apps.next') {
                 this.log.debug('switching to next app');
 
@@ -222,7 +231,7 @@ class AwtrixLight extends utils.Adapter {
                     }
 
                     // Create new app structure
-                    for (const name of nativeApps.concat(currentApps)) {
+                    for (const name of nativeApps.concat(currentApps.filter(a => !nativeApps.includes(a)))) {
                         appsKeep.push(`${appPath}.${name}`);
                         this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
 

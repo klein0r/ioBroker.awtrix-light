@@ -36,6 +36,7 @@ Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added indicator support
+* (klein0r) Added device update and reboot options
 
 ### 0.0.3 (2023-05-16)
 
