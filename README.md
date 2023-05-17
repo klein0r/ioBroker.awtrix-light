@@ -24,6 +24,8 @@
 
 Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device (e.g. Ulanzi TC001) via HTTP
 
+Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-Link)
+
 ## Sponsored by
 
 [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-awtrix-light)
