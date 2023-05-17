@@ -231,7 +231,7 @@ class AwtrixLight extends utils.Adapter {
                     }
 
                     // Create new app structure
-                    for (const name of nativeApps.concat(currentApps.filter(a => !nativeApps.includes(a)))) {
+                    for (const name of nativeApps.concat(currentApps.filter((a) => !nativeApps.includes(a)))) {
                         appsKeep.push(`${appPath}.${name}`);
                         this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
 
