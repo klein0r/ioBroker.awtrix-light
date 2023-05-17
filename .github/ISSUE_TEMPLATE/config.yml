@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Have questions or need support?
+    url: https://forum.iobroker.net/topic/65571/test-adapter-awtrix-light
+    about: Please get in touch on the ioBroker Community Forum!
