@@ -1,7 +1,6 @@
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
-const { rejects } = require('assert');
 const axios = require('axios').default;
 const adapterName = require('./package.json').name.split('.').pop();
 
@@ -18,6 +17,8 @@ class AwtrixLight extends utils.Adapter {
         this.supportedVersion = '0.66';
         this.displayedVersionWarning = false;
 
+        this.apiConnected = false;
+
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
@@ -28,11 +29,11 @@ class AwtrixLight extends utils.Adapter {
     }
 
     async onReady() {
-        this.setState('info.connection', { val: false, ack: true });
+        this.setApiConnected(false);
 
         await this.subscribeStatesAsync('*');
 
-        this.refreshState();
+        await this.refreshState();
         this.refreshApps();
 
         for (let i = 1; i <= 3; i++) {
@@ -55,62 +56,45 @@ class AwtrixLight extends utils.Adapter {
             if (idNoNamespace === 'display.power') {
                 this.log.debug(`changing display power to ${state.val}`);
 
-                this.buildRequest(
-                    'power',
-                    async (content) => {
-                        if (content === 'OK') {
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                        }
-                    },
-                    'POST',
-                    {
-                        power: state.val,
-                    },
-                );
+                this.buildRequest('power', 'POST', { power: state.val }).then(async (response) => {
+                    if (response.status === 200 && response.data === 'OK') {
+                        await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                    }
+                });
             } else if (idNoNamespace.startsWith('display.moodlight.')) {
                 this.updateMoodlightByStates().then(() => this.setStateAsync(idNoNamespace, { val: state.val, ack: true }));
             } else if (idNoNamespace === 'device.update') {
                 this.log.info('performing firmware update');
 
-                this.buildRequest('doupdate', null, 'POST', null);
+                this.buildRequest('doupdate', 'POST');
             } else if (idNoNamespace === 'device.reboot') {
                 this.log.info('rebooting device');
 
-                this.setStateAsync('info.connection', { val: false, ack: true });
-                this.buildRequest('reboot', null, 'POST', null);
+                this.setApiConnected(false);
+                this.buildRequest('reboot', 'POST');
             } else if (idNoNamespace === 'apps.next') {
                 this.log.debug('switching to next app');
 
-                this.buildRequest('nextapp', null, 'POST', null);
+                this.buildRequest('nextapp', 'POST');
             } else if (idNoNamespace === 'apps.prev') {
                 this.log.debug('switching to previous app');
 
-                this.buildRequest('previousapp', null, 'POST', null);
+                this.buildRequest('previousapp', 'POST');
             } else if (idNoNamespace.startsWith('apps.')) {
                 if (idNoNamespace.endsWith('.visible')) {
                     const obj = await this.getObjectAsync(idNoNamespace);
                     if (obj && obj.native?.name) {
-                        this.buildRequest(
-                            'apps',
-                            async (content) => {
-                                if (content === 'OK') {
-                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                                }
-                            },
-                            'POST',
-                            [
-                                {
-                                    name: obj.native.name,
-                                    show: state.val,
-                                },
-                            ],
-                        );
+                        this.buildRequest('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        });
                     }
                 } else if (idNoNamespace.endsWith('.activate')) {
                     if (state.val) {
                         const obj = await this.getObjectAsync(idNoNamespace);
                         if (obj && obj.native?.name) {
-                            this.buildRequest('switch', null, 'POST', { name: obj.native.name });
+                            this.buildRequest('switch', 'POST', { name: obj.native.name });
                         }
                     }
                 }
@@ -150,142 +134,166 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    refreshState() {
-        this.log.debug('refreshing device state');
+    setApiConnected(connection) {
+        this.setStateChangedAsync('info.connection', { val: connection, ack: true });
+        this.apiConnected = connection;
 
-        this.buildRequest(
-            'stats',
-            async (content) => {
-                await this.setStateAsync('info.connection', { val: true, ack: true });
+        if (!connection) {
+            this.log.debug('API is offline');
+        }
+    }
 
-                if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
-                    this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
-                    this.displayedVersionWarning = true; // Just show once
-                }
+    async refreshState() {
+        return new Promise((resolve, reject) => {
+            this.log.debug('refreshing device state');
 
-                await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
+            this.log.debug('re-creating refresh state timeout');
+            this.refreshStateTimeout =
+                this.refreshStateTimeout ||
+                setTimeout(() => {
+                    this.refreshStateTimeout = null;
+                    this.refreshState();
+                }, 60000);
 
-                await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
-                await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
-                await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
-            },
-            'GET',
-            null,
-        );
+            this.buildRequest('stats', 'GET')
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        const content = response.data;
 
-        this.log.debug('re-creating refresh state timeout');
-        this.refreshStateTimeout =
-            this.refreshStateTimeout ||
-            setTimeout(() => {
-                this.refreshStateTimeout = null;
-                this.refreshState();
-            }, 60000);
+                        this.setApiConnected(true);
+
+                        if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
+                            this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
+                            this.displayedVersionWarning = true; // Just show once
+                        }
+
+                        await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
+
+                        await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
+                        await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
+                        await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
+                    }
+
+                    resolve(response.status);
+                })
+                .catch((error) => {
+                    this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
+                    this.setApiConnected(false);
+
+                    reject();
+                });
+        });
     }
 
     refreshApps() {
-        this.buildRequest(
-            'apps',
-            (content) => {
-                const appPath = 'apps';
-                const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum'];
-                const currentApps = content.map((a) => a.name);
+        if (this.apiConnected) {
+            this.buildRequest('apps', 'GET')
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        const content = response.data;
 
-                this.getChannelsOf(appPath, async (err, states) => {
-                    const appsAll = [];
-                    const appsKeep = [];
+                        const appPath = 'apps';
+                        const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum'];
+                        const currentApps = content.map((a) => a.name);
 
-                    // Collect all apps
-                    if (states) {
-                        for (let i = 0; i < states.length; i++) {
-                            const id = this.removeNamespace(states[i]._id);
+                        this.getChannelsOf(appPath, async (err, states) => {
+                            const appsAll = [];
+                            const appsKeep = [];
 
-                            // Check if the state is a direct child (e.g. apps.temp)
-                            if (id.split('.').length === 2) {
-                                appsAll.push(id);
+                            // Collect all apps
+                            if (states) {
+                                for (let i = 0; i < states.length; i++) {
+                                    const id = this.removeNamespace(states[i]._id);
+
+                                    // Check if the state is a direct child (e.g. apps.temp)
+                                    if (id.split('.').length === 2) {
+                                        appsAll.push(id);
+                                    }
+                                }
                             }
-                        }
-                    }
 
-                    // Create new app structure
-                    for (const name of nativeApps.concat(currentApps.filter((a) => !nativeApps.includes(a)))) {
-                        appsKeep.push(`${appPath}.${name}`);
-                        this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
+                            // Create new app structure
+                            for (const name of nativeApps.concat(currentApps.filter((a) => !nativeApps.includes(a)))) {
+                                appsKeep.push(`${appPath}.${name}`);
+                                this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
 
-                        await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
-                            type: 'channel',
-                            common: {
-                                name: `App ${name}`,
-                            },
-                            native: {},
+                                await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
+                                    type: 'channel',
+                                    common: {
+                                        name: `App ${name}`,
+                                    },
+                                    native: {},
+                                });
+
+                                await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
+                                    type: 'state',
+                                    common: {
+                                        name: {
+                                            en: 'Activate',
+                                            de: 'Aktivieren',
+                                            ru: 'Активировать',
+                                            pt: 'Ativar',
+                                            nl: 'Activeren',
+                                            fr: 'Activer',
+                                            it: 'Attivare',
+                                            es: 'Activar',
+                                            pl: 'Aktywuj',
+                                            'zh-cn': '启用',
+                                        },
+                                        type: 'boolean',
+                                        role: 'button',
+                                        read: false,
+                                        write: true,
+                                    },
+                                    native: {
+                                        name,
+                                    },
+                                });
+
+                                await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
+                                    type: 'state',
+                                    common: {
+                                        name: {
+                                            en: 'Visible',
+                                            de: 'Sichtbar',
+                                            ru: 'Видимый',
+                                            pt: 'Visível',
+                                            nl: 'Vertaling:',
+                                            fr: 'Visible',
+                                            it: 'Visibile',
+                                            es: 'Visible',
+                                            pl: 'Widoczny',
+                                            uk: 'Вибрані',
+                                            'zh-cn': '不可抗辩',
+                                        },
+                                        type: 'boolean',
+                                        role: 'indicator',
+                                        read: true,
+                                        write: true,
+                                    },
+                                    native: {
+                                        name,
+                                    },
+                                });
+                                await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
+                            }
+
+                            // Delete non existent apps
+                            for (let i = 0; i < appsAll.length; i++) {
+                                const id = appsAll[i];
+
+                                if (appsKeep.indexOf(id) === -1) {
+                                    await this.delObjectAsync(id, { recursive: true });
+                                    this.log.debug(`[apps] deleted: ${id}`);
+                                }
+                            }
                         });
-
-                        await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
-                            type: 'state',
-                            common: {
-                                name: {
-                                    en: 'Activate',
-                                    de: 'Aktivieren',
-                                    ru: 'Активировать',
-                                    pt: 'Ativar',
-                                    nl: 'Activeren',
-                                    fr: 'Activer',
-                                    it: 'Attivare',
-                                    es: 'Activar',
-                                    pl: 'Aktywuj',
-                                    'zh-cn': '启用',
-                                },
-                                type: 'boolean',
-                                role: 'button',
-                                read: false,
-                                write: true,
-                            },
-                            native: {
-                                name,
-                            },
-                        });
-
-                        await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
-                            type: 'state',
-                            common: {
-                                name: {
-                                    en: 'Visible',
-                                    de: 'Sichtbar',
-                                    ru: 'Видимый',
-                                    pt: 'Visível',
-                                    nl: 'Vertaling:',
-                                    fr: 'Visible',
-                                    it: 'Visibile',
-                                    es: 'Visible',
-                                    pl: 'Widoczny',
-                                    uk: 'Вибрані',
-                                    'zh-cn': '不可抗辩',
-                                },
-                                type: 'boolean',
-                                role: 'indicator',
-                                read: true,
-                                write: true,
-                            },
-                            native: {
-                                name,
-                            },
-                        });
-                        await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
                     }
-
-                    // Delete non existent apps
-                    for (let i = 0; i < appsAll.length; i++) {
-                        const id = appsAll[i];
-
-                        if (appsKeep.indexOf(id) === -1) {
-                            await this.delObjectAsync(id, { recursive: true });
-                            this.log.debug(`[apps] deleted: ${id}`);
-                        }
-                    }
+                })
+                .catch((error) => {
+                    this.log.debug(`(apps) received error: ${JSON.stringify(error)}`);
                 });
-            },
-            'GET',
-            null,
-        );
+        }
 
         this.log.debug('[apps] re-creating refresh timeout');
         this.refreshAppTimeout =
@@ -318,18 +326,7 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        return new Promise((resolve) => {
-            this.buildRequest(
-                `indicator${index}`,
-                async (content) => {
-                    if (content === 'OK') {
-                        resolve(true);
-                    }
-                },
-                'POST',
-                indicatorValues[`indicator.${index}.active`] ? postObj : '',
-            );
-        });
+        return this.buildRequest(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : '');
     }
 
     async updateMoodlightByStates() {
@@ -349,63 +346,64 @@ class AwtrixLight extends utils.Adapter {
             color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
         };
 
-        return new Promise((resolve) => {
-            this.buildRequest(
-                'moodlight',
-                (content) => {
-                    if (content === 'OK') {
-                        resolve(true);
-                    } else {
-                        resolve(false);
-                    }
-                },
-                'POST',
-                moodlightValues['display.moodlight.active'] ? postObj : '',
-            );
-        });
+        return this.buildRequest('moodlight', 'POST', moodlightValues['display.moodlight.active'] ? postObj : '');
     }
 
-    buildRequest(service, callback, method, data) {
-        const url = `/api/${service}`;
+    buildRequest(service, method, data) {
+        return new Promise((resolve, reject) => {
+            const url = `/api/${service}`;
 
-        if (this.config.awtrixIp) {
-            this.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
+            if (this.config.awtrixIp) {
+                if (data) {
+                    this.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
+                } else {
+                    this.log.debug(`sending "${method}" request to "${url}" without data`);
+                }
 
-            axios({
-                method: method,
-                data: data,
-                baseURL: `http://${this.config.awtrixIp}:80`,
-                url: url,
-                timeout: 3000,
-                responseType: 'json',
-            })
-                .then((response) => {
-                    this.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
-
-                    if (response && callback && typeof callback === 'function') {
-                        callback(response.data, response.status);
-                    }
+                axios({
+                    method: method,
+                    data: data,
+                    baseURL: `http://${this.config.awtrixIp}:80`,
+                    url: url,
+                    timeout: 3000,
+                    responseType: 'json',
                 })
-                .catch((error) => {
-                    if (error.response) {
-                        // The request was made and the server responded with a status code
+                    .then((response) => {
+                        this.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
 
-                        this.log.warn(`received error ${error.response.status} response from "${url}" with content: ${JSON.stringify(error.response.data)}`);
-                    } else if (error.request) {
-                        // The request was made but no response was received
-                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                        // http.ClientRequest in node.js
-                        this.log.info(error.message);
+                        // no error - clear up reminder
+                        delete this.lastErrorCode;
 
-                        this.setStateAsync('info.connection', { val: false, ack: true });
-                    } else {
-                        // Something happened in setting up the request that triggered an Error
-                        this.log.error(error.message);
+                        resolve(response);
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            // The request was made and the server responded with a status code
 
-                        this.setStateAsync('info.connection', { val: false, ack: true });
-                    }
-                });
-        }
+                            this.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+                        } else if (error.request) {
+                            // The request was made but no response was received
+                            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                            // http.ClientRequest in node.js
+
+                            // avoid spamming of the same error when stuck in a reconnection loop
+                            if (error.code === this.lastErrorCode) {
+                                this.log.debug(error.message);
+                            } else {
+                                this.log.info(`error ${error.code} from ${url}: ${error.message}`);
+                                this.lastErrorCode = error.code;
+                            }
+                        } else {
+                            // Something happened in setting up the request that triggered an Error
+                            this.log.error(error.message);
+                        }
+
+                        reject(error);
+                    });
+            } else {
+                reject('Device IP is not configured');
+            }
+        });
     }
 
     removeNamespace(id) {
@@ -418,7 +416,7 @@ class AwtrixLight extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            this.setStateAsync('info.connection', { val: false, ack: true });
+            this.setApiConnected(false);
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
