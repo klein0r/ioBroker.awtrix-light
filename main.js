@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
+const { rejects } = require('assert');
 const axios = require('axios').default;
 const adapterName = require('./package.json').name.split('.').pop();
 
@@ -33,6 +34,8 @@ class AwtrixLight extends utils.Adapter {
 
         this.refreshState();
         this.refreshApps();
+
+        this.updateMoodlightByStates();
     }
 
     /**
@@ -61,32 +64,7 @@ class AwtrixLight extends utils.Adapter {
                     },
                 );
             } else if (idNoNamespace.startsWith('display.moodlight.')) {
-                const moodlightStates = await this.getStatesAsync('display.moodlight.*');
-                const moodlightValues = Object.entries(moodlightStates).reduce(
-                    (acc, [objId, state]) => ({
-                        ...acc,
-                        [this.removeNamespace(objId)]: state.val,
-                    }),
-                    {},
-                );
-
-                // moodlightValues[idNoNamespace] = state.val;
-
-                const postObj = {
-                    brightness: moodlightValues['display.moodlight.brightness'],
-                    color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
-                };
-
-                this.buildRequest(
-                    'moodlight',
-                    async (content) => {
-                        if (content === 'OK') {
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                        }
-                    },
-                    'POST',
-                    moodlightValues['display.moodlight.active'] ? postObj : '',
-                );
+                this.updateMoodlightByStates().then(() => this.setStateAsync(idNoNamespace, { val: state.val, ack: true }));
             } else if (idNoNamespace === 'device.update') {
                 this.log.info('performing firmware update');
 
@@ -345,6 +323,37 @@ class AwtrixLight extends utils.Adapter {
                 this.refreshAppTimeout = null;
                 this.refreshApps();
             }, 60000 * 60);
+    }
+
+    async updateMoodlightByStates() {
+        const moodlightStates = await this.getStatesAsync('display.moodlight.*');
+        const moodlightValues = Object.entries(moodlightStates).reduce(
+            (acc, [objId, state]) => ({
+                ...acc,
+                [this.removeNamespace(objId)]: state.val,
+            }),
+            {},
+        );
+
+        const postObj = {
+            brightness: moodlightValues['display.moodlight.brightness'],
+            color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
+        };
+
+        return new Promise((resolve) => {
+            this.buildRequest(
+                'moodlight',
+                (content) => {
+                    if (content === 'OK') {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                },
+                'POST',
+                moodlightValues['display.moodlight.active'] ? postObj : '',
+            );
+        });
     }
 
     buildRequest(service, callback, method, data) {
