@@ -33,14 +33,18 @@ class AwtrixLight extends utils.Adapter {
 
         await this.subscribeStatesAsync('*');
 
-        await this.refreshState();
-        this.refreshApps();
+        try {
+            await this.refreshState();
+            this.refreshApps();
 
-        for (let i = 1; i <= 3; i++) {
-            await this.updateIndicatorByStates(i);
+            for (let i = 1; i <= 3; i++) {
+                await this.updateIndicatorByStates(i);
+            }
+
+            await this.updateMoodlightByStates();
+        } catch (err) {
+            this.log.error(`[onReady] Startup error: ${err}`);
         }
-
-        await this.updateMoodlightByStates();
     }
 
     /**
@@ -180,7 +184,7 @@ class AwtrixLight extends utils.Adapter {
                     this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
                     this.setApiConnected(false);
 
-                    reject();
+                    reject(error);
                 });
         });
     }
