@@ -15,7 +15,7 @@ class AwtrixLight extends utils.Adapter {
             name: adapterName,
         });
 
-        this.supportedVersion = '0.65';
+        this.supportedVersion = '0.66';
         this.displayedVersionWarning = false;
 
         this.refreshStateTimeout = null;
@@ -312,10 +312,6 @@ class AwtrixLight extends utils.Adapter {
             color: indicatorValues[`indicator.${index}.color`],
         };
 
-        if (!indicatorValues[`indicator.${index}.active`]) {
-            postObj.color = '0';
-        }
-
         if (postObj.color !== '0') {
             if (indicatorValues[`indicator.${index}.blink`] > 0) {
                 postObj.blink = indicatorValues[`indicator.${index}.blink`];
@@ -331,7 +327,7 @@ class AwtrixLight extends utils.Adapter {
                     }
                 },
                 'POST',
-                postObj,
+                indicatorValues[`indicator.${index}.active`] ? postObj : '',
             );
         });
     }
