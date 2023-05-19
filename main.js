@@ -52,13 +52,40 @@ class AwtrixLight extends utils.Adapter {
                     'power',
                     async (content) => {
                         if (content === 'OK') {
-                            await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                         }
                     },
                     'POST',
                     {
                         power: state.val,
                     },
+                );
+            } else if (idNoNamespace.startsWith('display.moodlight.')) {
+                const moodlightStates = await this.getStatesAsync('display.moodlight.*');
+                const moodlightValues = Object.entries(moodlightStates).reduce(
+                    (acc, [objId, state]) => ({
+                        ...acc,
+                        [this.removeNamespace(objId)]: state.val,
+                    }),
+                    {},
+                );
+
+                // moodlightValues[idNoNamespace] = state.val;
+
+                const postObj = {
+                    brightness: moodlightValues['display.moodlight.brightness'],
+                    color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
+                };
+
+                this.buildRequest(
+                    'moodlight',
+                    async (content) => {
+                        if (content === 'OK') {
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                        }
+                    },
+                    'POST',
+                    moodlightValues['display.moodlight.active'] ? postObj : '',
                 );
             } else if (idNoNamespace === 'device.update') {
                 this.log.info('performing firmware update');
@@ -85,7 +112,7 @@ class AwtrixLight extends utils.Adapter {
                             'apps',
                             async (content) => {
                                 if (content === 'OK') {
-                                    await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
+                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                                 }
                             },
                             'POST',
@@ -117,11 +144,11 @@ class AwtrixLight extends utils.Adapter {
                 const blinkState = await this.getStateAsync(`indicator.${indicatorNo}.blink`);
 
                 const postObj = {
-                    color: colorState && colorState.val ? colorState.val : '0',
+                    color: colorState && colorState.val ? String(colorState.val).toUpperCase() : '0',
                 };
 
                 if (action === 'color') {
-                    postObj.color = state.val;
+                    postObj.color = String(state.val).toUpperCase();
                 }
 
                 if (action === 'active' && !state.val) {
@@ -142,7 +169,7 @@ class AwtrixLight extends utils.Adapter {
                     `indicator${indicatorNo}`,
                     async (content) => {
                         if (content === 'OK') {
-                            await this.setStateChangedAsync(idNoNamespace, { val: state.val, ack: true });
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                         }
                     },
                     'POST',

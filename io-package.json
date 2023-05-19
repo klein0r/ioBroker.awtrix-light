@@ -411,6 +411,102 @@
       "native": {}
     },
     {
+      "_id": "display.moodlight",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Mood light",
+          "de": "Stimmungslicht",
+          "ru": "Настроение света",
+          "pt": "Luz de umidade",
+          "nl": "Stemmingslicht",
+          "fr": "Lumière d'ambiance",
+          "it": "Luce del fango",
+          "es": "Luz ambiental",
+          "pl": "Światło nastroju",
+          "uk": "Мудрий світло",
+          "zh-cn": "水"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
       "_id": "apps",
       "type": "channel",
       "common": {
