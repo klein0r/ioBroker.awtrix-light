@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "news": {
+      "0.0.4": {
+        "en": "Added indicator support\nAdded moodlight support\nAdded device update and reboot options",
+        "de": "Unterstützung für den Indikator\nUnterstützung für die Stimmungslichter\nHinzugefügt Geräteupdate und Neustart-Optionen",
+        "ru": "Добавлена поддержка индикатора\nДобавлена поддержка настроения\nДобавлены опции обновления и перезагрузки устройств",
+        "pt": "Adicionado suporte indicador\nAdicionado suporte à luz de humor\nAdicionada atualização do dispositivo e opções de reinicialização",
+        "nl": "Toegevoegd indicator steun\nVoeg stemming toe\nVertaling:",
+        "fr": "Appui aux indicateurs\nAjout d ' un appui en matière de lumière d ' humeur\nAjout d'options de mise à jour et de redémarrage",
+        "it": "Supporto indicatore aggiunto\nAggiunto supporto moodlight\nOpzioni di aggiornamento e riavvio del dispositivo",
+        "es": "Apoyo a los indicadores\nApoyo a la luz de estado\nOpciones de actualización y reinicio del dispositivo",
+        "pl": "Addministracyjne wsparcie\nAddditionlight support\nZaktualizowana aktualizacja i reboot opcja",
+        "uk": "Додано підтримку індикатора\nДодана підтримка освітлення\nДодано оновлення та перезавантаження пристроїв",
+        "zh-cn": "增加指标支助\n增加微额支助\n增聘装置更新和重新安排"
+      },
       "0.0.3": {
         "en": "Allow to switch apps via state\nAdded more states",
         "de": "Lassen Sie Apps über Zustand wechseln\nMehr Staaten",
