@@ -57,61 +57,83 @@ class AwtrixLight extends utils.Adapter {
 
             this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
 
-            if (idNoNamespace === 'display.power') {
-                this.log.debug(`changing display power to ${state.val}`);
+            if (this.apiConnected) {
+                if (idNoNamespace === 'display.power') {
+                    this.log.debug(`changing display power to ${state.val}`);
 
-                this.buildRequest('power', 'POST', { power: state.val }).then(async (response) => {
-                    if (response.status === 200 && response.data === 'OK') {
-                        await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                    this.buildRequest('power', 'POST', { power: state.val }).then(async (response) => {
+                        if (response.status === 200 && response.data === 'OK') {
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                        }
+                    });
+                } else if (idNoNamespace.startsWith('display.moodlight.')) {
+                    this.updateMoodlightByStates().then(async (response) => {
+                        if (response.status === 200 && response.data === 'OK') {
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                        }
+                    });
+                } else if (idNoNamespace === 'device.update') {
+                    this.log.info('performing firmware update');
+
+                    this.buildRequest('doupdate', 'POST')
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                this.log.info('started firmware update');
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`Unable to perform firmware update (maybe this is already the newest version): ${error}`);
+                        });
+                } else if (idNoNamespace === 'device.reboot') {
+                    this.buildRequest('reboot', 'POST').then(async (response) => {
+                        if (response.status === 200 && response.data === 'OK') {
+                            this.log.info('rebooting device');
+                            this.setApiConnected(false);
+                        }
+                    });
+                } else if (idNoNamespace === 'apps.next') {
+                    this.log.debug('switching to next app');
+
+                    this.buildRequest('nextapp', 'POST');
+                } else if (idNoNamespace === 'apps.prev') {
+                    this.log.debug('switching to previous app');
+
+                    this.buildRequest('previousapp', 'POST');
+                } else if (idNoNamespace.startsWith('apps.')) {
+                    if (idNoNamespace.endsWith('.visible')) {
+                        const obj = await this.getObjectAsync(idNoNamespace);
+                        if (obj && obj.native?.name) {
+                            this.buildRequest('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
+                                if (response.status === 200 && response.data === 'OK') {
+                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                }
+                            });
+                        }
+                    } else if (idNoNamespace.endsWith('.activate')) {
+                        if (state.val) {
+                            const obj = await this.getObjectAsync(idNoNamespace);
+                            if (obj && obj.native?.name) {
+                                this.buildRequest('switch', 'POST', { name: obj.native.name });
+                            }
+                        }
                     }
-                });
-            } else if (idNoNamespace.startsWith('display.moodlight.')) {
-                this.updateMoodlightByStates().then(() => this.setStateAsync(idNoNamespace, { val: state.val, ack: true }));
-            } else if (idNoNamespace === 'device.update') {
-                this.log.info('performing firmware update');
+                } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
+                    const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
+                    const indicatorNo = matches ? parseInt(matches[1]) : undefined;
+                    const action = matches ? matches[2] : undefined;
 
-                this.buildRequest('doupdate', 'POST');
-            } else if (idNoNamespace === 'device.reboot') {
-                this.log.info('rebooting device');
+                    this.log.debug(`Changed indicator ${indicatorNo} with action ${action}`);
 
-                this.setApiConnected(false);
-                this.buildRequest('reboot', 'POST');
-            } else if (idNoNamespace === 'apps.next') {
-                this.log.debug('switching to next app');
-
-                this.buildRequest('nextapp', 'POST');
-            } else if (idNoNamespace === 'apps.prev') {
-                this.log.debug('switching to previous app');
-
-                this.buildRequest('previousapp', 'POST');
-            } else if (idNoNamespace.startsWith('apps.')) {
-                if (idNoNamespace.endsWith('.visible')) {
-                    const obj = await this.getObjectAsync(idNoNamespace);
-                    if (obj && obj.native?.name) {
-                        this.buildRequest('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
+                    if (indicatorNo && indicatorNo >= 1) {
+                        this.updateIndicatorByStates(indicatorNo).then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
                                 await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                             }
                         });
                     }
-                } else if (idNoNamespace.endsWith('.activate')) {
-                    if (state.val) {
-                        const obj = await this.getObjectAsync(idNoNamespace);
-                        if (obj && obj.native?.name) {
-                            this.buildRequest('switch', 'POST', { name: obj.native.name });
-                        }
-                    }
                 }
-            } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
-                const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
-                const indicatorNo = matches ? parseInt(matches[1]) : undefined;
-                const action = matches ? matches[2] : undefined;
-
-                this.log.debug(`Changed indicator ${indicatorNo} with action ${action}`);
-
-                if (indicatorNo && indicatorNo >= 1) {
-                    this.updateIndicatorByStates(indicatorNo).then(() => this.setStateAsync(idNoNamespace, { val: state.val, ack: true }));
-                }
+            } else {
+                this.log.error(`Unable to perform action for ${idNoNamespace} - API is not connected (device not reachable?)`);
             }
         }
     }
