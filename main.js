@@ -35,7 +35,11 @@ class AwtrixLight extends utils.Adapter {
         this.refreshState();
         this.refreshApps();
 
-        this.updateMoodlightByStates();
+        for (let i = 1; i <= 3; i++) {
+            await this.updateIndicatorByStates(i);
+        }
+
+        await this.updateMoodlightByStates();
     }
 
     /**
@@ -112,47 +116,14 @@ class AwtrixLight extends utils.Adapter {
                 }
             } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
                 const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
-                const indicatorNo = matches ? matches[1] : undefined;
+                const indicatorNo = matches ? parseInt(matches[1]) : undefined;
                 const action = matches ? matches[2] : undefined;
 
                 this.log.debug(`Changed indicator ${indicatorNo} with action ${action}`);
 
-                const activeState = await this.getStateAsync(`indicator.${indicatorNo}.active`);
-                const colorState = await this.getStateAsync(`indicator.${indicatorNo}.color`);
-                const blinkState = await this.getStateAsync(`indicator.${indicatorNo}.blink`);
-
-                const postObj = {
-                    color: colorState && colorState.val ? String(colorState.val).toUpperCase() : '0',
-                };
-
-                if (action === 'color') {
-                    postObj.color = String(state.val).toUpperCase();
+                if (indicatorNo && indicatorNo >= 1) {
+                    this.updateIndicatorByStates(indicatorNo).then(() => this.setStateAsync(idNoNamespace, { val: state.val, ack: true }));
                 }
-
-                if (action === 'active' && !state.val) {
-                    postObj.color = '0';
-                } else if (activeState && !activeState.val) {
-                    postObj.color = '0';
-                }
-
-                if (postObj.color !== '0') {
-                    if (action === 'blink' && state.val > 0) {
-                        postObj.blink = state.val;
-                    } else if (blinkState && blinkState.val > 0) {
-                        postObj.blink = blinkState.val;
-                    }
-                }
-
-                this.buildRequest(
-                    `indicator${indicatorNo}`,
-                    async (content) => {
-                        if (content === 'OK') {
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                        }
-                    },
-                    'POST',
-                    postObj,
-                );
             }
         }
     }
@@ -325,7 +296,49 @@ class AwtrixLight extends utils.Adapter {
             }, 60000 * 60);
     }
 
+    async updateIndicatorByStates(index) {
+        this.log.debug(`Updating indicator with index ${index}`);
+
+        const indicatorStates = await this.getStatesAsync(`indicator.${index}.*`);
+        const indicatorValues = Object.entries(indicatorStates).reduce(
+            (acc, [objId, state]) => ({
+                ...acc,
+                [this.removeNamespace(objId)]: state.val,
+            }),
+            {},
+        );
+
+        const postObj = {
+            color: indicatorValues[`indicator.${index}.color`],
+        };
+
+        if (!indicatorValues[`indicator.${index}.active`]) {
+            postObj.color = '0';
+        }
+
+        if (postObj.color !== '0') {
+            if (indicatorValues[`indicator.${index}.blink`] > 0) {
+                postObj.blink = indicatorValues[`indicator.${index}.blink`];
+            }
+        }
+
+        return new Promise((resolve) => {
+            this.buildRequest(
+                `indicator${index}`,
+                async (content) => {
+                    if (content === 'OK') {
+                        resolve(true);
+                    }
+                },
+                'POST',
+                postObj,
+            );
+        });
+    }
+
     async updateMoodlightByStates() {
+        this.log.debug(`Updating moodlight`);
+
         const moodlightStates = await this.getStatesAsync('display.moodlight.*');
         const moodlightValues = Object.entries(moodlightStates).reduce(
             (acc, [objId, state]) => ({
