@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "news": {
+      "0.0.5": {
+        "en": "Added notification support via sendTo / blockly\nImproved error handling",
+        "de": "Zusätzliche Benachrichtigungsunterstützung per Senden Zu / blockieren\nVerbesserte Fehlerbehandlung",
+        "ru": "Добавлена поддержка уведомлений через отправить В / блокно\nУлучшена обработка ошибок",
+        "pt": "Adicionado suporte de notificação via envio Para / blockly\nMelhor manuseio de erros",
+        "nl": "Vermelding ondersteuning via / blokk\nImproviserende fouten",
+        "fr": "Ajout d'un support de notification via envoi Pour / bloquer\nAmélioration de la manipulation des erreurs",
+        "it": "Aggiunto supporto di notifica tramite invio A / blocco\nMiglioramento della gestione degli errori",
+        "es": "Soporte de notificación adicional mediante envío A / bloqueado\nMejor manejo de errores",
+        "pl": "Administracyjne wsparcie poprzez wysłanie komunikatu / blokowo\nPoprawiona obsługa błędów",
+        "uk": "Додана підтримка повідомлень До / блокноти\nПоліпшення обробки помилок",
+        "zh-cn": "通过发出的通知支持 /部分\n改进错误处理"
+      },
       "0.0.4": {
         "en": "Added indicator support\nAdded moodlight support\nAdded device update and reboot options",
         "de": "Unterstützung für den Indikator\nUnterstützung für die Stimmungslichter\nHinzugefügt Geräteupdate und Neustart-Optionen",
