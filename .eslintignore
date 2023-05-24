@@ -1,2 +1,3 @@
 .prettierrc.js
 **/.eslintrc.js
+admin/blockly.js
