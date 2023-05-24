@@ -35,6 +35,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-L
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added notification support via sendTo / blockly
+
 ### 0.0.4 (2023-05-19)
 
 * (klein0r) Added indicator support

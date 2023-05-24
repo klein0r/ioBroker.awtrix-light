@@ -107,6 +107,7 @@
     "compact": true,
     "connectionType": "local",
     "dataSource": "poll",
+    "blockly": true,
     "messagebox": true,
     "adminUI": {
       "config": "json"

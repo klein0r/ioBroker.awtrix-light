@@ -61,7 +61,7 @@ class AwtrixLight extends utils.Adapter {
                 if (idNoNamespace === 'display.power') {
                     this.log.debug(`changing display power to ${state.val}`);
 
-                    this.buildRequest('power', 'POST', { power: state.val }).then(async (response) => {
+                    this.buildRequestAsync('power', 'POST', { power: state.val }).then(async (response) => {
                         if (response.status === 200 && response.data === 'OK') {
                             await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                         }
@@ -75,7 +75,7 @@ class AwtrixLight extends utils.Adapter {
                 } else if (idNoNamespace === 'device.update') {
                     this.log.info('performing firmware update');
 
-                    this.buildRequest('doupdate', 'POST')
+                    this.buildRequestAsync('doupdate', 'POST')
                         .then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('started firmware update');
@@ -85,7 +85,7 @@ class AwtrixLight extends utils.Adapter {
                             this.log.warn(`Unable to perform firmware update (maybe this is already the newest version): ${error}`);
                         });
                 } else if (idNoNamespace === 'device.reboot') {
-                    this.buildRequest('reboot', 'POST').then(async (response) => {
+                    this.buildRequestAsync('reboot', 'POST').then(async (response) => {
                         if (response.status === 200 && response.data === 'OK') {
                             this.log.info('rebooting device');
                             this.setApiConnected(false);
@@ -94,16 +94,16 @@ class AwtrixLight extends utils.Adapter {
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
-                    this.buildRequest('nextapp', 'POST');
+                    this.buildRequestAsync('nextapp', 'POST');
                 } else if (idNoNamespace === 'apps.prev') {
                     this.log.debug('switching to previous app');
 
-                    this.buildRequest('previousapp', 'POST');
+                    this.buildRequestAsync('previousapp', 'POST');
                 } else if (idNoNamespace.startsWith('apps.')) {
                     if (idNoNamespace.endsWith('.visible')) {
                         const obj = await this.getObjectAsync(idNoNamespace);
                         if (obj && obj.native?.name) {
-                            this.buildRequest('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
+                            this.buildRequestAsync('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
                                 if (response.status === 200 && response.data === 'OK') {
                                     await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                                 }
@@ -113,7 +113,7 @@ class AwtrixLight extends utils.Adapter {
                         if (state.val) {
                             const obj = await this.getObjectAsync(idNoNamespace);
                             if (obj && obj.native?.name) {
-                                this.buildRequest('switch', 'POST', { name: obj.native.name });
+                                this.buildRequestAsync('switch', 'POST', { name: obj.native.name });
                             }
                         }
                     }
@@ -147,7 +147,17 @@ class AwtrixLight extends utils.Adapter {
         if (obj && obj.message) {
             // Notification
             if (obj.command === 'notification' && typeof obj.message === 'object') {
-                // Todo
+                if (this.apiConnected) {
+                    this.buildRequestAsync('notify', 'POST', obj.message)
+                        .then((response) => {
+                            this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
+                        })
+                        .catch((error) => {
+                            this.sendTo(obj.from, obj.command, { error }, obj.callback);
+                        });
+                } else {
+                    this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
+                }
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 
@@ -181,7 +191,7 @@ class AwtrixLight extends utils.Adapter {
                     this.refreshState();
                 }, 60000);
 
-            this.buildRequest('stats', 'GET')
+            this.buildRequestAsync('stats', 'GET')
                 .then(async (response) => {
                     if (response.status === 200) {
                         const content = response.data;
@@ -213,7 +223,7 @@ class AwtrixLight extends utils.Adapter {
 
     refreshApps() {
         if (this.apiConnected) {
-            this.buildRequest('apps', 'GET')
+            this.buildRequestAsync('apps', 'GET')
                 .then(async (response) => {
                     if (response.status === 200) {
                         const content = response.data;
@@ -352,7 +362,7 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        return this.buildRequest(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : '');
+        return this.buildRequestAsync(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : '');
     }
 
     async updateMoodlightByStates() {
@@ -372,10 +382,10 @@ class AwtrixLight extends utils.Adapter {
             color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
         };
 
-        return this.buildRequest('moodlight', 'POST', moodlightValues['display.moodlight.active'] ? postObj : '');
+        return this.buildRequestAsync('moodlight', 'POST', moodlightValues['display.moodlight.active'] ? postObj : '');
     }
 
-    buildRequest(service, method, data) {
+    buildRequestAsync(service, method, data) {
         return new Promise((resolve, reject) => {
             const url = `/api/${service}`;
 
