@@ -71,11 +71,15 @@ class AwtrixLight extends utils.Adapter {
                             this.log.warn(`Unable to perform display action: ${error}`);
                         });
                 } else if (idNoNamespace.startsWith('display.moodlight.')) {
-                    this.updateMoodlightByStates().then(async (response) => {
-                        if (response.status === 200 && response.data === 'OK') {
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                        }
-                    });
+                    this.updateMoodlightByStates()
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`Unable to perform moodlight action: ${error}`);
+                        });
                 } else if (idNoNamespace === 'device.update') {
                     this.log.info('performing firmware update');
 
@@ -143,11 +147,15 @@ class AwtrixLight extends utils.Adapter {
                     this.log.debug(`Changed indicator ${indicatorNo} with action ${action}`);
 
                     if (indicatorNo && indicatorNo >= 1) {
-                        this.updateIndicatorByStates(indicatorNo).then(async (response) => {
-                            if (response.status === 200 && response.data === 'OK') {
-                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                            }
-                        });
+                        this.updateIndicatorByStates(indicatorNo)
+                            .then(async (response) => {
+                                if (response.status === 200 && response.data === 'OK') {
+                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                }
+                            })
+                            .catch((error) => {
+                                this.log.warn(`Unable to perform indicator action: ${error}`);
+                            });
                     }
                 }
             } else {
@@ -206,7 +214,9 @@ class AwtrixLight extends utils.Adapter {
                 this.refreshStateTimeout ||
                 setTimeout(() => {
                     this.refreshStateTimeout = null;
-                    this.refreshState();
+                    this.refreshState().catch((error) => {
+                        this.log.debug(`Unable to refresh state: ${error}`);
+                    });
                 }, 60000);
 
             this.buildRequestAsync('stats', 'GET')
