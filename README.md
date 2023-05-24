@@ -24,7 +24,7 @@
 
 Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device (e.g. Ulanzi TC001) via HTTP
 
-Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-Link)
+Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.com](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
 ## Sponsored by
 
@@ -38,6 +38,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-L
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added notification support via sendTo / blockly
+* (klein0r) Improved error handling
 
 ### 0.0.4 (2023-05-19)
 

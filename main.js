@@ -61,11 +61,15 @@ class AwtrixLight extends utils.Adapter {
                 if (idNoNamespace === 'display.power') {
                     this.log.debug(`changing display power to ${state.val}`);
 
-                    this.buildRequestAsync('power', 'POST', { power: state.val }).then(async (response) => {
-                        if (response.status === 200 && response.data === 'OK') {
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                        }
-                    });
+                    this.buildRequestAsync('power', 'POST', { power: state.val })
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`Unable to perform display action: ${error}`);
+                        });
                 } else if (idNoNamespace.startsWith('display.moodlight.')) {
                     this.updateMoodlightByStates().then(async (response) => {
                         if (response.status === 200 && response.data === 'OK') {
@@ -85,35 +89,49 @@ class AwtrixLight extends utils.Adapter {
                             this.log.warn(`Unable to perform firmware update (maybe this is already the newest version): ${error}`);
                         });
                 } else if (idNoNamespace === 'device.reboot') {
-                    this.buildRequestAsync('reboot', 'POST').then(async (response) => {
-                        if (response.status === 200 && response.data === 'OK') {
-                            this.log.info('rebooting device');
-                            this.setApiConnected(false);
-                        }
-                    });
+                    this.buildRequestAsync('reboot', 'POST')
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                this.log.info('rebooting device');
+                                this.setApiConnected(false);
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`Unable to perform reboot action: ${error}`);
+                        });
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
-                    this.buildRequestAsync('nextapp', 'POST');
+                    this.buildRequestAsync('nextapp', 'POST').catch((error) => {
+                        this.log.warn(`Unable to perform app action: ${error}`);
+                    });
                 } else if (idNoNamespace === 'apps.prev') {
                     this.log.debug('switching to previous app');
 
-                    this.buildRequestAsync('previousapp', 'POST');
+                    this.buildRequestAsync('previousapp', 'POST').catch((error) => {
+                        this.log.warn(`Unable to perform app action: ${error}`);
+                    });
                 } else if (idNoNamespace.startsWith('apps.')) {
                     if (idNoNamespace.endsWith('.visible')) {
                         const obj = await this.getObjectAsync(idNoNamespace);
                         if (obj && obj.native?.name) {
-                            this.buildRequestAsync('apps', 'POST', [{ name: obj.native.name, show: state.val }]).then(async (response) => {
-                                if (response.status === 200 && response.data === 'OK') {
-                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                                }
-                            });
+                            this.buildRequestAsync('apps', 'POST', [{ name: obj.native.name, show: state.val }])
+                                .then(async (response) => {
+                                    if (response.status === 200 && response.data === 'OK') {
+                                        await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                    }
+                                })
+                                .catch((error) => {
+                                    this.log.warn(`Unable to perform app action: ${error}`);
+                                });
                         }
                     } else if (idNoNamespace.endsWith('.activate')) {
                         if (state.val) {
                             const obj = await this.getObjectAsync(idNoNamespace);
                             if (obj && obj.native?.name) {
-                                this.buildRequestAsync('switch', 'POST', { name: obj.native.name });
+                                this.buildRequestAsync('switch', 'POST', { name: obj.native.name }).catch((error) => {
+                                    this.log.warn(`Unable to perform app action: ${error}`);
+                                });
                             }
                         }
                     }
