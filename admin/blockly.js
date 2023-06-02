@@ -190,15 +190,15 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
     const sound = Blockly.JavaScript.valueToCode(block, 'SOUND', Blockly.JavaScript.ORDER_ATOMIC);
     const icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
-    const repeat = parseInt(Blockly.JavaScript.valueToCode(block, 'REPEAT', Blockly.JavaScript.ORDER_ATOMIC));
-    const duration = parseInt(Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ATOMIC));
+    const repeat = Blockly.JavaScript.valueToCode(block, 'REPEAT', Blockly.JavaScript.ORDER_ATOMIC);
+    const duration = Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ATOMIC);
 
     const objText = [];
     message && objText.push('text: ' + message);
     sound && objText.push('sound: ' + sound);
     icon && objText.push('icon: ' + icon);
-    repeat && objText.push('repeat: ' + repeat);
-    duration && objText.push('duration: ' + duration);
+    repeat && objText.push('repeat: parseInt(' + repeat + ')');
+    duration && objText.push('duration: parseInt(' + duration + ')');
 
-    return 'sendTo("awtrix-light' + block.getFieldValue('INSTANCE') + '", "notification", { ' + objText.join(', ') + ' }, (res) => { if (res && res.error) { console.error(res.error); } });';
+    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };
