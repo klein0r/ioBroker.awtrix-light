@@ -257,7 +257,7 @@ class AwtrixLight extends utils.Adapter {
                         const content = response.data;
 
                         const appPath = 'apps';
-                        const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum'];
+                        const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
                         const currentApps = content.map((a) => a.name);
 
                         this.getChannelsOf(appPath, async (err, states) => {
