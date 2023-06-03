@@ -96,6 +96,34 @@ Blockly.Words['awtrix-light_duration'] = {
     'zh-cn': '期间',
 };
 
+Blockly.Words['awtrix-light_stack'] = {
+    en: 'Stack',
+    de: 'Stapeln',
+    ru: 'Стек',
+    pt: 'Stack',
+    nl: 'Stack',
+    fr: 'Stack',
+    it: 'Stack',
+    es: 'Stack',
+    pl: 'Stack',
+    uk: 'Стейк',
+    'zh-cn': '包装',
+};
+
+Blockly.Words['awtrix-light_wakeup'] = {
+    en: 'Wakeup',
+    de: 'Aufwecken',
+    ru: 'Вакеп',
+    pt: 'Acorda',
+    nl: 'Wakker worden',
+    fr: 'Réveille-toi',
+    it: 'Sveglia',
+    es: 'Despierta',
+    pl: 'Wakeup',
+    uk: 'Вейкап',
+    'zh-cn': '瓦克鲁',
+};
+
 Blockly.Words['awtrix-light_anyInstance'] = {
     en: 'All instances',
     de: 'Alle Instanzen',
@@ -147,6 +175,10 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '             <field name="NUM">5</field>' +
     '         </shadow>' +
     '     </value>' +
+    '     <value name="STACK">' +
+    '     </value>' +
+    '     <value name="WAKEUP">' +
+    '     </value>' +
     '</block>';
 
 Blockly.Blocks['awtrix-light'] = {
@@ -175,6 +207,8 @@ Blockly.Blocks['awtrix-light'] = {
         this.appendValueInput('ICON').appendField(Blockly.Translate('awtrix-light_icon'));
         this.appendValueInput('REPEAT').appendField(Blockly.Translate('awtrix-light_repeat'));
         this.appendValueInput('DURATION').appendField(Blockly.Translate('awtrix-light_duration'));
+        this.appendDummyInput('STACK_INPUT').appendField(Blockly.Translate('awtrix-light_stack')).appendField(new Blockly.FieldCheckbox('TRUE'), 'STACK');
+        this.appendDummyInput('WAKEUP_INPUT').appendField(Blockly.Translate('awtrix-light_wakeup')).appendField(new Blockly.FieldCheckbox('TRUE'), 'WAKEUP');
 
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
@@ -193,12 +227,20 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     const repeat = Blockly.JavaScript.valueToCode(block, 'REPEAT', Blockly.JavaScript.ORDER_ATOMIC);
     const duration = Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ATOMIC);
 
+    let stack = block.getFieldValue('STACK');
+    stack = stack === 'TRUE' || stack === 'true' || stack === true;
+
+    let wakeup = block.getFieldValue('WAKEUP');
+    wakeup = wakeup === 'TRUE' || wakeup === 'true' || wakeup === true;
+
     const objText = [];
     message && objText.push('text: ' + message);
     sound && objText.push('sound: ' + sound);
     icon && objText.push('icon: ' + icon);
     repeat && objText.push('repeat: parseInt(' + repeat + ')');
     duration && objText.push('duration: parseInt(' + duration + ')');
+    objText.push('stack: ' + stack);
+    objText.push('wakeup: ' + wakeup);
 
     return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };

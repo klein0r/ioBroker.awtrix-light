@@ -39,6 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.67
 
+* (klein0r) Added stack and wakeup option to blockly
 * (klein0r) Blockly bugfix
 * (klein0r) Battery app was hidden when invisible
 
