@@ -187,6 +187,347 @@
       "native": {}
     },
     {
+      "_id": "settings",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Settings",
+          "de": "Einstellungen",
+          "ru": "Настройки",
+          "pt": "Configurações",
+          "nl": "Setting",
+          "fr": "Réglages",
+          "it": "Impostazioni impostazioni",
+          "es": "Ajustes",
+          "pl": "Setting",
+          "uk": "Налаштування",
+          "zh-cn": "确定"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "settings.appDisplayTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App display duration",
+          "de": "Anzeigedauer der Apps",
+          "ru": "Продолжительность дисплея приложения",
+          "pt": "Duração da exposição do aplicativo",
+          "nl": "Vertaling:",
+          "fr": "Durée de l'affichage",
+          "it": "Durata dell'esposizione dell'app",
+          "es": "Duración de la pantalla",
+          "pl": "Czas trwania",
+          "uk": "Тривалість відображення додатка",
+          "zh-cn": "延长期限"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "sec",
+        "read": true,
+        "write": true,
+        "def": 7
+      },
+      "native": {
+        "settingsKey": "ATIME"
+      }
+    },
+    {
+      "_id": "settings.textSpeed",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Transition speed to the next app",
+          "de": "Übergangsgeschwindigkeit zur nächsten App",
+          "ru": "Скорость перехода к следующему приложению",
+          "pt": "Velocidade de transição para o próximo aplicativo",
+          "nl": "Vervoersnelheid naar de volgende app",
+          "fr": "Vitesse de transition vers la prochaine application",
+          "it": "Velocità di transizione alla prossima app",
+          "es": "Velocidad de transición a la próxima aplicación",
+          "pl": "Łączna prędkość do następnej aplikacji",
+          "uk": "Швидкість переходу на наступний додаток",
+          "zh-cn": "二. 向下一份报告过渡速度"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 500
+      },
+      "native": {
+        "settingsKey": "TSPEED"
+      }
+    },
+    {
+      "_id": "settings.textColor",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Text color",
+          "de": "Textfarbe",
+          "ru": "Цвет текста",
+          "pt": "Cor do texto",
+          "nl": "Vertaling:",
+          "fr": "Couleur du texte",
+          "it": "Colore del testo",
+          "es": "Color de texto",
+          "pl": "Kolor tekstowy",
+          "uk": "Колір тексту",
+          "zh-cn": "案文"
+        },
+        "type": "string",
+        "role": "state",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TCOL"
+      }
+    },
+    {
+      "_id": "settings.displayWeekday",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Display weekday",
+          "de": "Anzeige Wochentag",
+          "ru": "Показать день недели",
+          "pt": "Exibir dia da semana",
+          "nl": "Vertaling:",
+          "fr": "Afficher semaine",
+          "it": "Visualizza giorno della settimana",
+          "es": "Mostrar semanario",
+          "pl": "Tygodnik dyskretny",
+          "uk": "Показати тиждень",
+          "zh-cn": "B. 日 失"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "WD"
+      }
+    },
+    {
+      "_id": "settings.weekdayColorActive",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color for active week day",
+          "de": "Farbe für aktiven Wochentag",
+          "ru": "Цвет для активного дня недели",
+          "pt": "Cor para o dia da semana ativa",
+          "nl": "Kleur voor actieve weekdag",
+          "fr": "Couleur pour une semaine active",
+          "it": "Colore per il giorno della settimana attiva",
+          "es": "Color para el día de semana activo",
+          "pl": "Współzałożycielka tygodniowo",
+          "uk": "Колір для активного тижня",
+          "zh-cn": "积极周"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "WDCA"
+      }
+    },
+    {
+      "_id": "settings.weekdayColorInactive",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color for inactive week days",
+          "de": "Farbe für inaktive Wochentage",
+          "ru": "Цвет для неактивных дней недели",
+          "pt": "Cor para dias semanais inativos",
+          "nl": "Kleur voor inactieve weken",
+          "fr": "Couleur pour les jours de semaine inactifs",
+          "it": "Colore per giorni settimanali inattivi",
+          "es": "Color para días de semana inactivos",
+          "pl": "Współzałożyciel w nieczynny tydzień",
+          "uk": "Колір для неактивних днів тижня",
+          "zh-cn": "B. 活周"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "WDCI"
+      }
+    },
+    {
+      "_id": "settings.frameRate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Frames per second",
+          "de": "Bilder pro Sekunde",
+          "ru": "Рамки в секунду",
+          "pt": "Quadros por segundo",
+          "nl": "Frams per seconde",
+          "fr": "Cadres par seconde",
+          "it": "Cornici al secondo",
+          "es": "Marcos por segundo",
+          "pl": "Frame na sekundę",
+          "uk": "Рамки на другий",
+          "zh-cn": "第二个欺诈"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "fps",
+        "read": true,
+        "write": true,
+        "def": 23
+      },
+      "native": {
+        "settingsKey": "FPS"
+      }
+    },
+    {
+      "_id": "settings.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "min": 0,
+        "max": 255
+      },
+      "native": {
+        "settingsKey": "BRI"
+      }
+    },
+    {
+      "_id": "settings.brightnessAuto",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Automatic brightness",
+          "de": "Automatische Helligkeit",
+          "ru": "Автоматическая яркость",
+          "pt": "Brilho automático",
+          "nl": "Automatische helderheid",
+          "fr": "Eclairage automatique",
+          "it": "Luminosità automatica",
+          "es": "Luminosidad automática",
+          "pl": "Jasność automatyczna",
+          "uk": "Автоматична яскравість",
+          "zh-cn": "光明"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "ABRI"
+      }
+    },
+    {
+      "_id": "settings.appSwitchAuto",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Automatic app switching",
+          "de": "Automatischer App-Wechsel",
+          "ru": "Автоматический переключатель приложений",
+          "pt": "Comutação automática de aplicativos",
+          "nl": "Automatische app wisselen",
+          "fr": "Interrupteur automatique d'application",
+          "it": "Interruttore automatico dell'app",
+          "es": "Interruptor automático de aplicaciones",
+          "pl": "Automatyczne aplikacje przełączają",
+          "uk": "Автоматичне перемикання додатків",
+          "zh-cn": "自动转换"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "ATRANS"
+      }
+    },
+    {
+      "_id": "settings.formatTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time format",
+          "de": "Zeitformat",
+          "ru": "Формат времени",
+          "pt": "Formato de hora",
+          "nl": "Tijd formaat",
+          "fr": "Format temporel",
+          "it": "Formato del tempo",
+          "es": "Formato del tiempo",
+          "pl": "Format Time",
+          "uk": "Формат",
+          "zh-cn": "时间格式"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TFORMAT"
+      }
+    },
+    {
+      "_id": "settings.formatDate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Date format",
+          "de": "Datumsformat",
+          "ru": "Формат даты",
+          "pt": "Formato de data",
+          "nl": "Datum formaat",
+          "fr": "Date format",
+          "it": "Formato della data",
+          "es": "Formato de fecha",
+          "pl": "Format",
+          "uk": "Дата формат",
+          "zh-cn": "日期"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "DFORMAT"
+      }
+    },
+    {
       "_id": "meta",
       "type": "channel",
       "common": {

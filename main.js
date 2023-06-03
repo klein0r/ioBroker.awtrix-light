@@ -58,7 +58,26 @@ class AwtrixLight extends utils.Adapter {
             this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
 
             if (this.apiConnected) {
-                if (idNoNamespace === 'display.power') {
+                if (idNoNamespace.startsWith('settings.')) {
+                    this.log.debug(`changing setting ${idNoNamespace} power to ${state.val}`);
+
+                    const settingsObj = await this.getObjectAsync(idNoNamespace);
+                    if (settingsObj && settingsObj.native?.settingsKey) {
+                        this.buildRequestAsync('settings', 'POST', { [settingsObj.native.settingsKey]: state.val })
+                            .then(async (response) => {
+                                if (response.status === 200 && response.data === 'OK') {
+                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                }
+
+                                await this.refreshSettings();
+                            })
+                            .catch((error) => {
+                                this.log.warn(`Unable to perform display action: ${error}`);
+                            });
+                    } else {
+                        this.log.warn(`Unable to change setting of ${id} - settingsKey not found`);
+                    }
+                } else if (idNoNamespace === 'display.power') {
                     this.log.debug(`changing display power to ${state.val}`);
 
                     this.buildRequestAsync('power', 'POST', { power: state.val })
@@ -236,6 +255,8 @@ class AwtrixLight extends utils.Adapter {
                         await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
                         await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
                         await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
+
+                        await this.refreshSettings();
                     }
 
                     resolve(response.status);
@@ -243,6 +264,43 @@ class AwtrixLight extends utils.Adapter {
                 .catch((error) => {
                     this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
                     this.setApiConnected(false);
+
+                    reject(error);
+                });
+        });
+    }
+
+    refreshSettings() {
+        return new Promise((resolve, reject) => {
+            this.buildRequestAsync('settings', 'GET')
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        const content = response.data;
+
+                        const settingsStates = await this.getObjectViewAsync('system', 'state', {
+                            startkey: `${this.namespace}.settings.`,
+                            endkey: `${this.namespace}.settings.\u9999`,
+                        });
+
+                        // Find all available settings objects with settingsKey
+                        const knownSettings = {};
+                        for (const settingsObj of settingsStates.rows) {
+                            if (settingsObj.value?.native?.settingsKey) {
+                                knownSettings[this.removeNamespace(settingsObj.value?.native?.settingsKey)] = settingsObj.id;
+                            }
+                        }
+
+                        for (const [settingsKey, val] of Object.entries(content)) {
+                            if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
+                                await this.setStateChangedAsync(knownSettings[settingsKey], { val, ack: true, c: 'Updated from API' });
+                            }
+                        }
+                    }
+
+                    resolve(response.status);
+                })
+                .catch((error) => {
+                    this.log.debug(`(settings) received error: ${JSON.stringify(error)}`);
 
                     reject(error);
                 });
