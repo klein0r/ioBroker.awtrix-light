@@ -37,6 +37,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+Updated recommended firmware version to 0.67
+
 * (klein0r) Blockly bugfix
 
 ### 0.0.5 (2023-05-24)
