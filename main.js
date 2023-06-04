@@ -2,6 +2,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
+const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
 class AwtrixLight extends utils.Adapter {
@@ -292,7 +293,11 @@ class AwtrixLight extends utils.Adapter {
 
                         for (const [settingsKey, val] of Object.entries(content)) {
                             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
-                                await this.setStateChangedAsync(knownSettings[settingsKey], { val, ack: true, c: 'Updated from API' });
+                                if (['TCOL'].includes(settingsKey)) {
+                                    await this.setStateChangedAsync(knownSettings[settingsKey], { val: colorConvert.rgb565to888Str(val), ack: true, c: 'Updated from API (converted from RGB565)' });
+                                } else {
+                                    await this.setStateChangedAsync(knownSettings[settingsKey], { val, ack: true, c: 'Updated from API' });
+                                }
                             }
                         }
                     }

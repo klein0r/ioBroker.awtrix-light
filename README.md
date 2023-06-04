@@ -35,6 +35,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added color conversion to hex in settings
+
 ### 0.0.6 (2023-06-03)
 
 Updated recommended firmware version to 0.67
