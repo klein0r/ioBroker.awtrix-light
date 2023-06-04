@@ -36,6 +36,7 @@ class AwtrixLight extends utils.Adapter {
 
         try {
             await this.refreshState();
+            await this.refreshCustomApps();
             this.refreshApps();
 
             for (let i = 1; i <= 3; i++) {
@@ -325,6 +326,28 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
+    async refreshCustomApps() {
+        if (this.apiConnected) {
+            for (const customApp of this.config.customApps) {
+                if (customApp.name) {
+                    this.log.debug(`[refreshCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
+
+                    try {
+                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                            text: customApp.text,
+                            icon: customApp.icon,
+                            duration: customApp.duration,
+                        });
+                    } catch (error) {
+                        this.log.error(`[refreshCustomApps] Unable to create custom app ${customApp.name}: ${error}`);
+                    }
+                } else {
+                    this.log.warn(`[refreshCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
+                }
+            }
+        }
+    }
+
     refreshApps() {
         if (this.apiConnected) {
             this.buildRequestAsync('apps', 'GET')
@@ -334,6 +357,7 @@ class AwtrixLight extends utils.Adapter {
 
                         const appPath = 'apps';
                         const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
+                        const customApps = this.config.customApps.map((cA) => cA.name);
                         const currentApps = content.map((a) => a.name);
 
                         this.getChannelsOf(appPath, async (err, states) => {
@@ -360,7 +384,7 @@ class AwtrixLight extends utils.Adapter {
                                 await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
                                     type: 'channel',
                                     common: {
-                                        name: `App ${name}`,
+                                        name: `App ${name}${customApps.includes(name) ? ' (custom app)' : ''}`,
                                     },
                                     native: {},
                                 });
@@ -390,32 +414,34 @@ class AwtrixLight extends utils.Adapter {
                                     },
                                 });
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Visible',
-                                            de: 'Sichtbar',
-                                            ru: 'Видимый',
-                                            pt: 'Visível',
-                                            nl: 'Vertaling:',
-                                            fr: 'Visible',
-                                            it: 'Visibile',
-                                            es: 'Visible',
-                                            pl: 'Widoczny',
-                                            uk: 'Вибрані',
-                                            'zh-cn': '不可抗辩',
+                                if (nativeApps.includes(name)) {
+                                    await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Visible',
+                                                de: 'Sichtbar',
+                                                ru: 'Видимый',
+                                                pt: 'Visível',
+                                                nl: 'Vertaling:',
+                                                fr: 'Visible',
+                                                it: 'Visibile',
+                                                es: 'Visible',
+                                                pl: 'Widoczny',
+                                                uk: 'Вибрані',
+                                                'zh-cn': '不可抗辩',
+                                            },
+                                            type: 'boolean',
+                                            role: 'indicator',
+                                            read: true,
+                                            write: true,
                                         },
-                                        type: 'boolean',
-                                        role: 'indicator',
-                                        read: true,
-                                        write: true,
-                                    },
-                                    native: {
-                                        name,
-                                    },
-                                });
-                                await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
+                                        native: {
+                                            name,
+                                        },
+                                    });
+                                    await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
+                                }
                             }
 
                             // Delete non existent apps

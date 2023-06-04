@@ -163,7 +163,8 @@
     ]
   },
   "native": {
-    "awtrixIp": ""
+    "awtrixIp": "",
+    "customApps": []
   },
   "objects": [],
   "instanceObjects": [

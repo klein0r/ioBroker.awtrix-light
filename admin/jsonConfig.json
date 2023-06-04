@@ -24,6 +24,100 @@
                     "src": "https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png"
                 }
             }
+        },
+        "_customApps": {
+            "type": "panel",
+            "label": "Apps",
+            "items": {
+                "customApps": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "label": "Custom Apps",
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "name",
+                            "width": "20%",
+                            "title": {
+                                "en": "Name",
+                                "de": "Name",
+                                "ru": "Имя",
+                                "pt": "Nome",
+                                "nl": "Naam",
+                                "fr": "Nom",
+                                "it": "Nome",
+                                "es": "Nombre",
+                                "pl": "Nazwa",
+                                "uk": "Ім'я",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true
+                        },
+                        {
+                            "type": "text",
+                            "attr": "icon",
+                            "width": "20%",
+                            "title": {
+                                "en": "Icon",
+                                "de": "Symbol",
+                                "ru": "Значок",
+                                "pt": "Ícone",
+                                "nl": "Icoon",
+                                "fr": "Icône",
+                                "it": "Icona",
+                                "es": "Icono",
+                                "pl": "Ikona",
+                                "zh-cn": "图标"
+                            },
+                            "filter": false,
+                            "sort": false
+                        },
+                        {
+                            "type": "text",
+                            "attr": "text",
+                            "width": "40%",
+                            "title": {
+                                "en": "Text",
+                                "de": "Text",
+                                "ru": "Текст",
+                                "pt": "Texto",
+                                "nl": "Tekst",
+                                "fr": "Texte",
+                                "it": "Testo",
+                                "es": "Texto",
+                                "pl": "Tekst",
+                                "zh-cn": "文本"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": "haus-automatisierung.com"
+                        },
+                        {
+                            "type": "number",
+                            "attr": "duration",
+                            "width": "20%",
+                            "title": {
+                                "en": "Duration (sec)",
+                                "de": "Dauer (Sek.)",
+                                "ru": "Продолжительность (сек)",
+                                "pt": "Duração (s)",
+                                "nl": "Duur (sec)",
+                                "fr": "Durée (sec)",
+                                "it": "Durata (sec)",
+                                "es": "Duración (seg)",
+                                "pl": "Czas trwania (s)",
+                                "zh-cn": "持续时间（秒）"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": 5
+                        }
+                    ]
+                }
+            }
         }
     }
 }
