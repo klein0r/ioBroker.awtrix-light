@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "news": {
+      "0.0.7": {
+        "en": "Added timer feature to blockly\nAdded color conversion to hex in settings",
+        "de": "Hinzugefügt Timer-Feature zu blockieren\nFarbumwandlung in Hexeneinstellungen hinzugefügt",
+        "ru": "Добавлена функция таймера для блокировки\nДобавлена цветовая конверсия в hex в настройках",
+        "pt": "Adicionado recurso temporizador para bloquear\nConversão de cor adicionada ao hex em configurações",
+        "nl": "Vertaling:\nVermeld kleuren bekering aan hex in setting",
+        "fr": "Ajout de la fonction timer pour bloquer\nAjout de la conversion de couleur en hexagone dans les paramètres",
+        "it": "Aggiunto funzione timer per bloccare\nAggiunto la conversione di colore a hex in impostazioni",
+        "es": "Función del temporizador añadido para bloquear\nConversión de color a hex en la configuración",
+        "pl": "Dodany czaszkę ma blokować\nZwracana do koloru na hex w ustawieniach",
+        "uk": "Додана функція таймера для блокування\nДодано конвертацію кольору в шістку в налаштуваннях",
+        "zh-cn": "增加时间特点以阻挡时间\n增加在环境中的颜色转换"
+      },
       "0.0.6": {
         "en": "Updated recommended firmware version to 0.67\n\n* Added some settings as states\n* Added stack and wakeup option to blockly\n* Battery app was hidden when invisible",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.67\n\n* Einige Einstellungen als Zustände hinzugefügt\n* Hinzugefügt Stapel und Weckoption blockieren\n* Batterie-App wurde versteckt, wenn unsichtbar",
