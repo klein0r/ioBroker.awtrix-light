@@ -191,10 +191,23 @@ class AwtrixLight extends utils.Adapter {
         this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
 
         if (obj && obj.message) {
-            // Notification
             if (obj.command === 'notification' && typeof obj.message === 'object') {
+                // Notification
                 if (this.apiConnected) {
                     this.buildRequestAsync('notify', 'POST', obj.message)
+                        .then((response) => {
+                            this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
+                        })
+                        .catch((error) => {
+                            this.sendTo(obj.from, obj.command, { error }, obj.callback);
+                        });
+                } else {
+                    this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
+                }
+            } else if (obj.command === 'timer' && typeof obj.message === 'object') {
+                // Timer
+                if (this.apiConnected) {
+                    this.buildRequestAsync('timer', 'POST', obj.message)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })
