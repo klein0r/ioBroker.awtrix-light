@@ -122,7 +122,7 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to perform firmware update (maybe this is already the newest version): ${error}`);
+                            this.log.warn(`Unable to execute firmware update (maybe this is already the newest version): ${error}`);
                         });
                 } else if (idNoNamespace === 'device.reboot') {
                     this.buildRequestAsync('reboot', 'POST')
@@ -133,24 +133,26 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to perform reboot action: ${error}`);
+                            this.log.warn(`Unable to execute "reboot" action: ${error}`);
                         });
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
                     this.buildRequestAsync('nextapp', 'POST').catch((error) => {
-                        this.log.warn(`Unable to perform app action: ${error}`);
+                        this.log.warn(`Unable to execute "nextapp" action: ${error}`);
                     });
                 } else if (idNoNamespace === 'apps.prev') {
                     this.log.debug('switching to previous app');
 
                     this.buildRequestAsync('previousapp', 'POST').catch((error) => {
-                        this.log.warn(`Unable to perform app action: ${error}`);
+                        this.log.warn(`Unable to execute "previousapp" action: ${error}`);
                     });
                 } else if (idNoNamespace.startsWith('apps.')) {
                     if (idNoNamespace.endsWith('.visible')) {
                         const obj = await this.getObjectAsync(idNoNamespace);
                         if (obj && obj.native?.name) {
+                            this.log.debug(`changing visibility of app ${obj.native.name} to ${state.val}`);
+
                             this.buildRequestAsync('apps', 'POST', [{ name: obj.native.name, show: state.val }])
                                 .then(async (response) => {
                                     if (response.status === 200 && response.data === 'OK') {
@@ -158,17 +160,21 @@ class AwtrixLight extends utils.Adapter {
                                     }
                                 })
                                 .catch((error) => {
-                                    this.log.warn(`Unable to perform app action: ${error}`);
+                                    this.log.warn(`Unable to execute app visibility action: ${error}`);
                                 });
                         }
                     } else if (idNoNamespace.endsWith('.activate')) {
                         if (state.val) {
                             const obj = await this.getObjectAsync(idNoNamespace);
                             if (obj && obj.native?.name) {
+                                this.log.debug(`activating app ${obj.native.name}`);
+
                                 this.buildRequestAsync('switch', 'POST', { name: obj.native.name }).catch((error) => {
-                                    this.log.warn(`Unable to perform app action: ${error}`);
+                                    this.log.warn(`Unable to execute app activation: ${error}`);
                                 });
                             }
+                        } else {
+                            this.log.warn(`Received invalid value for state ${idNoNamespace}`);
                         }
                     }
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
