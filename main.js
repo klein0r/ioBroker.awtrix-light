@@ -5,6 +5,8 @@ const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
+const DEFAULT_DURATION = 5;
+
 class AwtrixLight extends utils.Adapter {
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
@@ -23,8 +25,11 @@ class AwtrixLight extends utils.Adapter {
         this.refreshStateTimeout = null;
         this.refreshAppTimeout = null;
 
+        this.customAppsForeignStates = {};
+
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
+        this.on('objectChange', this.onObjectChange.bind(this));
         this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
@@ -36,7 +41,6 @@ class AwtrixLight extends utils.Adapter {
 
         try {
             await this.refreshState();
-            await this.refreshCustomApps();
             this.refreshApps();
 
             for (let i = 1; i <= 3; i++) {
@@ -54,6 +58,13 @@ class AwtrixLight extends utils.Adapter {
      * @param {ioBroker.State | null | undefined} state
      */
     async onStateChange(id, state) {
+        if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
+            if (state && state.ack) {
+                this.customAppsForeignStates[id].val = state?.val;
+                this.refreshCustomApps(id);
+            }
+        }
+
         if (id && state && !state.ack) {
             const idNoNamespace = this.removeNamespace(id);
 
@@ -186,6 +197,25 @@ class AwtrixLight extends utils.Adapter {
     }
 
     /**
+     * @param {string} id
+     * @param {ioBroker.Object | null | undefined} obj
+     */
+    onObjectChange(id, obj) {
+        if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
+            if (!obj) {
+                delete this.customAppsForeignStates[id];
+            } else {
+                this.customAppsForeignStates[id] = {
+                    type: obj?.common.type,
+                    unit: obj?.common?.unit,
+                };
+
+                this.refreshCustomApps(id);
+            }
+        }
+    }
+
+    /**
      * @param {ioBroker.Message} obj
      */
     onMessage(obj) {
@@ -272,6 +302,7 @@ class AwtrixLight extends utils.Adapter {
                         await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
 
                         await this.refreshSettings();
+                        await this.initCustomApps();
                     }
 
                     resolve(response.status);
@@ -326,23 +357,72 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async refreshCustomApps() {
+    async initCustomApps() {
+        for (const customApp of this.config.customApps) {
+            if (customApp.name) {
+                if (customApp.objId) {
+                    try {
+                        const objId = customApp.objId;
+                        if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
+                            const obj = await this.getForeignObjectAsync(objId);
+                            if (obj) {
+                                const state = await this.getForeignStateAsync(objId);
+
+                                this.customAppsForeignStates[objId] = {
+                                    val: state && state.val ? state.val : undefined,
+                                    type: obj?.common.type,
+                                    unit: obj?.common?.unit,
+                                };
+
+                                await this.subscribeForeignStatesAsync(objId);
+                                await this.subscribeForeignObjectsAsync(objId);
+
+                                this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId ${objId} - subscribed to changes`);
+                            }
+                        }
+                    } catch (error) {
+                        this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
+                    }
+                } else {
+                    // App with static text (no objId specified)
+                    this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
+
+                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                        text: customApp.text,
+                        icon: customApp.icon,
+                        duration: customApp.duration || DEFAULT_DURATION,
+                    });
+                }
+            } else {
+                this.log.warn(`[initCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
+            }
+        }
+
+        // Trigger update for all found objIds
+        for (const objId of Object.keys(this.customAppsForeignStates)) {
+            await this.refreshCustomApps(objId);
+        }
+    }
+
+    async refreshCustomApps(objId) {
         if (this.apiConnected) {
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
-                    this.log.debug(`[refreshCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
+                    if (customApp.objId && customApp.objId === objId) {
+                        this.log.debug(`[refreshCustomApp] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
 
-                    try {
-                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                            text: customApp.text,
-                            icon: customApp.icon,
-                            duration: customApp.duration,
-                        });
-                    } catch (error) {
-                        this.log.error(`[refreshCustomApps] Unable to create custom app ${customApp.name}: ${error}`);
+                        try {
+                            await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                text: String(customApp.text)
+                                    .replace('%s', this.customAppsForeignStates[objId].val || '')
+                                    .replace('%u', this.customAppsForeignStates[objId].unit || ''),
+                                icon: customApp.icon,
+                                duration: customApp.duration || DEFAULT_DURATION,
+                            });
+                        } catch (error) {
+                            this.log.error(`[refreshCustomApp] Unable to refresh custom app ${customApp.name}: ${error}`);
+                        }
                     }
-                } else {
-                    this.log.warn(`[refreshCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
                 }
             }
         }

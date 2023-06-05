@@ -54,7 +54,8 @@
                                 "zh-cn": "姓名"
                             },
                             "filter": true,
-                            "sort": true
+                            "sort": true,
+                            "default": ""
                         },
                         {
                             "type": "text",
@@ -76,6 +77,27 @@
                             "sort": false
                         },
                         {
+                            "type": "objectId",
+                            "attr": "objId",
+                            "width": "20%",
+                            "title": {
+                                "en": "Object",
+                                "de": "Obiekt",
+                                "ru": "Объект",
+                                "pt": "Objeto",
+                                "nl": "Object",
+                                "fr": "Objet",
+                                "it": "Oggetto",
+                                "es": "Objeto",
+                                "pl": "Obiekt",
+                                "uk": "Об'єкт",
+                                "zh-cn": "目 录"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": ""
+                        },
+                        {
                             "type": "text",
                             "attr": "text",
                             "width": "40%",
@@ -93,7 +115,7 @@
                             },
                             "filter": false,
                             "sort": false,
-                            "default": "haus-automatisierung.com"
+                            "default": "%s %u"
                         },
                         {
                             "type": "number",
