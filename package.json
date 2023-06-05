@@ -1,6 +1,6 @@
 {
   "name": "iobroker.awtrix-light",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Integrate your Awtrix Light device (e.g. Ulanzi TC001) via HTTP  ",
   "author": {
     "name": "Matthias Kleine",

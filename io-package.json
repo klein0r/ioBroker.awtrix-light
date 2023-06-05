@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "news": {
+      "0.0.8": {
+        "en": "Added custom apps via instance configuration",
+        "de": "Benutzerdefinierte Apps über Instanz-Konfiguration hinzugefügt",
+        "ru": "Добавлены пользовательские приложения через конфигурацию экземпляра",
+        "pt": "Adicionados aplicativos personalizados via configuração de instância",
+        "nl": "Gezamenlijke apps via instabiliteit",
+        "fr": "Ajout d'applications personnalisées via la configuration d'instance",
+        "it": "Aggiunte app personalizzate tramite configurazione delle istanze",
+        "es": "Aplicaciones personalizadas adicionales mediante configuración de instancia",
+        "pl": "Dodrukowane aplikacje za pomocą konfiguracji instancji",
+        "uk": "Додано користувацькі додатки за допомогою конфігурації екземпляра",
+        "zh-cn": "通过图像组合添加成具"
+      },
       "0.0.7": {
         "en": "Added timer feature to blockly\nAdded color conversion to hex in settings",
         "de": "Hinzugefügt Timer-Feature zu blockieren\nFarbumwandlung in Hexeneinstellungen hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "pierwsze wydanie",
         "uk": "початковий реліз",
         "zh-cn": "初步释放"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "titleLang": {

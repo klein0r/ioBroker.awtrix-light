@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.8 (2023-06-05)
 
 * (klein0r) Added custom apps via instance configuration
 
@@ -62,11 +62,6 @@ Updated recommended firmware version to 0.67
 * (klein0r) Added indicator support
 * (klein0r) Added moodlight support
 * (klein0r) Added device update and reboot options
-
-### 0.0.3 (2023-05-16)
-
-* (klein0r) Allow to switch apps via state
-* (klein0r) Added more states
 
 ## License
 MIT License
