@@ -55,7 +55,8 @@
                             },
                             "filter": true,
                             "sort": true,
-                            "default": ""
+                            "default": "",
+                            "validator": "/^([a-z]{1,})$/.test(data.name)"
                         },
                         {
                             "type": "text",

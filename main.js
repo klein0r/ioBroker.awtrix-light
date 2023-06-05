@@ -60,8 +60,11 @@ class AwtrixLight extends utils.Adapter {
     async onStateChange(id, state) {
         if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             if (state && state.ack) {
-                this.customAppsForeignStates[id].val = state?.val;
-                this.refreshCustomApps(id);
+                // Just refresh if value has changed
+                if (state?.val !== this.customAppsForeignStates[id].val) {
+                    this.customAppsForeignStates[id].val = state?.val;
+                    this.refreshCustomApps(id);
+                }
             }
         }
 
@@ -394,7 +397,7 @@ class AwtrixLight extends utils.Adapter {
                     this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
 
                     await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                        text: customApp.text,
+                        text: String(customApp.text).trim(),
                         icon: customApp.icon,
                         duration: customApp.duration || DEFAULT_DURATION,
                     });
@@ -421,7 +424,8 @@ class AwtrixLight extends utils.Adapter {
                             await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                                 text: String(customApp.text)
                                     .replace('%s', this.customAppsForeignStates[objId].val || '')
-                                    .replace('%u', this.customAppsForeignStates[objId].unit || ''),
+                                    .replace('%u', this.customAppsForeignStates[objId].unit || '')
+                                    .trim(),
                                 icon: customApp.icon,
                                 duration: customApp.duration || DEFAULT_DURATION,
                             });
@@ -472,7 +476,10 @@ class AwtrixLight extends utils.Adapter {
                                     common: {
                                         name: `App ${name}${customApps.includes(name) ? ' (custom app)' : ''}`,
                                     },
-                                    native: {},
+                                    native: {
+                                        isNativeApp: nativeApps.includes(name),
+                                        isCustomApp: customApps.includes(name),
+                                    },
                                 });
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
