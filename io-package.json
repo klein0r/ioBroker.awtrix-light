@@ -721,6 +721,56 @@
       "native": {}
     },
     {
+      "_id": "device.battery",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Battery",
+          "de": "Batterie",
+          "ru": "Батарея",
+          "pt": "Bateria",
+          "nl": "Batterij",
+          "fr": "Batterie",
+          "it": "Batteria",
+          "es": "Batería",
+          "pl": "Bateria",
+          "uk": "Акумулятор",
+          "zh-cn": "包 耳"
+        },
+        "type": "number",
+        "role": "value.battery",
+        "read": true,
+        "write": false,
+        "unit": "%"
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.uptime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Uptime",
+          "de": "Betriebszeit",
+          "ru": "Uptime",
+          "pt": "Tempo de trabalho",
+          "nl": "Uptime",
+          "fr": "Heures supplémentaires",
+          "it": "Tempo",
+          "es": "Hora",
+          "pl": "Uptime",
+          "uk": "Час",
+          "zh-cn": "时间"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "sec"
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {
@@ -856,6 +906,30 @@
         "role": "indicator",
         "read": true,
         "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false
       },
       "native": {}
     },

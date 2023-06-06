@@ -39,6 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.68
 
+* (klein0r) Added battery, uptime and display states
 * (klein0r) Added more settings options
 
 ### 0.0.8 (2023-06-05)

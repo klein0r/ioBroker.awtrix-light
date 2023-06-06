@@ -310,6 +310,11 @@ class AwtrixLight extends utils.Adapter {
                         await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
                         await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
 
+                        await this.setStateChangedAsync('display.brightness', { val: content.bri, ack: true });
+
+                        await this.setStateChangedAsync('device.battery', { val: content.bat, ack: true });
+                        await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
+
                         await this.refreshSettings();
                         await this.initCustomApps();
                     }
