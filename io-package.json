@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "news": {
+      "0.0.9": {
+        "en": "Updated recommended firmware version to 0.68\n\n* Added battery, uptime and display states\n* Added more settings options\n* Color conversion for all rgb settings",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.68\n\n* Hinzugefügt Batterie, Stand- und Anzeigezustände\n* Weitere Einstellungen hinzugefügt\n* Farbumwandlung für alle rgb-Einstellungen",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.68\n\n* Добавлена батарея, uptime и состояния дисплея\n* Добавлены дополнительные опции настроек\n* Конверсия цвета для всех настроек rgb",
+        "pt": "Versão de firmware recomendada atualizada para 0.68\n\n* Adicionado bateria, uptime e estados de exibição\n* Adicionado mais opções de configurações\n* Conversão de cores para todas as configurações do rgb",
+        "nl": "Aanbevolen firmaware versie naar 0.68\n\n♪ Added battery, uptime and display states ♪\n♪ Added more settings opties\n♪ Color conversie voor alle RGB settings",
+        "fr": "Version mise à jour du firmware recommandée à 0.68\n\n* Ajout d'une batterie, d'heures de montée et d'affichage\n* Ajout d'autres options de paramètres\n* Conversion couleur pour tous les paramètres rgb",
+        "it": "Versione firmware consigliata aggiornata a 0.68\n\n* Aggiunto batteria, uptime e stati di visualizzazione\n* Aggiunte più impostazioni opzioni\n# Conversione di colore per tutte le impostazioni rgb",
+        "es": "Versión actualizada de firmware recomendada a 0.68\n\n* La batería, el tiempo libre y los estados de visualización\n* Añadido más opciones de configuración\n* Conversión de color para todos los ajustes rgb",
+        "pl": "Zalecona wersja oprogramowania do 0.68\n\n* Added battery, uptime i wyświetlane stany\n* Dodać więcej opcji\n* Konwersja kolorowa dla wszystkich ustawień rgb",
+        "uk": "Оновлено рекомендовану версію мікропрограми до 0,68\n\n* Додана батарея, час і стани відображення\n* Додаткові параметри налаштування\nІм'я * Перетворення кольорів для всіх параметрів rgb",
+        "zh-cn": "最新建议的警觉版本到0.68\n\n* 增幅电池、时间和展示国\n* 增加环境选择\n* A/64/50。 在所有火山环境中转化"
+      },
       "0.0.8": {
         "en": "Added custom apps via instance configuration",
         "de": "Benutzerdefinierte Apps über Instanz-Konfiguration hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Allow do przełączania aplikacji poprzez stan\nWięcej niż więcej stanów",
         "uk": "Дозволити переключити додатки через стан\nДодано більше штатів",
         "zh-cn": "允许通过国家转用材料\n增加更多国家"
-      },
-      "0.0.2": {
-        "en": "initial release",
-        "de": "erstausstrahlung",
-        "ru": "начальный выпуск",
-        "pt": "lançamento inicial",
-        "nl": "niet",
-        "fr": "initial release",
-        "it": "rilascio iniziale",
-        "es": "liberación inicial",
-        "pl": "pierwsze wydanie",
-        "uk": "початковий реліз",
-        "zh-cn": "初步释放"
       }
     },
     "titleLang": {

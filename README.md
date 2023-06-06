@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.9 (2023-06-06)
 
 Updated recommended firmware version to 0.68
 
@@ -64,12 +64,6 @@ Updated recommended firmware version to 0.67
 
 * (klein0r) Added notification support via sendTo / blockly
 * (klein0r) Improved error handling
-
-### 0.0.4 (2023-05-19)
-
-* (klein0r) Added indicator support
-* (klein0r) Added moodlight support
-* (klein0r) Added device update and reboot options
 
 ## License
 MIT License
