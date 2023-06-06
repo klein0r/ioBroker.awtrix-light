@@ -455,8 +455,10 @@ class AwtrixLight extends utils.Adapter {
 
                         const appPath = 'apps';
                         const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
-                        const customApps = this.config.customApps.map((cA) => cA.name);
-                        const currentApps = content.map((a) => a.name);
+                        const customApps = this.config.customApps.map((a) => a.name);
+                        const existingApps = content.map((a) => a.name);
+
+                        this.log.debug(`[refreshApps] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
 
                         this.getChannelsOf(appPath, async (err, states) => {
                             const appsAll = [];
@@ -474,10 +476,10 @@ class AwtrixLight extends utils.Adapter {
                                 }
                             }
 
-                            // Create new app structure
-                            for (const name of nativeApps.concat(currentApps.filter((a) => !nativeApps.includes(a)))) {
+                            // Create new app structure for all native apps and apps of instance configuration
+                            for (const name of nativeApps.concat(customApps.filter((a) => !nativeApps.includes(a)))) {
                                 appsKeep.push(`${appPath}.${name}`);
-                                this.log.debug(`[apps] found (keep): ${appPath}.${name}`);
+                                this.log.debug(`[refreshApps] found (keep): ${appPath}.${name}`);
 
                                 await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
                                     type: 'channel',
@@ -541,7 +543,7 @@ class AwtrixLight extends utils.Adapter {
                                             name,
                                         },
                                     });
-                                    await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: currentApps.includes(name), ack: true });
+                                    await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: existingApps.includes(name), ack: true });
                                 }
                             }
 
@@ -551,18 +553,31 @@ class AwtrixLight extends utils.Adapter {
 
                                 if (appsKeep.indexOf(id) === -1) {
                                     await this.delObjectAsync(id, { recursive: true });
-                                    this.log.debug(`[apps] deleted: ${id}`);
+                                    this.log.debug(`[refreshApps] deleted: ${id}`);
+                                }
+                            }
+
+                            if (this.config.autoDeleteForeignApps) {
+                                // Delete unknown apps on awtrix light
+                                for (const name of existingApps.filter((a) => !nativeApps.includes(a) && !customApps.includes(a))) {
+                                    this.log.info(`[refreshApps] Deleting unknown app on awtrix light with name "${name}"`);
+
+                                    try {
+                                        await this.buildRequestAsync(`custom?name=${name}`, 'POST');
+                                    } catch (error) {
+                                        this.log.error(`[refreshApps] Unable to delete custom app ${name}: ${error}`);
+                                    }
                                 }
                             }
                         });
                     }
                 })
                 .catch((error) => {
-                    this.log.debug(`(apps) received error: ${JSON.stringify(error)}`);
+                    this.log.debug(`[refreshApps] received error: ${JSON.stringify(error)}`);
                 });
         }
 
-        this.log.debug('[apps] re-creating refresh timeout');
+        this.log.debug('[refreshApps] re-creating refresh timeout');
         this.refreshAppTimeout =
             this.refreshAppTimeout ||
             setTimeout(() => {
