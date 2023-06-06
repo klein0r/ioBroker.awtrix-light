@@ -2,5 +2,6 @@
     "Options": "Opções",
     "IP address of your Awtrix Light device": "Endereço IP do seu dispositivo Awtrix Light",
     "Apps": "aplicativos",
-    "Custom Apps": "Aplicativos personalizados"
+    "Custom Apps": "Aplicativos personalizados",
+    "Automatically delete unknown apps": "Excluir automaticamente aplicativos desconhecidos"
 }

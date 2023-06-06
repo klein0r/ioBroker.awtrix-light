@@ -2,5 +2,6 @@
     "Options": "Opties",
     "IP address of your Awtrix Light device": "IP-adres van uw Awtrix Light-apparaat",
     "Apps": "Apps",
-    "Custom Apps": "Aangepaste apps"
+    "Custom Apps": "Aangepaste apps",
+    "Automatically delete unknown apps": "Verwijder onbekende apps automatisch"
 }

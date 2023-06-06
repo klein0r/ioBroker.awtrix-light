@@ -2,5 +2,6 @@
     "Options": "选项",
     "IP address of your Awtrix Light device": "您的 Awtrix Light 设备的 IP 地址",
     "Apps": "应用",
-    "Custom Apps": "定制应用"
+    "Custom Apps": "定制应用",
+    "Automatically delete unknown apps": "自动删除未知应用"
 }

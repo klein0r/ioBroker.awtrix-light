@@ -2,5 +2,6 @@
     "Options": "Параметры",
     "IP address of your Awtrix Light device": "IP-адрес вашего устройства Awtrix Light",
     "Apps": "Программы",
-    "Custom Apps": "Пользовательские приложения"
+    "Custom Apps": "Пользовательские приложения",
+    "Automatically delete unknown apps": "Автоматически удалять неизвестные приложения"
 }
