@@ -43,6 +43,19 @@ Blockly.Words['awtrix-light_timer'] = {
     uk: 'Awtrix-light Таймер',
     'zh-cn': 'Awtrix-light 时间',
 };
+Blockly.Words['awtrix-light_playsound'] = {
+    en: 'Play sound',
+    de: 'Sound spielen',
+    ru: 'Играть звук',
+    pt: 'Tocar som',
+    nl: 'Speel',
+    fr: 'Play sound',
+    it: 'Suoni suono',
+    es: 'Jugar sonido',
+    pl: 'Dźwięk',
+    uk: 'Грати звук',
+    'zh-cn': '声音',
+};
 Blockly.Words['awtrix-light_message'] = {
     en: 'Message',
     de: 'Nachricht',
@@ -361,4 +374,50 @@ Blockly.JavaScript['awtrix-light_timer'] = function (block) {
     hours && objText.push('hours: parseInt(' + hours + ')');
 
     return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'timer', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
+};
+
+Blockly.Sendto.blocks['awtrix-light_playsound'] = '<block type="awtrix-light_playsound"><value name="INSTANCE"></value><value name="SOUND"></value></block>';
+
+Blockly.Blocks['awtrix-light_playsound'] = {
+    init: function () {
+        const options = [];
+
+        if (typeof main !== 'undefined' && main.instances) {
+            for (let i = 0; i < main.instances.length; i++) {
+                const m = main.instances[i].match(/^system.adapter.awtrix-light.(\d+)$/);
+                if (m) {
+                    const n = parseInt(m[1], 10);
+                    options.push(['awtrix-light.' + n, '.' + n]);
+                }
+            }
+        }
+
+        if (!options.length) {
+            for (let k = 0; k <= 4; k++) {
+                options.push(['awtrix-light.' + k, '.' + k]);
+            }
+        }
+
+        options.unshift([Blockly.Translate('awtrix-light_anyInstance'), '']);
+
+        this.appendDummyInput('INSTANCE').appendField(Blockly.Translate('awtrix-light_playsound')).appendField(new Blockly.FieldDropdown(options), 'INSTANCE');
+        this.appendValueInput('SOUND').appendField(Blockly.Translate('awtrix-light_sound'));
+
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+
+        this.setColour(Blockly.Sendto.HUE);
+        this.setTooltip(Blockly.Translate('awtrix-light_tooltip'));
+        this.setHelpUrl(Blockly.Translate('awtrix-light_help'));
+    },
+};
+
+Blockly.JavaScript['awtrix-light_playsound'] = function (block) {
+    const sound = Blockly.JavaScript.valueToCode(block, 'SOUND', Blockly.JavaScript.ORDER_ATOMIC);
+
+    const objText = [];
+    sound && objText.push('sound: ' + sound);
+
+    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'sound', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };

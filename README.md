@@ -38,6 +38,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Automatically delete unknown or old apps
+* (klein0r) Added option to play sound via message / blockly
 
 ### 0.0.9 (2023-06-06)
 
