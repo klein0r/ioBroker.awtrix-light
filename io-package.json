@@ -555,6 +555,60 @@
       }
     },
     {
+      "_id": "settings.weekStartMonday",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Week starts with monday",
+          "de": "Woche beginnt mit Montag",
+          "ru": "Неделя начинается с понедельника",
+          "pt": "A semana começa com a segunda-feira",
+          "nl": "Week begint met maandag",
+          "fr": "La semaine commence avec le lundi",
+          "it": "La settimana inizia con lunedì",
+          "es": "La semana comienza con el lunes",
+          "pl": "Tydzień zaczyna się od monday'u",
+          "uk": "Тиждень починається з понеділка",
+          "zh-cn": "每周开始开会"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "SOM"
+      }
+    },
+    {
+      "_id": "settings.textUppercase",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Show texts in uppercase",
+          "de": "Texte in Großbuchstaben anzeigen",
+          "ru": "Показать тексты в верхнем регистре",
+          "pt": "Mostrar textos em maiúscula",
+          "nl": "Toon sms'jes in Uppercase",
+          "fr": "Afficher les textes dans la majuscule",
+          "it": "Mostra testi in maiuscolo",
+          "es": "Mostrar textos en mayúscula",
+          "pl": "Teksty w wyższych walizkach",
+          "uk": "Показати тексти у верхньому регістру",
+          "zh-cn": "评 注"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "UPPERCASE"
+      }
+    },
+    {
       "_id": "meta",
       "type": "channel",
       "common": {
