@@ -307,7 +307,7 @@
           "zh-cn": "案文"
         },
         "type": "string",
-        "role": "state",
+        "role": "level.color.rgb",
         "read": true,
         "write": true
       },

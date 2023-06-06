@@ -346,16 +346,19 @@ class AwtrixLight extends utils.Adapter {
                         const knownSettings = {};
                         for (const settingsObj of settingsStates.rows) {
                             if (settingsObj.value?.native?.settingsKey) {
-                                knownSettings[this.removeNamespace(settingsObj.value?.native?.settingsKey)] = settingsObj.id;
+                                knownSettings[this.removeNamespace(settingsObj.value?.native?.settingsKey)] = {
+                                    id: settingsObj.id,
+                                    role: settingsObj.value.common.role,
+                                };
                             }
                         }
 
                         for (const [settingsKey, val] of Object.entries(content)) {
                             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
-                                if (['TCOL'].includes(settingsKey)) {
-                                    await this.setStateChangedAsync(knownSettings[settingsKey], { val: colorConvert.rgb565to888Str(val), ack: true, c: 'Updated from API (converted from RGB565)' });
+                                if (knownSettings[settingsKey].role === 'level.color.rgb') {
+                                    await this.setStateChangedAsync(knownSettings[settingsKey].id, { val: colorConvert.rgb565to888Str(val), ack: true, c: 'Updated from API (converted from RGB565)' });
                                 } else {
-                                    await this.setStateChangedAsync(knownSettings[settingsKey], { val, ack: true, c: 'Updated from API' });
+                                    await this.setStateChangedAsync(knownSettings[settingsKey].id, { val, ack: true, c: 'Updated from API' });
                                 }
                             }
                         }

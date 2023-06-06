@@ -41,6 +41,7 @@ Updated recommended firmware version to 0.68
 
 * (klein0r) Added battery, uptime and display states
 * (klein0r) Added more settings options
+* (klein0r) Color conversion for all rgb settings
 
 ### 0.0.8 (2023-06-05)
 
