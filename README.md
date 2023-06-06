@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.10 (2023-06-06)
 
 * (klein0r) Automatically delete unknown or old apps
 * (klein0r) Added option to play sound via message / blockly
@@ -64,11 +64,6 @@ Updated recommended firmware version to 0.67
 * (klein0r) Added some settings as states
 * (klein0r) Added stack and wakeup option to blockly
 * (klein0r) Battery app was hidden when invisible
-
-### 0.0.5 (2023-05-24)
-
-* (klein0r) Added notification support via sendTo / blockly
-* (klein0r) Improved error handling
 
 ## License
 MIT License

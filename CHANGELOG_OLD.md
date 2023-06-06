@@ -1,4 +1,9 @@
 # Older changes
+## 0.0.5 (2023-05-24)
+
+* (klein0r) Added notification support via sendTo / blockly
+* (klein0r) Improved error handling
+
 ## 0.0.4 (2023-05-19)
 
 * (klein0r) Added indicator support
