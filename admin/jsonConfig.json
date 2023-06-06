@@ -56,7 +56,9 @@
                             "filter": true,
                             "sort": true,
                             "default": "",
-                            "validator": "/^([a-z]{1,})$/.test(data.name)"
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.customApps.filter(app => app.name === data.name).length === 1",
+                            "validatorErrorText": "Just lower case letters (a-z)",
+                            "validatorNoSaveOnError": true
                         },
                         {
                             "type": "text",
