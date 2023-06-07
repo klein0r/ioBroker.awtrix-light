@@ -397,7 +397,9 @@ class AwtrixLight extends utils.Adapter {
     async initCustomApps() {
         for (const customApp of this.config.customApps) {
             if (customApp.name) {
-                if (customApp.objId) {
+                const text = String(customApp.text).trim();
+
+                if (customApp.objId && text.includes('%s')) {
                     try {
                         const objId = customApp.objId;
                         if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
@@ -421,12 +423,12 @@ class AwtrixLight extends utils.Adapter {
                     } catch (error) {
                         this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
                     }
-                } else {
+                } else if (text.length > 0) {
                     // App with static text (no objId specified)
                     this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
 
                     await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                        text: String(customApp.text).trim(),
+                        text: text,
                         icon: customApp.icon,
                         duration: customApp.duration || DEFAULT_DURATION,
                     });
@@ -446,7 +448,9 @@ class AwtrixLight extends utils.Adapter {
         if (this.apiConnected) {
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
-                    if (customApp.objId && customApp.objId === objId) {
+                    const text = String(customApp.text).trim();
+
+                    if (customApp.objId && customApp.objId === objId && text.includes('%s')) {
                         this.log.debug(`[refreshCustomApp] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
 
                         try {
@@ -467,7 +471,7 @@ class AwtrixLight extends utils.Adapter {
                             }
 
                             await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                text: String(customApp.text)
+                                text: text
                                     .replace('%s', newVal)
                                     .replace('%u', this.customAppsForeignStates[objId].unit || '')
                                     .trim(),
