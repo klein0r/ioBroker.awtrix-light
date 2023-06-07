@@ -29,12 +29,20 @@
             "type": "panel",
             "label": "Apps",
             "items": {
+                "_headerCustomApps": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Custom Apps",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
                 "customApps": {
                     "type": "table",
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
-                    "label": "Custom Apps",
                     "items": [
                         {
                             "type": "text",
@@ -56,7 +64,7 @@
                             "filter": true,
                             "sort": true,
                             "default": "",
-                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.customApps.filter(app => app.name === data.name).length === 1",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.customApps.concat(globalData.historyApps).filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",
                             "validatorNoSaveOnError": true
                         },
@@ -80,9 +88,29 @@
                             "sort": false
                         },
                         {
+                            "type": "text",
+                            "attr": "text",
+                            "width": "30%",
+                            "title": {
+                                "en": "Text",
+                                "de": "Text",
+                                "ru": "Текст",
+                                "pt": "Texto",
+                                "nl": "Tekst",
+                                "fr": "Texte",
+                                "it": "Testo",
+                                "es": "Texto",
+                                "pl": "Tekst",
+                                "zh-cn": "文本"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": "%s %u"
+                        },
+                        {
                             "type": "objectId",
                             "attr": "objId",
-                            "width": "20%",
+                            "width": "30%",
                             "title": {
                                 "en": "Object",
                                 "de": "Obiekt",
@@ -99,26 +127,6 @@
                             "filter": false,
                             "sort": false,
                             "default": ""
-                        },
-                        {
-                            "type": "text",
-                            "attr": "text",
-                            "width": "40%",
-                            "title": {
-                                "en": "Text",
-                                "de": "Text",
-                                "ru": "Текст",
-                                "pt": "Texto",
-                                "nl": "Tekst",
-                                "fr": "Texte",
-                                "it": "Testo",
-                                "es": "Texto",
-                                "pl": "Tekst",
-                                "zh-cn": "文本"
-                            },
-                            "filter": false,
-                            "sort": false,
-                            "default": "%s %u"
                         },
                         {
                             "type": "number",
@@ -142,15 +150,8 @@
                         }
                     ]
                 },
-                "autoDeleteForeignApps": {
-                    "newLine": true,
-                    "type": "checkbox",
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 6,
-                    "label": "Automatically delete unknown apps"
-                },
                 "ignoreNewValueForAppInTimeRange": {
+                    "newLine": true,
                     "type": "number",
                     "min": 0,
                     "sm": 12,
@@ -158,6 +159,140 @@
                     "lg": 6,
                     "label": "Ignore new values after state change (in seconds)",
                     "help": "Prevents too many requests for rapid state changes"
+                },
+                "_headerHistoryApps": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "History Apps",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
+                "historyApps": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "name",
+                            "width": "20%",
+                            "title": {
+                                "en": "Name",
+                                "de": "Name",
+                                "ru": "Имя",
+                                "pt": "Nome",
+                                "nl": "Naam",
+                                "fr": "Nom",
+                                "it": "Nome",
+                                "es": "Nombre",
+                                "pl": "Nazwa",
+                                "uk": "Ім'я",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": "",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.historyApps.concat(globalData.customApps).filter(app => app.name === data.name).length === 1",
+                            "validatorErrorText": "Just lower case letters (a-z)",
+                            "validatorNoSaveOnError": true
+                        },
+                        {
+                            "type": "text",
+                            "attr": "icon",
+                            "width": "20%",
+                            "title": {
+                                "en": "Icon",
+                                "de": "Symbol",
+                                "ru": "Значок",
+                                "pt": "Ícone",
+                                "nl": "Icoon",
+                                "fr": "Icône",
+                                "it": "Icona",
+                                "es": "Icono",
+                                "pl": "Ikona",
+                                "zh-cn": "图标"
+                            },
+                            "filter": false,
+                            "sort": false
+                        },
+                        {
+                            "type": "text",
+                            "attr": "sourceInstance",
+                            "width": "30%",
+                            "title": {
+                                "en": "Source instance",
+                                "de": "Quelle (Instanz)",
+                                "ru": "Исходный экземпляр",
+                                "pt": "Exemplo de fonte",
+                                "nl": "Instituut",
+                                "fr": "Source instance",
+                                "it": "Esempio di origine",
+                                "es": "Fuente",
+                                "pl": "Instancja",
+                                "uk": "Приклад джерела",
+                                "zh-cn": "资料来源"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": "history.0"
+                        },
+                        {
+                            "type": "objectId",
+                            "attr": "objId",
+                            "width": "30%",
+                            "title": {
+                                "en": "Object",
+                                "de": "Obiekt",
+                                "ru": "Объект",
+                                "pt": "Objeto",
+                                "nl": "Object",
+                                "fr": "Objet",
+                                "it": "Oggetto",
+                                "es": "Objeto",
+                                "pl": "Obiekt",
+                                "uk": "Об'єкт",
+                                "zh-cn": "目 录"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": ""
+                        },
+                        {
+                            "type": "number",
+                            "attr": "duration",
+                            "width": "20%",
+                            "title": {
+                                "en": "Duration (sec)",
+                                "de": "Dauer (Sek.)",
+                                "ru": "Продолжительность (сек)",
+                                "pt": "Duração (s)",
+                                "nl": "Duur (sec)",
+                                "fr": "Durée (sec)",
+                                "it": "Durata (sec)",
+                                "es": "Duración (seg)",
+                                "pl": "Czas trwania (s)",
+                                "zh-cn": "持续时间（秒）"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": 5
+                        }
+                    ]
+                },
+                "_dividerBottom": {
+                    "newLine": true,
+                    "type": "divider"
+                },
+                "autoDeleteForeignApps": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Automatically delete unknown apps"
                 }
             }
         }
