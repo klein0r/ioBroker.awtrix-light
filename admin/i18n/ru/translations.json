@@ -7,5 +7,6 @@
     "Ignore new values after state change (in seconds)": "Игнорировать новые значения после изменения состояния (в секундах)",
     "Prevents too many requests for rapid state changes": "Предотвращает слишком много запросов на быстрое изменение состояния",
     "Line color": "Цвет линии",
-    "Background color": "Фоновый цвет"
+    "Background color": "Фоновый цвет",
+    "Refresh interval (in seconds)": "Интервал обновления (в секундах)"
 }

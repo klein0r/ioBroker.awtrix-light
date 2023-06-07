@@ -7,5 +7,6 @@
     "Ignore new values after state change (in seconds)": "Ignorer les nouvelles valeurs après changement d'état (en secondes)",
     "Prevents too many requests for rapid state changes": "Empêche trop de demandes de changements d'état rapides",
     "Line color": "Couleur de la ligne",
-    "Background color": "Couleur de l'arrière plan"
+    "Background color": "Couleur de l'arrière plan",
+    "Refresh interval (in seconds)": "Intervalle d'actualisation (en secondes)"
 }
