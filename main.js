@@ -21,10 +21,7 @@ class AwtrixLight extends utils.Adapter {
         this.displayedVersionWarning = false;
 
         this.apiConnected = false;
-
         this.refreshStateTimeout = null;
-        this.refreshAppTimeout = null;
-
         this.customAppsForeignStates = {};
 
         this.on('ready', this.onReady.bind(this));
@@ -37,17 +34,19 @@ class AwtrixLight extends utils.Adapter {
     async onReady() {
         this.setApiConnected(false);
 
-        await this.subscribeStatesAsync('*');
-
         try {
             await this.refreshState();
-            this.refreshApps();
+            await this.initCustomApps();
+            await this.initHistoryApps();
+            this.createAppObjects();
 
             for (let i = 1; i <= 3; i++) {
                 await this.updateIndicatorByStates(i);
             }
 
             await this.updateMoodlightByStates();
+
+            await this.subscribeStatesAsync('*');
         } catch (err) {
             this.log.error(`[onReady] Startup error: ${err}`);
         }
@@ -335,8 +334,6 @@ class AwtrixLight extends utils.Adapter {
                         await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
 
                         await this.refreshSettings();
-                        await this.initCustomApps();
-                        await this.initHistoryApps();
                     }
 
                     resolve(response.status);
@@ -496,26 +493,31 @@ class AwtrixLight extends utils.Adapter {
 
                         try {
                             const itemCount = historyApp.icon ? 11 : 16;
+                            const souceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
 
-                            const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
-                                id: historyApp.objId,
-                                options: {
-                                    end: Date.now(),
-                                    count: itemCount,
-                                    aggregate: 'onchange',
-                                },
-                            });
-                            const lineData = historyData?.result.filter((state) => typeof state.val === 'number').map((state) => Math.round(state.val));
-
-                            if (lineData.length > 0) {
-                                await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
-                                    color: this.config.historyAppsChartColor,
-                                    background: this.config.historyAppsBackgroundColor,
-                                    line: lineData,
-                                    autoscale: true,
-                                    icon: historyApp.icon,
-                                    duration: historyApp.duration || DEFAULT_DURATION,
+                            if (souceInstanceObj && souceInstanceObj.common?.getHistory) {
+                                const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
+                                    id: historyApp.objId,
+                                    options: {
+                                        end: Date.now(),
+                                        count: itemCount,
+                                        aggregate: 'onchange',
+                                    },
                                 });
+                                const lineData = historyData?.result.filter((state) => typeof state.val === 'number').map((state) => Math.round(state.val));
+
+                                if (lineData.length > 0) {
+                                    await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
+                                        color: this.config.historyAppsChartColor,
+                                        background: this.config.historyAppsBackgroundColor,
+                                        line: lineData,
+                                        autoscale: true,
+                                        icon: historyApp.icon,
+                                        duration: historyApp.duration || DEFAULT_DURATION,
+                                    });
+                                }
+                            } else {
+                                this.log.warn(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is not valid source`);
                             }
                         } catch (error) {
                             this.log.error(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": ${error}`);
@@ -528,7 +530,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    refreshApps() {
+    createAppObjects() {
         if (this.apiConnected) {
             this.buildRequestAsync('apps', 'GET')
                 .then(async (response) => {
@@ -541,7 +543,7 @@ class AwtrixLight extends utils.Adapter {
                         const historyApps = this.config.historyApps.map((a) => a.name);
                         const existingApps = content.map((a) => a.name);
 
-                        this.log.debug(`[refreshApps] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
+                        this.log.debug(`[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
 
                         this.getChannelsOf(appPath, async (err, states) => {
                             const appsAll = [];
@@ -562,7 +564,7 @@ class AwtrixLight extends utils.Adapter {
                             // Create new app structure for all native apps and apps of instance configuration
                             for (const name of nativeApps.concat(customApps).concat(historyApps)) {
                                 appsKeep.push(`${appPath}.${name}`);
-                                this.log.debug(`[refreshApps] found (keep): ${appPath}.${name}`);
+                                this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
 
                                 await this.extendObjectAsync(`${appPath}.${name}`, {
                                     type: 'channel',
@@ -638,19 +640,19 @@ class AwtrixLight extends utils.Adapter {
 
                                 if (appsKeep.indexOf(id) === -1) {
                                     await this.delObjectAsync(id, { recursive: true });
-                                    this.log.debug(`[refreshApps] deleted: ${id}`);
+                                    this.log.debug(`[createAppObjects] deleted: ${id}`);
                                 }
                             }
 
                             if (this.config.autoDeleteForeignApps) {
                                 // Delete unknown apps on awtrix light
                                 for (const name of existingApps.filter((a) => !nativeApps.includes(a) && !customApps.includes(a) && !historyApps.includes(a))) {
-                                    this.log.info(`[refreshApps] Deleting unknown app on awtrix light with name "${name}"`);
+                                    this.log.info(`[createAppObjects] Deleting unknown app on awtrix light with name "${name}"`);
 
                                     try {
                                         await this.buildRequestAsync(`custom?name=${name}`, 'POST');
                                     } catch (error) {
-                                        this.log.error(`[refreshApps] Unable to delete custom app ${name}: ${error}`);
+                                        this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
                                     }
                                 }
                             }
@@ -658,17 +660,9 @@ class AwtrixLight extends utils.Adapter {
                     }
                 })
                 .catch((error) => {
-                    this.log.debug(`[refreshApps] received error: ${JSON.stringify(error)}`);
+                    this.log.debug(`[createAppObjects] received error: ${JSON.stringify(error)}`);
                 });
         }
-
-        this.log.debug('[refreshApps] re-creating refresh timeout');
-        this.refreshAppTimeout =
-            this.refreshAppTimeout ||
-            setTimeout(() => {
-                this.refreshAppTimeout = null;
-                this.refreshApps();
-            }, 60000 * 60);
     }
 
     async updateIndicatorByStates(index) {
@@ -788,11 +782,6 @@ class AwtrixLight extends utils.Adapter {
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
                 clearTimeout(this.refreshStateTimeout);
-            }
-
-            if (this.refreshAppTimeout) {
-                this.log.debug('clearing refresh app timeout');
-                clearTimeout(this.refreshAppTimeout);
             }
 
             callback();
