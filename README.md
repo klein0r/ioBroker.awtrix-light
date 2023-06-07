@@ -35,6 +35,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Format number values and limit number of decimals
+
 ### 0.0.10 (2023-06-06)
 
 * (klein0r) Automatically delete unknown or old apps

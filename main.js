@@ -61,7 +61,7 @@ class AwtrixLight extends utils.Adapter {
         if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             if (state && state.ack) {
                 // Just refresh if value has changed
-                if (state?.val !== this.customAppsForeignStates[id].val) {
+                if (state.val !== this.customAppsForeignStates[id].val) {
                     this.customAppsForeignStates[id].val = state?.val;
                     this.refreshCustomApps(id);
                 }
@@ -399,7 +399,7 @@ class AwtrixLight extends utils.Adapter {
                                 const state = await this.getForeignStateAsync(objId);
 
                                 this.customAppsForeignStates[objId] = {
-                                    val: state && state.val ? state.val : undefined,
+                                    val: state ? state.val : undefined,
                                     type: obj?.common.type,
                                     unit: obj?.common?.unit,
                                 };
@@ -442,9 +442,25 @@ class AwtrixLight extends utils.Adapter {
                         this.log.debug(`[refreshCustomApp] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
 
                         try {
+                            const val = this.customAppsForeignStates[objId].val;
+                            let newVal = val;
+
+                            if (this.customAppsForeignStates[objId].type === 'number') {
+                                if (!isNaN(val) && val % 1 !== 0) {
+                                    let countDecimals = String(val).split('.')[1].length || 2;
+
+                                    if (countDecimals > 3) {
+                                        countDecimals = 3; // limit
+                                    }
+
+                                    newVal = this.formatValue(val, countDecimals);
+                                    this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                                }
+                            }
+
                             await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                                 text: String(customApp.text)
-                                    .replace('%s', this.customAppsForeignStates[objId].val || '')
+                                    .replace('%s', newVal)
                                     .replace('%u', this.customAppsForeignStates[objId].unit || '')
                                     .trim(),
                                 icon: customApp.icon,
