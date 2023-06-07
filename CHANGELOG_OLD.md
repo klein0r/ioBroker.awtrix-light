@@ -1,4 +1,12 @@
 # Older changes
+## 0.0.6 (2023-06-03)
+
+Updated recommended firmware version to 0.67
+
+* (klein0r) Added some settings as states
+* (klein0r) Added stack and wakeup option to blockly
+* (klein0r) Battery app was hidden when invisible
+
 ## 0.0.5 (2023-05-24)
 
 * (klein0r) Added notification support via sendTo / blockly

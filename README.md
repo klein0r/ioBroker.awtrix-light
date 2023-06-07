@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.11 (2023-06-07)
 
 * (klein0r) Display history data in apps as charts
 * (klein0r) Format number values and limit number of decimals
@@ -62,14 +62,6 @@ Updated recommended firmware version to 0.68
 
 * (klein0r) Added timer feature to blockly
 * (klein0r) Added color conversion to hex in settings
-
-### 0.0.6 (2023-06-03)
-
-Updated recommended firmware version to 0.67
-
-* (klein0r) Added some settings as states
-* (klein0r) Added stack and wakeup option to blockly
-* (klein0r) Battery app was hidden when invisible
 
 ## License
 MIT License

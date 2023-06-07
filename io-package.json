@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "news": {
+      "0.0.11": {
+        "en": "Display history data in apps as charts\nFormat number values and limit number of decimals\nLimit app refresh time when state changes (configurable)",
+        "de": "Geschichtsdaten in Apps als Diagramme anzeigen\nFormatnummernwerte und Grenzzahl der Dezimals\nBeschränken Sie die App-Erfrischungszeit bei Zustandsänderungen (konfigurierbar)",
+        "ru": "Отображение данных истории в приложениях как диаграммы\nФормат значения номера и лимит количества десятичных\nОграничить время обновления приложения при изменении состояния (конфигурируемый)",
+        "pt": "Exibir dados de histórico em aplicativos como gráficos\nFormatar valores de número e número limite decimais\nLimite o tempo de atualização do aplicativo quando as alterações do estado (configuráveis)",
+        "nl": "Vertaling:\nFormat nummerwaarden en beperkt aantal decimale\nLimit app verfrissende tijd wanneer de staat verandert",
+        "fr": "Afficher les données d'historique dans les applications comme graphiques\nValeurs des nombres de format et nombre limite de décimales\nLimiter le temps de rafraîchissement de l'application lorsque l'état change (configurable)",
+        "it": "Visualizza i dati della cronologia nelle app come grafici\nFormattare i valori numerici e il numero limite dei decimali\nLimitare il tempo di aggiornamento dell'app quando lo stato cambia (configurabile)",
+        "es": "Mostrar datos de historia en aplicaciones como gráficos\nValores del número de formato y número límite de decimales\nLimite el tiempo de actualización de la aplicación cuando el estado cambia (configurable)",
+        "pl": "Dane statystyczne w aplikacjach jako mapy\nWartość liczb i limit liczby dziesiętnych\nLimit może odświeżyć czas, gdy stan zmienia się (konfiguracyjny)",
+        "uk": "Перегляд даних історії в додатках як діаграми\nФормат значень номеру і ліміт кількості десятків\nЧас оновлення додатку при зміні стану (настрочена)",
+        "zh-cn": "图表中的差历历史数据\n动植物数量\n当国家变化(可图)时,限制紧要时间"
+      },
       "0.0.10": {
         "en": "Automatically delete unknown or old apps\nAdded option to play sound via message / blockly",
         "de": "Unbekannte oder alte Apps automatisch löschen\nOption zum Spielen von Sound über Nachricht / blockweise",
@@ -80,19 +93,6 @@
         "pl": "Administracyjne wsparcie poprzez wysłanie komunikatu / blokowo\nPoprawiona obsługa błędów",
         "uk": "Додана підтримка повідомлень До / блокноти\nПоліпшення обробки помилок",
         "zh-cn": "通过发出的通知支持 /部分\n改进错误处理"
-      },
-      "0.0.4": {
-        "en": "Added indicator support\nAdded moodlight support\nAdded device update and reboot options",
-        "de": "Unterstützung für den Indikator\nUnterstützung für die Stimmungslichter\nHinzugefügt Geräteupdate und Neustart-Optionen",
-        "ru": "Добавлена поддержка индикатора\nДобавлена поддержка настроения\nДобавлены опции обновления и перезагрузки устройств",
-        "pt": "Adicionado suporte indicador\nAdicionado suporte à luz de humor\nAdicionada atualização do dispositivo e opções de reinicialização",
-        "nl": "Toegevoegd indicator steun\nVoeg stemming toe\nVertaling:",
-        "fr": "Appui aux indicateurs\nAjout d ' un appui en matière de lumière d ' humeur\nAjout d'options de mise à jour et de redémarrage",
-        "it": "Supporto indicatore aggiunto\nAggiunto supporto moodlight\nOpzioni di aggiornamento e riavvio del dispositivo",
-        "es": "Apoyo a los indicadores\nApoyo a la luz de estado\nOpciones de actualización y reinicio del dispositivo",
-        "pl": "Addministracyjne wsparcie\nAddditionlight support\nZaktualizowana aktualizacja i reboot opcja",
-        "uk": "Додано підтримку індикатора\nДодана підтримка освітлення\nДодано оновлення та перезавантаження пристроїв",
-        "zh-cn": "增加指标支助\n增加微额支助\n增聘装置更新和重新安排"
       }
     },
     "titleLang": {
