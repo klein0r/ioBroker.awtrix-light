@@ -38,6 +38,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Format number values and limit number of decimals
+* (klein0r) Limit app refresh time when state changes (5 seconds)
 
 ### 0.0.10 (2023-06-06)
 

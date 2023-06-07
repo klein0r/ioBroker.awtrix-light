@@ -5,6 +5,7 @@ const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
+const LIMIT_APP_REFRESH = 5 * 1000; // 5 seconds
 const DEFAULT_DURATION = 5;
 
 class AwtrixLight extends utils.Adapter {
@@ -58,12 +59,18 @@ class AwtrixLight extends utils.Adapter {
      * @param {ioBroker.State | null | undefined} state
      */
     async onStateChange(id, state) {
-        if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
-            if (state && state.ack) {
-                // Just refresh if value has changed
-                if (state.val !== this.customAppsForeignStates[id].val) {
+        if (id && state && state.ack && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
+            // Just refresh if value has changed
+            if (state.val !== this.customAppsForeignStates[id].val) {
+                const now = Date.now();
+
+                if (this.customAppsForeignStates[id].ts + LIMIT_APP_REFRESH < now) {
                     this.customAppsForeignStates[id].val = state?.val;
+                    this.customAppsForeignStates[id].ts = now;
+
                     this.refreshCustomApps(id);
+                } else {
+                    this.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast`);
                 }
             }
         }
@@ -402,6 +409,7 @@ class AwtrixLight extends utils.Adapter {
                                     val: state ? state.val : undefined,
                                     type: obj?.common.type,
                                     unit: obj?.common?.unit,
+                                    ts: Date.now(),
                                 };
 
                                 await this.subscribeForeignStatesAsync(objId);
