@@ -5,5 +5,7 @@
     "Custom Apps": "Benutzerdefinierte Apps",
     "Automatically delete unknown apps": "Unbekannte Apps automatisch löschen",
     "Ignore new values after state change (in seconds)": "Neue Werte nach Änderung ignorieren (in Sekunden)",
-    "Prevents too many requests for rapid state changes": "Verhindert zu viele Anfragen nach schnellen Zustandsänderungen"
+    "Prevents too many requests for rapid state changes": "Verhindert zu viele Anfragen nach schnellen Zustandsänderungen",
+    "Line color": "Linienfarbe",
+    "Background color": "Hintergrundfarbe"
 }
