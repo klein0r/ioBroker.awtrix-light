@@ -336,6 +336,7 @@ class AwtrixLight extends utils.Adapter {
 
                         await this.refreshSettings();
                         await this.initCustomApps();
+                        await this.initHistoryApps();
                     }
 
                     resolve(response.status);
@@ -486,6 +487,47 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
+    async initHistoryApps() {
+        if (this.apiConnected) {
+            for (const historyApp of this.config.historyApps) {
+                if (historyApp.name) {
+                    if (historyApp.objId && historyApp.sourceInstance) {
+                        this.log.debug(`[initHistoryApps] getting history data for app "${historyApp.name}" of "${historyApp.objId}" from ${historyApp.sourceInstance}`);
+
+                        try {
+                            const itemCount = historyApp.icon ? 11 : 16;
+
+                            const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
+                                id: historyApp.objId,
+                                options: {
+                                    end: Date.now(),
+                                    count: itemCount,
+                                    aggregate: 'onchange',
+                                },
+                            });
+                            const lineData = historyData?.result.filter((state) => typeof state.val === 'number').map((state) => Math.round(state.val));
+
+                            if (lineData.length > 0) {
+                                await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
+                                    color: this.config.historyAppsChartColor,
+                                    background: this.config.historyAppsBackgroundColor,
+                                    line: lineData,
+                                    autoscale: true,
+                                    icon: historyApp.icon,
+                                    duration: historyApp.duration || DEFAULT_DURATION,
+                                });
+                            }
+                        } catch (error) {
+                            this.log.error(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": ${error}`);
+                        }
+                    }
+                } else {
+                    this.log.warn(`[initHistoryApps] Found history app without name (skipped) - please check instance configuartion`);
+                }
+            }
+        }
+    }
+
     refreshApps() {
         if (this.apiConnected) {
             this.buildRequestAsync('apps', 'GET')
@@ -496,6 +538,7 @@ class AwtrixLight extends utils.Adapter {
                         const appPath = 'apps';
                         const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
                         const customApps = this.config.customApps.map((a) => a.name);
+                        const historyApps = this.config.historyApps.map((a) => a.name);
                         const existingApps = content.map((a) => a.name);
 
                         this.log.debug(`[refreshApps] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
@@ -517,18 +560,20 @@ class AwtrixLight extends utils.Adapter {
                             }
 
                             // Create new app structure for all native apps and apps of instance configuration
-                            for (const name of nativeApps.concat(customApps.filter((a) => !nativeApps.includes(a)))) {
+                            for (const name of nativeApps.concat(customApps).concat(historyApps)) {
                                 appsKeep.push(`${appPath}.${name}`);
                                 this.log.debug(`[refreshApps] found (keep): ${appPath}.${name}`);
 
-                                await this.setObjectNotExistsAsync(`${appPath}.${name}`, {
+                                await this.extendObjectAsync(`${appPath}.${name}`, {
                                     type: 'channel',
                                     common: {
-                                        name: `App ${name}${customApps.includes(name) ? ' (custom app)' : ''}`,
+                                        name: `App`,
+                                        desc: `${name}${customApps.includes(name) ? ' (custom app)' : ''}${historyApps.includes(name) ? ' (history app)' : ''}`,
                                     },
                                     native: {
                                         isNativeApp: nativeApps.includes(name),
                                         isCustomApp: customApps.includes(name),
+                                        isHistoryApp: historyApps.includes(name),
                                     },
                                 });
 
@@ -599,7 +644,7 @@ class AwtrixLight extends utils.Adapter {
 
                             if (this.config.autoDeleteForeignApps) {
                                 // Delete unknown apps on awtrix light
-                                for (const name of existingApps.filter((a) => !nativeApps.includes(a) && !customApps.includes(a))) {
+                                for (const name of existingApps.filter((a) => !nativeApps.includes(a) && !customApps.includes(a) && !historyApps.includes(a))) {
                                     this.log.info(`[refreshApps] Deleting unknown app on awtrix light with name "${name}"`);
 
                                     try {

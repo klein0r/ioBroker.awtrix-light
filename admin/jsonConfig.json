@@ -282,9 +282,27 @@
                         }
                     ]
                 },
+                "historyAppsChartColor": {
+                    "newLine": true,
+                    "type": "color",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Line color"
+                },
+                "historyAppsBackgroundColor": {
+                    "type": "color",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Background color"
+                },
                 "_dividerBottom": {
                     "newLine": true,
-                    "type": "divider"
+                    "type": "divider",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
                 },
                 "autoDeleteForeignApps": {
                     "newLine": true,

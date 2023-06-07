@@ -37,6 +37,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Display history data in apps as charts
 * (klein0r) Format number values and limit number of decimals
 * (klein0r) Limit app refresh time when state changes (configurable)
 
