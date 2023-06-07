@@ -528,7 +528,7 @@ class AwtrixLight extends utils.Adapter {
                                     });
                                 }
                             } else {
-                                this.log.warn(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is not valid source`);
+                                this.log.warn(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is no valid source`);
                             }
                         } catch (error) {
                             this.log.error(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": ${error}`);
@@ -540,13 +540,13 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval} seconds)`);
+        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval || 300} seconds)`);
         this.refreshHistoryAppsTimeout =
             this.refreshHistoryAppsTimeout ||
             setTimeout(() => {
                 this.refreshHistoryAppsTimeout = null;
                 this.initHistoryApps();
-            }, this.config.historyAppsRefreshInterval * 1000 || 300);
+            }, this.config.historyAppsRefreshInterval * 1000 || 300 * 1000);
     }
 
     createAppObjects() {
