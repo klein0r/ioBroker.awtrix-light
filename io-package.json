@@ -165,7 +165,8 @@
   "native": {
     "awtrixIp": "",
     "customApps": [],
-    "autoDeleteForeignApps": false
+    "autoDeleteForeignApps": false,
+    "ignoreNewValueForAppInTimeRange": 3
   },
   "objects": [],
   "instanceObjects": [

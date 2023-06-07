@@ -5,7 +5,6 @@ const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
-const LIMIT_APP_REFRESH = 5 * 1000; // 5 seconds
 const DEFAULT_DURATION = 5;
 
 class AwtrixLight extends utils.Adapter {
@@ -64,13 +63,13 @@ class AwtrixLight extends utils.Adapter {
             if (state.val !== this.customAppsForeignStates[id].val) {
                 const now = Date.now();
 
-                if (this.customAppsForeignStates[id].ts + LIMIT_APP_REFRESH < now) {
+                if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < now) {
                     this.customAppsForeignStates[id].val = state?.val;
                     this.customAppsForeignStates[id].ts = now;
 
                     this.refreshCustomApps(id);
                 } else {
-                    this.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast`);
+                    this.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange} seconds)`);
                 }
             }
         }

@@ -3,5 +3,7 @@
     "IP address of your Awtrix Light device": "您的 Awtrix Light 设备的 IP 地址",
     "Apps": "应用",
     "Custom Apps": "定制应用",
-    "Automatically delete unknown apps": "自动删除未知应用"
+    "Automatically delete unknown apps": "自动删除未知应用",
+    "Ignore new values after state change (in seconds)": "状态更改后忽略新值（以秒为单位）",
+    "Prevents too many requests for rapid state changes": "防止对快速状态更改的过多请求"
 }

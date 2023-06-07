@@ -149,6 +149,15 @@
                     "md": 6,
                     "lg": 6,
                     "label": "Automatically delete unknown apps"
+                },
+                "ignoreNewValueForAppInTimeRange": {
+                    "type": "number",
+                    "min": 0,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Ignore new values after state change (in seconds)",
+                    "help": "Prevents too many requests for rapid state changes"
                 }
             }
         }

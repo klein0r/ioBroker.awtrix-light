@@ -3,5 +3,7 @@
     "IP address of your Awtrix Light device": "IP-адрес вашего устройства Awtrix Light",
     "Apps": "Программы",
     "Custom Apps": "Пользовательские приложения",
-    "Automatically delete unknown apps": "Автоматически удалять неизвестные приложения"
+    "Automatically delete unknown apps": "Автоматически удалять неизвестные приложения",
+    "Ignore new values after state change (in seconds)": "Игнорировать новые значения после изменения состояния (в секундах)",
+    "Prevents too many requests for rapid state changes": "Предотвращает слишком много запросов на быстрое изменение состояния"
 }
