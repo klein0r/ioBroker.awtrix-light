@@ -286,16 +286,24 @@
                     "newLine": true,
                     "type": "color",
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 4,
+                    "lg": 4,
                     "label": "Line color"
                 },
                 "historyAppsBackgroundColor": {
                     "type": "color",
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 4,
+                    "lg": 4,
                     "label": "Background color"
+                },
+                "historyAppsRefreshInterval": {
+                    "type": "number",
+                    "min": 60,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "label": "Refresh interval (in seconds)"
                 },
                 "_dividerBottom": {
                     "newLine": true,

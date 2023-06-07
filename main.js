@@ -22,6 +22,7 @@ class AwtrixLight extends utils.Adapter {
 
         this.apiConnected = false;
         this.refreshStateTimeout = null;
+        this.refreshHistoryAppsTimeout = null;
         this.customAppsForeignStates = {};
 
         this.on('ready', this.onReady.bind(this));
@@ -428,6 +429,8 @@ class AwtrixLight extends utils.Adapter {
                         text: text,
                         icon: customApp.icon,
                         duration: customApp.duration || DEFAULT_DURATION,
+                    }).catch((error) => {
+                        this.log.warn(`[initCustomApps] Unable to create custom app "${customApp.name}" with static text: ${error}`);
                     });
                 }
             } else {
@@ -474,9 +477,11 @@ class AwtrixLight extends utils.Adapter {
                                     .trim(),
                                 icon: customApp.icon,
                                 duration: customApp.duration || DEFAULT_DURATION,
+                            }).catch((error) => {
+                                this.log.warn(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
                             });
                         } catch (error) {
-                            this.log.error(`[refreshCustomApp] Unable to refresh custom app ${customApp.name}: ${error}`);
+                            this.log.error(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
                         }
                     }
                 }
@@ -514,6 +519,12 @@ class AwtrixLight extends utils.Adapter {
                                         autoscale: true,
                                         icon: historyApp.icon,
                                         duration: historyApp.duration || DEFAULT_DURATION,
+                                    }).catch((error) => {
+                                        this.log.warn(`[initHistoryApps] Unable to create history app "${historyApp.name}": ${error}`);
+                                    });
+                                } else {
+                                    await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
+                                        this.log.warn(`[initHistoryApps] Unable to remove history app "${historyApp.name}": ${error}`);
                                     });
                                 }
                             } else {
@@ -528,6 +539,14 @@ class AwtrixLight extends utils.Adapter {
                 }
             }
         }
+
+        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval} seconds)`);
+        this.refreshHistoryAppsTimeout =
+            this.refreshHistoryAppsTimeout ||
+            setTimeout(() => {
+                this.refreshHistoryAppsTimeout = null;
+                this.initHistoryApps();
+            }, this.config.historyAppsRefreshInterval * 1000 || 300);
     }
 
     createAppObjects() {
@@ -650,7 +669,9 @@ class AwtrixLight extends utils.Adapter {
                                     this.log.info(`[createAppObjects] Deleting unknown app on awtrix light with name "${name}"`);
 
                                     try {
-                                        await this.buildRequestAsync(`custom?name=${name}`, 'POST');
+                                        await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
+                                            this.log.warn(`[createAppObjects] Unable to remove unknown app "${name}": ${error}`);
+                                        });
                                     } catch (error) {
                                         this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
                                     }
@@ -782,6 +803,11 @@ class AwtrixLight extends utils.Adapter {
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
                 clearTimeout(this.refreshStateTimeout);
+            }
+
+            if (this.refreshHistoryAppsTimeout) {
+                this.log.debug('clearing history apps timeout');
+                clearTimeout(this.refreshHistoryAppsTimeout);
             }
 
             callback();
