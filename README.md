@@ -41,6 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 * (klein0r) Added line color of history apps to each table row
 * (klein0r) Removed visibility states for native apps (deprecated by firmware)
 * (klein0r) Improved logging for history apps
+* (klein0r) Added wifi signal strength and used RAM as states
 
 ### 0.0.11 (2023-06-07)
 

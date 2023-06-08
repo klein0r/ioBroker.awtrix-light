@@ -751,6 +751,56 @@
       "native": {}
     },
     {
+      "_id": "device.wifiSignal",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi signal strength",
+          "de": "WiFi Signalstärke",
+          "ru": "WiFi сила сигнала",
+          "pt": "Resistência ao sinal WiFi",
+          "nl": "WiFi signaal",
+          "fr": "Puissance du signal WiFi",
+          "it": "Resistenza del segnale WiFi",
+          "es": "Fuerza de señal WiFi",
+          "pl": "Siła WiFi",
+          "uk": "Надійність сигналу WiFi",
+          "zh-cn": "WiFi信号强力"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "dBm"
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.usedRAM",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Used memory",
+          "de": "Genutzter Speicher",
+          "ru": "Используемая память",
+          "pt": "Memória usada",
+          "nl": "Gebruikt geheugen",
+          "fr": "Mémoire utilisée",
+          "it": "Memoria usata",
+          "es": "Memoria usada",
+          "pl": "Pamięć",
+          "uk": "Використовується пам'ять",
+          "zh-cn": "使用记忆"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "Byte"
+      },
+      "native": {}
+    },
+    {
       "_id": "device.uptime",
       "type": "state",
       "common": {
