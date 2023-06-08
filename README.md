@@ -37,6 +37,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Added number of decimals to app configuration (for numeric values)
+* (klein0r) Added line color of history apps to each table row
 * (klein0r) Removed visibility states for native apps (deprecated by firmware)
 
 ### 0.0.11 (2023-06-07)

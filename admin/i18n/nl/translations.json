@@ -6,7 +6,6 @@
     "Automatically delete unknown apps": "Verwijder onbekende apps automatisch",
     "Ignore new values after state change (in seconds)": "Negeer nieuwe waarden na statusverandering (in seconden)",
     "Prevents too many requests for rapid state changes": "Voorkomt te veel verzoeken om snelle statusveranderingen",
-    "Line color": "Lijnkleur",
     "Background color": "Achtergrond kleur",
     "Refresh interval (in seconds)": "Verversingsinterval (in seconden)"
 }

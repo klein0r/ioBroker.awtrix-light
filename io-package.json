@@ -167,7 +167,6 @@
     "customApps": [],
     "ignoreNewValueForAppInTimeRange": 3,
     "historyApps": [],
-    "historyAppsChartColor": "#FF0000",
     "historyAppsBackgroundColor": "#000000",
     "historyAppsRefreshInterval": 300,
     "autoDeleteForeignApps": false

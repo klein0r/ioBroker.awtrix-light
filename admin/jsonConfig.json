@@ -90,7 +90,7 @@
                         {
                             "type": "text",
                             "attr": "text",
-                            "width": "30%",
+                            "width": "25%",
                             "title": {
                                 "en": "Text",
                                 "de": "Text",
@@ -110,7 +110,7 @@
                         {
                             "type": "objectId",
                             "attr": "objId",
-                            "width": "30%",
+                            "width": "25%",
                             "title": {
                                 "en": "Object",
                                 "de": "Obiekt",
@@ -130,8 +130,29 @@
                         },
                         {
                             "type": "number",
+                            "attr": "decimals",
+                            "width": "15%",
+                            "title": {
+                                "en": "Decimals",
+                                "de": "Dezimalstellen",
+                                "ru": "Денимации",
+                                "pt": "Decimais",
+                                "nl": "Decimale",
+                                "fr": "Décimales",
+                                "it": "Decimali",
+                                "es": "Decimales",
+                                "pl": "Dekret",
+                                "uk": "Декілька",
+                                "zh-cn": "青少年"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": 3
+                        },
+                        {
+                            "type": "number",
                             "attr": "duration",
-                            "width": "20%",
+                            "width": "15%",
                             "title": {
                                 "en": "Duration (sec)",
                                 "de": "Dauer (Sek.)",
@@ -221,7 +242,7 @@
                         {
                             "type": "text",
                             "attr": "sourceInstance",
-                            "width": "30%",
+                            "width": "25%",
                             "title": {
                                 "en": "Source instance",
                                 "de": "Quelle (Instanz)",
@@ -242,7 +263,7 @@
                         {
                             "type": "objectId",
                             "attr": "objId",
-                            "width": "30%",
+                            "width": "25%",
                             "title": {
                                 "en": "Object",
                                 "de": "Obiekt",
@@ -261,9 +282,30 @@
                             "default": ""
                         },
                         {
+                            "type": "color",
+                            "attr": "lineColor",
+                            "width": "15%",
+                            "title": {
+                                "en": "Color",
+                                "de": "Farbe",
+                                "ru": "Цвет",
+                                "pt": "Cor",
+                                "nl": "Color",
+                                "fr": "Couleur",
+                                "it": "Colore",
+                                "es": "Color",
+                                "pl": "Color",
+                                "uk": "Колір",
+                                "zh-cn": "科 法 律"
+                            },
+                            "filter": false,
+                            "sort": false,
+                            "default": "#FF0000"
+                        },
+                        {
                             "type": "number",
                             "attr": "duration",
-                            "width": "20%",
+                            "width": "15%",
                             "title": {
                                 "en": "Duration (sec)",
                                 "de": "Dauer (Sek.)",
@@ -282,27 +324,20 @@
                         }
                     ]
                 },
-                "historyAppsChartColor": {
+                "historyAppsBackgroundColor": {
                     "newLine": true,
                     "type": "color",
                     "sm": 12,
-                    "md": 4,
-                    "lg": 4,
-                    "label": "Line color"
-                },
-                "historyAppsBackgroundColor": {
-                    "type": "color",
-                    "sm": 12,
-                    "md": 4,
-                    "lg": 4,
+                    "md": 6,
+                    "lg": 6,
                     "label": "Background color"
                 },
                 "historyAppsRefreshInterval": {
                     "type": "number",
                     "min": 60,
                     "sm": 12,
-                    "md": 4,
-                    "lg": 4,
+                    "md": 6,
+                    "lg": 6,
                     "label": "Refresh interval (in seconds)"
                 },
                 "_dividerBottom": {

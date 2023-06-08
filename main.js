@@ -443,11 +443,13 @@ class AwtrixLight extends utils.Adapter {
                             let newVal = val;
 
                             if (this.customAppsForeignStates[objId].type === 'number') {
+                                const decimals = customApp.decimals || 3;
+
                                 if (!isNaN(val) && val % 1 !== 0) {
                                     let countDecimals = String(val).split('.')[1].length || 2;
 
-                                    if (countDecimals > 3) {
-                                        countDecimals = 3; // limit
+                                    if (countDecimals > decimals) {
+                                        countDecimals = decimals; // limit
                                     }
 
                                     newVal = this.formatValue(val, countDecimals);
@@ -505,7 +507,7 @@ class AwtrixLight extends utils.Adapter {
 
                                 if (lineData.length > 0) {
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
-                                        color: this.config.historyAppsChartColor,
+                                        color: historyApp.lineColor || '#FF0000',
                                         background: this.config.historyAppsBackgroundColor,
                                         line: lineData,
                                         autoscale: true,
