@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.12 (2023-06-08)
 
 * (klein0r) Added number of decimals to app configuration (for numeric values)
 * (klein0r) Added line color of history apps to each table row
@@ -65,11 +65,6 @@ Updated recommended firmware version to 0.68
 ### 0.0.8 (2023-06-05)
 
 * (klein0r) Added custom apps via instance configuration
-
-### 0.0.7 (2023-06-04)
-
-* (klein0r) Added timer feature to blockly
-* (klein0r) Added color conversion to hex in settings
 
 ## License
 MIT License

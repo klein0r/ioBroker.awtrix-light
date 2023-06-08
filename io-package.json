@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "news": {
+      "0.0.12": {
+        "en": "Added number of decimals to app configuration (for numeric values)\nAdded line color of history apps to each table row\nRemoved visibility states for native apps (deprecated by firmware)\nImproved logging for history apps\nAdded wifi signal strength and used RAM as states",
+        "de": "Anzahl der Dezimals zur App-Konfiguration hinzugefügt (für numerische Werte)\nHinzufügen der Zeilenfarbe der Geschichtsapps zu jeder Tabellezeile\nEntfernte Sichtzustände für native Apps (von Firmware abgeschrieben)\nVerbesserte Protokollierung für Geschichtsapps\nWifi-Signalstärke hinzugefügt und RAM als Zustände verwendet",
+        "ru": "Добавили количество десятичий к конфигурации приложения (для числовых значений)\nДобавлена строка цвета приложений истории к каждой строке таблицы\nУдаленные состояния видимости для родных приложений (указаны прошивкой)\nУлучшенный вход для приложений истории\nДобавлена сила сигнала Wi-Fi и используется RAM как государства",
+        "pt": "Adicionado número decimais para configuração de aplicativo (para valores numéricos)\nCor de linha adicionada de aplicativos de história para cada linha de tabela\nEstados de visibilidade removidos para aplicativos nativos (preparados por firmware)\nRegistro aprimorado para aplicativos de histórico\nAdicionado força de sinal wifi e usado RAM como estados",
+        "nl": "Vervoegd aantal decimalen om in beslag te nemen\nVertaling:\nVerwijderde visibiliteit staat voor inheemse apps (gedepreceerd door stevigware)\nVertaling:\nVoegde Wifi signaal kracht toe en gebruikte RAM als staat",
+        "fr": "Ajout du nombre de décimales à la configuration de l'application (pour les valeurs numériques)\nAjout de la couleur de ligne des applications d'histoire à chaque rangée de table\nÉtats de visibilité supprimés pour les applications natives (dépréciés par le firmware)\nAmélioration de la connexion pour les applications d'histoire\nAjout de la force du signal wifi et de la RAM utilisée comme états",
+        "it": "Aggiunto numero di decimali alla configurazione app (per i valori numerici)\nAggiunta il colore della linea delle app di storia ad ogni riga del tavolo\nStati di visibilità rimossi per applicazioni native (deprecated by firmware)\nRegistrazione migliorata per le applicazioni di storia\nAggiunta la forza del segnale wifi e la RAM utilizzata come stati",
+        "es": "Número añadido de decimales a la configuración de aplicaciones (para valores numéricos)\nColor de línea añadido de las aplicaciones de historia a cada fila de mesa\nEstados de visibilidad eliminados para aplicaciones nativas (deprecidos por firmware)\nMejor registro para aplicaciones de historia\nAñadido la fuerza de señal de wifi y utilizado RAM como estados",
+        "pl": "Dodana liczba dziesiętnych do konfiguracji (dla wartości liczb)\nPoniższa kolorystyka historii dotyczy każdego wiersza\nPrzewidywała widoczność dla rodzimych aplikacji (deprecowanych przez oprogramowanie)\nPoprawiono pisanie do aplikacji historycznych\nZawarta siła sygnału wifi używała RAM jako stanów",
+        "uk": "Додано кількість десяткових десятків для конфігурації додатку (для числових значень)\nДодано колір лінії історичних додатків до кожного рядка таблиці\nВилучені стани видимості для рідних додатків (розширені прошивкою)\nПокращений журнал для історичних додатків\nДодана сила сигналу Wifi і використана оперативна пам'ять як стани",
+        "zh-cn": "添加到图表(数字价值)的标记数量\n增加历史色彩,给每个桌代。\n剥夺土著人的能见度(由坚称)\nB. 改善历史遗漏\n增加维权信号强,并用作国家"
+      },
       "0.0.11": {
         "en": "Display history data in apps as charts\nFormat number values and limit number of decimals\nLimit app refresh time when state changes (configurable)",
         "de": "Geschichtsdaten in Apps als Diagramme anzeigen\nFormatnummernwerte und Grenzzahl der Dezimals\nBeschränken Sie die App-Erfrischungszeit bei Zustandsänderungen (konfigurierbar)",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do wersji 0.6767\n\n* Wedle niektórych ustaw jako stany\n* Added stack and wakeup option to blockly\n* Bateria została ukryta, gdy niewidzialna była niewidoczna",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0,67\n\n* Додано деякі налаштування як стани\n* Додана можливість заблокувати\n* Додаток акумулятора був прихований при невидимому",
         "zh-cn": "最新建议的警觉版本为0.67\n\n* 增添一些环境作为州\n* 增加停泊和后继办法,以防断\n* 在不可预见的情况下,Batters的藏匿。"
-      },
-      "0.0.5": {
-        "en": "Added notification support via sendTo / blockly\nImproved error handling",
-        "de": "Zusätzliche Benachrichtigungsunterstützung per Senden Zu / blockieren\nVerbesserte Fehlerbehandlung",
-        "ru": "Добавлена поддержка уведомлений через отправить В / блокно\nУлучшена обработка ошибок",
-        "pt": "Adicionado suporte de notificação via envio Para / blockly\nMelhor manuseio de erros",
-        "nl": "Vermelding ondersteuning via / blokk\nImproviserende fouten",
-        "fr": "Ajout d'un support de notification via envoi Pour / bloquer\nAmélioration de la manipulation des erreurs",
-        "it": "Aggiunto supporto di notifica tramite invio A / blocco\nMiglioramento della gestione degli errori",
-        "es": "Soporte de notificación adicional mediante envío A / bloqueado\nMejor manejo de errores",
-        "pl": "Administracyjne wsparcie poprzez wysłanie komunikatu / blokowo\nPoprawiona obsługa błędów",
-        "uk": "Додана підтримка повідомлень До / блокноти\nПоліпшення обробки помилок",
-        "zh-cn": "通过发出的通知支持 /部分\n改进错误处理"
       }
     },
     "titleLang": {

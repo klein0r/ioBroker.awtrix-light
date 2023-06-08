@@ -1,4 +1,9 @@
 # Older changes
+## 0.0.7 (2023-06-04)
+
+* (klein0r) Added timer feature to blockly
+* (klein0r) Added color conversion to hex in settings
+
 ## 0.0.6 (2023-06-03)
 
 Updated recommended firmware version to 0.67
