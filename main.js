@@ -157,22 +157,7 @@ class AwtrixLight extends utils.Adapter {
                         this.log.warn(`Unable to execute "previousapp" action: ${error}`);
                     });
                 } else if (idNoNamespace.startsWith('apps.')) {
-                    if (idNoNamespace.endsWith('.visible')) {
-                        const obj = await this.getObjectAsync(idNoNamespace);
-                        if (obj && obj.native?.name) {
-                            this.log.debug(`changing visibility of app ${obj.native.name} to ${state.val}`);
-
-                            this.buildRequestAsync('apps', 'POST', [{ name: obj.native.name, show: state.val }])
-                                .then(async (response) => {
-                                    if (response.status === 200 && response.data === 'OK') {
-                                        await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                                    }
-                                })
-                                .catch((error) => {
-                                    this.log.warn(`Unable to execute app visibility action: ${error}`);
-                                });
-                        }
-                    } else if (idNoNamespace.endsWith('.activate')) {
+                    if (idNoNamespace.endsWith('.activate')) {
                         if (state.val) {
                             const obj = await this.getObjectAsync(idNoNamespace);
                             if (obj && obj.native?.name) {
@@ -501,12 +486,19 @@ class AwtrixLight extends utils.Adapter {
                             const souceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
 
                             if (souceInstanceObj && souceInstanceObj.common?.getHistory) {
+                                //const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
+                                // TODO: Check if history logging is enabled
+
                                 const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
                                     id: historyApp.objId,
                                     options: {
+                                        start: 1,
                                         end: Date.now(),
-                                        count: itemCount,
-                                        aggregate: 'onchange',
+                                        aggregate: 'none',
+                                        limit: itemCount,
+                                        returnNewestEntries: true,
+                                        ignoreNull: 0,
+                                        removeBorderValues: true,
                                     },
                                 });
                                 const lineData = historyData?.result.filter((state) => typeof state.val === 'number').map((state) => Math.round(state.val));
@@ -523,8 +515,10 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.warn(`[initHistoryApps] Unable to create history app "${historyApp.name}": ${error}`);
                                     });
                                 } else {
+                                    this.log.debug(`[initHistoryApps] No data. Going to remove history app "${historyApp.name}"`);
+
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                        this.log.warn(`[initHistoryApps] Unable to remove history app "${historyApp.name}": ${error}`);
+                                        this.log.warn(`[initHistoryApps] No data - unable to remove history app "${historyApp.name}": ${error}`);
                                     });
                                 }
                             } else {
@@ -622,35 +616,6 @@ class AwtrixLight extends utils.Adapter {
                                         name,
                                     },
                                 });
-
-                                if (nativeApps.includes(name)) {
-                                    await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
-                                        type: 'state',
-                                        common: {
-                                            name: {
-                                                en: 'Visible',
-                                                de: 'Sichtbar',
-                                                ru: 'Видимый',
-                                                pt: 'Visível',
-                                                nl: 'Vertaling:',
-                                                fr: 'Visible',
-                                                it: 'Visibile',
-                                                es: 'Visible',
-                                                pl: 'Widoczny',
-                                                uk: 'Вибрані',
-                                                'zh-cn': '不可抗辩',
-                                            },
-                                            type: 'boolean',
-                                            role: 'indicator',
-                                            read: true,
-                                            write: true,
-                                        },
-                                        native: {
-                                            name,
-                                        },
-                                    });
-                                    await this.setStateChangedAsync(`${appPath}.${name}.visible`, { val: existingApps.includes(name), ack: true });
-                                }
                             }
 
                             // Delete non existent apps

@@ -35,6 +35,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Removed visibility states for native apps (deprecated by firmware)
+
 ### 0.0.11 (2023-06-07)
 
 * (klein0r) Display history data in apps as charts
