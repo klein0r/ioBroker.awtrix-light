@@ -37,15 +37,6 @@ class AwtrixLight extends utils.Adapter {
 
         try {
             await this.refreshState();
-            await this.initCustomApps();
-            await this.initHistoryApps();
-            this.createAppObjects();
-
-            for (let i = 1; i <= 3; i++) {
-                await this.updateIndicatorByStates(i);
-            }
-
-            await this.updateMoodlightByStates();
 
             await this.subscribeStatesAsync('*');
         } catch (err) {
@@ -273,12 +264,29 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    setApiConnected(connection) {
-        this.setStateChangedAsync('info.connection', { val: connection, ack: true });
-        this.apiConnected = connection;
+    async setApiConnected(connection) {
+        if (connection !== this.apiConnected) {
+            this.setStateChangedAsync('info.connection', { val: connection, ack: true });
+            this.apiConnected = connection;
 
-        if (!connection) {
-            this.log.debug('API is offline');
+            if (connection) {
+                // API was offline - refresh all states
+                this.log.debug('API is online');
+
+                await this.refreshSettings();
+
+                await this.initCustomApps();
+                await this.initHistoryApps();
+                this.createAppObjects();
+
+                for (let i = 1; i <= 3; i++) {
+                    await this.updateIndicatorByStates(i);
+                }
+
+                await this.updateMoodlightByStates();
+            } else {
+                this.log.debug('API is offline');
+            }
         }
     }
 
@@ -320,8 +328,6 @@ class AwtrixLight extends utils.Adapter {
                         await this.setStateChangedAsync('device.wifiSignal', { val: content.wifi_signal, ack: true });
                         await this.setStateChangedAsync('device.usedRAM', { val: content.ram, ack: true });
                         await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
-
-                        await this.refreshSettings();
                     }
 
                     resolve(response.status);
