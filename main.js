@@ -520,6 +520,7 @@ class AwtrixLight extends utils.Adapter {
                                         autoscale: true,
                                         icon: historyApp.icon,
                                         duration: historyApp.duration || DEFAULT_DURATION,
+                                        lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                     }).catch((error) => {
                                         this.log.warn(`[initHistoryApps] Unable to create history app "${historyApp.name}": ${error}`);
                                     });
