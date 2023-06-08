@@ -445,7 +445,7 @@ class AwtrixLight extends utils.Adapter {
                             let newVal = val;
 
                             if (this.customAppsForeignStates[objId].type === 'number') {
-                                const decimals = customApp.decimals || 3;
+                                const decimals = customApp.decimals ?? 3;
 
                                 if (!isNaN(val) && val % 1 !== 0) {
                                     let countDecimals = String(val).split('.')[1].length || 2;
@@ -462,7 +462,7 @@ class AwtrixLight extends utils.Adapter {
                             await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                                 text: text
                                     .replace('%s', newVal)
-                                    .replace('%u', this.customAppsForeignStates[objId].unit || '')
+                                    .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
                                     .trim(),
                                 icon: customApp.icon,
                                 duration: customApp.duration || DEFAULT_DURATION,
@@ -514,7 +514,7 @@ class AwtrixLight extends utils.Adapter {
 
                                 if (lineData.length > 0) {
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
-                                        color: historyApp.lineColor || '#FF0000',
+                                        color: historyApp.lineColor ?? '#FF0000',
                                         background: this.config.historyAppsBackgroundColor,
                                         line: lineData,
                                         autoscale: true,
@@ -543,7 +543,7 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval || 300} seconds)`);
+        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval ?? 300} seconds)`);
         this.refreshHistoryAppsTimeout =
             this.refreshHistoryAppsTimeout ||
             setTimeout(() => {
