@@ -35,13 +35,9 @@ class AwtrixLight extends utils.Adapter {
     async onReady() {
         this.setApiConnected(false);
 
-        try {
-            await this.refreshState();
+        await this.subscribeStatesAsync('*');
 
-            await this.subscribeStatesAsync('*');
-        } catch (err) {
-            this.log.error(`[onReady] Startup error: ${err}`);
-        }
+        this.refreshState();
     }
 
     /**
@@ -85,7 +81,7 @@ class AwtrixLight extends utils.Adapter {
                                 await this.refreshSettings();
                             })
                             .catch((error) => {
-                                this.log.warn(`Unable to perform display action: ${error}`);
+                                this.log.warn(`(settings) Unable to execute action: ${error}`);
                             });
                     } else {
                         this.log.warn(`Unable to change setting of ${id} - settingsKey not found`);
@@ -100,7 +96,7 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to perform display action: ${error}`);
+                            this.log.warn(`(power) Unable to execute action: ${error}`);
                         });
                 } else if (idNoNamespace.startsWith('display.moodlight.')) {
                     this.updateMoodlightByStates()
@@ -110,7 +106,7 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to perform moodlight action: ${error}`);
+                            this.log.warn(`(moodlight) Unable to execute action: ${error}`);
                         });
                 } else if (idNoNamespace === 'device.update') {
                     this.log.info('performing firmware update');
@@ -122,7 +118,7 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to execute firmware update (maybe this is already the newest version): ${error}`);
+                            this.log.warn(`(doupdate) Unable to execute firmware update (maybe this is already the newest version): ${error}`);
                         });
                 } else if (idNoNamespace === 'device.reboot') {
                     this.buildRequestAsync('reboot', 'POST')
@@ -133,19 +129,19 @@ class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch((error) => {
-                            this.log.warn(`Unable to execute "reboot" action: ${error}`);
+                            this.log.warn(`(reboot) Unable to execute action: ${error}`);
                         });
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
                     this.buildRequestAsync('nextapp', 'POST').catch((error) => {
-                        this.log.warn(`Unable to execute "nextapp" action: ${error}`);
+                        this.log.warn(`(nextapp) Unable to execute action: ${error}`);
                     });
                 } else if (idNoNamespace === 'apps.prev') {
                     this.log.debug('switching to previous app');
 
                     this.buildRequestAsync('previousapp', 'POST').catch((error) => {
-                        this.log.warn(`Unable to execute "previousapp" action: ${error}`);
+                        this.log.warn(`(previousapp) Unable to execute action: ${error}`);
                     });
                 } else if (idNoNamespace.startsWith('apps.')) {
                     if (idNoNamespace.endsWith('.activate')) {
@@ -155,7 +151,7 @@ class AwtrixLight extends utils.Adapter {
                                 this.log.debug(`activating app ${obj.native.name}`);
 
                                 this.buildRequestAsync('switch', 'POST', { name: obj.native.name }).catch((error) => {
-                                    this.log.warn(`Unable to execute app activation: ${error}`);
+                                    this.log.warn(`(switch) Unable to execute action: ${error}`);
                                 });
                             }
                         } else {
@@ -177,7 +173,7 @@ class AwtrixLight extends utils.Adapter {
                                 }
                             })
                             .catch((error) => {
-                                this.log.warn(`Unable to perform indicator action: ${error}`);
+                                this.log.warn(`(indicator) Unable to perform action: ${error}`);
                             });
                     }
                 }
@@ -290,58 +286,50 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    async refreshState() {
-        return new Promise((resolve, reject) => {
-            this.log.debug('refreshing device state');
+    refreshState() {
+        this.log.debug('refreshing device state');
 
-            this.log.debug('re-creating refresh state timeout');
-            this.refreshStateTimeout =
-                this.refreshStateTimeout ||
-                setTimeout(() => {
-                    this.refreshStateTimeout = null;
-                    this.refreshState().catch((error) => {
-                        this.log.debug(`Unable to refresh state: ${error}`);
-                    });
-                }, 60000);
+        this.buildRequestAsync('stats', 'GET')
+            .then(async (response) => {
+                if (response.status === 200) {
+                    const content = response.data;
 
-            this.buildRequestAsync('stats', 'GET')
-                .then(async (response) => {
-                    if (response.status === 200) {
-                        const content = response.data;
+                    this.setApiConnected(true);
 
-                        this.setApiConnected(true);
-
-                        if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
-                            this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
-                            this.displayedVersionWarning = true; // Just show once
-                        }
-
-                        await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
-
-                        await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
-                        await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
-                        await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
-
-                        await this.setStateChangedAsync('display.brightness', { val: content.bri, ack: true });
-
-                        await this.setStateChangedAsync('device.battery', { val: content.bat, ack: true });
-                        await this.setStateChangedAsync('device.wifiSignal', { val: content.wifi_signal, ack: true });
-                        await this.setStateChangedAsync('device.usedRAM', { val: content.ram, ack: true });
-                        await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
+                    if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
+                        this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
+                        this.displayedVersionWarning = true; // Just show once
                     }
 
-                    resolve(response.status);
-                })
-                .catch((error) => {
-                    this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
-                    this.setApiConnected(false);
+                    await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
 
-                    reject(error);
-                });
-        });
+                    await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
+                    await this.setStateChangedAsync('sensor.temp', { val: parseInt(content.temp), ack: true });
+                    await this.setStateChangedAsync('sensor.humidity', { val: parseInt(content.hum), ack: true });
+
+                    await this.setStateChangedAsync('display.brightness', { val: content.bri, ack: true });
+
+                    await this.setStateChangedAsync('device.battery', { val: content.bat, ack: true });
+                    await this.setStateChangedAsync('device.wifiSignal', { val: content.wifi_signal, ack: true });
+                    await this.setStateChangedAsync('device.usedRAM', { val: content.ram, ack: true });
+                    await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
+                }
+            })
+            .catch((error) => {
+                this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
+                this.setApiConnected(false);
+            });
+
+        this.log.debug('re-creating refresh state timeout');
+        this.refreshStateTimeout =
+            this.refreshStateTimeout ||
+            setTimeout(() => {
+                this.refreshStateTimeout = null;
+                this.refreshState();
+            }, 60000);
     }
 
-    refreshSettings() {
+    async refreshSettings() {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('settings', 'GET')
                 .then(async (response) => {
@@ -378,7 +366,7 @@ class AwtrixLight extends utils.Adapter {
                     resolve(response.status);
                 })
                 .catch((error) => {
-                    this.log.debug(`(settings) received error: ${JSON.stringify(error)}`);
+                    this.log.warn(`(settings) Received error: ${JSON.stringify(error)}`);
 
                     reject(error);
                 });
@@ -386,54 +374,56 @@ class AwtrixLight extends utils.Adapter {
     }
 
     async initCustomApps() {
-        for (const customApp of this.config.customApps) {
-            if (customApp.name) {
-                const text = String(customApp.text).trim();
+        if (this.apiConnected) {
+            for (const customApp of this.config.customApps) {
+                if (customApp.name) {
+                    const text = String(customApp.text).trim();
 
-                if (customApp.objId && text.includes('%s')) {
-                    try {
-                        const objId = customApp.objId;
-                        if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
-                            const obj = await this.getForeignObjectAsync(objId);
-                            if (obj) {
-                                const state = await this.getForeignStateAsync(objId);
+                    if (customApp.objId && text.includes('%s')) {
+                        try {
+                            const objId = customApp.objId;
+                            if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
+                                const obj = await this.getForeignObjectAsync(objId);
+                                if (obj) {
+                                    const state = await this.getForeignStateAsync(objId);
 
-                                this.customAppsForeignStates[objId] = {
-                                    val: state ? state.val : undefined,
-                                    type: obj?.common.type,
-                                    unit: obj?.common?.unit,
-                                    ts: Date.now(),
-                                };
+                                    this.customAppsForeignStates[objId] = {
+                                        val: state ? state.val : undefined,
+                                        type: obj?.common.type,
+                                        unit: obj?.common?.unit,
+                                        ts: Date.now(),
+                                    };
 
-                                await this.subscribeForeignStatesAsync(objId);
-                                await this.subscribeForeignObjectsAsync(objId);
+                                    await this.subscribeForeignStatesAsync(objId);
+                                    await this.subscribeForeignObjectsAsync(objId);
 
-                                this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId ${objId} - subscribed to changes`);
+                                    this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId ${objId} - subscribed to changes`);
+                                }
                             }
+                        } catch (error) {
+                            this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
                         }
-                    } catch (error) {
-                        this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
+                    } else if (text.length > 0) {
+                        // App with static text (no objId specified)
+                        this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
+
+                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                            text: text,
+                            icon: customApp.icon,
+                            duration: customApp.duration || DEFAULT_DURATION,
+                        }).catch((error) => {
+                            this.log.warn(`(custom?name=${customApp.name}) Unable to create custom app "${customApp.name}" with static text: ${error}`);
+                        });
                     }
-                } else if (text.length > 0) {
-                    // App with static text (no objId specified)
-                    this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
-
-                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                        text: text,
-                        icon: customApp.icon,
-                        duration: customApp.duration || DEFAULT_DURATION,
-                    }).catch((error) => {
-                        this.log.warn(`[initCustomApps] Unable to create custom app "${customApp.name}" with static text: ${error}`);
-                    });
+                } else {
+                    this.log.warn(`[initCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
                 }
-            } else {
-                this.log.warn(`[initCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
             }
-        }
 
-        // Trigger update for all found objIds
-        for (const objId of Object.keys(this.customAppsForeignStates)) {
-            await this.refreshCustomApps(objId);
+            // Trigger update for all found objIds
+            for (const objId of Object.keys(this.customAppsForeignStates)) {
+                await this.refreshCustomApps(objId);
+            }
         }
     }
 
@@ -473,7 +463,7 @@ class AwtrixLight extends utils.Adapter {
                                 icon: customApp.icon,
                                 duration: customApp.duration || DEFAULT_DURATION,
                             }).catch((error) => {
-                                this.log.warn(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
+                                this.log.warn(`(custom?name=${customApp.name}) Unable to refresh custom app "${customApp.name}": ${error}`);
                             });
                         } catch (error) {
                             this.log.error(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
@@ -528,13 +518,13 @@ class AwtrixLight extends utils.Adapter {
                                         duration: historyApp.duration || DEFAULT_DURATION,
                                         lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                     }).catch((error) => {
-                                        this.log.warn(`[initHistoryApps] Unable to create history app "${historyApp.name}": ${error}`);
+                                        this.log.warn(`(custom?name=${customApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
                                     });
                                 } else {
                                     this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
 
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                        this.log.warn(`[initHistoryApps] No data - unable to remove history app "${historyApp.name}": ${error}`);
+                                        this.log.warn(`(custom?name=${customApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
                                     });
                                 }
                             } else {
@@ -651,7 +641,7 @@ class AwtrixLight extends utils.Adapter {
 
                                     try {
                                         await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
-                                            this.log.warn(`[createAppObjects] Unable to remove unknown app "${name}": ${error}`);
+                                            this.log.warn(`(custom?name=${customApp.name}) Unable to remove unknown app "${name}": ${error}`);
                                         });
                                     } catch (error) {
                                         this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
