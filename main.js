@@ -501,9 +501,14 @@ class AwtrixLight extends utils.Adapter {
                                         returnNewestEntries: true,
                                         ignoreNull: 0,
                                         removeBorderValues: true,
+                                        ack: true,
                                     },
                                 });
-                                const lineData = historyData?.result.filter((state) => typeof state.val === 'number').map((state) => Math.round(state.val));
+                                const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val));
+
+                                this.log.debug(
+                                    `[initHistoryApps] History data for app "${historyApp.name}" of "${historyApp.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,
+                                );
 
                                 if (lineData.length > 0) {
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
@@ -517,7 +522,7 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.warn(`[initHistoryApps] Unable to create history app "${historyApp.name}": ${error}`);
                                     });
                                 } else {
-                                    this.log.debug(`[initHistoryApps] No data. Going to remove history app "${historyApp.name}"`);
+                                    this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
 
                                     await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
                                         this.log.warn(`[initHistoryApps] No data - unable to remove history app "${historyApp.name}": ${error}`);
