@@ -3,7 +3,6 @@
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
-const { stat } = require('fs');
 const adapterName = require('./package.json').name.split('.').pop();
 
 const DEFAULT_DURATION = 5;
@@ -57,7 +56,9 @@ class AwtrixLight extends utils.Adapter {
                     this.refreshCustomApps(id);
                 } else {
                     this.log.debug(
-                        `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange} seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
+                        `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
+                            this.config.ignoreNewValueForAppInTimeRange
+                        } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                     );
                 }
             }
@@ -542,13 +543,13 @@ class AwtrixLight extends utils.Adapter {
                                             duration: historyApp.duration || DEFAULT_DURATION,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                         }).catch((error) => {
-                                            this.log.warn(`(custom?name=${customApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
+                                            this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
                                         });
                                     } else {
                                         this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
 
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${customApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
+                                            this.log.warn(`(custom?name=${historyApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
                                         });
                                     }
                                 } else {
@@ -670,7 +671,7 @@ class AwtrixLight extends utils.Adapter {
 
                                     try {
                                         await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${customApp.name}) Unable to remove unknown app "${name}": ${error}`);
+                                            this.log.warn(`(custom?name=${name}) Unable to remove unknown app "${name}": ${error}`);
                                         });
                                     } catch (error) {
                                         this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
