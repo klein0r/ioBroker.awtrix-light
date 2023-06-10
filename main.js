@@ -3,6 +3,7 @@
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
+const { stat } = require('fs');
 const adapterName = require('./package.json').name.split('.').pop();
 
 const DEFAULT_DURATION = 5;
@@ -15,6 +16,7 @@ class AwtrixLight extends utils.Adapter {
         super({
             ...options,
             name: adapterName,
+            useFormatDate: true,
         });
 
         this.supportedVersion = '0.68';
@@ -48,15 +50,15 @@ class AwtrixLight extends utils.Adapter {
         if (id && state && state.ack && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             // Just refresh if value has changed
             if (state.val !== this.customAppsForeignStates[id].val) {
-                const now = Date.now();
-
-                if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < now) {
+                if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                     this.customAppsForeignStates[id].val = state?.val;
-                    this.customAppsForeignStates[id].ts = now;
+                    this.customAppsForeignStates[id].ts = state.ts;
 
                     this.refreshCustomApps(id);
                 } else {
-                    this.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange} seconds)`);
+                    this.log.debug(
+                        `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange} seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
+                    );
                 }
             }
         }
@@ -391,7 +393,7 @@ class AwtrixLight extends utils.Adapter {
                                         val: state ? state.val : undefined,
                                         type: obj?.common.type,
                                         unit: obj?.common?.unit,
-                                        ts: Date.now(),
+                                        ts: state ? state.ts : Date.now(),
                                     };
 
                                     await this.subscribeForeignStatesAsync(objId);
