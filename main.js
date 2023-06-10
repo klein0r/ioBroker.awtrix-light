@@ -404,6 +404,10 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.info(`[initCustomApps] State value of custom app "${customApp.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
                                     }
 
+                                    if (text.includes('%u') && !obj?.common?.unit) {
+                                        this.log.info(`[initCustomApps] Object of custom app "${customApp.name}" (${objId}) has no unit - remove "%u" from text or define unit in object`);
+                                    }
+
                                     await this.subscribeForeignStatesAsync(objId);
                                     await this.subscribeForeignObjectsAsync(objId);
 
