@@ -52,6 +52,7 @@ iobroker add trashschedule
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added validator for IP address
+* (klein0r) usedRam was renamed to freeRam
 
 ### 0.0.13 (2023-06-10)
 

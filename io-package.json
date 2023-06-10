@@ -784,21 +784,21 @@
       "native": {}
     },
     {
-      "_id": "device.usedRAM",
+      "_id": "device.freeRAM",
       "type": "state",
       "common": {
         "name": {
-          "en": "Used memory",
-          "de": "Genutzter Speicher",
-          "ru": "Используемая память",
-          "pt": "Memória usada",
-          "nl": "Gebruikt geheugen",
-          "fr": "Mémoire utilisée",
-          "it": "Memoria usata",
-          "es": "Memoria usada",
-          "pl": "Pamięć",
-          "uk": "Використовується пам'ять",
-          "zh-cn": "使用记忆"
+          "en": "Available memory",
+          "de": "Verfügbarer Speicher",
+          "ru": "Доступная память",
+          "pt": "Memória disponível",
+          "nl": "Availabel geheugen",
+          "fr": "Mémoire disponible",
+          "it": "Memoria disponibile",
+          "es": "Memoria disponible",
+          "pl": "Pamięć pamięciowa",
+          "uk": "Доступна пам'ять",
+          "zh-cn": "现有记忆"
         },
         "type": "number",
         "role": "value",
