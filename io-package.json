@@ -151,6 +151,14 @@
     "adminUI": {
       "config": "json"
     },
+    "docs": {
+      "en": [
+        "docs/en/README.md"
+      ],
+      "de": [
+        "docs/de/README.md"
+      ]
+    },
     "dependencies": [
       {
         "js-controller": ">=4.0.15"
