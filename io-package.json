@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "news": {
+      "0.0.13": {
+        "en": "Refresh all states when device was offline / not reachable\nAutomatically remove history apps (if not updated)\nImproved checks for history data",
+        "de": "Refresh alle Zustände, wenn das Gerät offline war / nicht erreichbar\nEntfernen Sie die Geschichtsapps automatisch (wenn nicht aktualisiert)\nVerbesserte Überprüfungen von Geschichtsdaten",
+        "ru": "Обновить все государства, когда устройство было оффлайн / не доступно\nАвтоматически удалять приложения истории (если не обновляется)\nУлучшенные проверки данных об истории",
+        "pt": "Refrescar todos os estados quando o dispositivo estava offline / não acessível\nRemova automaticamente aplicativos de histórico (se não atualizado)\nVerificações melhoradas para dados de histórico",
+        "nl": "Verfris alle staten wanneer het apparaat offline was en niet bereikbaar\nAutomatisch verwijder geschiedenis apps\nVertaling:",
+        "fr": "Rafraîchissez tous les états lorsque l'appareil était hors ligne / non accessible\nSupprimer automatiquement les applications d'historique (si elles ne sont pas mises à jour)\nAmélioration des contrôles pour les données d'histoire",
+        "it": "Aggiorna tutti gli stati quando il dispositivo era offline / non raggiungibile\nRimuovere automaticamente le app di storia (se non aggiornate)\nControlli migliori per i dati storici",
+        "es": "Refresh todos los estados cuando el dispositivo estaba fuera de línea / no accesible\nEliminar automáticamente las aplicaciones de la historia (si no se actualizan)\nControles mejorados para datos de historia",
+        "pl": "Refresh wszystkie stany, gdy urządzenie było nieosiągalne\nAutomatycznie usuwać aplikacje historyczne (nie zaktualizowane)\nPoprawa dotycząca danych historycznych",
+        "uk": "Відновити всі стани, коли пристрій був автономним / не досягається\nАвтоматично видаляти історичні додатки (якщо не оновлено)\nПоліпшення перевірок даних історії",
+        "zh-cn": "在所有国家里,当装置被赶出线/无法达到的状态\n自动取消历史遗骸(如未更新)\n改进历史数据的检查"
+      },
       "0.0.12": {
         "en": "Added number of decimals to app configuration (for numeric values)\nAdded line color of history apps to each table row\nRemoved visibility states for native apps (deprecated by firmware)\nImproved logging for history apps\nAdded wifi signal strength and used RAM as states",
         "de": "Anzahl der Dezimals zur App-Konfiguration hinzugefügt (für numerische Werte)\nHinzufügen der Zeilenfarbe der Geschichtsapps zu jeder Tabellezeile\nEntfernte Sichtzustände für native Apps (von Firmware abgeschrieben)\nVerbesserte Protokollierung für Geschichtsapps\nWifi-Signalstärke hinzugefügt und RAM als Zustände verwendet",
@@ -80,19 +93,6 @@
         "pl": "Dodany czaszkę ma blokować\nZwracana do koloru na hex w ustawieniach",
         "uk": "Додана функція таймера для блокування\nДодано конвертацію кольору в шістку в налаштуваннях",
         "zh-cn": "增加时间特点以阻挡时间\n增加在环境中的颜色转换"
-      },
-      "0.0.6": {
-        "en": "Updated recommended firmware version to 0.67\n\n* Added some settings as states\n* Added stack and wakeup option to blockly\n* Battery app was hidden when invisible",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.67\n\n* Einige Einstellungen als Zustände hinzugefügt\n* Hinzugefügt Stapel und Weckoption blockieren\n* Batterie-App wurde versteckt, wenn unsichtbar",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.67\n\n* Добавлены некоторые настройки как государства\n* Добавлена опция стека и пробуждения для блокировки\n* Приложение батареи было скрыто когда невидимое",
-        "pt": "Versão de firmware recomendada atualizada para 0,67\n\n* Adicionado algumas configurações como estados\n* Adicionado pilha e despertar opção para blockly\n* Aplicação da bateria estava escondida quando invisível",
-        "nl": "Opgevolgd aanbevolen firmaware versie naar 0.67\n\n♪ Added some settings as states ♪\n♪ Added stack and wakeup option to blokly\n♪ Battery app was verborgen when onzichtbaar ♪",
-        "fr": "Version de firmware recommandée mise à jour à 0.67\n\n* Ajout de quelques paramètres comme les états\n* Ajout de l'option pile et réveil pour bloquer\n* L'application de batterie était cachée quand invisible",
-        "it": "Versione firmware consigliata aggiornata a 0.67\n\n* Aggiunto alcune impostazioni come stati\n* Aggiunta stack e wakeup opzione per bloccare\n* L'app della batteria era nascosta quando invisibile",
-        "es": "Versión actualizada de firmware recomendada a 0.67\n\n* Añadido algunos ajustes como estados\n* opción agregada de apilación y despertar para bloquear\n* Aplicación de la batería fue oculta cuando invisible",
-        "pl": "Zalecona wersja oprogramowania do wersji 0.6767\n\n* Wedle niektórych ustaw jako stany\n* Added stack and wakeup option to blockly\n* Bateria została ukryta, gdy niewidzialna była niewidoczna",
-        "uk": "Оновлено рекомендовану версію мікропрограми до 0,67\n\n* Додано деякі налаштування як стани\n* Додана можливість заблокувати\n* Додаток акумулятора був прихований при невидимому",
-        "zh-cn": "最新建议的警觉版本为0.67\n\n* 增添一些环境作为州\n* 增加停泊和后继办法,以防断\n* 在不可预见的情况下,Batters的藏匿。"
       }
     },
     "titleLang": {

@@ -1,4 +1,8 @@
 # Older changes
+## 0.0.8 (2023-06-05)
+
+* (klein0r) Added custom apps via instance configuration
+
 ## 0.0.7 (2023-06-04)
 
 * (klein0r) Added timer feature to blockly

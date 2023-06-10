@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.13 (2023-06-10)
 
 * (klein0r) Refresh all states when device was offline / not reachable
 * (klein0r) Automatically remove history apps (if not updated)
@@ -67,10 +67,6 @@ Updated recommended firmware version to 0.68
 * (klein0r) Added battery, uptime and display states
 * (klein0r) Added more settings options
 * (klein0r) Color conversion for all rgb settings
-
-### 0.0.8 (2023-06-05)
-
-* (klein0r) Added custom apps via instance configuration
 
 ## License
 MIT License
