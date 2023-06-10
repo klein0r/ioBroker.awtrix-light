@@ -35,7 +35,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 Please use the "adapter list" in ioBroker to install a stable version of this adapter. You can also use the CLI to install this adapter:
 
 ```
-iobroker add trashschedule
+iobroker add awtrix-light
 ```
 
 ## Documentation
