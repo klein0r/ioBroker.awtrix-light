@@ -3,6 +3,7 @@
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
+const { stat } = require('fs');
 const adapterName = require('./package.json').name.split('.').pop();
 
 const DEFAULT_DURATION = 5;
@@ -46,21 +47,25 @@ class AwtrixLight extends utils.Adapter {
      * @param {ioBroker.State | null | undefined} state
      */
     async onStateChange(id, state) {
-        if (id && state && state.ack && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
-            // Just refresh if value has changed
-            if (state.val !== this.customAppsForeignStates[id].val) {
-                if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
-                    this.customAppsForeignStates[id].val = state?.val;
-                    this.customAppsForeignStates[id].ts = state.ts;
+        if (id && state && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
+            if (state.ack) {
+                // Just refresh if value has changed
+                if (state.val !== this.customAppsForeignStates[id].val) {
+                    if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
+                        this.customAppsForeignStates[id].val = state?.val;
+                        this.customAppsForeignStates[id].ts = state.ts;
 
-                    this.refreshCustomApps(id);
-                } else {
-                    this.log.debug(
-                        `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
-                            this.config.ignoreNewValueForAppInTimeRange
-                        } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
-                    );
+                        this.refreshCustomApps(id);
+                    } else {
+                        this.log.debug(
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
+                                this.config.ignoreNewValueForAppInTimeRange
+                            } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
+                        );
+                    }
                 }
+            } else {
+                this.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - ack is false`);
             }
         }
 
@@ -391,11 +396,15 @@ class AwtrixLight extends utils.Adapter {
                                     const state = await this.getForeignStateAsync(objId);
 
                                     this.customAppsForeignStates[objId] = {
-                                        val: state ? state.val : undefined,
+                                        val: state && state.ack ? state.val : undefined,
                                         type: obj?.common.type,
                                         unit: obj?.common?.unit,
                                         ts: state ? state.ts : Date.now(),
                                     };
+
+                                    if (state && !state.ack) {
+                                        this.log.info(`[initCustomApps] State value of custom app "${customApp.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
+                                    }
 
                                     await this.subscribeForeignStatesAsync(objId);
                                     await this.subscribeForeignObjectsAsync(objId);
@@ -441,33 +450,41 @@ class AwtrixLight extends utils.Adapter {
 
                         try {
                             const val = this.customAppsForeignStates[objId].val;
-                            let newVal = val;
+                            if (typeof val !== 'undefined') {
+                                let newVal = val;
 
-                            if (this.customAppsForeignStates[objId].type === 'number') {
-                                const decimals = customApp.decimals ?? 3;
+                                if (this.customAppsForeignStates[objId].type === 'number') {
+                                    const decimals = customApp.decimals ?? 3;
 
-                                if (!isNaN(val) && val % 1 !== 0) {
-                                    let countDecimals = String(val).split('.')[1].length || 2;
+                                    if (!isNaN(val) && val % 1 !== 0) {
+                                        let countDecimals = String(val).split('.')[1].length || 2;
 
-                                    if (countDecimals > decimals) {
-                                        countDecimals = decimals; // limit
+                                        if (countDecimals > decimals) {
+                                            countDecimals = decimals; // limit
+                                        }
+
+                                        newVal = this.formatValue(val, countDecimals);
+                                        this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                     }
-
-                                    newVal = this.formatValue(val, countDecimals);
-                                    this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                 }
-                            }
 
-                            await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                text: text
-                                    .replace('%s', newVal)
-                                    .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
-                                    .trim(),
-                                icon: customApp.icon,
-                                duration: customApp.duration || DEFAULT_DURATION,
-                            }).catch((error) => {
-                                this.log.warn(`(custom?name=${customApp.name}) Unable to refresh custom app "${customApp.name}": ${error}`);
-                            });
+                                await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                    text: text
+                                        .replace('%s', newVal)
+                                        .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
+                                        .trim(),
+                                    icon: customApp.icon,
+                                    duration: customApp.duration || DEFAULT_DURATION,
+                                }).catch((error) => {
+                                    this.log.warn(`(custom?name=${customApp.name}) Unable to refresh custom app "${customApp.name}": ${error}`);
+                                });
+                            } else {
+                                this.log.debug(`[refreshCustomApps] No state data. Going to remove custom app "${customApp.name}"`);
+
+                                await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
+                                    this.log.warn(`(custom?name=${customApp.name}) No state data - unable to remove customApp app "${customApp.name}": ${error}`);
+                                });
+                            }
                         } catch (error) {
                             this.log.error(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
                         }
@@ -549,7 +566,7 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
 
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${historyApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
+                                            this.log.warn(`(custom?name=${historyApp.name}) No history data - unable to remove history app "${historyApp.name}": ${error}`);
                                         });
                                     }
                                 } else {
