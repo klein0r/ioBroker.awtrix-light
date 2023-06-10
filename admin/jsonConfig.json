@@ -12,7 +12,10 @@
                     "md": 6,
                     "lg": 6,
                     "label": "IP",
-                    "help": "IP address of your Awtrix Light device"
+                    "help": "IP address of your Awtrix Light device",
+                    "validator": "String(data.awtrixIp).length > 0 && !String(data.awtrixIp).startsWith('http')",
+                    "validatorErrorText": "Invalid IP address",
+                    "validatorNoSaveOnError": true
                 },
                 "_ioBrokerKursBanner": {
                     "newLine": true,

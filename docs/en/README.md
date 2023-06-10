@@ -67,11 +67,15 @@ The message object supports all available options of the firmware. See [document
 
 ## Custom apps
 
+**App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
+
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
 
 **Custom apps just display acknowledged values! Control states are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
 
 ## History apps
+
+**App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
 **History apps just display acknowledged history values! Control states are ignored!**

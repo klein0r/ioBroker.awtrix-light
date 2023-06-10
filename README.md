@@ -35,6 +35,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added validator for IP address
+
 ### 0.0.13 (2023-06-10)
 
 * (klein0r) Refresh all states when device was offline / not reachable

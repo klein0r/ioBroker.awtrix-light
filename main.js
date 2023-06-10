@@ -38,6 +38,13 @@ class AwtrixLight extends utils.Adapter {
 
         await this.subscribeStatesAsync('*');
 
+        if (!this.config.awtrixIp) {
+            this.log.error(`IP address not configured - please check instance configuration and restart`);
+            return;
+        } else {
+            this.log.info(`Starting - connecting to http://${this.config.awtrixIp}/`);
+        }
+
         this.refreshState();
     }
 
