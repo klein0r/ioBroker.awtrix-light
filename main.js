@@ -476,21 +476,40 @@ class AwtrixLight extends utils.Adapter {
 
     async initHistoryApps() {
         if (this.apiConnected && this.config.historyApps.length > 0) {
+            const validSourceInstances = [];
+
+            // Check for valid history instances (once)
+            for (const historyApp of this.config.historyApps) {
+                if (historyApp.sourceInstance && !validSourceInstances.includes(historyApp.sourceInstance)) {
+                    const sourceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
+
+                    if (sourceInstanceObj && sourceInstanceObj.common?.getHistory) {
+                        const sourceInstanceAliveState = await this.getForeignStateAsync(`system.adapter.${historyApp.sourceInstance}.alive`);
+
+                        if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
+                            this.log.debug(`[initHistoryApps] Found valid source instance for history data: ${historyApp.sourceInstance}`);
+
+                            validSourceInstances.push(historyApp.sourceInstance);
+                        } else {
+                            this.log.warn(`[initHistoryApps] Unable to get history data of "${historyApp.sourceInstance}": instance not running (stopped)`);
+                        }
+                    } else {
+                        this.log.warn(`[initHistoryApps] Unable to get history data of "${historyApp.sourceInstance}": no valid source for getHistory()`);
+                    }
+                }
+            }
+
             for (const historyApp of this.config.historyApps) {
                 if (historyApp.name) {
                     if (historyApp.objId && historyApp.sourceInstance) {
                         this.log.debug(`[initHistoryApps] getting history data for app "${historyApp.name}" of "${historyApp.objId}" from ${historyApp.sourceInstance}`);
 
                         try {
-                            const itemCount = historyApp.icon ? 11 : 16;
-                            const sourceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
+                            if (validSourceInstances.includes(historyApp.sourceInstance)) {
+                                const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
 
-                            if (sourceInstanceObj && sourceInstanceObj.common?.getHistory) {
-                                const sourceInstanceAliveState = await this.getForeignStateAsync(`system.adapter.${historyApp.sourceInstance}.alive`);
-
-                                if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
-                                    //const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
-                                    // TODO: Check if history logging is enabled
+                                if (sourceObj && Object.prototype.hasOwnProperty.call(sourceObj?.common?.custom ?? {}, historyApp.sourceInstance)) {
+                                    const itemCount = historyApp.icon ? 11 : 16; // Can display 11 values with icon or 16 values without icon
 
                                     const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
                                         id: historyApp.objId,
@@ -531,14 +550,10 @@ class AwtrixLight extends utils.Adapter {
                                         });
                                     }
                                 } else {
-                                    this.log.warn(
-                                        `[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is not running (stopped)`
-                                    );
+                                    this.log.info(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": logging is not configured for this object`);
                                 }
                             } else {
-                                this.log.warn(
-                                    `[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is no valid source for getHistory()`
-                                );
+                                this.log.info(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": source invalid or unavailable`);
                             }
                         } catch (error) {
                             this.log.error(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": ${error}`);
