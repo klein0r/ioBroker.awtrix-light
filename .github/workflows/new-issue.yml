@@ -1,0 +1,23 @@
+name: New issue
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  commentCreated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add reaction
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: rocket
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Thanks for reporting! Please double check the documentation.
