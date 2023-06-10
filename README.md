@@ -39,6 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 * (klein0r) Refresh all states when device was offline / not reachable
 * (klein0r) Automatically remove history apps (if not updated)
+* (klein0r) Improved checks for history data
 
 ### 0.0.12 (2023-06-08)
 

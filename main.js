@@ -475,7 +475,7 @@ class AwtrixLight extends utils.Adapter {
     }
 
     async initHistoryApps() {
-        if (this.apiConnected) {
+        if (this.apiConnected && this.config.historyApps.length > 0) {
             for (const historyApp of this.config.historyApps) {
                 if (historyApp.name) {
                     if (historyApp.objId && historyApp.sourceInstance) {
@@ -483,52 +483,62 @@ class AwtrixLight extends utils.Adapter {
 
                         try {
                             const itemCount = historyApp.icon ? 11 : 16;
-                            const souceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
+                            const sourceInstanceObj = await this.getForeignObjectAsync(`system.adapter.${historyApp.sourceInstance}`);
 
-                            if (souceInstanceObj && souceInstanceObj.common?.getHistory) {
-                                //const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
-                                // TODO: Check if history logging is enabled
+                            if (sourceInstanceObj && sourceInstanceObj.common?.getHistory) {
+                                const sourceInstanceAliveState = await this.getForeignStateAsync(`system.adapter.${historyApp.sourceInstance}.alive`);
 
-                                const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
-                                    id: historyApp.objId,
-                                    options: {
-                                        start: 1,
-                                        end: Date.now(),
-                                        aggregate: 'none',
-                                        limit: itemCount,
-                                        returnNewestEntries: true,
-                                        ignoreNull: 0,
-                                        removeBorderValues: true,
-                                        ack: true,
-                                    },
-                                });
-                                const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val));
+                                if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
+                                    //const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
+                                    // TODO: Check if history logging is enabled
 
-                                this.log.debug(
-                                    `[initHistoryApps] History data for app "${historyApp.name}" of "${historyApp.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,
-                                );
-
-                                if (lineData.length > 0) {
-                                    await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
-                                        color: historyApp.lineColor ?? '#FF0000',
-                                        background: this.config.historyAppsBackgroundColor,
-                                        line: lineData,
-                                        autoscale: true,
-                                        icon: historyApp.icon,
-                                        duration: historyApp.duration || DEFAULT_DURATION,
-                                        lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
-                                    }).catch((error) => {
-                                        this.log.warn(`(custom?name=${customApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
+                                    const historyData = await this.sendToAsync(historyApp.sourceInstance, 'getHistory', {
+                                        id: historyApp.objId,
+                                        options: {
+                                            start: 1,
+                                            end: Date.now(),
+                                            aggregate: 'none',
+                                            limit: itemCount,
+                                            returnNewestEntries: true,
+                                            ignoreNull: 0,
+                                            removeBorderValues: true,
+                                            ack: true,
+                                        },
                                     });
+                                    const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val));
+
+                                    this.log.debug(
+                                        `[initHistoryApps] History data for app "${historyApp.name}" of "${historyApp.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,
+                                    );
+
+                                    if (lineData.length > 0) {
+                                        await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
+                                            color: historyApp.lineColor ?? '#FF0000',
+                                            background: this.config.historyAppsBackgroundColor,
+                                            line: lineData,
+                                            autoscale: true,
+                                            icon: historyApp.icon,
+                                            duration: historyApp.duration || DEFAULT_DURATION,
+                                            lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
+                                        }).catch((error) => {
+                                            this.log.warn(`(custom?name=${customApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
+                                        });
+                                    } else {
+                                        this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
+
+                                        await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
+                                            this.log.warn(`(custom?name=${customApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
+                                        });
+                                    }
                                 } else {
-                                    this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
-
-                                    await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                        this.log.warn(`(custom?name=${customApp.name}) No data - unable to remove history app "${historyApp.name}": ${error}`);
-                                    });
+                                    this.log.warn(
+                                        `[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is not running (stopped)`
+                                    );
                                 }
                             } else {
-                                this.log.warn(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is no valid source`);
+                                this.log.warn(
+                                    `[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": "${historyApp.sourceInstance}" is no valid source for getHistory()`
+                                );
                             }
                         } catch (error) {
                             this.log.error(`[initHistoryApps] Unable to get history data for app "${historyApp.name}" of "${historyApp.objId}": ${error}`);
@@ -540,13 +550,15 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval ?? 300} seconds)`);
-        this.refreshHistoryAppsTimeout =
-            this.refreshHistoryAppsTimeout ||
-            setTimeout(() => {
-                this.refreshHistoryAppsTimeout = null;
-                this.initHistoryApps();
-            }, this.config.historyAppsRefreshInterval * 1000 || 300 * 1000);
+        if (this.config.historyApps.length > 0) {
+            this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval ?? 300} seconds)`);
+            this.refreshHistoryAppsTimeout =
+                this.refreshHistoryAppsTimeout ||
+                setTimeout(() => {
+                    this.refreshHistoryAppsTimeout = null;
+                    this.initHistoryApps();
+                }, this.config.historyAppsRefreshInterval * 1000 || 300 * 1000);
+        }
     }
 
     createAppObjects() {
