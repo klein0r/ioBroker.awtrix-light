@@ -67,8 +67,11 @@ The message object supports all available options of the firmware. See [document
 
 ## Custom apps
 
-TODO
+- `%s` is a placeholder for the state value
+- `%u` is a placeholder for the unit of the state object (e.g. `°C`)
+
+**Custom apps just display acknowledged values! Control states are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
 
 ## History apps
 
-TODO
+**History apps just display acknowledged history values! Control states are ignored!**

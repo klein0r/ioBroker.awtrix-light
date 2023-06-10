@@ -3,7 +3,6 @@
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
-const { stat } = require('fs');
 const adapterName = require('./package.json').name.split('.').pop();
 
 const DEFAULT_DURATION = 5;
@@ -58,8 +57,7 @@ class AwtrixLight extends utils.Adapter {
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
-                                this.config.ignoreNewValueForAppInTimeRange
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
                     }
