@@ -1,23 +1,24 @@
 name: New issue
 
 on:
-  issue_comment:
-    types:
-      - created
+  issues:
+    types: [opened]
 
 jobs:
-  commentCreated:
+  issueCreated:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.issue.pull_request }}
+    permissions:
+      issues: write
     steps:
-      - name: Add reaction
+      - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
         with:
-          comment-id: ${{ github.event.comment.id }}
-          reactions: rocket
-
-      - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
-            Thanks for reporting! Please double check the documentation.
+            Thanks for reporting!
+            1. Please make sure your topic is not covered in the [documentation](https://github.com/klein0r/ioBroker.awtrix-light/blob/master/docs/en/README.md)
+            2. Ensure that you use the latest beta version (not the current stable version)
+            3. Please attach all necessary log files (in debug mode!), screenshots and other information to reproduce this issue
+            ## Sponsored by
+            [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=github-actions)
