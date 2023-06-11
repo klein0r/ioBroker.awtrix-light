@@ -79,3 +79,12 @@ The message object supports all available options of the firmware. See [document
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
 **History apps just display acknowledged history values! Control states are ignored!**
+
+## App states
+
+- You can use the state `activate` of each app to bring that app to front
+- This state has the role `button` and allows just the value `true` (everything other value will raise a warning)
+
+## Hide native apps
+
+If you want to disable/hide a native app (like battery, temperature or humidity): Use the on screen menu on the device! See [documentation](https://blueforcer.github.io/awtrix-light/#/onscreen) for details.

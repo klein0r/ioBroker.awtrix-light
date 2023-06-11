@@ -64,7 +64,8 @@ class AwtrixLight extends utils.Adapter {
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
+                                this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
                     }
