@@ -49,7 +49,7 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.14 (2023-06-11)
 
 * (klein0r) Added validator for IP address
 * (klein0r) usedRam was renamed to freeRam
@@ -78,14 +78,6 @@ iobroker add awtrix-light
 
 * (klein0r) Automatically delete unknown or old apps
 * (klein0r) Added option to play sound via message / blockly
-
-### 0.0.9 (2023-06-06)
-
-Updated recommended firmware version to 0.68
-
-* (klein0r) Added battery, uptime and display states
-* (klein0r) Added more settings options
-* (klein0r) Color conversion for all rgb settings
 
 ## License
 MIT License

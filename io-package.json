@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "news": {
+      "0.0.14": {
+        "en": "Added validator for IP address\nusedRam was renamed to freeRam",
+        "de": "Hinzugefügt Validierung für IP-Adresse\ngebrauchtRam wurde in freeRam umbenannt",
+        "ru": "Добавлен валидатор для IP-адреса\nusedRam был переименован на freeRam",
+        "pt": "Validador adicionado para endereço IP\nusadoRam foi renomeado para freeRam",
+        "nl": "Aangepast voor IP-adres\nde gebruikteRam werd hernoemd om te bevrijden",
+        "fr": "Validateur ajouté pour adresse IP\nusedRam was renamed to freeRam",
+        "it": "Aggiunto validatore per indirizzo IP\nusatoRam è stato rinominato FreeRam",
+        "es": "Agregado validador para dirección IP\nusRam fue renombrado para freeRam",
+        "pl": "Added validator dla adresu IP\nram został przemianowany na freeRam",
+        "uk": "Додана перевірка IP-адреси\njavaScript licenses API Веб-сайт Go1.13.8",
+        "zh-cn": "增加IP地址有效者\n使用Ram改名为自由Ramm"
+      },
       "0.0.13": {
         "en": "Refresh all states when device was offline / not reachable\nAutomatically remove history apps (if not updated)\nImproved checks for history data",
         "de": "Refresh alle Zustände, wenn das Gerät offline war / nicht erreichbar\nEntfernen Sie die Geschichtsapps automatisch (wenn nicht aktualisiert)\nVerbesserte Überprüfungen von Geschichtsdaten",
@@ -80,19 +93,6 @@
         "pl": "Dodrukowane aplikacje za pomocą konfiguracji instancji",
         "uk": "Додано користувацькі додатки за допомогою конфігурації екземпляра",
         "zh-cn": "通过图像组合添加成具"
-      },
-      "0.0.7": {
-        "en": "Added timer feature to blockly\nAdded color conversion to hex in settings",
-        "de": "Hinzugefügt Timer-Feature zu blockieren\nFarbumwandlung in Hexeneinstellungen hinzugefügt",
-        "ru": "Добавлена функция таймера для блокировки\nДобавлена цветовая конверсия в hex в настройках",
-        "pt": "Adicionado recurso temporizador para bloquear\nConversão de cor adicionada ao hex em configurações",
-        "nl": "Vertaling:\nVermeld kleuren bekering aan hex in setting",
-        "fr": "Ajout de la fonction timer pour bloquer\nAjout de la conversion de couleur en hexagone dans les paramètres",
-        "it": "Aggiunto funzione timer per bloccare\nAggiunto la conversione di colore a hex in impostazioni",
-        "es": "Función del temporizador añadido para bloquear\nConversión de color a hex en la configuración",
-        "pl": "Dodany czaszkę ma blokować\nZwracana do koloru na hex w ustawieniach",
-        "uk": "Додана функція таймера для блокування\nДодано конвертацію кольору в шістку в налаштуваннях",
-        "zh-cn": "增加时间特点以阻挡时间\n增加在环境中的颜色转换"
       }
     },
     "titleLang": {
