@@ -49,6 +49,12 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+Updated recommended firmware version to 0.69
+
+
+
 ### 0.0.14 (2023-06-11)
 
 * (klein0r) Added validator for IP address
