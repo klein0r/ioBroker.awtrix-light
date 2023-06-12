@@ -408,34 +408,6 @@
       }
     },
     {
-      "_id": "settings.frameRate",
-      "type": "state",
-      "common": {
-        "name": {
-          "en": "Frames per second",
-          "de": "Bilder pro Sekunde",
-          "ru": "Рамки в секунду",
-          "pt": "Quadros por segundo",
-          "nl": "Frams per seconde",
-          "fr": "Cadres par seconde",
-          "it": "Cornici al secondo",
-          "es": "Marcos por segundo",
-          "pl": "Frame na sekundę",
-          "uk": "Рамки на другий",
-          "zh-cn": "第二个欺诈"
-        },
-        "type": "number",
-        "role": "value",
-        "unit": "fps",
-        "read": true,
-        "write": true,
-        "def": 23
-      },
-      "native": {
-        "settingsKey": "FPS"
-      }
-    },
-    {
       "_id": "settings.brightness",
       "type": "state",
       "common": {

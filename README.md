@@ -53,7 +53,7 @@ iobroker add awtrix-light
 
 Updated recommended firmware version to 0.69
 
-
+* (klein0r) Dropped framerate setting (no longer supported)
 
 ### 0.0.14 (2023-06-11)
 
