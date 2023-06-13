@@ -1,4 +1,9 @@
 # Older changes
+## 0.0.10 (2023-06-06)
+
+* (klein0r) Automatically delete unknown or old apps
+* (klein0r) Added option to play sound via message / blockly
+
 ## 0.0.9 (2023-06-06)
 
 Updated recommended firmware version to 0.68

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "news": {
+      "0.0.15": {
+        "en": "Updated recommended firmware version to 0.69\n\n* Added option to hide own apps via state\n* Dropped framerate setting (no longer supported)",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,69\n\n* Zusätzliche Möglichkeit, eigene Apps über Zustand zu verstecken\n* Geblendete Rahmeneinstellung (nicht mehr unterstützt)",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.69\n\n* Добавлена возможность скрыть собственные приложения через государство\n* Dropped Framerate настройка (больше не поддерживается)",
+        "pt": "Versão de firmware recomendada atualizada para 0.69\n\n* Adicionado opção para esconder próprios aplicativos via estado\n* Configuração dropped framerate (não suportado mais)",
+        "nl": "Aanbevolen firmaware versie naar 0.69\n\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Dropped framerate setting (no langer ondersteund)",
+        "fr": "Version mise à jour du firmware recommandée à 0.69\n\n* Ajout de l'option pour cacher ses propres applications via l'état\n* Réglage encadré abandonné (sans support)",
+        "it": "Versione firmware consigliata aggiornata a 0.69\n\n* Aggiunta opzione per nascondere le proprie applicazioni via stato\n* Impostazione framerate a goccia (non supportata più)",
+        "es": "Versión actualizada recomendada de firmware a 0.69\n\n* opción adicional para ocultar aplicaciones propias a través del estado\n* Ajuste de framerate desplegado (no soportado más)",
+        "pl": "Zalecona wersja oprogramowania do wersji 0.69\n\n* Wstępna opcja do ukrycia własnych aplikacji poprzez stan\n* Zyskanie klatratu (niem.)",
+        "uk": "Оновлено рекомендовану версію мікропрограми до 0,69\n\n* Додано можливість приховати власні додатки за допомогою держави\n* Встановити краплинний каркас (не довше підтримується)",
+        "zh-cn": "最新建议的警觉版本到0.69\n\n* 增加通过国家掩藏自己的材料的选择。\n* 缩略语(未加支持)"
+      },
       "0.0.14": {
         "en": "Added validator for IP address\nusedRam was renamed to freeRam",
         "de": "Hinzugefügt Validierung für IP-Adresse\ngebrauchtRam wurde in freeRam umbenannt",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do 0.68\n\n* Added battery, uptime i wyświetlane stany\n* Dodać więcej opcji\n* Konwersja kolorowa dla wszystkich ustawień rgb",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0,68\n\n* Додана батарея, час і стани відображення\n* Додаткові параметри налаштування\nІм'я * Перетворення кольорів для всіх параметрів rgb",
         "zh-cn": "最新建议的警觉版本到0.68\n\n* 增幅电池、时间和展示国\n* 增加环境选择\n* A/64/50。 在所有火山环境中转化"
-      },
-      "0.0.8": {
-        "en": "Added custom apps via instance configuration",
-        "de": "Benutzerdefinierte Apps über Instanz-Konfiguration hinzugefügt",
-        "ru": "Добавлены пользовательские приложения через конфигурацию экземпляра",
-        "pt": "Adicionados aplicativos personalizados via configuração de instância",
-        "nl": "Gezamenlijke apps via instabiliteit",
-        "fr": "Ajout d'applications personnalisées via la configuration d'instance",
-        "it": "Aggiunte app personalizzate tramite configurazione delle istanze",
-        "es": "Aplicaciones personalizadas adicionales mediante configuración de instancia",
-        "pl": "Dodrukowane aplikacje za pomocą konfiguracji instancji",
-        "uk": "Додано користувацькі додатки за допомогою конфігурації екземпляра",
-        "zh-cn": "通过图像组合添加成具"
       }
     },
     "titleLang": {
