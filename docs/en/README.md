@@ -95,9 +95,9 @@ The following names are used by internal apps and cannot be used: `time`, `eyes`
 - You can use the state `activate` of each app to bring that app to front
 - This state has the role `button` and allows just the value `true` (everything other value will raise a warning)
 
-## Hide custom apps
+## Hide custom or history apps
 
-TODO
+Each custom and history app has a state `apps.<name>.visible`. If this state is set to `false`, the app will be removed from the device and no further updates are pushed. This is useful, if a certain app should only be displayed during day time or in a given time range.
 
 ## Hide native apps
 
