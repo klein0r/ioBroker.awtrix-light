@@ -17,6 +17,12 @@
 
 ## Blockly and JavaScript
 
+`sendTo` / message box can be used to
+
+- send one time notifications (with text, sound, duration, ...)
+- create a timer
+- play a custom sound
+
 ### Notifications
 
 Send a "one time" notification to your device:
@@ -69,6 +75,8 @@ The message object supports all available options of the firmware. See [document
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
+The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`
+
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
 
@@ -78,12 +86,18 @@ The message object supports all available options of the firmware. See [document
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
+The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`
+
 **History apps just display acknowledged history values! Control states are ignored!**
 
 ## App states
 
 - You can use the state `activate` of each app to bring that app to front
 - This state has the role `button` and allows just the value `true` (everything other value will raise a warning)
+
+## Hide custom apps
+
+TODO
 
 ## Hide native apps
 

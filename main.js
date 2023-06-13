@@ -6,6 +6,7 @@ const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
 const DEFAULT_DURATION = 5;
+const NATIVE_APPS = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
 
 class AwtrixLight extends utils.Adapter {
     /**
@@ -64,8 +65,7 @@ class AwtrixLight extends utils.Adapter {
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
-                                this.config.ignoreNewValueForAppInTimeRange
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
                     }
@@ -160,16 +160,26 @@ class AwtrixLight extends utils.Adapter {
                 } else if (idNoNamespace.startsWith('apps.')) {
                     if (idNoNamespace.endsWith('.activate')) {
                         if (state.val) {
-                            const obj = await this.getObjectAsync(idNoNamespace);
-                            if (obj && obj.native?.name) {
-                                this.log.debug(`activating app ${obj.native.name}`);
+                            const sourceObj = await this.getObjectAsync(idNoNamespace);
+                            if (sourceObj && sourceObj.native?.name) {
+                                this.log.debug(`activating app ${sourceObj.native.name}`);
 
-                                this.buildRequestAsync('switch', 'POST', { name: obj.native.name }).catch((error) => {
+                                this.buildRequestAsync('switch', 'POST', { name: sourceObj.native.name }).catch((error) => {
                                     this.log.warn(`(switch) Unable to execute action: ${error}`);
                                 });
                             }
                         } else {
                             this.log.warn(`Received invalid value for state ${idNoNamespace}`);
+                        }
+                    } else if (idNoNamespace.endsWith('.visible')) {
+                        const sourceObj = await this.getObjectAsync(idNoNamespace);
+                        if (sourceObj && sourceObj.native?.name) {
+                            this.log.debug(`changing visibility of app ${sourceObj.native.name} to ${state.val}`);
+
+                            this.initCustomApps();
+                            this.initHistoryApps();
+
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                         }
                     }
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
@@ -283,16 +293,24 @@ class AwtrixLight extends utils.Adapter {
                 // API was offline - refresh all states
                 this.log.debug('API is online');
 
+                // settings
                 await this.refreshSettings();
 
-                await this.initCustomApps();
-                await this.initHistoryApps();
-                this.createAppObjects();
+                // apps
+                try {
+                    await this.createAppObjects();
+                    await this.initCustomApps();
+                    await this.initHistoryApps();
+                } catch (error) {
+                    this.log.error(`[setApiConnected] Unable to update apps: ${error}`);
+                }
 
+                // indicators
                 for (let i = 1; i <= 3; i++) {
                     await this.updateIndicatorByStates(i);
                 }
 
+                // moodlight
                 await this.updateMoodlightByStates();
             } else {
                 this.log.debug('API is offline');
@@ -392,8 +410,21 @@ class AwtrixLight extends utils.Adapter {
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
                     const text = String(customApp.text).trim();
+                    const appVisibleState = await this.getStateAsync(`apps.${customApp.name}.visible`);
+                    const appVisible = appVisibleState ? appVisibleState.val : true;
 
-                    if (customApp.objId && text.includes('%s')) {
+                    // Ack if changed while instance was stopped
+                    if (appVisibleState && !appVisibleState?.ack) {
+                        await this.setStateAsync(`apps.${customApp.name}.visible`, { val: appVisible, ack: true });
+                    }
+
+                    if (!appVisible) {
+                        this.log.debug(`[initCustomApps] Going to remove custom app "${customApp.name}" (was hidden by state: apps.${customApp.name}.visible)`);
+
+                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
+                            this.log.warn(`(custom?name=${customApp.name}) Unable to remove customApp app "${customApp.name}" (hidden by state): ${error}`);
+                        });
+                    } else if (customApp.objId && text.includes('%s')) {
                         try {
                             const objId = customApp.objId;
                             if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
@@ -459,41 +490,47 @@ class AwtrixLight extends utils.Adapter {
                         this.log.debug(`[refreshCustomApp] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
 
                         try {
-                            const val = this.customAppsForeignStates[objId].val;
-                            if (typeof val !== 'undefined') {
-                                let newVal = val;
+                            const appVisibleState = await this.getStateAsync(`apps.${customApp.name}.visible`);
+                            const appVisible = appVisibleState ? appVisibleState.val : true;
 
-                                if (this.customAppsForeignStates[objId].type === 'number') {
-                                    const decimals = customApp.decimals ?? 3;
+                            if (appVisible) {
+                                const val = this.customAppsForeignStates[objId].val;
 
-                                    if (!isNaN(val) && val % 1 !== 0) {
-                                        let countDecimals = String(val).split('.')[1].length || 2;
+                                if (typeof val !== 'undefined') {
+                                    let newVal = val;
 
-                                        if (countDecimals > decimals) {
-                                            countDecimals = decimals; // limit
+                                    if (this.customAppsForeignStates[objId].type === 'number') {
+                                        const decimals = customApp.decimals ?? 3;
+
+                                        if (!isNaN(val) && val % 1 !== 0) {
+                                            let countDecimals = String(val).split('.')[1].length || 2;
+
+                                            if (countDecimals > decimals) {
+                                                countDecimals = decimals; // limit
+                                            }
+
+                                            newVal = this.formatValue(val, countDecimals);
+                                            this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                         }
-
-                                        newVal = this.formatValue(val, countDecimals);
-                                        this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                     }
+
+                                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                        text: text
+                                            .replace('%s', newVal)
+                                            .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
+                                            .trim(),
+                                        icon: customApp.icon,
+                                        duration: customApp.duration || DEFAULT_DURATION,
+                                    }).catch((error) => {
+                                        this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
+                                    });
+                                } else {
+                                    this.log.debug(`[refreshCustomApps] Going to remove custom app "${customApp.name}" (no state data)`);
+
+                                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
+                                        this.log.warn(`(custom?name=${customApp.name}) Unable to remove customApp app "${customApp.name}" (no state data): ${error}`);
+                                    });
                                 }
-
-                                await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                    text: text
-                                        .replace('%s', newVal)
-                                        .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
-                                        .trim(),
-                                    icon: customApp.icon,
-                                    duration: customApp.duration || DEFAULT_DURATION,
-                                }).catch((error) => {
-                                    this.log.warn(`(custom?name=${customApp.name}) Unable to refresh custom app "${customApp.name}": ${error}`);
-                                });
-                            } else {
-                                this.log.debug(`[refreshCustomApps] No state data. Going to remove custom app "${customApp.name}"`);
-
-                                await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
-                                    this.log.warn(`(custom?name=${customApp.name}) No state data - unable to remove customApp app "${customApp.name}": ${error}`);
-                                });
                             }
                         } catch (error) {
                             this.log.error(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
@@ -535,7 +572,21 @@ class AwtrixLight extends utils.Adapter {
                         this.log.debug(`[initHistoryApps] getting history data for app "${historyApp.name}" of "${historyApp.objId}" from ${historyApp.sourceInstance}`);
 
                         try {
-                            if (validSourceInstances.includes(historyApp.sourceInstance)) {
+                            const appVisibleState = await this.getStateAsync(`apps.${historyApp.name}.visible`);
+                            const appVisible = appVisibleState ? appVisibleState.val : true;
+
+                            // Ack if changed while instance was stopped
+                            if (appVisibleState && !appVisibleState?.ack) {
+                                await this.setStateAsync(`apps.${historyApp.name}.visible`, { val: appVisible, ack: true });
+                            }
+
+                            if (!appVisible) {
+                                this.log.debug(`[initHistoryApps] Going to remove history app "${historyApp.name}" (was hidden by state: apps.${historyApp.name}.visible)`);
+
+                                await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
+                                    this.log.warn(`(custom?name=${historyApp.name}) Unable to remove history app "${historyApp.name}" (hidden by state): ${error}`);
+                                });
+                            } else if (validSourceInstances.includes(historyApp.sourceInstance)) {
                                 const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
 
                                 if (sourceObj && Object.prototype.hasOwnProperty.call(sourceObj?.common?.custom ?? {}, historyApp.sourceInstance)) {
@@ -573,10 +624,10 @@ class AwtrixLight extends utils.Adapter {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
                                         });
                                     } else {
-                                        this.log.debug(`[initHistoryApps] No history data. Going to remove history app "${historyApp.name}"`);
+                                        this.log.debug(`[initHistoryApps] Going to remove history app "${historyApp.name}" (no history data)`);
 
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${historyApp.name}) No history data - unable to remove history app "${historyApp.name}": ${error}`);
+                                            this.log.warn(`(custom?name=${historyApp.name}) Unable to remove history app "${historyApp.name}" (no history data): ${error}`);
                                         });
                                     }
                                 } else {
@@ -607,111 +658,149 @@ class AwtrixLight extends utils.Adapter {
     }
 
     createAppObjects() {
-        if (this.apiConnected) {
-            this.buildRequestAsync('apps', 'GET')
-                .then(async (response) => {
-                    if (response.status === 200) {
-                        const content = response.data;
+        return new Promise((resolve, reject) => {
+            if (this.apiConnected) {
+                this.buildRequestAsync('apps', 'GET')
+                    .then(async (response) => {
+                        if (response.status === 200) {
+                            const content = response.data;
 
-                        const appPath = 'apps';
-                        const nativeApps = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
-                        const customApps = this.config.customApps.map((a) => a.name);
-                        const historyApps = this.config.historyApps.map((a) => a.name);
-                        const existingApps = content.map((a) => a.name);
+                            const appPath = 'apps';
+                            const customApps = this.config.customApps.map((a) => a.name);
+                            const historyApps = this.config.historyApps.map((a) => a.name);
+                            const existingApps = content.map((a) => a.name);
 
-                        this.log.debug(`[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
+                            this.log.debug(`[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
 
-                        this.getChannelsOf(appPath, async (err, states) => {
-                            const appsAll = [];
-                            const appsKeep = [];
+                            this.getChannelsOf(appPath, async (err, states) => {
+                                const appsAll = [];
+                                const appsKeep = [];
 
-                            // Collect all apps
-                            if (states) {
-                                for (let i = 0; i < states.length; i++) {
-                                    const id = this.removeNamespace(states[i]._id);
+                                // Collect all apps
+                                if (states) {
+                                    for (let i = 0; i < states.length; i++) {
+                                        const id = this.removeNamespace(states[i]._id);
 
-                                    // Check if the state is a direct child (e.g. apps.temp)
-                                    if (id.split('.').length === 2) {
-                                        appsAll.push(id);
+                                        // Check if the state is a direct child (e.g. apps.temp)
+                                        if (id.split('.').length === 2) {
+                                            appsAll.push(id);
+                                        }
                                     }
                                 }
-                            }
 
-                            // Create new app structure for all native apps and apps of instance configuration
-                            for (const name of nativeApps.concat(customApps).concat(historyApps)) {
-                                appsKeep.push(`${appPath}.${name}`);
-                                this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
+                                // Create new app structure for all native apps and apps of instance configuration
+                                for (const name of NATIVE_APPS.concat(customApps).concat(historyApps)) {
+                                    appsKeep.push(`${appPath}.${name}`);
+                                    this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
 
-                                await this.extendObjectAsync(`${appPath}.${name}`, {
-                                    type: 'channel',
-                                    common: {
-                                        name: `App`,
-                                        desc: `${name}${customApps.includes(name) ? ' (custom app)' : ''}${historyApps.includes(name) ? ' (history app)' : ''}`,
-                                    },
-                                    native: {
-                                        isNativeApp: nativeApps.includes(name),
-                                        isCustomApp: customApps.includes(name),
-                                        isHistoryApp: historyApps.includes(name),
-                                    },
-                                });
-
-                                await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
-                                    type: 'state',
-                                    common: {
-                                        name: {
-                                            en: 'Activate',
-                                            de: 'Aktivieren',
-                                            ru: 'Активировать',
-                                            pt: 'Ativar',
-                                            nl: 'Activeren',
-                                            fr: 'Activer',
-                                            it: 'Attivare',
-                                            es: 'Activar',
-                                            pl: 'Aktywuj',
-                                            'zh-cn': '启用',
+                                    await this.extendObjectAsync(`${appPath}.${name}`, {
+                                        type: 'channel',
+                                        common: {
+                                            name: `App`,
+                                            desc: `${name}${customApps.includes(name) ? ' (custom app)' : ''}${historyApps.includes(name) ? ' (history app)' : ''}`,
                                         },
-                                        type: 'boolean',
-                                        role: 'button',
-                                        read: false,
-                                        write: true,
-                                    },
-                                    native: {
-                                        name,
-                                    },
-                                });
-                            }
+                                        native: {
+                                            isNativeApp: NATIVE_APPS.includes(name),
+                                            isCustomApp: customApps.includes(name),
+                                            isHistoryApp: historyApps.includes(name),
+                                        },
+                                    });
 
-                            // Delete non existent apps
-                            for (let i = 0; i < appsAll.length; i++) {
-                                const id = appsAll[i];
+                                    await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
+                                        type: 'state',
+                                        common: {
+                                            name: {
+                                                en: 'Activate',
+                                                de: 'Aktivieren',
+                                                ru: 'Активировать',
+                                                pt: 'Ativar',
+                                                nl: 'Activeren',
+                                                fr: 'Activer',
+                                                it: 'Attivare',
+                                                es: 'Activar',
+                                                pl: 'Aktywuj',
+                                                'zh-cn': '启用',
+                                            },
+                                            type: 'boolean',
+                                            role: 'button',
+                                            read: false,
+                                            write: true,
+                                        },
+                                        native: {
+                                            name,
+                                        },
+                                    });
 
-                                if (appsKeep.indexOf(id) === -1) {
-                                    await this.delObjectAsync(id, { recursive: true });
-                                    this.log.debug(`[createAppObjects] deleted: ${id}`);
-                                }
-                            }
-
-                            if (this.config.autoDeleteForeignApps) {
-                                // Delete unknown apps on awtrix light
-                                for (const name of existingApps.filter((a) => !nativeApps.includes(a) && !customApps.includes(a) && !historyApps.includes(a))) {
-                                    this.log.info(`[createAppObjects] Deleting unknown app on awtrix light with name "${name}"`);
-
-                                    try {
-                                        await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${name}) Unable to remove unknown app "${name}": ${error}`);
+                                    // "Own" apps can be hidden via states
+                                    if (customApps.includes(name) || historyApps.includes(name)) {
+                                        await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
+                                            type: 'state',
+                                            common: {
+                                                name: {
+                                                    en: 'Activate',
+                                                    de: 'Aktivieren',
+                                                    ru: 'Активировать',
+                                                    pt: 'Ativar',
+                                                    nl: 'Activeren',
+                                                    fr: 'Activer',
+                                                    it: 'Attivare',
+                                                    es: 'Activar',
+                                                    pl: 'Aktywuj',
+                                                    'zh-cn': '启用',
+                                                },
+                                                type: 'boolean',
+                                                role: 'switch.enable',
+                                                read: true,
+                                                write: true,
+                                                def: true,
+                                            },
+                                            native: {
+                                                name,
+                                            },
                                         });
-                                    } catch (error) {
-                                        this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
                                     }
                                 }
-                            }
-                        });
-                    }
-                })
-                .catch((error) => {
-                    this.log.debug(`[createAppObjects] received error: ${JSON.stringify(error)}`);
-                });
-        }
+
+                                // Delete non existent apps
+                                for (let i = 0; i < appsAll.length; i++) {
+                                    const id = appsAll[i];
+
+                                    if (appsKeep.indexOf(id) === -1) {
+                                        await this.delObjectAsync(id, { recursive: true });
+                                        this.log.debug(`[createAppObjects] deleted: ${id}`);
+                                    }
+                                }
+
+                                if (this.config.autoDeleteForeignApps) {
+                                    // Delete unknown apps on awtrix light
+                                    for (const name of existingApps.filter((a) => !NATIVE_APPS.includes(a) && !customApps.includes(a) && !historyApps.includes(a))) {
+                                        this.log.info(`[createAppObjects] Deleting unknown app on awtrix light with name "${name}"`);
+
+                                        try {
+                                            await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
+                                                this.log.warn(`(custom?name=${name}) Unable to remove unknown app "${name}": ${error}`);
+                                            });
+                                        } catch (error) {
+                                            this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
+                                        }
+                                    }
+                                }
+
+                                resolve(appsKeep.length);
+                            });
+                        } else {
+                            this.log.warn(`[createAppObjects] received status code: ${response.status}`);
+
+                            reject(`received status code: ${response.status}`);
+                        }
+                    })
+                    .catch((error) => {
+                        this.log.debug(`[createAppObjects] received error: ${JSON.stringify(error)}`);
+
+                        reject(error);
+                    });
+            }
+        });
     }
 
     async updateIndicatorByStates(index) {

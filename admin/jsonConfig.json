@@ -67,7 +67,7 @@
                             "filter": true,
                             "sort": true,
                             "default": "",
-                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.customApps.concat(globalData.historyApps).filter(app => app.name === data.name).length === 1",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'eyes', 'date', 'temp', 'hum', 'bat'].includes(data.name) && globalData.customApps.concat(globalData.historyApps).filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",
                             "validatorNoSaveOnError": true
                         },
@@ -219,7 +219,7 @@
                             "filter": true,
                             "sort": true,
                             "default": "",
-                            "validator": "/^([a-z]{1,})$/.test(data.name) && globalData.historyApps.concat(globalData.customApps).filter(app => app.name === data.name).length === 1",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'eyes', 'date', 'temp', 'hum', 'bat'].includes(data.name) && globalData.historyApps.concat(globalData.customApps).filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",
                             "validatorNoSaveOnError": true
                         },
