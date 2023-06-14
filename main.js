@@ -852,6 +852,7 @@ class AwtrixLight extends utils.Adapter {
     buildRequestAsync(service, method, data) {
         return new Promise((resolve, reject) => {
             const url = `/api/${service}`;
+            const timeoutMs = this.config.httpTimeout * 1000 || 3000;
 
             if (this.config.awtrixIp) {
                 if (data) {
@@ -865,7 +866,7 @@ class AwtrixLight extends utils.Adapter {
                     data: data,
                     baseURL: `http://${this.config.awtrixIp}:80`,
                     url: url,
-                    timeout: 3000,
+                    timeout: timeoutMs,
                     responseType: 'json',
                 })
                     .then((response) => {

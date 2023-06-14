@@ -49,6 +49,10 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added expert option for HTTP timeout
+
 ### 0.0.15 (2023-06-13)
 
 Updated recommended firmware version to 0.69
