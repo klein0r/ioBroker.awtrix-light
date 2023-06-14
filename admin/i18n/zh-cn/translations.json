@@ -7,5 +7,7 @@
     "Ignore new values after state change (in seconds)": "状态更改后忽略新值（以秒为单位）",
     "Prevents too many requests for rapid state changes": "防止对快速状态更改的过多请求",
     "Background color": "背景颜色",
-    "Refresh interval (in seconds)": "刷新间隔（以秒为单位）"
+    "Refresh interval (in seconds)": "刷新间隔（以秒为单位）",
+    "Expert options": "专家选项",
+    "HTTP timeout": "HTTP 超时"
 }

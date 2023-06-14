@@ -7,5 +7,7 @@
     "Ignore new values after state change (in seconds)": "Ignora i nuovi valori dopo il cambio di stato (in secondi)",
     "Prevents too many requests for rapid state changes": "Impedisce troppe richieste di rapidi cambiamenti di stato",
     "Background color": "Colore di sfondo",
-    "Refresh interval (in seconds)": "Intervallo di aggiornamento (in secondi)"
+    "Refresh interval (in seconds)": "Intervallo di aggiornamento (in secondi)",
+    "Expert options": "Opzioni per esperti",
+    "HTTP timeout": "Timeout HTTP"
 }
