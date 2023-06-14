@@ -65,7 +65,8 @@ class AwtrixLight extends utils.Adapter {
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
+                                this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
                     }
@@ -387,8 +388,13 @@ class AwtrixLight extends utils.Adapter {
                         for (const [settingsKey, val] of Object.entries(content)) {
                             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
                                 if (knownSettings[settingsKey].role === 'level.color.rgb') {
-                                    await this.setStateChangedAsync(knownSettings[settingsKey].id, { val: colorConvert.rgb565to888Str(val), ack: true, c: 'Updated from API (converted from RGB565)' });
+                                    const newVal = colorConvert.rgb565to888Str(val);
+                                    this.log.debug(`[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${newVal} (converted from ${val})`);
+
+                                    await this.setStateChangedAsync(knownSettings[settingsKey].id, { val: newVal, ack: true, c: 'Updated from API (converted from RGB565)' });
                                 } else {
+                                    this.log.debug(`[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${val}`);
+
                                     await this.setStateChangedAsync(knownSettings[settingsKey].id, { val, ack: true, c: 'Updated from API' });
                                 }
                             }

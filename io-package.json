@@ -595,6 +595,136 @@
       }
     },
     {
+      "_id": "settings.appColorTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (time)",
+          "de": "App-Farbe (Zeit)",
+          "ru": "Цвет приложения (время)",
+          "pt": "Cor da aplicação (tempo)",
+          "nl": "App kleur (tijd)",
+          "fr": "App couleur (heure)",
+          "it": "Colore dell'app (tempo)",
+          "es": "Color de aplicación (tiempo)",
+          "pl": "W kolorze (czasem)",
+          "uk": "Колір додатка (час)",
+          "zh-cn": "附录(时)"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TIME_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorDate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (date)",
+          "de": "App-Farbe (Datum)",
+          "ru": "Цвет приложения (дата)",
+          "pt": "Cor do aplicativo (data)",
+          "nl": "App kleur (date)",
+          "fr": "App couleur (date)",
+          "it": "Colore dell'app (data)",
+          "es": "Color de la aplicación (fecha)",
+          "pl": "Apparent (ang.)",
+          "uk": "Колір додатка (дата)",
+          "zh-cn": "原件:英文"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "DATE_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorTemperature",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (temperature)",
+          "de": "App-Farbe (Temperatur)",
+          "ru": "Цвет приложения (температура)",
+          "pt": "Cor da aplicação (temperatura)",
+          "nl": "App kleur (temperature)",
+          "fr": "App couleur (température)",
+          "it": "Colore dell'app (temperatura)",
+          "es": "Color de aplicación (temperatura)",
+          "pl": "Ubarwienie (temperatura)",
+          "uk": "Колір додатка (температура)",
+          "zh-cn": "评 注"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TEMP_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorHumidity",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (humidity)",
+          "de": "App-Farbe (Feuchtigkeit)",
+          "ru": "Цвет приложения (влажность)",
+          "pt": "Cor do aplicativo (humidity)",
+          "nl": "App kleur (humidity)",
+          "fr": "App couleur (humidité)",
+          "it": "Colore dell'app (umidità)",
+          "es": "Color de aplicación (humididad)",
+          "pl": "Umiejętność (ang.)",
+          "uk": "Колір додатка (гумідність)",
+          "zh-cn": "评 注"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "HUM_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorBattery",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (battery)",
+          "de": "App-Farbe (Batterie)",
+          "ru": "Цвет приложения (батареи)",
+          "pt": "Cor do aplicativo (bateria)",
+          "nl": "App kleur (battery)",
+          "fr": "App couleur (batterie)",
+          "it": "Colore dell'app (batteria)",
+          "es": "Color de la aplicación (batería)",
+          "pl": "Ubarwienie (pol.)",
+          "uk": "Колір додатка (баттерія)",
+          "zh-cn": "附录"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "BAT_COL"
+      }
+    },
+    {
       "_id": "meta",
       "type": "channel",
       "common": {
