@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "news": {
+      "0.0.16": {
+        "en": "Updated recommended firmware version to 0.70\n\n* Added expert option for HTTP timeout\n* Added color settings for native apps",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,70\n\n* Hinzugefügt Expertenoption für HTTP Timeout\n* Farbeinstellungen für native Apps hinzugefügt",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.70\n\n* Добавлена экспертная опция для HTTP timeout\n* Добавлены настройки цвета для родных приложений",
+        "pt": "Versão de firmware recomendada atualizada para 0.70\n\n* Adicionado opção de especialista para timeout HTTP\n* Configurações de cor adicionadas para aplicativos nativos",
+        "nl": "Opgevolgd aanbevolen firmaware versie tot 0.70\n\n♪ Added expert optie voor HTP time-out\n♪ Added color settings for inheemse apps ♪",
+        "fr": "Version de firmware recommandée à 0.70\n\n* Ajout d'une option d'expert pour le timeout HTTP\n* Ajout de paramètres de couleur pour les applications natives",
+        "it": "Versione firmware consigliata aggiornata a 0.70\n\n* Aggiunto l'opzione esperta per il timeout HTTP\n* Aggiunte le impostazioni di colore per le applicazioni native",
+        "es": "Versión actualizada de firmware recomendada a 0.70\n\n* opción de experto adicional para el tiempo de HTTP\n* Ajustes de color añadido para aplicaciones nativas",
+        "pl": "Zalecona wersja oprogramowania do zalecenia\n\n* Added expert option for HTTP timeout\nAdded color settings for native apps",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.70\n\n* Додано експертну опцію для HTTP-timeout\n* Додано параметри кольору для рідних додатків",
+        "zh-cn": "最新建议的警觉版本\n\n* 增加专家时间安排\n* 增加当地矿床的颜色环境"
+      },
       "0.0.15": {
         "en": "Updated recommended firmware version to 0.69\n\n* Added option to hide own apps via state\n* Dropped framerate setting (no longer supported)",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,69\n\n* Zusätzliche Möglichkeit, eigene Apps über Zustand zu verstecken\n* Geblendete Rahmeneinstellung (nicht mehr unterstützt)",
@@ -80,19 +93,6 @@
         "pl": "Automatycznie nieznana lub stara aplikacja\nDodany opcja gry na dźwiękach poprzez wiadomość / blokowo",
         "uk": "Автоматично видаляти невідомі або старі додатки\nДодано варіант відтворення звуку через повідомлення / блоклі",
         "zh-cn": "自动删除不明或旧的遗骸\n增加通过信息/阻断地发挥无害作用的选择"
-      },
-      "0.0.9": {
-        "en": "Updated recommended firmware version to 0.68\n\n* Added battery, uptime and display states\n* Added more settings options\n* Color conversion for all rgb settings",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.68\n\n* Hinzugefügt Batterie, Stand- und Anzeigezustände\n* Weitere Einstellungen hinzugefügt\n* Farbumwandlung für alle rgb-Einstellungen",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.68\n\n* Добавлена батарея, uptime и состояния дисплея\n* Добавлены дополнительные опции настроек\n* Конверсия цвета для всех настроек rgb",
-        "pt": "Versão de firmware recomendada atualizada para 0.68\n\n* Adicionado bateria, uptime e estados de exibição\n* Adicionado mais opções de configurações\n* Conversão de cores para todas as configurações do rgb",
-        "nl": "Aanbevolen firmaware versie naar 0.68\n\n♪ Added battery, uptime and display states ♪\n♪ Added more settings opties\n♪ Color conversie voor alle RGB settings",
-        "fr": "Version mise à jour du firmware recommandée à 0.68\n\n* Ajout d'une batterie, d'heures de montée et d'affichage\n* Ajout d'autres options de paramètres\n* Conversion couleur pour tous les paramètres rgb",
-        "it": "Versione firmware consigliata aggiornata a 0.68\n\n* Aggiunto batteria, uptime e stati di visualizzazione\n* Aggiunte più impostazioni opzioni\n# Conversione di colore per tutte le impostazioni rgb",
-        "es": "Versión actualizada de firmware recomendada a 0.68\n\n* La batería, el tiempo libre y los estados de visualización\n* Añadido más opciones de configuración\n* Conversión de color para todos los ajustes rgb",
-        "pl": "Zalecona wersja oprogramowania do 0.68\n\n* Added battery, uptime i wyświetlane stany\n* Dodać więcej opcji\n* Konwersja kolorowa dla wszystkich ustawień rgb",
-        "uk": "Оновлено рекомендовану версію мікропрограми до 0,68\n\n* Додана батарея, час і стани відображення\n* Додаткові параметри налаштування\nІм'я * Перетворення кольорів для всіх параметрів rgb",
-        "zh-cn": "最新建议的警觉版本到0.68\n\n* 增幅电池、时间和展示国\n* 增加环境选择\n* A/64/50。 在所有火山环境中转化"
       }
     },
     "titleLang": {

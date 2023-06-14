@@ -49,7 +49,7 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.16 (2023-06-14)
 
 Updated recommended firmware version to 0.70
 
@@ -81,12 +81,6 @@ Updated recommended firmware version to 0.69
 * (klein0r) Removed visibility states for native apps (deprecated by firmware)
 * (klein0r) Improved logging for history apps
 * (klein0r) Added wifi signal strength and used RAM as states
-
-### 0.0.11 (2023-06-07)
-
-* (klein0r) Display history data in apps as charts
-* (klein0r) Format number values and limit number of decimals
-* (klein0r) Limit app refresh time when state changes (configurable)
 
 ## License
 MIT License

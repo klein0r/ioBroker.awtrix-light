@@ -1,4 +1,10 @@
 # Older changes
+## 0.0.11 (2023-06-07)
+
+* (klein0r) Display history data in apps as charts
+* (klein0r) Format number values and limit number of decimals
+* (klein0r) Limit app refresh time when state changes (configurable)
+
 ## 0.0.10 (2023-06-06)
 
 * (klein0r) Automatically delete unknown or old apps
