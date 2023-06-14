@@ -7,7 +7,7 @@
 - nodejs 14.5 (or later)
 - js-controller 4.0.15 (or later)
 - Admin Adapter 6.0.0 (or later)
-- _Awtrix Light_ device with firmware _0.69_ (or later) - e.g. [Ulanzi TC001](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-Link)
+- _Awtrix Light_ device with firmware _0.70_ (or later) - e.g. [Ulanzi TC001](https://haus-auto.com/p/ali/UlanziTC001) (Affiliate-Link)
 
 ## Getting started
 

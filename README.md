@@ -51,6 +51,8 @@ iobroker add awtrix-light
 -->
 ### **WORK IN PROGRESS**
 
+Updated recommended firmware version to 0.70
+
 * (klein0r) Added expert option for HTTP timeout
 
 ### 0.0.15 (2023-06-13)
