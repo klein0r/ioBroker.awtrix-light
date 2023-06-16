@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.0.16",
+    "version": "0.1.0",
     "news": {
+      "0.1.0": {
+        "en": "Added rainbow and color to blockly notifications",
+        "de": "Hinzugefügt Regenbogen und Farbe zu blockieren Benachrichtigungen",
+        "ru": "Добавлена радуга и цвет для блокировки уведомлений",
+        "pt": "Adicionado arco-íris e cor para bloquear notificações",
+        "nl": "Voegde regenboog en kleur toe aan blokkeerde berichten",
+        "fr": "Ajout de l'arc-en-ciel et de la couleur pour bloquer les notifications",
+        "it": "Aggiunto arcobaleno e colore per le notifiche bloccate",
+        "es": "Agregado arco iris y color a notificaciones bloqueadas",
+        "pl": "Zamknięte i kolory blokują powiadomienia",
+        "uk": "Додано райдуж і колір для блокування повідомлень",
+        "zh-cn": "增加雨季和颜色,以断绝通知"
+      },
       "0.0.16": {
         "en": "Updated recommended firmware version to 0.70\n\n* Added expert option for HTTP timeout\n* Added color settings for native apps",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,70\n\n* Hinzugefügt Expertenoption für HTTP Timeout\n* Farbeinstellungen für native Apps hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Dane statystyczne w aplikacjach jako mapy\nWartość liczb i limit liczby dziesiętnych\nLimit może odświeżyć czas, gdy stan zmienia się (konfiguracyjny)",
         "uk": "Перегляд даних історії в додатках як діаграми\nФормат значень номеру і ліміт кількості десятків\nЧас оновлення додатку при зміні стану (настрочена)",
         "zh-cn": "图表中的差历历史数据\n动植物数量\n当国家变化(可图)时,限制紧要时间"
-      },
-      "0.0.10": {
-        "en": "Automatically delete unknown or old apps\nAdded option to play sound via message / blockly",
-        "de": "Unbekannte oder alte Apps automatisch löschen\nOption zum Spielen von Sound über Nachricht / blockweise",
-        "ru": "Автоматически удалять неизвестные или старые приложения\nДобавлена опция для воспроизведения звука через сообщение / блокно",
-        "pt": "Eliminar automaticamente aplicativos desconhecidos ou antigos\nAdicionado opção para tocar som via mensagem / blockly",
-        "nl": "Automatisch onbekend of oude apps wissen\nGeadresseerde optie om geluid te spelen via bericht / blokk",
-        "fr": "Supprimer automatiquement des applications inconnues ou anciennes\nAjout de l'option pour jouer du son via message / blockly",
-        "it": "Elimina automaticamente app sconosciute o vecchie\nAggiunta opzione per riprodurre il suono tramite messaggio / blocco",
-        "es": "Eliminar automáticamente aplicaciones desconocidas o antiguas\nOpción añadida para el sonido a través del mensaje / bloqueado",
-        "pl": "Automatycznie nieznana lub stara aplikacja\nDodany opcja gry na dźwiękach poprzez wiadomość / blokowo",
-        "uk": "Автоматично видаляти невідомі або старі додатки\nДодано варіант відтворення звуку через повідомлення / блоклі",
-        "zh-cn": "自动删除不明或旧的遗骸\n增加通过信息/阻断地发挥无害作用的选择"
       }
     },
     "titleLang": {

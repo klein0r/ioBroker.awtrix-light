@@ -49,7 +49,7 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.1.0 (2023-06-16)
 
 * (klein0r) Added rainbow and color to blockly notifications
 
@@ -77,14 +77,6 @@ Updated recommended firmware version to 0.69
 * (klein0r) Refresh all states when device was offline / not reachable
 * (klein0r) Automatically remove history apps (if not updated)
 * (klein0r) Improved checks for history data
-
-### 0.0.12 (2023-06-08)
-
-* (klein0r) Added number of decimals to app configuration (for numeric values)
-* (klein0r) Added line color of history apps to each table row
-* (klein0r) Removed visibility states for native apps (deprecated by firmware)
-* (klein0r) Improved logging for history apps
-* (klein0r) Added wifi signal strength and used RAM as states
 
 ## License
 MIT License
