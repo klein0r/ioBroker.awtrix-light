@@ -69,6 +69,19 @@ Blockly.Words['awtrix-light_message'] = {
     uk: 'Новини',
     'zh-cn': '导 言',
 };
+Blockly.Words['awtrix-light_color'] = {
+    en: 'Color',
+    de: 'Farbe',
+    ru: 'Цвет',
+    pt: 'Cor',
+    nl: 'Color',
+    fr: 'Couleur',
+    it: 'Colore',
+    es: 'Color',
+    pl: 'Color',
+    uk: 'Колір',
+    'zh-cn': '科 法 律',
+};
 Blockly.Words['awtrix-light_sound'] = {
     en: 'Sound',
     de: 'Ton',
@@ -120,6 +133,19 @@ Blockly.Words['awtrix-light_duration'] = {
     pl: 'Duracja',
     uk: 'Тривалість',
     'zh-cn': '期间',
+};
+Blockly.Words['awtrix-light_rainbow'] = {
+    en: 'Rainbow text',
+    de: 'Regenbogentext',
+    ru: 'Текст радуга',
+    pt: 'Texto do arco-íris',
+    nl: 'Vertaling:',
+    fr: 'Texte arc-en-ciel',
+    it: `Testo dell'arcobaleno`,
+    es: 'Texto del arco iris',
+    pl: 'Rainbow text',
+    uk: 'Веселий текст',
+    'zh-cn': '文 件',
 };
 Blockly.Words['awtrix-light_stack'] = {
     en: 'Stack',
@@ -223,6 +249,11 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '             <field name="TEXT">haus-automatisierung.com</field>' +
     '         </shadow>' +
     '     </value>' +
+    '     <value name="COLOR">' +
+    '         <shadow type="colour_picker">' +
+    '             <field name="COLOUR">#ffffff</field>' +
+    '         </shadow>' +
+    '     </value>' +
     '     <value name="SOUND">' +
     '     </value>' +
     '     <value name="ICON">' +
@@ -236,6 +267,8 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '         <shadow type="math_number">' +
     '             <field name="NUM">5</field>' +
     '         </shadow>' +
+    '     </value>' +
+    '     <value name="RAINBOW">' +
     '     </value>' +
     '     <value name="STACK">' +
     '     </value>' +
@@ -267,10 +300,12 @@ Blockly.Blocks['awtrix-light'] = {
 
         this.appendDummyInput('INSTANCE').appendField(Blockly.Translate('awtrix-light_notification')).appendField(new Blockly.FieldDropdown(options), 'INSTANCE');
         this.appendValueInput('MESSAGE').appendField(Blockly.Translate('awtrix-light_message'));
+        this.appendValueInput('COLOR').appendField(Blockly.Translate('awtrix-light_color'));
         this.appendValueInput('SOUND').appendField(Blockly.Translate('awtrix-light_sound'));
         this.appendValueInput('ICON').appendField(Blockly.Translate('awtrix-light_icon'));
         this.appendValueInput('REPEAT').appendField(Blockly.Translate('awtrix-light_repeat'));
         this.appendValueInput('DURATION').appendField(Blockly.Translate('awtrix-light_duration'));
+        this.appendDummyInput('RAINBOW').appendField(Blockly.Translate('awtrix-light_rainbow')).appendField(new Blockly.FieldCheckbox('FALSE'), 'RAINBOW');
         this.appendDummyInput('STACK_INPUT').appendField(Blockly.Translate('awtrix-light_stack')).appendField(new Blockly.FieldCheckbox('TRUE'), 'STACK');
         this.appendDummyInput('WAKEUP_INPUT').appendField(Blockly.Translate('awtrix-light_wakeup')).appendField(new Blockly.FieldCheckbox('TRUE'), 'WAKEUP');
 
@@ -286,10 +321,14 @@ Blockly.Blocks['awtrix-light'] = {
 
 Blockly.JavaScript['awtrix-light'] = function (block) {
     const message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+    const color = Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC);
     const sound = Blockly.JavaScript.valueToCode(block, 'SOUND', Blockly.JavaScript.ORDER_ATOMIC);
     const icon = Blockly.JavaScript.valueToCode(block, 'ICON', Blockly.JavaScript.ORDER_ATOMIC);
     const repeat = Blockly.JavaScript.valueToCode(block, 'REPEAT', Blockly.JavaScript.ORDER_ATOMIC);
     const duration = Blockly.JavaScript.valueToCode(block, 'DURATION', Blockly.JavaScript.ORDER_ATOMIC);
+
+    let rainbow = block.getFieldValue('RAINBOW');
+    rainbow = rainbow === 'TRUE' || rainbow === 'true' || rainbow === true;
 
     let stack = block.getFieldValue('STACK');
     stack = stack === 'TRUE' || stack === 'true' || stack === true;
@@ -299,10 +338,12 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
 
     const objText = [];
     message && objText.push('text: ' + message);
+    color && !rainbow && objText.push('color: String(' + color + ').toUpperCase()');
     sound && objText.push('sound: ' + sound);
     icon && objText.push('icon: ' + icon);
     repeat && objText.push('repeat: parseInt(' + repeat + ')');
     duration && objText.push('duration: parseInt(' + duration + ')');
+    objText.push('rainbow: ' + rainbow);
     objText.push('stack: ' + stack);
     objText.push('wakeup: ' + wakeup);
 

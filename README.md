@@ -49,6 +49,10 @@ iobroker add awtrix-light
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added rainbow and color to blockly notifications
+
 ### 0.0.16 (2023-06-14)
 
 Updated recommended firmware version to 0.70
