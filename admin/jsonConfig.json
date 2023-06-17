@@ -338,6 +338,7 @@
                 "historyAppsRefreshInterval": {
                     "type": "number",
                     "min": 60,
+                    "max": 86400,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
