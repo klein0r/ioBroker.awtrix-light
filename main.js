@@ -65,8 +65,7 @@ class AwtrixLight extends utils.Adapter {
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
-                                this.config.ignoreNewValueForAppInTimeRange
+                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
                     }
@@ -294,25 +293,25 @@ class AwtrixLight extends utils.Adapter {
                 // API was offline - refresh all states
                 this.log.debug('API is online');
 
-                // settings
-                await this.refreshSettings();
-
-                // apps
                 try {
+                    // settings
+                    await this.refreshSettings();
+
+                    // apps
                     await this.createAppObjects();
                     await this.initCustomApps();
                     await this.initHistoryApps();
+
+                    // indicators
+                    for (let i = 1; i <= 3; i++) {
+                        await this.updateIndicatorByStates(i);
+                    }
+
+                    // moodlight
+                    await this.updateMoodlightByStates();
                 } catch (error) {
-                    this.log.error(`[setApiConnected] Unable to update apps: ${error}`);
+                    this.log.error(`[setApiConnected] Unable to refresh settings, apps or indicators: ${error}`);
                 }
-
-                // indicators
-                for (let i = 1; i <= 3; i++) {
-                    await this.updateIndicatorByStates(i);
-                }
-
-                // moodlight
-                await this.updateMoodlightByStates();
             } else {
                 this.log.debug('API is offline');
             }
