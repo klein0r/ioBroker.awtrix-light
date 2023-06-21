@@ -30,14 +30,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-awtrix-light)
 
-## Installation
-
-Please use the "adapter list" in ioBroker to install a stable version of this adapter. You can also use the CLI to install this adapter:
-
-```
-iobroker add awtrix-light
-```
-
 ## Documentation
 
 [🇺🇸 Documentation](./docs/en/README.md)
