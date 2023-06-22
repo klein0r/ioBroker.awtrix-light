@@ -16,9 +16,8 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Thanks for reporting!
-            1. Please make sure your topic is not covered in the [documentation](https://github.com/klein0r/ioBroker.awtrix-light/blob/master/docs/en/README.md)
-            2. Ensure that you use the latest beta version (not the current stable version)
-            3. Please attach all necessary log files (in debug mode!), screenshots and other information to reproduce this issue
-            ## Sponsored by
-            [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png)](https://haus-automatisierung.com/iobroker-kurs/?refid=github-actions)
+            Thanks for reporting @${{ github.actor }}!
+            1. Check if this topic is not covered in the [documentation](https://github.com/klein0r/ioBroker.awtrix-light/blob/master/docs/en/README.md)
+            2. Ensure that you use the latest beta version: [![NPM version](https://img.shields.io/npm/v/iobroker.awtrix-light?style=flat-square)](https://www.npmjs.com/package/iobroker.awtrix-light)
+            3. Attach all necessary log files **in debug mode**, screenshots and other information to reproduce this issue
+            4. [Search for the issue topic](https://github.com/klein0r/ioBroker.awtrix-light/issues?q=is%3Aissue) in other/closed issues to avoid duplicates!
