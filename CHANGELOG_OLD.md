@@ -1,4 +1,10 @@
 # Older changes
+## 0.0.13 (2023-06-10)
+
+* (klein0r) Refresh all states when device was offline / not reachable
+* (klein0r) Automatically remove history apps (if not updated)
+* (klein0r) Improved checks for history data
+
 ## 0.0.12 (2023-06-08)
 
 * (klein0r) Added number of decimals to app configuration (for numeric values)

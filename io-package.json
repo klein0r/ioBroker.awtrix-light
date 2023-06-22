@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
+      "0.1.1": {
+        "en": "Improved error handling when device is not reachable",
+        "de": "Verbesserte Fehlerbehandlung, wenn das Gerät nicht erreichbar ist",
+        "ru": "Улучшена обработка ошибок при недоступном устройстве",
+        "pt": "Melhor manuseio de erros quando o dispositivo não é acessível",
+        "nl": "Improviserende fouten als apparaat niet bereikbaar is",
+        "fr": "Amélioration de la manipulation des erreurs lorsque l'appareil n'est pas accessible",
+        "it": "Miglioramento della gestione degli errori quando il dispositivo non è raggiungibile",
+        "es": "Mejor manejo de errores cuando el dispositivo no es accesible",
+        "pl": "Poprawiona obsługa błędów, gdy urządzenie nie jest możliwe",
+        "uk": "Поліпшення обробки помилок при пристрої не досягається",
+        "zh-cn": "在装置无法达到的情况下改进错误处理"
+      },
       "0.1.0": {
         "en": "Added rainbow and color to blockly notifications",
         "de": "Hinzugefügt Regenbogen und Farbe zu blockieren Benachrichtigungen",
@@ -80,19 +93,6 @@
         "pl": "Dodana liczba dziesiętnych do konfiguracji (dla wartości liczb)\nPoniższa kolorystyka historii dotyczy każdego wiersza\nPrzewidywała widoczność dla rodzimych aplikacji (deprecowanych przez oprogramowanie)\nPoprawiono pisanie do aplikacji historycznych\nZawarta siła sygnału wifi używała RAM jako stanów",
         "uk": "Додано кількість десяткових десятків для конфігурації додатку (для числових значень)\nДодано колір лінії історичних додатків до кожного рядка таблиці\nВилучені стани видимості для рідних додатків (розширені прошивкою)\nПокращений журнал для історичних додатків\nДодана сила сигналу Wifi і використана оперативна пам'ять як стани",
         "zh-cn": "添加到图表(数字价值)的标记数量\n增加历史色彩,给每个桌代。\n剥夺土著人的能见度(由坚称)\nB. 改善历史遗漏\n增加维权信号强,并用作国家"
-      },
-      "0.0.11": {
-        "en": "Display history data in apps as charts\nFormat number values and limit number of decimals\nLimit app refresh time when state changes (configurable)",
-        "de": "Geschichtsdaten in Apps als Diagramme anzeigen\nFormatnummernwerte und Grenzzahl der Dezimals\nBeschränken Sie die App-Erfrischungszeit bei Zustandsänderungen (konfigurierbar)",
-        "ru": "Отображение данных истории в приложениях как диаграммы\nФормат значения номера и лимит количества десятичных\nОграничить время обновления приложения при изменении состояния (конфигурируемый)",
-        "pt": "Exibir dados de histórico em aplicativos como gráficos\nFormatar valores de número e número limite decimais\nLimite o tempo de atualização do aplicativo quando as alterações do estado (configuráveis)",
-        "nl": "Vertaling:\nFormat nummerwaarden en beperkt aantal decimale\nLimit app verfrissende tijd wanneer de staat verandert",
-        "fr": "Afficher les données d'historique dans les applications comme graphiques\nValeurs des nombres de format et nombre limite de décimales\nLimiter le temps de rafraîchissement de l'application lorsque l'état change (configurable)",
-        "it": "Visualizza i dati della cronologia nelle app come grafici\nFormattare i valori numerici e il numero limite dei decimali\nLimitare il tempo di aggiornamento dell'app quando lo stato cambia (configurabile)",
-        "es": "Mostrar datos de historia en aplicaciones como gráficos\nValores del número de formato y número límite de decimales\nLimite el tiempo de actualización de la aplicación cuando el estado cambia (configurable)",
-        "pl": "Dane statystyczne w aplikacjach jako mapy\nWartość liczb i limit liczby dziesiętnych\nLimit może odświeżyć czas, gdy stan zmienia się (konfiguracyjny)",
-        "uk": "Перегляд даних історії в додатках як діаграми\nФормат значень номеру і ліміт кількості десятків\nЧас оновлення додатку при зміні стану (настрочена)",
-        "zh-cn": "图表中的差历历史数据\n动植物数量\n当国家变化(可图)时,限制紧要时间"
       }
     },
     "titleLang": {

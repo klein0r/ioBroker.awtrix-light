@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.1.1 (2023-06-22)
 
 * (klein0r) Improved error handling when device is not reachable
 
@@ -67,12 +67,6 @@ Updated recommended firmware version to 0.69
 
 * (klein0r) Added validator for IP address
 * (klein0r) usedRam was renamed to freeRam
-
-### 0.0.13 (2023-06-10)
-
-* (klein0r) Refresh all states when device was offline / not reachable
-* (klein0r) Automatically remove history apps (if not updated)
-* (klein0r) Improved checks for history data
 
 ## License
 MIT License
