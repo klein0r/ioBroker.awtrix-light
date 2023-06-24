@@ -611,7 +611,7 @@ class AwtrixLight extends utils.Adapter {
                                             ack: true,
                                         },
                                     });
-                                    const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val));
+                                    const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
 
                                     this.log.debug(
                                         `[initHistoryApps] History data for app "${historyApp.name}" of "${historyApp.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,

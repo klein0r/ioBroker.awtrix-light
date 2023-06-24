@@ -80,7 +80,7 @@ The following names are used by internal apps and cannot be used: `time`, `eyes`
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
 
-**Custom apps just display acknowledged values! Control states are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
+**Custom apps just display acknowledged values! Control states with `ack: false` are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
 
 ## History apps
 
@@ -88,7 +88,7 @@ The following names are used by internal apps and cannot be used: `time`, `eyes`
 
 The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`
 
-**History apps just display acknowledged history values! Control states are ignored!**
+**History apps just display acknowledged history values! Control states with `ack: false` are ignored!**
 
 ## App states
 
