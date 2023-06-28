@@ -449,12 +449,12 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.warn(`[initCustomApps] Object of app "${customApp.name}" with id ${objId} has invalid type: ${obj.common.type}`);
                                     }
 
-                                    if (state && !state.ack) {
-                                        this.log.info(`[initCustomApps] State value of custom app "${customApp.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
+                                    if (text.includes('%u') && !obj?.common?.unit) {
+                                        this.log.warn(`[initCustomApps] Object of custom app "${customApp.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
                                     }
 
-                                    if (text.includes('%u') && !obj?.common?.unit) {
-                                        this.log.info(`[initCustomApps] Object of custom app "${customApp.name}" (${objId}) has no unit - remove "%u" from text or define unit in object`);
+                                    if (state && !state.ack) {
+                                        this.log.info(`[initCustomApps] State value of custom app "${customApp.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
                                     }
 
                                     await this.subscribeForeignStatesAsync(objId);
@@ -462,6 +462,8 @@ class AwtrixLight extends utils.Adapter {
 
                                     this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId ${objId} - subscribed to changes`);
                                 }
+                            } else {
+                                this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId ${objId} - already subscribed to changes`);
                             }
                         } catch (error) {
                             this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
@@ -469,6 +471,10 @@ class AwtrixLight extends utils.Adapter {
                     } else if (text.length > 0) {
                         // App with static text (no objId specified)
                         this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
+
+                        if (customApp.objId) {
+                            this.log.warn(`[initCustomApps] Custom app "${customApp.name}" was defined with object id ${customApp.objId} but "%s" is not used in the text - state changes will be ignored`);
+                        }
 
                         await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                             text: text,

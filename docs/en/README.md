@@ -75,18 +75,27 @@ The message object supports all available options of the firmware. See [document
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`
+The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`.
 
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
 
+It is possible to define a custom text with those placeholders (e.g. `Outside: %s %u`).
+
 **Custom apps just display acknowledged values! Control states with `ack: false` are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
+
+The selected state should have the data type `string` or `number`. Other tyes (like `boolean`) are also supported but raise a warning. It is recommended to use an alias state with a convert function to replace a boolean value with text (e.g. `val ? 'on' : 'off'` or `val ? 'open' : 'closed'`). See ioBroker documentation for details. *This feature is not related to this adapter.*
+
+The following combinations will lead to a warning in the log:
+
+- A custom app with a selected object id of a state, but `%s` is missing in the text
+- A custom app with a selected object id of a state without a unit `common.unit`, but `%u` is used in the text
 
 ## History apps
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`
+The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`.
 
 **History apps just display acknowledged history values! Control states with `ack: false` are ignored!**
 
