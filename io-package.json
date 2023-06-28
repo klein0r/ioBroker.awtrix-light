@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "news": {
+      "0.1.2": {
+        "en": "Limit the number of history items\nWarn if a connected state has the wrong data type",
+        "de": "Begrenzung der Anzahl der Geschichtsgegenstände\nWarnung, wenn ein angeschlossener Zustand den falschen Datentyp hat",
+        "ru": "Ограничить количество предметов истории\nПредупреждение, если подключенное состояние имеет неправильный тип данных",
+        "pt": "Limitar o número de itens de história\nAvise se um estado conectado tem o tipo de dados errado",
+        "nl": "Limit het aantal geschiedenis items\nAls een verbonden staat het verkeerde datatype heeft",
+        "fr": "Limiter le nombre d'articles d'histoire\nWarn si un état connecté a le mauvais type de données",
+        "it": "Limitare il numero di elementi di storia\nAvvertire se uno stato collegato ha il tipo di dati sbagliato",
+        "es": "Limite el número de elementos de historia\nAdvierta si un estado conectado tiene el tipo de datos incorrecto",
+        "pl": "Liczba przedmiotów historycznych\nWarn jeśli stan połączony ma niewłaściwe typy danych",
+        "uk": "Визначте кількість елементів історії\nВійна, якщо підключений стан має неправильний тип даних",
+        "zh-cn": "限制历史项目的数目\n如果联系国有错失数据类型,则发生警告"
+      },
       "0.1.1": {
         "en": "Improved error handling when device is not reachable",
         "de": "Verbesserte Fehlerbehandlung, wenn das Gerät nicht erreichbar ist",
@@ -80,19 +93,6 @@
         "pl": "Refresh wszystkie stany, gdy urządzenie było nieosiągalne\nAutomatycznie usuwać aplikacje historyczne (nie zaktualizowane)\nPoprawa dotycząca danych historycznych",
         "uk": "Відновити всі стани, коли пристрій був автономним / не досягається\nАвтоматично видаляти історичні додатки (якщо не оновлено)\nПоліпшення перевірок даних історії",
         "zh-cn": "在所有国家里,当装置被赶出线/无法达到的状态\n自动取消历史遗骸(如未更新)\n改进历史数据的检查"
-      },
-      "0.0.12": {
-        "en": "Added number of decimals to app configuration (for numeric values)\nAdded line color of history apps to each table row\nRemoved visibility states for native apps (deprecated by firmware)\nImproved logging for history apps\nAdded wifi signal strength and used RAM as states",
-        "de": "Anzahl der Dezimals zur App-Konfiguration hinzugefügt (für numerische Werte)\nHinzufügen der Zeilenfarbe der Geschichtsapps zu jeder Tabellezeile\nEntfernte Sichtzustände für native Apps (von Firmware abgeschrieben)\nVerbesserte Protokollierung für Geschichtsapps\nWifi-Signalstärke hinzugefügt und RAM als Zustände verwendet",
-        "ru": "Добавили количество десятичий к конфигурации приложения (для числовых значений)\nДобавлена строка цвета приложений истории к каждой строке таблицы\nУдаленные состояния видимости для родных приложений (указаны прошивкой)\nУлучшенный вход для приложений истории\nДобавлена сила сигнала Wi-Fi и используется RAM как государства",
-        "pt": "Adicionado número decimais para configuração de aplicativo (para valores numéricos)\nCor de linha adicionada de aplicativos de história para cada linha de tabela\nEstados de visibilidade removidos para aplicativos nativos (preparados por firmware)\nRegistro aprimorado para aplicativos de histórico\nAdicionado força de sinal wifi e usado RAM como estados",
-        "nl": "Vervoegd aantal decimalen om in beslag te nemen\nVertaling:\nVerwijderde visibiliteit staat voor inheemse apps (gedepreceerd door stevigware)\nVertaling:\nVoegde Wifi signaal kracht toe en gebruikte RAM als staat",
-        "fr": "Ajout du nombre de décimales à la configuration de l'application (pour les valeurs numériques)\nAjout de la couleur de ligne des applications d'histoire à chaque rangée de table\nÉtats de visibilité supprimés pour les applications natives (dépréciés par le firmware)\nAmélioration de la connexion pour les applications d'histoire\nAjout de la force du signal wifi et de la RAM utilisée comme états",
-        "it": "Aggiunto numero di decimali alla configurazione app (per i valori numerici)\nAggiunta il colore della linea delle app di storia ad ogni riga del tavolo\nStati di visibilità rimossi per applicazioni native (deprecated by firmware)\nRegistrazione migliorata per le applicazioni di storia\nAggiunta la forza del segnale wifi e la RAM utilizzata come stati",
-        "es": "Número añadido de decimales a la configuración de aplicaciones (para valores numéricos)\nColor de línea añadido de las aplicaciones de historia a cada fila de mesa\nEstados de visibilidad eliminados para aplicaciones nativas (deprecidos por firmware)\nMejor registro para aplicaciones de historia\nAñadido la fuerza de señal de wifi y utilizado RAM como estados",
-        "pl": "Dodana liczba dziesiętnych do konfiguracji (dla wartości liczb)\nPoniższa kolorystyka historii dotyczy każdego wiersza\nPrzewidywała widoczność dla rodzimych aplikacji (deprecowanych przez oprogramowanie)\nPoprawiono pisanie do aplikacji historycznych\nZawarta siła sygnału wifi używała RAM jako stanów",
-        "uk": "Додано кількість десяткових десятків для конфігурації додатку (для числових значень)\nДодано колір лінії історичних додатків до кожного рядка таблиці\nВилучені стани видимості для рідних додатків (розширені прошивкою)\nПокращений журнал для історичних додатків\nДодана сила сигналу Wifi і використана оперативна пам'ять як стани",
-        "zh-cn": "添加到图表(数字价值)的标记数量\n增加历史色彩,给每个桌代。\n剥夺土著人的能见度(由坚称)\nB. 改善历史遗漏\n增加维权信号强,并用作国家"
       }
     },
     "titleLang": {

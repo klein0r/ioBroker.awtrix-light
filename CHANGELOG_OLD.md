@@ -1,4 +1,9 @@
 # Older changes
+## 0.0.14 (2023-06-11)
+
+* (klein0r) Added validator for IP address
+* (klein0r) usedRam was renamed to freeRam
+
 ## 0.0.13 (2023-06-10)
 
 * (klein0r) Refresh all states when device was offline / not reachable

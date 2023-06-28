@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.1.2 (2023-06-28)
 
 * (klein0r) Limit the number of history items
 * (klein0r) Warn if a connected state has the wrong data type
@@ -67,11 +67,6 @@ Updated recommended firmware version to 0.69
 
 * (klein0r) Added option to hide own apps via state
 * (klein0r) Dropped framerate setting (no longer supported)
-
-### 0.0.14 (2023-06-11)
-
-* (klein0r) Added validator for IP address
-* (klein0r) usedRam was renamed to freeRam
 
 ## License
 MIT License
