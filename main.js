@@ -450,7 +450,9 @@ class AwtrixLight extends utils.Adapter {
                                     }
 
                                     if (text.includes('%u') && !obj?.common?.unit) {
-                                        this.log.warn(`[initCustomApps] Object of custom app "${customApp.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
+                                        this.log.warn(
+                                            `[initCustomApps] Object of custom app "${customApp.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`,
+                                        );
                                     }
 
                                     if (state && !state.ack) {
@@ -473,7 +475,9 @@ class AwtrixLight extends utils.Adapter {
                         this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
 
                         if (customApp.objId) {
-                            this.log.warn(`[initCustomApps] Custom app "${customApp.name}" was defined with object id ${customApp.objId} but "%s" is not used in the text - state changes will be ignored`);
+                            this.log.warn(
+                                `[initCustomApps] Custom app "${customApp.name}" was defined with object id ${customApp.objId} but "%s" is not used in the text - state changes will be ignored`,
+                            );
                         }
 
                         await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
@@ -621,7 +625,10 @@ class AwtrixLight extends utils.Adapter {
                                             ack: true,
                                         },
                                     });
-                                    const lineData = historyData?.result.filter((state) => typeof state.val === 'number' && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
+                                    const lineData = historyData?.result
+                                        .filter((state) => typeof state.val === 'number' && state.ack)
+                                        .map((state) => Math.round(state.val))
+                                        .slice(itemCount * -1);
 
                                     this.log.debug(
                                         `[initHistoryApps] History data for app "${historyApp.name}" of "${historyApp.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,
