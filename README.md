@@ -44,6 +44,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Limit the number of history items
+* (klein0r) Warn if a connected state has the wrong data type
 
 ### 0.1.1 (2023-06-22)
 

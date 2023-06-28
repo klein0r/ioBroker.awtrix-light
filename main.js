@@ -435,7 +435,7 @@ class AwtrixLight extends utils.Adapter {
                             const objId = customApp.objId;
                             if (!Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
                                 const obj = await this.getForeignObjectAsync(objId);
-                                if (obj) {
+                                if (obj && obj.type === 'state') {
                                     const state = await this.getForeignStateAsync(objId);
 
                                     this.customAppsForeignStates[objId] = {
@@ -444,6 +444,10 @@ class AwtrixLight extends utils.Adapter {
                                         unit: obj?.common?.unit,
                                         ts: state ? state.ts : Date.now(),
                                     };
+
+                                    if (obj?.common.type && !['string', 'number'].includes(obj.common.type)) {
+                                        this.log.warn(`[initCustomApps] Object of app "${customApp.name}" with id ${objId} has invalid type: ${obj.common.type}`);
+                                    }
 
                                     if (state && !state.ack) {
                                         this.log.info(`[initCustomApps] State value of custom app "${customApp.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
