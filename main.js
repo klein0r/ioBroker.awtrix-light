@@ -237,7 +237,9 @@ class AwtrixLight extends utils.Adapter {
             if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
                 if (this.apiConnected) {
-                    this.buildRequestAsync('notify', 'POST', obj.message)
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+
+                    this.buildRequestAsync('notify', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })
@@ -250,7 +252,9 @@ class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'timer' && typeof obj.message === 'object') {
                 // Timer
                 if (this.apiConnected) {
-                    this.buildRequestAsync('timer', 'POST', obj.message)
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+
+                    this.buildRequestAsync('timer', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })
@@ -263,7 +267,9 @@ class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
                 if (this.apiConnected) {
-                    this.buildRequestAsync('sound', 'POST', obj.message)
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+
+                    this.buildRequestAsync('sound', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })

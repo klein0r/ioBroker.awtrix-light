@@ -90,6 +90,7 @@ The following combinations will lead to a warning in the log:
 
 - A custom app with a selected object id of a state, but `%s` is missing in the text
 - A custom app with a selected object id of a state without a unit `common.unit`, but `%u` is used in the text
+- A custom app without a selected object, but `%s` has been used in the text
 
 ## History apps
 

@@ -255,8 +255,10 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '         </shadow>' +
     '     </value>' +
     '     <value name="SOUND">' +
+    '         <shadow type="logic_null"></shadow>' +
     '     </value>' +
     '     <value name="ICON">' +
+    '         <shadow type="logic_null"></shadow>' +
     '     </value>' +
     '     <value name="REPEAT">' +
     '         <shadow type="math_number">' +
@@ -355,12 +357,24 @@ Blockly.Sendto.blocks['awtrix-light_timer'] =
     '     <value name="INSTANCE">' +
     '     </value>' +
     '     <value name="SOUND">' +
+    '         <shadow type="text">' +
+    '             <field name="TEXT">...</field>' +
+    '         </shadow>' +
     '     </value>' +
     '     <value name="SECONDS">' +
+    '         <shadow type="math_number">' +
+    '             <field name="NUM">10</field>' +
+    '         </shadow>' +
     '     </value>' +
     '     <value name="MINUTES">' +
+    '         <shadow type="math_number">' +
+    '             <field name="NUM">0</field>' +
+    '         </shadow>' +
     '     </value>' +
     '     <value name="HOURS">' +
+    '         <shadow type="math_number">' +
+    '             <field name="NUM">0</field>' +
+    '         </shadow>' +
     '     </value>' +
     '</block>';
 
@@ -417,7 +431,16 @@ Blockly.JavaScript['awtrix-light_timer'] = function (block) {
     return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'timer', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };
 
-Blockly.Sendto.blocks['awtrix-light_playsound'] = '<block type="awtrix-light_playsound"><value name="INSTANCE"></value><value name="SOUND"></value></block>';
+Blockly.Sendto.blocks['awtrix-light_playsound'] =
+    '<block type="awtrix-light_playsound">' +
+    '     <value name="INSTANCE">' +
+    '     </value>' +
+    '     <value name="SOUND">' +
+    '         <shadow type="text">' +
+    '             <field name="TEXT">...</field>' +
+    '         </shadow>' +
+    '     </value>' +
+    '</block>';
 
 Blockly.Blocks['awtrix-light_playsound'] = {
     init: function () {

@@ -41,6 +41,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added default values to blockly blocks
+
 ### 0.1.2 (2023-06-28)
 
 * (klein0r) Limit the number of history items
