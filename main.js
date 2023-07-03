@@ -578,6 +578,7 @@ class AwtrixLight extends utils.Adapter {
                                     if (displayText.length > 0) {
                                         await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                                             text: displayText,
+                                            textCase: 2, // show as sent
                                             icon: customApp.icon,
                                             duration: customApp.duration || DEFAULT_DURATION,
                                         }).catch((error) => {
