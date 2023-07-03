@@ -237,7 +237,7 @@ class AwtrixLight extends utils.Adapter {
             if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
                 if (this.apiConnected) {
-                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
                     this.buildRequestAsync('notify', 'POST', msgFiltered)
                         .then((response) => {
@@ -252,7 +252,7 @@ class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'timer' && typeof obj.message === 'object') {
                 // Timer
                 if (this.apiConnected) {
-                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
                     this.buildRequestAsync('timer', 'POST', msgFiltered)
                         .then((response) => {
@@ -267,7 +267,7 @@ class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
                 if (this.apiConnected) {
-                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
                     this.buildRequestAsync('sound', 'POST', msgFiltered)
                         .then((response) => {
@@ -421,9 +421,13 @@ class AwtrixLight extends utils.Adapter {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
                 this.buildRequestAsync(`custom?name=${name}`, 'POST')
-                    .then(() => {
-                        this.log.debug(`(custom?name=${name}) Removed customApp app "${name}"`);
-                        resolve(true);
+                    .then((response) => {
+                        if (response.status === 200 && response.data === 'OK') {
+                            this.log.debug(`[removeApp] Removed customApp app "${name}"`);
+                            resolve(true);
+                        } else {
+                            reject(`${response.status}: ${response.data}`);
+                        }
                     })
                     .catch(reject);
             } else {
@@ -501,9 +505,7 @@ class AwtrixLight extends utils.Adapter {
                             );
                         }
 
-                        const displayText = text
-                            .replace('%u', '')
-                            .trim();
+                        const displayText = text.replace('%u', '').trim();
 
                         if (displayText.length > 0) {
                             await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
