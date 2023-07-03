@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "Added default values to blockly blocks\nRemove custom apps when text is empty",
+        "de": "Standardwerte zu Blockblöcken hinzugefügt\nEntfernen Sie benutzerdefinierte Apps, wenn Text leer ist",
+        "ru": "Добавлены значения по умолчанию для блокировки блоков\nУдалить пользовательские приложения, когда текст пуст",
+        "pt": "Adicionados valores padrão para blocos bloqueados\nRemover aplicativos personalizados quando o texto está vazio",
+        "nl": "Geadresseerde defaultwaarden tot blokken\nVerwijder de app wanneer de tekst leeg is",
+        "fr": "Ajout de valeurs par défaut pour bloquer\nSupprimer les applications personnalisées lorsque le texte est vide",
+        "it": "Aggiunti i valori predefiniti per bloccare i blocchi\nRimuovere le app personalizzate quando il testo è vuoto",
+        "es": "Valores predeterminados añadidos a bloques bloqueados\nEliminar aplicaciones personalizadas cuando el texto está vacío",
+        "pl": "Domyślne wartości blokowania bloków\nRemove aplikacje, gdy tekst jest pusty",
+        "uk": "Додано значення за замовчуванням для блокнотів\nВидалити користувацькі додатки, коли текст порожній",
+        "zh-cn": "增加停滞值以阻挡\n在案文空洞时取消习俗"
+      },
       "0.1.2": {
         "en": "Limit the number of history items\nWarn if a connected state has the wrong data type",
         "de": "Begrenzung der Anzahl der Geschichtsgegenstände\nWarnung, wenn ein angeschlossener Zustand den falschen Datentyp hat",
@@ -80,19 +93,6 @@
         "pl": "Added validator dla adresu IP\nram został przemianowany na freeRam",
         "uk": "Додана перевірка IP-адреси\njavaScript licenses API Веб-сайт Go1.13.8",
         "zh-cn": "增加IP地址有效者\n使用Ram改名为自由Ramm"
-      },
-      "0.0.13": {
-        "en": "Refresh all states when device was offline / not reachable\nAutomatically remove history apps (if not updated)\nImproved checks for history data",
-        "de": "Refresh alle Zustände, wenn das Gerät offline war / nicht erreichbar\nEntfernen Sie die Geschichtsapps automatisch (wenn nicht aktualisiert)\nVerbesserte Überprüfungen von Geschichtsdaten",
-        "ru": "Обновить все государства, когда устройство было оффлайн / не доступно\nАвтоматически удалять приложения истории (если не обновляется)\nУлучшенные проверки данных об истории",
-        "pt": "Refrescar todos os estados quando o dispositivo estava offline / não acessível\nRemova automaticamente aplicativos de histórico (se não atualizado)\nVerificações melhoradas para dados de histórico",
-        "nl": "Verfris alle staten wanneer het apparaat offline was en niet bereikbaar\nAutomatisch verwijder geschiedenis apps\nVertaling:",
-        "fr": "Rafraîchissez tous les états lorsque l'appareil était hors ligne / non accessible\nSupprimer automatiquement les applications d'historique (si elles ne sont pas mises à jour)\nAmélioration des contrôles pour les données d'histoire",
-        "it": "Aggiorna tutti gli stati quando il dispositivo era offline / non raggiungibile\nRimuovere automaticamente le app di storia (se non aggiornate)\nControlli migliori per i dati storici",
-        "es": "Refresh todos los estados cuando el dispositivo estaba fuera de línea / no accesible\nEliminar automáticamente las aplicaciones de la historia (si no se actualizan)\nControles mejorados para datos de historia",
-        "pl": "Refresh wszystkie stany, gdy urządzenie było nieosiągalne\nAutomatycznie usuwać aplikacje historyczne (nie zaktualizowane)\nPoprawa dotycząca danych historycznych",
-        "uk": "Відновити всі стани, коли пристрій був автономним / не досягається\nАвтоматично видаляти історичні додатки (якщо не оновлено)\nПоліпшення перевірок даних історії",
-        "zh-cn": "在所有国家里,当装置被赶出线/无法达到的状态\n自动取消历史遗骸(如未更新)\n改进历史数据的检查"
       }
     },
     "titleLang": {

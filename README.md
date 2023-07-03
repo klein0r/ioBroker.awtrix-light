@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.2.0 (2023-07-03)
 
 * (klein0r) Added default values to blockly blocks
 * (klein0r) Remove custom apps when text is empty
@@ -65,13 +65,6 @@ Updated recommended firmware version to 0.70
 
 * (klein0r) Added expert option for HTTP timeout
 * (klein0r) Added color settings for native apps
-
-### 0.0.15 (2023-06-13)
-
-Updated recommended firmware version to 0.69
-
-* (klein0r) Added option to hide own apps via state
-* (klein0r) Dropped framerate setting (no longer supported)
 
 ## License
 MIT License

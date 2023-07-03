@@ -1,4 +1,11 @@
 # Older changes
+## 0.0.15 (2023-06-13)
+
+Updated recommended firmware version to 0.69
+
+* (klein0r) Added option to hide own apps via state
+* (klein0r) Dropped framerate setting (no longer supported)
+
 ## 0.0.14 (2023-06-11)
 
 * (klein0r) Added validator for IP address
