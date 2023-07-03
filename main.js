@@ -177,10 +177,10 @@ class AwtrixLight extends utils.Adapter {
                         if (sourceObj && sourceObj.native?.name) {
                             this.log.debug(`changing visibility of app ${sourceObj.native.name} to ${state.val}`);
 
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+
                             this.initCustomApps();
                             this.initHistoryApps();
-
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                         }
                     }
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
@@ -417,6 +417,21 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
+    async removeApp(name) {
+        return new Promise((resolve, reject) => {
+            if (this.apiConnected) {
+                this.buildRequestAsync(`custom?name=${name}`, 'POST')
+                    .then(() => {
+                        this.log.debug(`(custom?name=${name}) Removed customApp app "${name}"`);
+                        resolve(true);
+                    })
+                    .catch(reject);
+            } else {
+                reject('API not connected');
+            }
+        });
+    }
+
     async initCustomApps() {
         if (this.apiConnected) {
             for (const customApp of this.config.customApps) {
@@ -433,8 +448,8 @@ class AwtrixLight extends utils.Adapter {
                     if (!appVisible) {
                         this.log.debug(`[initCustomApps] Going to remove custom app "${customApp.name}" (was hidden by state: apps.${customApp.name}.visible)`);
 
-                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
-                            this.log.warn(`(custom?name=${customApp.name}) Unable to remove customApp app "${customApp.name}" (hidden by state): ${error}`);
+                        await this.removeApp(customApp.name).catch((error) => {
+                            this.log.warn(`Unable to remove customApp app "${customApp.name}" (hidden by state): ${error}`);
                         });
                     } else if (customApp.objId && text.includes('%s')) {
                         try {
@@ -477,7 +492,7 @@ class AwtrixLight extends utils.Adapter {
                             this.log.error(`[initCustomApps] Unable to get object information for ${customApp.name}: ${error}`);
                         }
                     } else if (text.length > 0) {
-                        // App with static text (no objId specified)
+                        // App with static text (no %s specified)
                         this.log.debug(`[initCustomApps] Creating custom app "${customApp.name}" with icon "${customApp.icon}" and static text "${customApp.text}"`);
 
                         if (customApp.objId) {
@@ -486,13 +501,26 @@ class AwtrixLight extends utils.Adapter {
                             );
                         }
 
-                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                            text: text,
-                            icon: customApp.icon,
-                            duration: customApp.duration || DEFAULT_DURATION,
-                        }).catch((error) => {
-                            this.log.warn(`(custom?name=${customApp.name}) Unable to create custom app "${customApp.name}" with static text: ${error}`);
-                        });
+                        const displayText = text
+                            .replace('%u', '')
+                            .trim();
+
+                        if (displayText.length > 0) {
+                            await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                text: displayText,
+                                icon: customApp.icon,
+                                duration: customApp.duration || DEFAULT_DURATION,
+                            }).catch((error) => {
+                                this.log.warn(`(custom?name=${customApp.name}) Unable to create custom app "${customApp.name}" with static text: ${error}`);
+                            });
+                        } else {
+                            // Empty text => remove app
+                            this.log.debug(`[initCustomApps] Going to remove custom app "${customApp.name}" with static text (empty text)`);
+
+                            await this.removeApp(customApp.name).catch((error) => {
+                                this.log.warn(`Unable to remove customApp app "${customApp.name}" with static text (empty text): ${error}`);
+                            });
+                        }
                     }
                 } else {
                     this.log.warn(`[initCustomApps] Found custom app without name (skipped) - please check instance configuartion`);
@@ -540,21 +568,33 @@ class AwtrixLight extends utils.Adapter {
                                         }
                                     }
 
-                                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                        text: text
-                                            .replace('%s', newVal)
-                                            .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
-                                            .trim(),
-                                        icon: customApp.icon,
-                                        duration: customApp.duration || DEFAULT_DURATION,
-                                    }).catch((error) => {
-                                        this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
-                                    });
+                                    const displayText = text
+                                        .replace('%s', newVal)
+                                        .replace('%u', this.customAppsForeignStates[objId].unit ?? '')
+                                        .trim();
+
+                                    if (displayText.length > 0) {
+                                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                            text: displayText,
+                                            icon: customApp.icon,
+                                            duration: customApp.duration || DEFAULT_DURATION,
+                                        }).catch((error) => {
+                                            this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
+                                        });
+                                    } else {
+                                        // Empty text => remove app
+                                        this.log.debug(`[refreshCustomApps] Going to remove custom app "${customApp.name}" (empty text)`);
+
+                                        await this.removeApp(customApp.name).catch((error) => {
+                                            this.log.warn(`Unable to remove customApp app "${customApp.name}" (empty text): ${error}`);
+                                        });
+                                    }
                                 } else {
+                                    // No state value => remove app
                                     this.log.debug(`[refreshCustomApps] Going to remove custom app "${customApp.name}" (no state data)`);
 
-                                    await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST').catch((error) => {
-                                        this.log.warn(`(custom?name=${customApp.name}) Unable to remove customApp app "${customApp.name}" (no state data): ${error}`);
+                                    await this.removeApp(customApp.name).catch((error) => {
+                                        this.log.warn(`Unable to remove customApp app "${customApp.name}" (no state data): ${error}`);
                                     });
                                 }
                             }
@@ -609,8 +649,8 @@ class AwtrixLight extends utils.Adapter {
                             if (!appVisible) {
                                 this.log.debug(`[initHistoryApps] Going to remove history app "${historyApp.name}" (was hidden by state: apps.${historyApp.name}.visible)`);
 
-                                await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                    this.log.warn(`(custom?name=${historyApp.name}) Unable to remove history app "${historyApp.name}" (hidden by state): ${error}`);
+                                await this.removeApp(historyApp.name).catch((error) => {
+                                    this.log.warn(`Unable to remove history app "${historyApp.name}" (hidden by state): ${error}`);
                                 });
                             } else if (validSourceInstances.includes(historyApp.sourceInstance)) {
                                 const sourceObj = await this.getForeignObjectAsync(historyApp.objId);
@@ -655,8 +695,8 @@ class AwtrixLight extends utils.Adapter {
                                     } else {
                                         this.log.debug(`[initHistoryApps] Going to remove history app "${historyApp.name}" (no history data)`);
 
-                                        await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST').catch((error) => {
-                                            this.log.warn(`(custom?name=${historyApp.name}) Unable to remove history app "${historyApp.name}" (no history data): ${error}`);
+                                        await this.removeApp(historyApp.name).catch((error) => {
+                                            this.log.warn(`Unable to remove history app "${historyApp.name}" (no history data): ${error}`);
                                         });
                                     }
                                 } else {
@@ -807,8 +847,8 @@ class AwtrixLight extends utils.Adapter {
                                         this.log.info(`[createAppObjects] Deleting unknown app on awtrix light with name "${name}"`);
 
                                         try {
-                                            await this.buildRequestAsync(`custom?name=${name}`, 'POST').catch((error) => {
-                                                this.log.warn(`(custom?name=${name}) Unable to remove unknown app "${name}": ${error}`);
+                                            await this.removeApp(name).catch((error) => {
+                                                this.log.warn(`Unable to remove unknown app "${name}": ${error}`);
                                             });
                                         } catch (error) {
                                             this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);

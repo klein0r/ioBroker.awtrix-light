@@ -44,6 +44,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added default values to blockly blocks
+* (klein0r) Remove custom apps when text is empty
 
 ### 0.1.2 (2023-06-28)
 
