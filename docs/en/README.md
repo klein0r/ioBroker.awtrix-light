@@ -15,6 +15,16 @@
 2. Install the awtrix-light adapter in ioBroker (and add a new instance)
 3. Open the instance configuration and enter the IP address of the device in your local network
 
+## FAQ
+
+**Can I use the adapter to disable the native apps (like battery state and sensor data)?**
+
+No, this feature has been removed in the awtrix light firmware. Please use the on screen menu to hide these apps.
+
+**Is it possible to display boolean values with other text (not true/false)?**
+
+Just create an alias in `alias.0` of type `string` and convert your `boolean` value into any other text with a read function (like `val ? 'open' : 'closed'`). *This is an ioBroker feature and not related to this adapter.*
+
 ## Blockly and JavaScript
 
 `sendTo` / message box can be used to
