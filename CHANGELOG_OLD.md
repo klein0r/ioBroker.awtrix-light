@@ -1,4 +1,11 @@
 # Older changes
+## 0.0.16 (2023-06-14)
+
+Updated recommended firmware version to 0.70
+
+* (klein0r) Added expert option for HTTP timeout
+* (klein0r) Added color settings for native apps
+
 ## 0.0.15 (2023-06-13)
 
 Updated recommended firmware version to 0.69

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "news": {
+      "0.3.0": {
+        "en": "Admin adapter in version 6.6.0 is required\n\n* Updated instance configuration (new admin component)\n* Added several options for custom apps\n* Individual background color for each app",
+        "de": "Admin Adapter in Version 6.6.0 ist erforderlich\n\n* Aktualisierte Instanz-Konfiguration (neue Admin-Komponente)\n* Mehrere Optionen für benutzerdefinierte Apps hinzugefügt\n* Individuelle Hintergrundfarbe für jede App",
+        "ru": "Требуется админ адаптер в версии 6.6.0\n\n* Обновленная настройка (новый компонент админ)\n* Добавлены несколько вариантов для пользовательских приложений\n* Индивидуальный цвет фона для каждого приложения",
+        "pt": "Adaptador de administrador na versão 6.6.0 é necessário\n\n* Configuração de instância atualizada (novo componente admin)\n* Adicionado várias opções para aplicativos personalizados\n* Cor de fundo individual para cada aplicativo",
+        "nl": "Admin adapter in versie 6.6.0 is vereist\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVertaling:\n♪ Individuele achtergrondkleur voor elke app ♪",
+        "fr": "Adaptateur d'administration dans la version 6.6.0 est nécessaire\n\n* Configuration d'instance actualisée (nouveau composant admin)\n* Ajout de plusieurs options pour les applications personnalisées\n* Couleur de fond individuelle pour chaque application",
+        "it": "Adattatore di amministrazione nella versione 6.6.0 è richiesto\n\n* Configurazione delle istanze aggiornate (nuovo componente amministratore)\n* Aggiunto diverse opzioni per applicazioni personalizzate\n* Colore di sfondo individuale per ogni applicazione",
+        "es": "Admin adaptador en la versión 6.6.0 es necesario\n\n* Configuración actualizada de instancias (nuevo componente de administración)\n* Añadido varias opciones para aplicaciones personalizadas\n* Color de fondo individual para cada aplicación",
+        "pl": "Administrator w wersji 6.6.0\n\n* Zintegrowana konfiguracja instancji (nowa część)\n* Zbiór kilku opcji dla aplikacji zwyczajowych\nPoszczególne kolory tła dla każdej aplikacji",
+        "uk": "English, Українська, Français..\n\n* Оновлення конфігурації екземпляра (новий компонент адміністратора)\n* Додано кілька варіантів для користувацьких додатків\n* Індивідуальний фоновий колір для кожного додатка",
+        "zh-cn": "第6.6.0版的适应需要\n\n* 最新专题小组(新的专属部分)\n* 增加一些习惯材料的备选办法\n* 每一名照明的个人背景"
+      },
       "0.2.0": {
         "en": "Added default values to blockly blocks\nRemove custom apps when text is empty",
         "de": "Standardwerte zu Blockblöcken hinzugefügt\nEntfernen Sie benutzerdefinierte Apps, wenn Text leer ist",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do wersji 0.69\n\n* Wstępna opcja do ukrycia własnych aplikacji poprzez stan\n* Zyskanie klatratu (niem.)",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0,69\n\n* Додано можливість приховати власні додатки за допомогою держави\n* Встановити краплинний каркас (не довше підтримується)",
         "zh-cn": "最新建议的警觉版本到0.69\n\n* 增加通过国家掩藏自己的材料的选择。\n* 缩略语(未加支持)"
-      },
-      "0.0.14": {
-        "en": "Added validator for IP address\nusedRam was renamed to freeRam",
-        "de": "Hinzugefügt Validierung für IP-Adresse\ngebrauchtRam wurde in freeRam umbenannt",
-        "ru": "Добавлен валидатор для IP-адреса\nusedRam был переименован на freeRam",
-        "pt": "Validador adicionado para endereço IP\nusadoRam foi renomeado para freeRam",
-        "nl": "Aangepast voor IP-adres\nde gebruikteRam werd hernoemd om te bevrijden",
-        "fr": "Validateur ajouté pour adresse IP\nusedRam was renamed to freeRam",
-        "it": "Aggiunto validatore per indirizzo IP\nusatoRam è stato rinominato FreeRam",
-        "es": "Agregado validador para dirección IP\nusRam fue renombrado para freeRam",
-        "pl": "Added validator dla adresu IP\nram został przemianowany na freeRam",
-        "uk": "Додана перевірка IP-адреси\njavaScript licenses API Веб-сайт Go1.13.8",
-        "zh-cn": "增加IP地址有效者\n使用Ram改名为自由Ramm"
       }
     },
     "titleLang": {

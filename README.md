@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.0 (2023-07-05)
 
 Admin adapter in version 6.6.0 is required
 
@@ -66,13 +66,6 @@ Admin adapter in version 6.6.0 is required
 ### 0.1.0 (2023-06-16)
 
 * (klein0r) Added rainbow and color to blockly notifications
-
-### 0.0.16 (2023-06-14)
-
-Updated recommended firmware version to 0.70
-
-* (klein0r) Added expert option for HTTP timeout
-* (klein0r) Added color settings for native apps
 
 ## License
 MIT License
