@@ -42,10 +42,14 @@
                     "lg": 12
                 },
                 "customApps": {
-                    "type": "table",
+                    "newLine": true,
+                    "type": "custom",
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "i18n": true,
+                    "url": "custom/customComponents.js",
+                    "name": "ConfigCustomAwtrixSet/Components/AwtrixAppComponent",
                     "items": [
                         {
                             "type": "text",
@@ -194,10 +198,14 @@
                     "lg": 12
                 },
                 "historyApps": {
-                    "type": "table",
+                    "newLine": true,
+                    "type": "custom",
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "i18n": true,
+                    "url": "custom/customComponents.js",
+                    "name": "ConfigCustomAwtrixSet/Components/AwtrixAppComponent",
                     "items": [
                         {
                             "type": "text",
