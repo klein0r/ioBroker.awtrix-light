@@ -5,7 +5,7 @@ import Utils from '@iobroker/adapter-react-v5/Components/Utils';
 import App from './App'
 import theme from './theme';
 
-window.adapterName = 'adapter-component-template';
+window.adapterName = 'awtrix-light';
 let themeName = Utils.getThemeName();
 
 function build() {

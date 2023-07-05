@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@mui/styles';
 
@@ -24,7 +24,7 @@ import CopyContentIcon from '@mui/icons-material/ContentCopy';
 // invalid
 // import ConfigGeneric from '@iobroker/adapter-react-v5/ConfigGeneric';
 // valid
-import { ConfigGeneric, Confirm, i18n as I18n } from '@iobroker/adapter-react-v5';
+import { ConfigGeneric, Confirm, i18n as I18n, Utils } from '@iobroker/adapter-react-v5';
 
 const styles = theme => ({
     fullWidth: {

@@ -76,6 +76,133 @@ class App extends GenericApp {
                             schema={{
                                 name: 'ConfigCustomAwtrixSet/Components/AwtrixAppComponent',
                                 type: 'custom',
+                                "items": [
+                                  {
+                                      "type": "text",
+                                      "attr": "name",
+                                      "width": "20%",
+                                      "title": {
+                                          "en": "Name",
+                                          "de": "Name",
+                                          "ru": "Имя",
+                                          "pt": "Nome",
+                                          "nl": "Naam",
+                                          "fr": "Nom",
+                                          "it": "Nome",
+                                          "es": "Nombre",
+                                          "pl": "Nazwa",
+                                          "uk": "Ім'я",
+                                          "zh-cn": "姓名"
+                                      },
+                                      "filter": true,
+                                      "sort": true,
+                                      "default": "",
+                                      "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'eyes', 'date', 'temp', 'hum', 'bat'].includes(data.name) && globalData.customApps.concat(globalData.historyApps).filter(app => app.name === data.name).length === 1",
+                                      "validatorErrorText": "Just lower case letters (a-z)",
+                                      "validatorNoSaveOnError": true
+                                  },
+                                  {
+                                      "type": "text",
+                                      "attr": "icon",
+                                      "width": "20%",
+                                      "title": {
+                                          "en": "Icon",
+                                          "de": "Symbol",
+                                          "ru": "Значок",
+                                          "pt": "Ícone",
+                                          "nl": "Icoon",
+                                          "fr": "Icône",
+                                          "it": "Icona",
+                                          "es": "Icono",
+                                          "pl": "Ikona",
+                                          "zh-cn": "图标"
+                                      },
+                                      "filter": false,
+                                      "sort": false
+                                  },
+                                  {
+                                      "type": "text",
+                                      "attr": "text",
+                                      "width": "25%",
+                                      "title": {
+                                          "en": "Text",
+                                          "de": "Text",
+                                          "ru": "Текст",
+                                          "pt": "Texto",
+                                          "nl": "Tekst",
+                                          "fr": "Texte",
+                                          "it": "Testo",
+                                          "es": "Texto",
+                                          "pl": "Tekst",
+                                          "zh-cn": "文本"
+                                      },
+                                      "filter": false,
+                                      "sort": false,
+                                      "default": "%s %u"
+                                  },
+                                  {
+                                      "type": "objectId",
+                                      "attr": "objId",
+                                      "width": "25%",
+                                      "title": {
+                                          "en": "Object",
+                                          "de": "Obiekt",
+                                          "ru": "Объект",
+                                          "pt": "Objeto",
+                                          "nl": "Object",
+                                          "fr": "Objet",
+                                          "it": "Oggetto",
+                                          "es": "Objeto",
+                                          "pl": "Obiekt",
+                                          "uk": "Об'єкт",
+                                          "zh-cn": "目 录"
+                                      },
+                                      "filter": false,
+                                      "sort": false,
+                                      "default": ""
+                                  },
+                                  {
+                                      "type": "number",
+                                      "attr": "decimals",
+                                      "width": "15%",
+                                      "title": {
+                                          "en": "Decimals",
+                                          "de": "Dezimalstellen",
+                                          "ru": "Денимации",
+                                          "pt": "Decimais",
+                                          "nl": "Decimale",
+                                          "fr": "Décimales",
+                                          "it": "Decimali",
+                                          "es": "Decimales",
+                                          "pl": "Dekret",
+                                          "uk": "Декілька",
+                                          "zh-cn": "青少年"
+                                      },
+                                      "filter": false,
+                                      "sort": false,
+                                      "default": 3
+                                  },
+                                  {
+                                      "type": "number",
+                                      "attr": "duration",
+                                      "width": "15%",
+                                      "title": {
+                                          "en": "Duration (sec)",
+                                          "de": "Dauer (Sek.)",
+                                          "ru": "Продолжительность (сек)",
+                                          "pt": "Duração (s)",
+                                          "nl": "Duur (sec)",
+                                          "fr": "Durée (sec)",
+                                          "it": "Durata (sec)",
+                                          "es": "Duración (seg)",
+                                          "pl": "Czas trwania (s)",
+                                          "zh-cn": "持续时间（秒）"
+                                      },
+                                      "filter": false,
+                                      "sort": false,
+                                      "default": 5
+                                  }
+                              ]
                             }}
                             onChange={data => {
                                 this.setState({ data });
