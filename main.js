@@ -761,7 +761,7 @@ class AwtrixLight extends utils.Adapter {
                                 }
 
                                 // Create new app structure for all native apps and apps of instance configuration
-                                for (const name of NATIVE_APPS.concat(customApps).concat(historyApps)) {
+                                for (const name of [...NATIVE_APPS, ...customApps, ...historyApps]) {
                                     appsKeep.push(`${appPath}.${name}`);
                                     this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
 
