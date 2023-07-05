@@ -25,6 +25,18 @@ No, this feature has been removed in the awtrix light firmware. Please use the o
 
 Just create an alias in `alias.0` of type `string` and convert your `boolean` value into any other text with a read function (like `val ? 'open' : 'closed'`). *This is an ioBroker feature and not related to this adapter.*
 
+**How can I update to the latest firmware version?**
+
+Just use the [onscreen menu](https://blueforcer.github.io/awtrix-light/#/onscreen) and navigate to `update`. No need to use the web flasher again.
+
+**The device is getting hot while charging.**
+
+The hardware design is not the best. Please use a power supply which deliveres max. 1A.
+
+**Is it possible to remove the battery from the device?**
+
+Yes, but you have to open the case with a heat gun (since the front glued to the case) and [modify the PCB with a step down converter](https://github.com/Blueforcer/awtrix-light/issues/67#issuecomment-1595418765).
+
 ## Blockly and JavaScript
 
 `sendTo` / message box can be used to
