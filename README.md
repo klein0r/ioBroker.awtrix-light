@@ -41,6 +41,13 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+Admin adapter in version 6.6.0 is required
+
+* (klein0r) Updated instance configuration (new admin component)
+* (klein0r) Added several options for custom apps
+
 ### 0.2.0 (2023-07-03)
 
 * (klein0r) Added default values to blockly blocks

@@ -576,11 +576,29 @@ class AwtrixLight extends utils.Adapter {
                                         .trim();
 
                                     if (displayText.length > 0) {
+                                        const moreOptions = {};
+
+                                        // Set rainbow colors OR text color
+                                        if (customApp.rainbow) {
+                                            moreOptions.rainbow = true;
+                                        } else if (customApp.textColor) {
+                                            moreOptions.textColor = customApp.textColor;
+                                        }
+
+                                        // Set noScroll OR scroll speed
+                                        if (customApp.noScroll) {
+                                            moreOptions.noScroll = true;
+                                        } else if (customApp.scrollSpeed) {
+                                            moreOptions.scrollSpeed = customApp.scrollSpeed;
+                                        }
+
                                         await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
                                             text: displayText,
                                             textCase: 2, // show as sent
                                             icon: customApp.icon,
                                             duration: customApp.duration || DEFAULT_DURATION,
+                                            repeat: customApp.repeat || 1,
+                                            ...moreOptions
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
                                         });
@@ -691,6 +709,7 @@ class AwtrixLight extends utils.Adapter {
                                             autoscale: true,
                                             icon: historyApp.icon,
                                             duration: historyApp.duration || DEFAULT_DURATION,
+                                            repeat: customApp.repeat || 1,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
