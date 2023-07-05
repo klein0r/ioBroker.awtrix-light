@@ -124,10 +124,19 @@
                             "attr": "decimals",
                             "label": "Decimals",
                             "sm": 12,
-                            "md": 4,
-                            "lg": 4,
+                            "md": 2,
+                            "lg": 2,
                             "default": 3,
                             "help": "Numeric values will be rounded"
+                        },
+                        {
+                            "type": "color",
+                            "attr": "backgroundColor",
+                            "label": "Background color",
+                            "sm": 12,
+                            "md": 2,
+                            "lg": 2,
+                            "default": "#000000"
                         },
                         {
                             "newLine": true,
@@ -280,28 +289,29 @@
                             "attr": "lineColor",
                             "label": "Color",
                             "sm": 12,
-                            "md": 4,
-                            "lg": 4,
+                            "md": 2,
+                            "lg": 2,
                             "default": "#FF0000",
                             "help": "Line color of chart"
+                        },
+                        {
+                            "type": "color",
+                            "attr": "backgroundColor",
+                            "label": "Background color",
+                            "sm": 12,
+                            "md": 2,
+                            "lg": 2,
+                            "default": "#000000"
                         }
                     ]
-                },
-                "historyAppsBackgroundColor": {
-                    "newLine": true,
-                    "type": "color",
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 6,
-                    "label": "Background color"
                 },
                 "historyAppsRefreshInterval": {
                     "type": "number",
                     "min": 60,
                     "max": 86400,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6,
+                    "md": 4,
+                    "lg": 4,
                     "label": "Refresh interval (in seconds)"
                 },
                 "_dividerBottom": {

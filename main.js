@@ -582,7 +582,7 @@ class AwtrixLight extends utils.Adapter {
                                         if (customApp.rainbow) {
                                             moreOptions.rainbow = true;
                                         } else if (customApp.textColor) {
-                                            moreOptions.textColor = customApp.textColor;
+                                            moreOptions.color = customApp.textColor;
                                         }
 
                                         // Set noScroll OR scroll speed
@@ -593,6 +593,7 @@ class AwtrixLight extends utils.Adapter {
                                         }
 
                                         await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
+                                            background: customApp.backgroundColor || '#000000',
                                             text: displayText,
                                             textCase: 2, // show as sent
                                             icon: customApp.icon,
@@ -704,7 +705,7 @@ class AwtrixLight extends utils.Adapter {
                                     if (lineData.length > 0) {
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
                                             color: historyApp.lineColor ?? '#FF0000',
-                                            background: this.config.historyAppsBackgroundColor,
+                                            background: historyApp.backgroundColor || '#000000',
                                             line: lineData,
                                             autoscale: true,
                                             icon: historyApp.icon,
