@@ -599,7 +599,7 @@ class AwtrixLight extends utils.Adapter {
                                             icon: customApp.icon,
                                             duration: customApp.duration || DEFAULT_DURATION,
                                             repeat: customApp.repeat || 1,
-                                            ...moreOptions
+                                            ...moreOptions,
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
                                         });
@@ -710,7 +710,7 @@ class AwtrixLight extends utils.Adapter {
                                             autoscale: true,
                                             icon: historyApp.icon,
                                             duration: historyApp.duration || DEFAULT_DURATION,
-                                            repeat: customApp.repeat || 1,
+                                            repeat: historyApp.repeat || 1,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
