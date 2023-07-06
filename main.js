@@ -618,11 +618,15 @@ class AwtrixLight extends utils.Adapter {
             moreOptions.scrollSpeed = customApp.scrollSpeed;
         }
 
+        // Icon
+        if (customApp.icon) {
+            moreOptions.icon = customApp.icon;
+        }
+
         return {
             background: customApp.backgroundColor || '#000000',
             text,
             textCase: 2, // show as sent
-            icon: customApp.icon,
             duration: customApp.duration || DEFAULT_DURATION,
             repeat: customApp.repeat || 1,
             ...moreOptions,
