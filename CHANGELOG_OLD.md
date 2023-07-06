@@ -1,4 +1,8 @@
 # Older changes
+## 0.1.0 (2023-06-16)
+
+* (klein0r) Added rainbow and color to blockly notifications
+
 ## 0.0.16 (2023-06-14)
 
 Updated recommended firmware version to 0.70

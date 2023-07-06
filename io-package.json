@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
+      "0.3.1": {
+        "en": "Some app options were ignored for static text apps",
+        "de": "Einige App-Optionen wurden für statische Text-Apps ignoriert",
+        "ru": "Некоторые варианты приложений были проигнорированы для статических текстовых приложений",
+        "pt": "Algumas opções de aplicativos foram ignoradas para aplicativos de texto estático",
+        "nl": "Sommige app opties werden genegeerd voor statische sms apps",
+        "fr": "Certaines options d'application ont été ignorées pour les applications de texte statique",
+        "it": "Alcune opzioni app sono state ignorate per applicazioni di testo statiche",
+        "es": "Algunas opciones de aplicación fueron ignoradas para aplicaciones de texto estático",
+        "pl": "Niektóre opcje aplikacji zostały zignorowane za statyczne aplikacje tekstowe",
+        "uk": "Деякі параметри програми ігнорувалися для статичних текстових додатків",
+        "zh-cn": "对静态案文的一些可观的选择置若罔闻。"
+      },
       "0.3.0": {
         "en": "Admin adapter in version 6.6.0 is required\n\n* Updated instance configuration (new admin component)\n* Added several options for custom apps\n* Individual background color for each app",
         "de": "Admin Adapter in Version 6.6.0 ist erforderlich\n\n* Aktualisierte Instanz-Konfiguration (neue Admin-Komponente)\n* Mehrere Optionen für benutzerdefinierte Apps hinzugefügt\n* Individuelle Hintergrundfarbe für jede App",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do zalecenia\n\n* Added expert option for HTTP timeout\nAdded color settings for native apps",
         "uk": "Оновлено рекомендовану версію прошивки до 0.70\n\n* Додано експертну опцію для HTTP-timeout\n* Додано параметри кольору для рідних додатків",
         "zh-cn": "最新建议的警觉版本\n\n* 增加专家时间安排\n* 增加当地矿床的颜色环境"
-      },
-      "0.0.15": {
-        "en": "Updated recommended firmware version to 0.69\n\n* Added option to hide own apps via state\n* Dropped framerate setting (no longer supported)",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0,69\n\n* Zusätzliche Möglichkeit, eigene Apps über Zustand zu verstecken\n* Geblendete Rahmeneinstellung (nicht mehr unterstützt)",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.69\n\n* Добавлена возможность скрыть собственные приложения через государство\n* Dropped Framerate настройка (больше не поддерживается)",
-        "pt": "Versão de firmware recomendada atualizada para 0.69\n\n* Adicionado opção para esconder próprios aplicativos via estado\n* Configuração dropped framerate (não suportado mais)",
-        "nl": "Aanbevolen firmaware versie naar 0.69\n\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Dropped framerate setting (no langer ondersteund)",
-        "fr": "Version mise à jour du firmware recommandée à 0.69\n\n* Ajout de l'option pour cacher ses propres applications via l'état\n* Réglage encadré abandonné (sans support)",
-        "it": "Versione firmware consigliata aggiornata a 0.69\n\n* Aggiunta opzione per nascondere le proprie applicazioni via stato\n* Impostazione framerate a goccia (non supportata più)",
-        "es": "Versión actualizada recomendada de firmware a 0.69\n\n* opción adicional para ocultar aplicaciones propias a través del estado\n* Ajuste de framerate desplegado (no soportado más)",
-        "pl": "Zalecona wersja oprogramowania do wersji 0.69\n\n* Wstępna opcja do ukrycia własnych aplikacji poprzez stan\n* Zyskanie klatratu (niem.)",
-        "uk": "Оновлено рекомендовану версію мікропрограми до 0,69\n\n* Додано можливість приховати власні додатки за допомогою держави\n* Встановити краплинний каркас (не довше підтримується)",
-        "zh-cn": "最新建议的警觉版本到0.69\n\n* 增加通过国家掩藏自己的材料的选择。\n* 缩略语(未加支持)"
       }
     },
     "titleLang": {
