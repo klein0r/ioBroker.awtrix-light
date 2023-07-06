@@ -508,11 +508,7 @@ class AwtrixLight extends utils.Adapter {
                         const displayText = text.replace('%u', '').trim();
 
                         if (displayText.length > 0) {
-                            await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                text: displayText,
-                                icon: customApp.icon,
-                                duration: customApp.duration || DEFAULT_DURATION,
-                            }).catch((error) => {
+                            await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', this.createAppRequestObj(customApp, displayText)).catch((error) => {
                                 this.log.warn(`(custom?name=${customApp.name}) Unable to create custom app "${customApp.name}" with static text: ${error}`);
                             });
                         } else {
@@ -576,31 +572,7 @@ class AwtrixLight extends utils.Adapter {
                                         .trim();
 
                                     if (displayText.length > 0) {
-                                        const moreOptions = {};
-
-                                        // Set rainbow colors OR text color
-                                        if (customApp.rainbow) {
-                                            moreOptions.rainbow = true;
-                                        } else if (customApp.textColor) {
-                                            moreOptions.color = customApp.textColor;
-                                        }
-
-                                        // Set noScroll OR scroll speed
-                                        if (customApp.noScroll) {
-                                            moreOptions.noScroll = true;
-                                        } else if (customApp.scrollSpeed) {
-                                            moreOptions.scrollSpeed = customApp.scrollSpeed;
-                                        }
-
-                                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', {
-                                            background: customApp.backgroundColor || '#000000',
-                                            text: displayText,
-                                            textCase: 2, // show as sent
-                                            icon: customApp.icon,
-                                            duration: customApp.duration || DEFAULT_DURATION,
-                                            repeat: customApp.repeat || 1,
-                                            ...moreOptions,
-                                        }).catch((error) => {
+                                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', this.createAppRequestObj(customApp, displayText)).catch((error) => {
                                             this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
                                         });
                                     } else {
@@ -627,6 +599,34 @@ class AwtrixLight extends utils.Adapter {
                 }
             }
         }
+    }
+
+    createAppRequestObj(customApp, text) {
+        const moreOptions = {};
+
+        // Set rainbow colors OR text color
+        if (customApp.rainbow) {
+            moreOptions.rainbow = true;
+        } else if (customApp.textColor) {
+            moreOptions.color = customApp.textColor;
+        }
+
+        // Set noScroll OR scroll speed
+        if (customApp.noScroll) {
+            moreOptions.noScroll = true;
+        } else if (customApp.scrollSpeed) {
+            moreOptions.scrollSpeed = customApp.scrollSpeed;
+        }
+
+        return {
+            background: customApp.backgroundColor || '#000000',
+            text,
+            textCase: 2, // show as sent
+            icon: customApp.icon,
+            duration: customApp.duration || DEFAULT_DURATION,
+            repeat: customApp.repeat || 1,
+            ...moreOptions,
+        };
     }
 
     async initHistoryApps() {
