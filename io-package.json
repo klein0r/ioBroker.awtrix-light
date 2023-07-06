@@ -276,7 +276,7 @@
       }
     },
     {
-      "_id": "settings.textSpeed",
+      "_id": "settings.transitionSpeed",
       "type": "state",
       "common": {
         "name": {
@@ -568,6 +568,33 @@
       }
     },
     {
+      "_id": "settings.blockButtons",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Disable physical buttons",
+          "de": "Physische Tasten deaktivieren",
+          "ru": "Отключить физические кнопки",
+          "pt": "Desativar botões físicos",
+          "nl": "Disable fysieke knoppen",
+          "fr": "Désactiver les boutons physiques",
+          "it": "Disattivare i pulsanti fisici",
+          "es": "Desactivar botones físicos",
+          "pl": "Nieodpowiednie przycisk fizyczny",
+          "uk": "Відключені фізичні кнопки",
+          "zh-cn": "A. 有形但顿"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {
+        "settingsKey": "BLOCKN"
+      }
+    },
+    {
       "_id": "settings.textUppercase",
       "type": "state",
       "common": {
@@ -722,6 +749,34 @@
       },
       "native": {
         "settingsKey": "BAT_COL"
+      }
+    },
+    {
+      "_id": "settings.textScrollSpeed",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Text scrolling speed",
+          "de": "Textlaufgeschwindigkeit",
+          "ru": "Скорость прокрутки текста",
+          "pt": "Velocidade de rolagem de texto",
+          "nl": "Vertaling:",
+          "fr": "Vitesse de défilement du texte",
+          "it": "Velocità di scorrimento del testo",
+          "es": "Velocidad de desplazamiento de texto",
+          "pl": "Szybkość",
+          "uk": "Швидкість прокручування тексту",
+          "zh-cn": "案文加速"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "min": 1,
+        "max": 100
+      },
+      "native": {
+        "settingsKey": "SSPEED"
       }
     },
     {
