@@ -293,7 +293,7 @@ class AwtrixLight extends utils.Adapter {
 
     async setApiConnected(connection) {
         if (connection !== this.apiConnected) {
-            this.setStateChangedAsync('info.connection', { val: connection, ack: true });
+            await this.setStateChangedAsync('info.connection', { val: connection, ack: true });
             this.apiConnected = connection;
 
             if (connection) {
@@ -1031,7 +1031,7 @@ class AwtrixLight extends utils.Adapter {
                 }
             }
 
-            this.setApiConnected(false);
+            await this.setApiConnected(false);
 
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
