@@ -1,4 +1,8 @@
 # Older changes
+## 0.1.1 (2023-06-22)
+
+* (klein0r) Improved error handling when device is not reachable
+
 ## 0.1.0 (2023-06-16)
 
 * (klein0r) Added rainbow and color to blockly notifications

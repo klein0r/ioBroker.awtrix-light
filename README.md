@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.2 (2023-07-06)
 
 * (klein0r) Delete apps on instance stop (configurable)
 * (klein0r) Added scrolling speed to settings
@@ -68,10 +68,6 @@ Admin adapter in version 6.6.0 is required
 
 * (klein0r) Limit the number of history items
 * (klein0r) Warn if a connected state has the wrong data type
-
-### 0.1.1 (2023-06-22)
-
-* (klein0r) Improved error handling when device is not reachable
 
 ## License
 MIT License
