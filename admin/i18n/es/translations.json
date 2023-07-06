@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Definir una fuente válida para los datos del historial",
     "Select data source": "Seleccionar fuente de datos",
     "Color": "Color",
-    "Line color of chart": "Color de línea del gráfico"
+    "Line color of chart": "Color de línea del gráfico",
+    "Delete apps when instance is stopped": "Eliminar aplicaciones cuando se detiene la instancia"
 }

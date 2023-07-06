@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Definiere ein gültige Quelle für Verlaufsdaten",
     "Select data source": "Datenquelle auswählen",
     "Color": "Farbe",
-    "Line color of chart": "Linienfarbe des Diagramms"
+    "Line color of chart": "Linienfarbe des Diagramms",
+    "Delete apps when instance is stopped": "Apps löschen, wenn die Instanz gestoppt wird"
 }

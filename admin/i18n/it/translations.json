@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Definire un'origine valida per i dati cronologici",
     "Select data source": "Seleziona l'origine dati",
     "Color": "Colore",
-    "Line color of chart": "Colore della linea del grafico"
+    "Line color of chart": "Colore della linea del grafico",
+    "Delete apps when instance is stopped": "Elimina le app quando l'istanza viene arrestata"
 }

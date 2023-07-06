@@ -33,5 +33,6 @@
     "Define a valid source for history data": "定义历史数据的有效来源",
     "Select data source": "选择数据源",
     "Color": "颜色",
-    "Line color of chart": "图表的线条颜色"
+    "Line color of chart": "图表的线条颜色",
+    "Delete apps when instance is stopped": "实例停止时删除应用程序"
 }

@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Definieer een geldige bron voor historische gegevens",
     "Select data source": "Selecteer gegevensbron",
     "Color": "Kleur",
-    "Line color of chart": "Lijnkleur van de grafiek"
+    "Line color of chart": "Lijnkleur van de grafiek",
+    "Delete apps when instance is stopped": "Verwijder apps wanneer de instantie is gestopt"
 }

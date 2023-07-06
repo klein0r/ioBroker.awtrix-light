@@ -878,7 +878,7 @@ class AwtrixLight extends utils.Adapter {
                                                 this.log.warn(`Unable to remove unknown app "${name}": ${error}`);
                                             });
                                         } catch (error) {
-                                            this.log.error(`[createAppObjects] Unable to delete custom app ${name}: ${error}`);
+                                            this.log.error(`[createAppObjects] Unable to delete unknown app ${name}: ${error}`);
                                         }
                                     }
                                 }
@@ -1011,8 +1011,26 @@ class AwtrixLight extends utils.Adapter {
     /**
      * @param {() => void} callback
      */
-    onUnload(callback) {
+    async onUnload(callback) {
         try {
+            if (this.config.removeAppsOnStop) {
+                const customApps = this.config.customApps.map((a) => a.name);
+                const historyApps = this.config.historyApps.map((a) => a.name);
+
+                // Delete unknown apps on awtrix light
+                for (const name of [...customApps, ...historyApps]) {
+                    this.log.info(`[onUnload] Deleting app on awtrix light with name "${name}"`);
+
+                    try {
+                        await this.removeApp(name).catch((error) => {
+                            this.log.warn(`Unable to remove unknown app "${name}": ${error}`);
+                        });
+                    } catch (error) {
+                        this.log.error(`[onUnload] Unable to delete app ${name}: ${error}`);
+                    }
+                }
+            }
+
             this.setApiConnected(false);
 
             if (this.refreshStateTimeout) {

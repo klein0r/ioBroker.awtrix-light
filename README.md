@@ -43,6 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Delete apps on instance stop (configurable)
 * (klein0r) Added scrolling speed to settings
 * (klein0r) Added block buttons to settings
 

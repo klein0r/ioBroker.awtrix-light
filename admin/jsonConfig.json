@@ -8,10 +8,10 @@
             "items": {
                 "awtrixIp": {
                     "type": "text",
+                    "label": "IP",
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
-                    "label": "IP",
                     "help": "IP address of your Awtrix Light device",
                     "validator": "String(data.awtrixIp).length > 0 && !String(data.awtrixIp).startsWith('http')",
                     "validatorErrorText": "Invalid IP address",
@@ -332,12 +332,12 @@
                 },
                 "historyAppsRefreshInterval": {
                     "type": "number",
+                    "label": "Refresh interval (in seconds)",
                     "min": 60,
                     "max": 86400,
                     "sm": 12,
                     "md": 4,
-                    "lg": 4,
-                    "label": "Refresh interval (in seconds)"
+                    "lg": 4
                 },
                 "_dividerBottom": {
                     "newLine": true,
@@ -349,10 +349,17 @@
                 "autoDeleteForeignApps": {
                     "newLine": true,
                     "type": "checkbox",
+                    "label": "Automatically delete unknown apps",
                     "sm": 12,
                     "md": 6,
-                    "lg": 6,
-                    "label": "Automatically delete unknown apps"
+                    "lg": 6
+                },
+                "removeAppsOnStop": {
+                    "type": "checkbox",
+                    "label": "Delete apps when instance is stopped",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6
                 }
             }
         },

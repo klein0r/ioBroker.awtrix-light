@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Определите действительный источник для данных истории",
     "Select data source": "Выберите источник данных",
     "Color": "Цвет",
-    "Line color of chart": "Цвет линии графика"
+    "Line color of chart": "Цвет линии графика",
+    "Delete apps when instance is stopped": "Удалить приложения, когда экземпляр остановлен"
 }

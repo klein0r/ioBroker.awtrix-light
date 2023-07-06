@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Définir une source valide pour les données d'historique",
     "Select data source": "Sélectionnez la source de données",
     "Color": "Couleur",
-    "Line color of chart": "Couleur des lignes du graphique"
+    "Line color of chart": "Couleur des lignes du graphique",
+    "Delete apps when instance is stopped": "Supprimer les applications lorsque l'instance est arrêtée"
 }

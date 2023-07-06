@@ -33,5 +33,6 @@
     "Define a valid source for history data": "Визначте дійсне джерело для даних історії",
     "Select data source": "Виберіть джерело даних",
     "Color": "колір",
-    "Line color of chart": "Колір лінії діаграми"
+    "Line color of chart": "Колір лінії діаграми",
+    "Delete apps when instance is stopped": "Видалити програми, коли екземпляр зупинено"
 }
