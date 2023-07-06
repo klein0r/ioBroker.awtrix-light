@@ -34,5 +34,6 @@
     "Select data source": "Seleziona l'origine dati",
     "Color": "Colore",
     "Line color of chart": "Colore della linea del grafico",
-    "Delete apps when instance is stopped": "Elimina le app quando l'istanza viene arrestata"
+    "Delete apps when instance is stopped": "Elimina le app quando l'istanza viene arrestata",
+    "0 = default": "0 = predefinito"
 }

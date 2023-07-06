@@ -34,5 +34,6 @@
     "Select data source": "Выберите источник данных",
     "Color": "Цвет",
     "Line color of chart": "Цвет линии графика",
-    "Delete apps when instance is stopped": "Удалить приложения, когда экземпляр остановлен"
+    "Delete apps when instance is stopped": "Удалить приложения, когда экземпляр остановлен",
+    "0 = default": "0 = по умолчанию"
 }

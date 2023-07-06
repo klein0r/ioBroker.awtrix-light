@@ -41,6 +41,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Use default duration if 0
+
 ### 0.3.2 (2023-07-06)
 
 * (klein0r) Delete apps on instance stop (configurable)

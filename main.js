@@ -5,7 +5,6 @@ const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
-const DEFAULT_DURATION = 5;
 const NATIVE_APPS = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
 
 class AwtrixLight extends utils.Adapter {
@@ -623,11 +622,15 @@ class AwtrixLight extends utils.Adapter {
             moreOptions.icon = customApp.icon;
         }
 
+        // Duration
+        if (customApp.duration > 0) {
+            moreOptions.icon = customApp.duration;
+        }
+
         return {
             background: customApp.backgroundColor || '#000000',
             text,
             textCase: 2, // show as sent
-            duration: customApp.duration || DEFAULT_DURATION,
             repeat: customApp.repeat || 1,
             ...moreOptions,
         };
@@ -707,15 +710,22 @@ class AwtrixLight extends utils.Adapter {
                                     );
 
                                     if (lineData.length > 0) {
+                                        const moreOptions = {};
+
+                                        // Duration
+                                        if (historyApp.duration > 0) {
+                                            moreOptions.icon = historyApp.duration;
+                                        }
+
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
                                             color: historyApp.lineColor ?? '#FF0000',
                                             background: historyApp.backgroundColor || '#000000',
                                             line: lineData,
                                             autoscale: true,
                                             icon: historyApp.icon,
-                                            duration: historyApp.duration || DEFAULT_DURATION,
                                             repeat: historyApp.repeat || 1,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
+                                            ...moreOptions,
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
                                         });

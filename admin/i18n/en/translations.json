@@ -34,5 +34,6 @@
     "Select data source": "Select data source",
     "Color": "Color",
     "Line color of chart": "Line color of chart",
-    "Delete apps when instance is stopped": "Delete apps when instance is stopped"
+    "Delete apps when instance is stopped": "Delete apps when instance is stopped",
+    "0 = default": "0 = default"
 }

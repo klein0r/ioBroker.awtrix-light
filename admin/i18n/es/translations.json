@@ -34,5 +34,6 @@
     "Select data source": "Seleccionar fuente de datos",
     "Color": "Color",
     "Line color of chart": "Color de línea del gráfico",
-    "Delete apps when instance is stopped": "Eliminar aplicaciones cuando se detiene la instancia"
+    "Delete apps when instance is stopped": "Eliminar aplicaciones cuando se detiene la instancia",
+    "0 = default": "0 = predeterminado"
 }

@@ -105,8 +105,9 @@
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
-                            "default": 5,
-                            "min": 1
+                            "default": 0,
+                            "min": 0,
+                            "help": "0 = default"
                         },
                         {
                             "type": "number",
@@ -270,8 +271,9 @@
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
-                            "default": 5,
-                            "min": 1
+                            "default": 0,
+                            "min": 0,
+                            "help": "0 = default"
                         },
                         {
                             "type": "number",
