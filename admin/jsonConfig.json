@@ -207,9 +207,10 @@
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
-                            "default": 100,
-                            "min": 1,
-                            "max": 100
+                            "default": 0,
+                            "min": 0,
+                            "max": 100,
+                            "help": "0 = default"
                         }
                     ]
                 },

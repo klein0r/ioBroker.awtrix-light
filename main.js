@@ -613,7 +613,7 @@ class AwtrixLight extends utils.Adapter {
         // Set noScroll OR scroll speed
         if (customApp.noScroll) {
             moreOptions.noScroll = true;
-        } else if (customApp.scrollSpeed) {
+        } else if (customApp.scrollSpeed > 0) {
             moreOptions.scrollSpeed = customApp.scrollSpeed;
         }
 
