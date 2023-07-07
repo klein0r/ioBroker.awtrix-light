@@ -1,4 +1,9 @@
 # Older changes
+## 0.1.2 (2023-06-28)
+
+* (klein0r) Limit the number of history items
+* (klein0r) Warn if a connected state has the wrong data type
+
 ## 0.1.1 (2023-06-22)
 
 * (klein0r) Improved error handling when device is not reachable

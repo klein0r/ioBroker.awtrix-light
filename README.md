@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.3 (2023-07-07)
 
 * (klein0r) Use default duration if 0
 
@@ -67,11 +67,6 @@ Admin adapter in version 6.6.0 is required
 
 * (klein0r) Added default values to blockly blocks
 * (klein0r) Remove custom apps when text is empty
-
-### 0.1.2 (2023-06-28)
-
-* (klein0r) Limit the number of history items
-* (klein0r) Warn if a connected state has the wrong data type
 
 ## License
 MIT License
