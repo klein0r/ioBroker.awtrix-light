@@ -624,7 +624,7 @@ class AwtrixLight extends utils.Adapter {
 
         // Duration
         if (customApp.duration > 0) {
-            moreOptions.icon = customApp.duration;
+            moreOptions.duration = customApp.duration;
         }
 
         return {
