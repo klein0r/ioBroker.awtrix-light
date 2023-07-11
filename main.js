@@ -45,7 +45,38 @@ class AwtrixLight extends utils.Adapter {
             this.log.info(`Starting - connecting to http://${this.config.awtrixIp}/`);
         }
 
+        if (this.config.foreignSettingsInstance && this.config.foreignSettingsInstance !== this.namespace) {
+            await this.subscribeForeignObjectsAsync(`system.adapter.${this.config.foreignSettingsInstance}`);
+            await this.importForeignSettings();
+        }
+
         this.refreshState();
+    }
+
+    async importForeignSettings() {
+        try {
+            this.log.info(`Using settings of other instance: ${this.config.foreignSettingsInstance}`);
+
+            const instanceObj = await this.getForeignObjectAsync(`system.adapter.${this.config.foreignSettingsInstance}`);
+
+            if (instanceObj && instanceObj.native) {
+                if (!instanceObj.native?.foreignSettingsInstance) {
+                    // Copy values
+                    const copySettings = ['customApps', 'ignoreNewValueForAppInTimeRange', 'historyApps', 'historyAppsRefreshInterval', 'autoDeleteForeignApps', 'removeAppsOnStop'];
+
+                    for (const setting of copySettings) {
+                        this.config[setting] = instanceObj.native[setting];
+                        this.log.debug(`[importForeignSettings] Copied setting ${setting} from foreign instance "system.adapter.${this.config.foreignSettingsInstance}"`);
+                    }
+                } else {
+                    throw new Error(`Foreign instance uses instance settings of ${instanceObj?.native?.foreignSettingsInstance} - (nothing imported)`);
+                }
+            } else {
+                throw new Error(`Unable to load instance settings of ${instanceObj?.native?.foreignSettingsInstance} (nothing imported)`);
+            }
+        } catch (err) {
+            this.log.error(`Unable to import settings of other instance: ${err}`);
+        }
     }
 
     /**
@@ -211,7 +242,19 @@ class AwtrixLight extends utils.Adapter {
      * @param {string} id
      * @param {ioBroker.Object | null | undefined} obj
      */
-    onObjectChange(id, obj) {
+    async onObjectChange(id, obj) {
+        // Imported settings changed
+        if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
+            await this.importForeignSettings();
+
+            // Refresh apps (may have changed)
+            if (this.apiConnected) {
+                await this.createAppObjects();
+                await this.initCustomApps();
+                await this.initHistoryApps();
+            }
+        }
+
         if (id && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             if (!obj) {
                 delete this.customAppsForeignStates[id];

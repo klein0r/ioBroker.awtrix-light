@@ -172,6 +172,7 @@
   },
   "native": {
     "awtrixIp": "",
+    "foreignSettingsInstance": "",
     "customApps": [],
     "ignoreNewValueForAppInTimeRange": 3,
     "historyApps": [],

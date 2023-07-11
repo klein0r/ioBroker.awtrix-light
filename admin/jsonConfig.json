@@ -57,7 +57,30 @@
             "type": "panel",
             "label": "Apps",
             "items": {
+                "_useOtherInstance": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Use settings of other instance",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
+                "foreignSettingsInstance": {
+                    "newLine": true,
+                    "type": "instance",
+                    "label": "Settings instance",
+                    "adapter": "awtrix-light",
+                    "allowDeactivate": true,
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "validator": "data.importSettingsFrom === '' || data.importSettingsFrom !== `awtrix-light.${_instance}`",
+                    "validatorErrorText": "Select another instance",
+                    "validatorNoSaveOnError": true
+                },
                 "_headerCustomApps": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "header",
                     "text": "Custom Apps",
@@ -67,6 +90,7 @@
                     "lg": 12
                 },
                 "customApps": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
@@ -215,6 +239,7 @@
                     ]
                 },
                 "ignoreNewValueForAppInTimeRange": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "number",
                     "min": 0,
@@ -225,6 +250,7 @@
                     "help": "Prevents too many requests for rapid state changes"
                 },
                 "_headerHistoryApps": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "header",
                     "text": "History Apps",
@@ -234,6 +260,7 @@
                     "lg": 12
                 },
                 "historyApps": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
@@ -295,8 +322,7 @@
                             "allowDeactivate": false,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4,
-                            "default": "history.0"
+                            "lg": 4
                         },
                         {
                             "type": "objectId",
@@ -333,6 +359,7 @@
                     ]
                 },
                 "historyAppsRefreshInterval": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "type": "number",
                     "label": "Refresh interval (in seconds)",
                     "min": 60,
@@ -342,6 +369,7 @@
                     "lg": 4
                 },
                 "_dividerBottom": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "divider",
                     "sm": 12,
@@ -349,6 +377,7 @@
                     "lg": 12
                 },
                 "autoDeleteForeignApps": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "newLine": true,
                     "type": "checkbox",
                     "label": "Automatically delete unknown apps",
@@ -357,6 +386,7 @@
                     "lg": 6
                 },
                 "removeAppsOnStop": {
+                    "hidden": "data.importSettingsFrom !== ''",
                     "type": "checkbox",
                     "label": "Delete apps when instance is stopped",
                     "sm": 12,
