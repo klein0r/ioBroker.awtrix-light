@@ -69,7 +69,7 @@
                 "foreignSettingsInstance": {
                     "newLine": true,
                     "type": "instance",
-                    "label": "Settings instance",
+                    "label": "Copy app settings of",
                     "adapter": "awtrix-light",
                     "allowDeactivate": true,
                     "sm": 12,

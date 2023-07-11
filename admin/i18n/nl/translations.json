@@ -35,5 +35,8 @@
     "Color": "Kleur",
     "Line color of chart": "Lijnkleur van de grafiek",
     "Delete apps when instance is stopped": "Verwijder apps wanneer de instantie is gestopt",
-    "0 = default": "0 = standaard"
+    "0 = default": "0 = standaard",
+    "Use settings of other instance": "Gebruik instellingen van een andere instantie",
+    "Copy app settings of": "Kopieer app-instellingen van",
+    "Select another instance": "Selecteer een andere instantie"
 }

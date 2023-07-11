@@ -35,5 +35,8 @@
     "Color": "Couleur",
     "Line color of chart": "Couleur des lignes du graphique",
     "Delete apps when instance is stopped": "Supprimer les applications lorsque l'instance est arrêtée",
-    "0 = default": "0 = par défaut"
+    "0 = default": "0 = par défaut",
+    "Use settings of other instance": "Utiliser les paramètres d'une autre instance",
+    "Copy app settings of": "Copier les paramètres de l'application de",
+    "Select another instance": "Sélectionnez une autre instance"
 }

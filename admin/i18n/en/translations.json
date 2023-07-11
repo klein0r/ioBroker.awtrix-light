@@ -35,5 +35,8 @@
     "Color": "Color",
     "Line color of chart": "Line color of chart",
     "Delete apps when instance is stopped": "Delete apps when instance is stopped",
-    "0 = default": "0 = default"
+    "0 = default": "0 = default",
+    "Use settings of other instance": "Use settings of other instance",
+    "Copy app settings of": "Copy app settings of",
+    "Select another instance": "Select another instance"
 }

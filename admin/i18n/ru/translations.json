@@ -35,5 +35,8 @@
     "Color": "Цвет",
     "Line color of chart": "Цвет линии графика",
     "Delete apps when instance is stopped": "Удалить приложения, когда экземпляр остановлен",
-    "0 = default": "0 = по умолчанию"
+    "0 = default": "0 = по умолчанию",
+    "Use settings of other instance": "Использовать настройки другого экземпляра",
+    "Copy app settings of": "Скопируйте настройки приложения из",
+    "Select another instance": "Выберите другой экземпляр"
 }

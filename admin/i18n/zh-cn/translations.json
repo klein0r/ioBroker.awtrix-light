@@ -35,5 +35,8 @@
     "Color": "颜色",
     "Line color of chart": "图表的线条颜色",
     "Delete apps when instance is stopped": "实例停止时删除应用程序",
-    "0 = default": "0 = 默认"
+    "0 = default": "0 = 默认",
+    "Use settings of other instance": "使用其他实例的设置",
+    "Copy app settings of": "复制应用程序设置",
+    "Select another instance": "选择另一个实例"
 }

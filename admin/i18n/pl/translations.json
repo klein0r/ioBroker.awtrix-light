@@ -35,5 +35,8 @@
     "Color": "Kolor",
     "Line color of chart": "Kolor linii wykresu",
     "Delete apps when instance is stopped": "Usuń aplikacje, gdy instancja jest zatrzymana",
-    "0 = default": "0 = domyślna"
+    "0 = default": "0 = domyślna",
+    "Use settings of other instance": "Użyj ustawień innej instancji",
+    "Copy app settings of": "Skopiuj ustawienia aplikacji z",
+    "Select another instance": "Wybierz inną instancję"
 }

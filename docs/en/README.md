@@ -37,6 +37,16 @@ The hardware design is not the best. Please use a power supply which deliveres m
 
 Yes, but you have to open the case with a heat gun (since the front glued to the case) and [modify the PCB with a step down converter](https://github.com/Blueforcer/awtrix-light/issues/67#issuecomment-1595418765).
 
+## Same apps on multiple devices
+
+If you have multiple awtrix-light devices, it is required to create a new instance for each device. But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.
+
+Example:
+
+1. Configure all apps in instance `awtrix-light.0`
+2. Create a new instance for the second device (`awtrix-light.1`)
+3. Choose `awtrix-light.0` in the instance configuration of `awtrix-light.1` to use the same apps on the second device
+
 ## Blockly and JavaScript
 
 `sendTo` / message box can be used to

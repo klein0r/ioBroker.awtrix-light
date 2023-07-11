@@ -35,5 +35,8 @@
     "Color": "колір",
     "Line color of chart": "Колір лінії діаграми",
     "Delete apps when instance is stopped": "Видалити програми, коли екземпляр зупинено",
-    "0 = default": "0 = за замовчуванням"
+    "0 = default": "0 = за замовчуванням",
+    "Use settings of other instance": "Використовуйте налаштування іншого екземпляра",
+    "Copy app settings of": "Копіювати налаштування програми з",
+    "Select another instance": "Виберіть інший екземпляр"
 }
