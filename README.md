@@ -44,6 +44,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Use default scroll speed if 0
+* (klein0r) Instance selection for history apps
 
 ### 0.3.3 (2023-07-07)
 

@@ -288,16 +288,15 @@
                         },
                         {
                             "newLine": true,
-                            "type": "text",
+                            "type": "instance",
                             "attr": "sourceInstance",
                             "label": "Source instance",
+                            "adapter": "_dataSources",
+                            "allowDeactivate": false,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
-                            "default": "history.0",
-                            "validator": "/^([a-z-_]{1,}\\.[0-9]{1,})$/.test(data.sourceInstance)",
-                            "validatorErrorText": "Define a valid source for history data",
-                            "validatorNoSaveOnError": true
+                            "default": "history.0"
                         },
                         {
                             "type": "objectId",
