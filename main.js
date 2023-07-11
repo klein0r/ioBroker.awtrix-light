@@ -756,10 +756,13 @@ class AwtrixLight extends utils.Adapter {
             this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval ?? 300} seconds)`);
             this.refreshHistoryAppsTimeout =
                 this.refreshHistoryAppsTimeout ||
-                this.setTimeout(() => {
-                    this.refreshHistoryAppsTimeout = null;
-                    this.initHistoryApps();
-                }, this.config.historyAppsRefreshInterval * 1000 || 300 * 1000);
+                this.setTimeout(
+                    () => {
+                        this.refreshHistoryAppsTimeout = null;
+                        this.initHistoryApps();
+                    },
+                    this.config.historyAppsRefreshInterval * 1000 || 300 * 1000,
+                );
         }
     }
 
