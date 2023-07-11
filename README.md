@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.4 (2023-07-11)
 
 * (klein0r) Use default scroll speed if 0
 * (klein0r) Instance selection for history apps
@@ -67,11 +67,6 @@ Admin adapter in version 6.6.0 is required
 * (klein0r) Updated instance configuration (new admin component)
 * (klein0r) Added several options for custom apps
 * (klein0r) Individual background color for each app
-
-### 0.2.0 (2023-07-03)
-
-* (klein0r) Added default values to blockly blocks
-* (klein0r) Remove custom apps when text is empty
 
 ## License
 MIT License

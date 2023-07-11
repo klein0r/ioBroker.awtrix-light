@@ -1,4 +1,9 @@
 # Older changes
+## 0.2.0 (2023-07-03)
+
+* (klein0r) Added default values to blockly blocks
+* (klein0r) Remove custom apps when text is empty
+
 ## 0.1.2 (2023-06-28)
 
 * (klein0r) Limit the number of history items

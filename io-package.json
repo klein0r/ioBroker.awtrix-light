@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "news": {
+      "0.3.4": {
+        "en": "Use default scroll speed if 0\nInstance selection for history apps",
+        "de": "Standard-Scroll-Geschwindigkeit verwenden, wenn 0\nInstanzauswahl für Geschichtsapps",
+        "ru": "Используйте скорость прокрутки по умолчанию, если 0\nОтбор Instance для приложений истории",
+        "pt": "Use a velocidade de rolagem padrão se 0\nSeleção de instância para aplicativos de história",
+        "nl": "Gebruik default scroll snelheid als 0\nInstance selectie voor geschiedenis apps",
+        "fr": "Utiliser la vitesse de défilement par défaut si 0\nChoix de cas pour les applications historiques",
+        "it": "Utilizzare la velocità di scorrimento predefinita se 0\nSelezione delle istanze per le app di storia",
+        "es": "Use velocidad de desplazamiento predeterminada si 0\nSelección de instalación para aplicaciones de historia",
+        "pl": "Dowolna szybkość zwoju towarowego jeśli 0\nInspekcjacjatywa dotycząca historii",
+        "uk": "Використовуйте швидкість прокрутки за замовчуванням, якщо 0\nВибір історії додатків",
+        "zh-cn": "使用违约率\n选择历史遗骸"
+      },
       "0.3.3": {
         "en": "Use default duration if 0",
         "de": "Standarddauer verwenden, wenn 0",
@@ -80,19 +93,6 @@
         "pl": "Liczba przedmiotów historycznych\nWarn jeśli stan połączony ma niewłaściwe typy danych",
         "uk": "Визначте кількість елементів історії\nВійна, якщо підключений стан має неправильний тип даних",
         "zh-cn": "限制历史项目的数目\n如果联系国有错失数据类型,则发生警告"
-      },
-      "0.1.1": {
-        "en": "Improved error handling when device is not reachable",
-        "de": "Verbesserte Fehlerbehandlung, wenn das Gerät nicht erreichbar ist",
-        "ru": "Улучшена обработка ошибок при недоступном устройстве",
-        "pt": "Melhor manuseio de erros quando o dispositivo não é acessível",
-        "nl": "Improviserende fouten als apparaat niet bereikbaar is",
-        "fr": "Amélioration de la manipulation des erreurs lorsque l'appareil n'est pas accessible",
-        "it": "Miglioramento della gestione degli errori quando il dispositivo non è raggiungibile",
-        "es": "Mejor manejo de errores cuando el dispositivo no es accesible",
-        "pl": "Poprawiona obsługa błędów, gdy urządzenie nie jest możliwe",
-        "uk": "Поліпшення обробки помилок при пристрої не досягається",
-        "zh-cn": "在装置无法达到的情况下改进错误处理"
       }
     },
     "titleLang": {
