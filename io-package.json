@@ -142,7 +142,7 @@
     "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
     "loglevel": "info",
     "mode": "daemon",
-    "type": "hardware",
+    "type": "iot-systems",
     "compact": true,
     "connectionType": "local",
     "dataSource": "poll",
