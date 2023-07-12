@@ -1,4 +1,12 @@
 # Older changes
+## 0.3.0 (2023-07-05)
+
+Admin adapter in version 6.6.0 is required
+
+* (klein0r) Updated instance configuration (new admin component)
+* (klein0r) Added several options for custom apps
+* (klein0r) Individual background color for each app
+
 ## 0.2.0 (2023-07-03)
 
 * (klein0r) Added default values to blockly blocks

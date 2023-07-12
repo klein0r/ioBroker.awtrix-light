@@ -1,1688 +1,1688 @@
 {
-    "common": {
-        "name": "awtrix-light",
-        "version": "0.3.4",
-        "news": {
-            "0.3.4": {
-                "en": "Use default scroll speed if 0\nInstance selection for history apps",
-                "de": "Standard-Scroll-Geschwindigkeit verwenden, wenn 0\nInstanzauswahl für Geschichtsapps",
-                "ru": "Используйте скорость прокрутки по умолчанию, если 0\nОтбор Instance для приложений истории",
-                "pt": "Use a velocidade de rolagem padrão se 0\nSeleção de instância para aplicativos de história",
-                "nl": "Gebruik default scroll snelheid als 0\nInstance selectie voor geschiedenis apps",
-                "fr": "Utiliser la vitesse de défilement par défaut si 0\nChoix de cas pour les applications historiques",
-                "it": "Utilizzare la velocità di scorrimento predefinita se 0\nSelezione delle istanze per le app di storia",
-                "es": "Use velocidad de desplazamiento predeterminada si 0\nSelección de instalación para aplicaciones de historia",
-                "pl": "Dowolna szybkość zwoju towarowego jeśli 0\nInspekcjacjatywa dotycząca historii",
-                "uk": "Використовуйте швидкість прокрутки за замовчуванням, якщо 0\nВибір історії додатків",
-                "zh-cn": "使用违约率\n选择历史遗骸"
-            },
-            "0.3.3": {
-                "en": "Use default duration if 0",
-                "de": "Standarddauer verwenden, wenn 0",
-                "ru": "Используйте продолжительность по умолчанию, если 0",
-                "pt": "Use a duração padrão se 0",
-                "nl": "Gebruik defecte duration",
-                "fr": "Utiliser la durée par défaut si 0",
-                "it": "Utilizzare la durata predefinita se 0",
-                "es": "Use la duración predeterminada si 0",
-                "pl": "Wykorzystywanie czasu 0:",
-                "uk": "Термін дії за замовчуванням, якщо 0",
-                "zh-cn": "使用期"
-            },
-            "0.3.2": {
-                "en": "Delete apps on instance stop (configurable)\nAdded scrolling speed to settings\nAdded block buttons to settings",
-                "de": "Löschen von Apps auf Instanz Stop (konfigurierbar)\nHinzufügen der Scrollgeschwindigkeit zu den Einstellungen\nHinzugefügt Block-Tasten zu Einstellungen",
-                "ru": "Удалить приложения на остановке (конфигурируемый)\nДобавлена скорость прокрутки к настройкам\nДобавлены кнопки блоков в настройки",
-                "pt": "Excluir aplicativos na parada de instância (configurável)\nVelocidade de rolagem adicionada para configurações\nBotões de bloqueio adicionados para configurações",
-                "nl": "Verwijder apps op instance stop (configurable)\nVoeg de snelheid toe aan de setting\nVoeg blokknoppen toe aan de setting",
-                "fr": "Supprimer les applications sur l'arrêt d'instance (configurable)\nAjout de la vitesse de défilement aux réglages\nAjout de boutons de bloc aux paramètres",
-                "it": "Eliminare le applicazioni in caso di arresto (configurabile)\nAggiunta velocità di scorrimento alle impostazioni\nPulsanti di blocco aggiunti alle impostazioni",
-                "es": "Eliminar aplicaciones en la parada de instancia (configurable)\nVelocidad de desplazamiento adicional a la configuración\nBotones de bloque añadidos a la configuración",
-                "pl": "Aplikacja na przykład zatrzymuje (konfigurable)\nZwójna prędkość do ustawienia\nZamknięte przyciski do ustawienia",
-                "uk": "Видалити додатки на зупинці екземпляра (налаштовується)\nДодано швидкість прокручування на налаштування\nДодано кнопки блокування для налаштування",
-                "zh-cn": "删除关于停止(可能)的注释\n增加环境的速度\n增加进入环境的阻挡区"
-            },
-            "0.3.1": {
-                "en": "Some app options were ignored for static text apps",
-                "de": "Einige App-Optionen wurden für statische Text-Apps ignoriert",
-                "ru": "Некоторые варианты приложений были проигнорированы для статических текстовых приложений",
-                "pt": "Algumas opções de aplicativos foram ignoradas para aplicativos de texto estático",
-                "nl": "Sommige app opties werden genegeerd voor statische sms apps",
-                "fr": "Certaines options d'application ont été ignorées pour les applications de texte statique",
-                "it": "Alcune opzioni app sono state ignorate per applicazioni di testo statiche",
-                "es": "Algunas opciones de aplicación fueron ignoradas para aplicaciones de texto estático",
-                "pl": "Niektóre opcje aplikacji zostały zignorowane za statyczne aplikacje tekstowe",
-                "uk": "Деякі параметри програми ігнорувалися для статичних текстових додатків",
-                "zh-cn": "对静态案文的一些可观的选择置若罔闻。"
-            },
-            "0.3.0": {
-                "en": "Admin adapter in version 6.6.0 is required\n\n* Updated instance configuration (new admin component)\n* Added several options for custom apps\n* Individual background color for each app",
-                "de": "Admin Adapter in Version 6.6.0 ist erforderlich\n\n* Aktualisierte Instanz-Konfiguration (neue Admin-Komponente)\n* Mehrere Optionen für benutzerdefinierte Apps hinzugefügt\n* Individuelle Hintergrundfarbe für jede App",
-                "ru": "Требуется админ адаптер в версии 6.6.0\n\n* Обновленная настройка (новый компонент админ)\n* Добавлены несколько вариантов для пользовательских приложений\n* Индивидуальный цвет фона для каждого приложения",
-                "pt": "Adaptador de administrador na versão 6.6.0 é necessário\n\n* Configuração de instância atualizada (novo componente admin)\n* Adicionado várias opções para aplicativos personalizados\n* Cor de fundo individual para cada aplicativo",
-                "nl": "Admin adapter in versie 6.6.0 is vereist\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVertaling:\n♪ Individuele achtergrondkleur voor elke app ♪",
-                "fr": "Adaptateur d'administration dans la version 6.6.0 est nécessaire\n\n* Configuration d'instance actualisée (nouveau composant admin)\n* Ajout de plusieurs options pour les applications personnalisées\n* Couleur de fond individuelle pour chaque application",
-                "it": "Adattatore di amministrazione nella versione 6.6.0 è richiesto\n\n* Configurazione delle istanze aggiornate (nuovo componente amministratore)\n* Aggiunto diverse opzioni per applicazioni personalizzate\n* Colore di sfondo individuale per ogni applicazione",
-                "es": "Admin adaptador en la versión 6.6.0 es necesario\n\n* Configuración actualizada de instancias (nuevo componente de administración)\n* Añadido varias opciones para aplicaciones personalizadas\n* Color de fondo individual para cada aplicación",
-                "pl": "Administrator w wersji 6.6.0\n\n* Zintegrowana konfiguracja instancji (nowa część)\n* Zbiór kilku opcji dla aplikacji zwyczajowych\nPoszczególne kolory tła dla każdej aplikacji",
-                "uk": "English, Українська, Français..\n\n* Оновлення конфігурації екземпляра (новий компонент адміністратора)\n* Додано кілька варіантів для користувацьких додатків\n* Індивідуальний фоновий колір для кожного додатка",
-                "zh-cn": "第6.6.0版的适应需要\n\n* 最新专题小组(新的专属部分)\n* 增加一些习惯材料的备选办法\n* 每一名照明的个人背景"
-            },
-            "0.2.0": {
-                "en": "Added default values to blockly blocks\nRemove custom apps when text is empty",
-                "de": "Standardwerte zu Blockblöcken hinzugefügt\nEntfernen Sie benutzerdefinierte Apps, wenn Text leer ist",
-                "ru": "Добавлены значения по умолчанию для блокировки блоков\nУдалить пользовательские приложения, когда текст пуст",
-                "pt": "Adicionados valores padrão para blocos bloqueados\nRemover aplicativos personalizados quando o texto está vazio",
-                "nl": "Geadresseerde defaultwaarden tot blokken\nVerwijder de app wanneer de tekst leeg is",
-                "fr": "Ajout de valeurs par défaut pour bloquer\nSupprimer les applications personnalisées lorsque le texte est vide",
-                "it": "Aggiunti i valori predefiniti per bloccare i blocchi\nRimuovere le app personalizzate quando il testo è vuoto",
-                "es": "Valores predeterminados añadidos a bloques bloqueados\nEliminar aplicaciones personalizadas cuando el texto está vacío",
-                "pl": "Domyślne wartości blokowania bloków\nRemove aplikacje, gdy tekst jest pusty",
-                "uk": "Додано значення за замовчуванням для блокнотів\nВидалити користувацькі додатки, коли текст порожній",
-                "zh-cn": "增加停滞值以阻挡\n在案文空洞时取消习俗"
-            },
-            "0.1.2": {
-                "en": "Limit the number of history items\nWarn if a connected state has the wrong data type",
-                "de": "Begrenzung der Anzahl der Geschichtsgegenstände\nWarnung, wenn ein angeschlossener Zustand den falschen Datentyp hat",
-                "ru": "Ограничить количество предметов истории\nПредупреждение, если подключенное состояние имеет неправильный тип данных",
-                "pt": "Limitar o número de itens de história\nAvise se um estado conectado tem o tipo de dados errado",
-                "nl": "Limit het aantal geschiedenis items\nAls een verbonden staat het verkeerde datatype heeft",
-                "fr": "Limiter le nombre d'articles d'histoire\nWarn si un état connecté a le mauvais type de données",
-                "it": "Limitare il numero di elementi di storia\nAvvertire se uno stato collegato ha il tipo di dati sbagliato",
-                "es": "Limite el número de elementos de historia\nAdvierta si un estado conectado tiene el tipo de datos incorrecto",
-                "pl": "Liczba przedmiotów historycznych\nWarn jeśli stan połączony ma niewłaściwe typy danych",
-                "uk": "Визначте кількість елементів історії\nВійна, якщо підключений стан має неправильний тип даних",
-                "zh-cn": "限制历史项目的数目\n如果联系国有错失数据类型,则发生警告"
-            }
+  "common": {
+    "name": "awtrix-light",
+    "version": "0.4.0",
+    "news": {
+      "0.4.0": {
+        "en": "Allow to import settings from another instance",
+        "de": "Lassen Sie Einstellungen von einer anderen Instanz importieren",
+        "ru": "Разрешить импортировать настройки из другого экземпляра",
+        "pt": "Permitir importar configurações de outra instância",
+        "nl": "Sta op de instelling van een ander voorbeeld",
+        "fr": "Permettre d'importer des paramètres d'une autre instance",
+        "it": "Consentire di importare le impostazioni da un'altra istanza",
+        "es": "Permitir la importación de ajustes de otra instancia",
+        "pl": "Allow by importować ustawienia z innego przykładu",
+        "uk": "Дозволяє імпортувати налаштування з іншого екземпляра",
+        "zh-cn": "允许从另一个例子进口环境"
+      },
+      "0.3.4": {
+        "en": "Use default scroll speed if 0\nInstance selection for history apps",
+        "de": "Standard-Scroll-Geschwindigkeit verwenden, wenn 0\nInstanzauswahl für Geschichtsapps",
+        "ru": "Используйте скорость прокрутки по умолчанию, если 0\nОтбор Instance для приложений истории",
+        "pt": "Use a velocidade de rolagem padrão se 0\nSeleção de instância para aplicativos de história",
+        "nl": "Gebruik default scroll snelheid als 0\nInstance selectie voor geschiedenis apps",
+        "fr": "Utiliser la vitesse de défilement par défaut si 0\nChoix de cas pour les applications historiques",
+        "it": "Utilizzare la velocità di scorrimento predefinita se 0\nSelezione delle istanze per le app di storia",
+        "es": "Use velocidad de desplazamiento predeterminada si 0\nSelección de instalación para aplicaciones de historia",
+        "pl": "Dowolna szybkość zwoju towarowego jeśli 0\nInspekcjacjatywa dotycząca historii",
+        "uk": "Використовуйте швидкість прокрутки за замовчуванням, якщо 0\nВибір історії додатків",
+        "zh-cn": "使用违约率\n选择历史遗骸"
+      },
+      "0.3.3": {
+        "en": "Use default duration if 0",
+        "de": "Standarddauer verwenden, wenn 0",
+        "ru": "Используйте продолжительность по умолчанию, если 0",
+        "pt": "Use a duração padrão se 0",
+        "nl": "Gebruik defecte duration",
+        "fr": "Utiliser la durée par défaut si 0",
+        "it": "Utilizzare la durata predefinita se 0",
+        "es": "Use la duración predeterminada si 0",
+        "pl": "Wykorzystywanie czasu 0:",
+        "uk": "Термін дії за замовчуванням, якщо 0",
+        "zh-cn": "使用期"
+      },
+      "0.3.2": {
+        "en": "Delete apps on instance stop (configurable)\nAdded scrolling speed to settings\nAdded block buttons to settings",
+        "de": "Löschen von Apps auf Instanz Stop (konfigurierbar)\nHinzufügen der Scrollgeschwindigkeit zu den Einstellungen\nHinzugefügt Block-Tasten zu Einstellungen",
+        "ru": "Удалить приложения на остановке (конфигурируемый)\nДобавлена скорость прокрутки к настройкам\nДобавлены кнопки блоков в настройки",
+        "pt": "Excluir aplicativos na parada de instância (configurável)\nVelocidade de rolagem adicionada para configurações\nBotões de bloqueio adicionados para configurações",
+        "nl": "Verwijder apps op instance stop (configurable)\nVoeg de snelheid toe aan de setting\nVoeg blokknoppen toe aan de setting",
+        "fr": "Supprimer les applications sur l'arrêt d'instance (configurable)\nAjout de la vitesse de défilement aux réglages\nAjout de boutons de bloc aux paramètres",
+        "it": "Eliminare le applicazioni in caso di arresto (configurabile)\nAggiunta velocità di scorrimento alle impostazioni\nPulsanti di blocco aggiunti alle impostazioni",
+        "es": "Eliminar aplicaciones en la parada de instancia (configurable)\nVelocidad de desplazamiento adicional a la configuración\nBotones de bloque añadidos a la configuración",
+        "pl": "Aplikacja na przykład zatrzymuje (konfigurable)\nZwójna prędkość do ustawienia\nZamknięte przyciski do ustawienia",
+        "uk": "Видалити додатки на зупинці екземпляра (налаштовується)\nДодано швидкість прокручування на налаштування\nДодано кнопки блокування для налаштування",
+        "zh-cn": "删除关于停止(可能)的注释\n增加环境的速度\n增加进入环境的阻挡区"
+      },
+      "0.3.1": {
+        "en": "Some app options were ignored for static text apps",
+        "de": "Einige App-Optionen wurden für statische Text-Apps ignoriert",
+        "ru": "Некоторые варианты приложений были проигнорированы для статических текстовых приложений",
+        "pt": "Algumas opções de aplicativos foram ignoradas para aplicativos de texto estático",
+        "nl": "Sommige app opties werden genegeerd voor statische sms apps",
+        "fr": "Certaines options d'application ont été ignorées pour les applications de texte statique",
+        "it": "Alcune opzioni app sono state ignorate per applicazioni di testo statiche",
+        "es": "Algunas opciones de aplicación fueron ignoradas para aplicaciones de texto estático",
+        "pl": "Niektóre opcje aplikacji zostały zignorowane za statyczne aplikacje tekstowe",
+        "uk": "Деякі параметри програми ігнорувалися для статичних текстових додатків",
+        "zh-cn": "对静态案文的一些可观的选择置若罔闻。"
+      },
+      "0.3.0": {
+        "en": "Admin adapter in version 6.6.0 is required\n\n* Updated instance configuration (new admin component)\n* Added several options for custom apps\n* Individual background color for each app",
+        "de": "Admin Adapter in Version 6.6.0 ist erforderlich\n\n* Aktualisierte Instanz-Konfiguration (neue Admin-Komponente)\n* Mehrere Optionen für benutzerdefinierte Apps hinzugefügt\n* Individuelle Hintergrundfarbe für jede App",
+        "ru": "Требуется админ адаптер в версии 6.6.0\n\n* Обновленная настройка (новый компонент админ)\n* Добавлены несколько вариантов для пользовательских приложений\n* Индивидуальный цвет фона для каждого приложения",
+        "pt": "Adaptador de administrador na versão 6.6.0 é necessário\n\n* Configuração de instância atualizada (novo componente admin)\n* Adicionado várias opções para aplicativos personalizados\n* Cor de fundo individual para cada aplicativo",
+        "nl": "Admin adapter in versie 6.6.0 is vereist\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVertaling:\n♪ Individuele achtergrondkleur voor elke app ♪",
+        "fr": "Adaptateur d'administration dans la version 6.6.0 est nécessaire\n\n* Configuration d'instance actualisée (nouveau composant admin)\n* Ajout de plusieurs options pour les applications personnalisées\n* Couleur de fond individuelle pour chaque application",
+        "it": "Adattatore di amministrazione nella versione 6.6.0 è richiesto\n\n* Configurazione delle istanze aggiornate (nuovo componente amministratore)\n* Aggiunto diverse opzioni per applicazioni personalizzate\n* Colore di sfondo individuale per ogni applicazione",
+        "es": "Admin adaptador en la versión 6.6.0 es necesario\n\n* Configuración actualizada de instancias (nuevo componente de administración)\n* Añadido varias opciones para aplicaciones personalizadas\n* Color de fondo individual para cada aplicación",
+        "pl": "Administrator w wersji 6.6.0\n\n* Zintegrowana konfiguracja instancji (nowa część)\n* Zbiór kilku opcji dla aplikacji zwyczajowych\nPoszczególne kolory tła dla każdej aplikacji",
+        "uk": "English, Українська, Français..\n\n* Оновлення конфігурації екземпляра (новий компонент адміністратора)\n* Додано кілька варіантів для користувацьких додатків\n* Індивідуальний фоновий колір для кожного додатка",
+        "zh-cn": "第6.6.0版的适应需要\n\n* 最新专题小组(新的专属部分)\n* 增加一些习惯材料的备选办法\n* 每一名照明的个人背景"
+      },
+      "0.2.0": {
+        "en": "Added default values to blockly blocks\nRemove custom apps when text is empty",
+        "de": "Standardwerte zu Blockblöcken hinzugefügt\nEntfernen Sie benutzerdefinierte Apps, wenn Text leer ist",
+        "ru": "Добавлены значения по умолчанию для блокировки блоков\nУдалить пользовательские приложения, когда текст пуст",
+        "pt": "Adicionados valores padrão para blocos bloqueados\nRemover aplicativos personalizados quando o texto está vazio",
+        "nl": "Geadresseerde defaultwaarden tot blokken\nVerwijder de app wanneer de tekst leeg is",
+        "fr": "Ajout de valeurs par défaut pour bloquer\nSupprimer les applications personnalisées lorsque le texte est vide",
+        "it": "Aggiunti i valori predefiniti per bloccare i blocchi\nRimuovere le app personalizzate quando il testo è vuoto",
+        "es": "Valores predeterminados añadidos a bloques bloqueados\nEliminar aplicaciones personalizadas cuando el texto está vacío",
+        "pl": "Domyślne wartości blokowania bloków\nRemove aplikacje, gdy tekst jest pusty",
+        "uk": "Додано значення за замовчуванням для блокнотів\nВидалити користувацькі додатки, коли текст порожній",
+        "zh-cn": "增加停滞值以阻挡\n在案文空洞时取消习俗"
+      }
+    },
+    "titleLang": {
+      "en": "Awtrix Light",
+      "de": "Awtrix Light",
+      "ru": "Awtrix Light",
+      "pt": "Awtrix Light",
+      "nl": "Awtrix Light",
+      "fr": "Awtrix Light",
+      "it": "Awtrix Light",
+      "es": "Awtrix Light",
+      "pl": "Awtrix Light",
+      "uk": "Awtrix Light",
+      "zh-cn": "Awtrix Light"
+    },
+    "desc": {
+      "en": "Integrates your Ulanzi TC001 via HTTP",
+      "de": "Integriert Ihr Ulanzi TC001 über HTTP",
+      "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
+      "pt": "Integra seu Ulanzi TC001 via HTTP",
+      "nl": "Integreert uw Ulanzi TC001 via HTTP",
+      "fr": "Intègre votre Ulanzi TC001 via HTTP",
+      "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
+      "es": "Integra tu Ulanzi TC001 vía HTTP",
+      "pl": "Integruje twój Ulanzi TC001 przez HTTP",
+      "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
+      "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
+    },
+    "authors": [
+      "Matthias Kleine <info@haus-automatisierung.com>"
+    ],
+    "keywords": [
+      "hardware",
+      "clock",
+      "message",
+      "notification",
+      "awtrix",
+      "ulanzi",
+      "tc001"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "awtrix-light.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
+    "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "hardware",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "blockly": true,
+    "messagebox": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "docs": {
+      "en": [
+        "docs/en/README.md"
+      ],
+      "de": [
+        "docs/de/README.md"
+      ]
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=4.0.15"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.6.0"
+      }
+    ]
+  },
+  "native": {
+    "awtrixIp": "",
+    "foreignSettingsInstance": "",
+    "customApps": [],
+    "ignoreNewValueForAppInTimeRange": 3,
+    "historyApps": [],
+    "historyAppsBackgroundColor": "#000000",
+    "historyAppsRefreshInterval": 300,
+    "autoDeleteForeignApps": false,
+    "removeAppsOnStop": true,
+    "httpTimeout": 3
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Information",
+          "de": "Information",
+          "ru": "Информация",
+          "pt": "Em formação",
+          "nl": "Informatie",
+          "fr": "Informations",
+          "it": "Informazione",
+          "es": "Información",
+          "pl": "Informacja",
+          "uk": "Інформація",
+          "zh-cn": "信息"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Connected to Awtrix",
+          "de": "Verbindung mit Awtrix",
+          "ru": "При подключении к Awtrix",
+          "pt": "Se conectado ao Awtrix",
+          "nl": "Indien verbonden met Awtrix",
+          "fr": "Si connecté à Awtrix",
+          "it": "Se connesso a Awtrix",
+          "es": "Si está conectado a Awtrix",
+          "pl": "W przypadku połączenia z Awtrix",
+          "uk": "Підключення до Awtrix",
+          "zh-cn": "如果连接到 Awtrix"
         },
-        "titleLang": {
-            "en": "Awtrix Light",
-            "de": "Awtrix Light",
-            "ru": "Awtrix Light",
-            "pt": "Awtrix Light",
-            "nl": "Awtrix Light",
-            "fr": "Awtrix Light",
-            "it": "Awtrix Light",
-            "es": "Awtrix Light",
-            "pl": "Awtrix Light",
-            "uk": "Awtrix Light",
-            "zh-cn": "Awtrix Light"
+        "type": "boolean",
+        "role": "indicator.reachable",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "settings",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Settings",
+          "de": "Einstellungen",
+          "ru": "Настройки",
+          "pt": "Configurações",
+          "nl": "Setting",
+          "fr": "Réglages",
+          "it": "Impostazioni impostazioni",
+          "es": "Ajustes",
+          "pl": "Setting",
+          "uk": "Налаштування",
+          "zh-cn": "确定"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "settings.appDisplayTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App display duration",
+          "de": "Anzeigedauer der Apps",
+          "ru": "Продолжительность дисплея приложения",
+          "pt": "Duração da exposição do aplicativo",
+          "nl": "Vertaling:",
+          "fr": "Durée de l'affichage",
+          "it": "Durata dell'esposizione dell'app",
+          "es": "Duración de la pantalla",
+          "pl": "Czas trwania",
+          "uk": "Тривалість відображення додатка",
+          "zh-cn": "延长期限"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "sec",
+        "read": true,
+        "write": true,
+        "def": 7
+      },
+      "native": {
+        "settingsKey": "ATIME"
+      }
+    },
+    {
+      "_id": "settings.transitionSpeed",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Transition speed to the next app",
+          "de": "Übergangsgeschwindigkeit zur nächsten App",
+          "ru": "Скорость перехода к следующему приложению",
+          "pt": "Velocidade de transição para o próximo aplicativo",
+          "nl": "Vervoersnelheid naar de volgende app",
+          "fr": "Vitesse de transition vers la prochaine application",
+          "it": "Velocità di transizione alla prossima app",
+          "es": "Velocidad de transición a la próxima aplicación",
+          "pl": "Łączna prędkość do następnej aplikacji",
+          "uk": "Швидкість переходу на наступний додаток",
+          "zh-cn": "二. 向下一份报告过渡速度"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 500
+      },
+      "native": {
+        "settingsKey": "TSPEED"
+      }
+    },
+    {
+      "_id": "settings.textColor",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Text color",
+          "de": "Textfarbe",
+          "ru": "Цвет текста",
+          "pt": "Cor do texto",
+          "nl": "Vertaling:",
+          "fr": "Couleur du texte",
+          "it": "Colore del testo",
+          "es": "Color de texto",
+          "pl": "Kolor tekstowy",
+          "uk": "Колір тексту",
+          "zh-cn": "案文"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TCOL"
+      }
+    },
+    {
+      "_id": "settings.displayWeekday",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Display weekday",
+          "de": "Anzeige Wochentag",
+          "ru": "Показать день недели",
+          "pt": "Exibir dia da semana",
+          "nl": "Vertaling:",
+          "fr": "Afficher semaine",
+          "it": "Visualizza giorno della settimana",
+          "es": "Mostrar semanario",
+          "pl": "Tygodnik dyskretny",
+          "uk": "Показати тиждень",
+          "zh-cn": "B. 日 失"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "WD"
+      }
+    },
+    {
+      "_id": "settings.weekdayColorActive",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color for active week day",
+          "de": "Farbe für aktiven Wochentag",
+          "ru": "Цвет для активного дня недели",
+          "pt": "Cor para o dia da semana ativa",
+          "nl": "Kleur voor actieve weekdag",
+          "fr": "Couleur pour une semaine active",
+          "it": "Colore per il giorno della settimana attiva",
+          "es": "Color para el día de semana activo",
+          "pl": "Współzałożycielka tygodniowo",
+          "uk": "Колір для активного тижня",
+          "zh-cn": "积极周"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "WDCA"
+      }
+    },
+    {
+      "_id": "settings.weekdayColorInactive",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color for inactive week days",
+          "de": "Farbe für inaktive Wochentage",
+          "ru": "Цвет для неактивных дней недели",
+          "pt": "Cor para dias semanais inativos",
+          "nl": "Kleur voor inactieve weken",
+          "fr": "Couleur pour les jours de semaine inactifs",
+          "it": "Colore per giorni settimanali inattivi",
+          "es": "Color para días de semana inactivos",
+          "pl": "Współzałożyciel w nieczynny tydzień",
+          "uk": "Колір для неактивних днів тижня",
+          "zh-cn": "B. 活周"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "WDCI"
+      }
+    },
+    {
+      "_id": "settings.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "min": 0,
+        "max": 255
+      },
+      "native": {
+        "settingsKey": "BRI"
+      }
+    },
+    {
+      "_id": "settings.brightnessAuto",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Automatic brightness",
+          "de": "Automatische Helligkeit",
+          "ru": "Автоматическая яркость",
+          "pt": "Brilho automático",
+          "nl": "Automatische helderheid",
+          "fr": "Eclairage automatique",
+          "it": "Luminosità automatica",
+          "es": "Luminosidad automática",
+          "pl": "Jasność automatyczna",
+          "uk": "Автоматична яскравість",
+          "zh-cn": "光明"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "ABRI"
+      }
+    },
+    {
+      "_id": "settings.appSwitchAuto",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Automatic app switching",
+          "de": "Automatischer App-Wechsel",
+          "ru": "Автоматический переключатель приложений",
+          "pt": "Comutação automática de aplicativos",
+          "nl": "Automatische app wisselen",
+          "fr": "Interrupteur automatique d'application",
+          "it": "Interruttore automatico dell'app",
+          "es": "Interruptor automático de aplicaciones",
+          "pl": "Automatyczne aplikacje przełączają",
+          "uk": "Автоматичне перемикання додатків",
+          "zh-cn": "自动转换"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "ATRANS"
+      }
+    },
+    {
+      "_id": "settings.formatTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Time format",
+          "de": "Zeitformat",
+          "ru": "Формат времени",
+          "pt": "Formato de hora",
+          "nl": "Tijd formaat",
+          "fr": "Format temporel",
+          "it": "Formato del tempo",
+          "es": "Formato del tiempo",
+          "pl": "Format Time",
+          "uk": "Формат",
+          "zh-cn": "时间格式"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TFORMAT"
+      }
+    },
+    {
+      "_id": "settings.formatDate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Date format",
+          "de": "Datumsformat",
+          "ru": "Формат даты",
+          "pt": "Formato de data",
+          "nl": "Datum formaat",
+          "fr": "Date format",
+          "it": "Formato della data",
+          "es": "Formato de fecha",
+          "pl": "Format",
+          "uk": "Дата формат",
+          "zh-cn": "日期"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "DFORMAT"
+      }
+    },
+    {
+      "_id": "settings.weekStartMonday",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Week starts with monday",
+          "de": "Woche beginnt mit Montag",
+          "ru": "Неделя начинается с понедельника",
+          "pt": "A semana começa com a segunda-feira",
+          "nl": "Week begint met maandag",
+          "fr": "La semaine commence avec le lundi",
+          "it": "La settimana inizia con lunedì",
+          "es": "La semana comienza con el lunes",
+          "pl": "Tydzień zaczyna się od monday'u",
+          "uk": "Тиждень починається з понеділка",
+          "zh-cn": "每周开始开会"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "SOM"
+      }
+    },
+    {
+      "_id": "settings.blockButtons",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Disable physical buttons",
+          "de": "Physische Tasten deaktivieren",
+          "ru": "Отключить физические кнопки",
+          "pt": "Desativar botões físicos",
+          "nl": "Disable fysieke knoppen",
+          "fr": "Désactiver les boutons physiques",
+          "it": "Disattivare i pulsanti fisici",
+          "es": "Desactivar botones físicos",
+          "pl": "Nieodpowiednie przycisk fizyczny",
+          "uk": "Відключені фізичні кнопки",
+          "zh-cn": "A. 有形但顿"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {
+        "settingsKey": "BLOCKN"
+      }
+    },
+    {
+      "_id": "settings.textUppercase",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Show texts in uppercase",
+          "de": "Texte in Großbuchstaben anzeigen",
+          "ru": "Показать тексты в верхнем регистре",
+          "pt": "Mostrar textos em maiúscula",
+          "nl": "Toon sms'jes in Uppercase",
+          "fr": "Afficher les textes dans la majuscule",
+          "it": "Mostra testi in maiuscolo",
+          "es": "Mostrar textos en mayúscula",
+          "pl": "Teksty w wyższych walizkach",
+          "uk": "Показати тексти у верхньому регістру",
+          "zh-cn": "评 注"
+        },
+        "type": "boolean",
+        "role": "state",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {
+        "settingsKey": "UPPERCASE"
+      }
+    },
+    {
+      "_id": "settings.appColorTime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (time)",
+          "de": "App-Farbe (Zeit)",
+          "ru": "Цвет приложения (время)",
+          "pt": "Cor da aplicação (tempo)",
+          "nl": "App kleur (tijd)",
+          "fr": "App couleur (heure)",
+          "it": "Colore dell'app (tempo)",
+          "es": "Color de aplicación (tiempo)",
+          "pl": "W kolorze (czasem)",
+          "uk": "Колір додатка (час)",
+          "zh-cn": "附录(时)"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TIME_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorDate",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (date)",
+          "de": "App-Farbe (Datum)",
+          "ru": "Цвет приложения (дата)",
+          "pt": "Cor do aplicativo (data)",
+          "nl": "App kleur (date)",
+          "fr": "App couleur (date)",
+          "it": "Colore dell'app (data)",
+          "es": "Color de la aplicación (fecha)",
+          "pl": "Apparent (ang.)",
+          "uk": "Колір додатка (дата)",
+          "zh-cn": "原件:英文"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "DATE_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorTemperature",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (temperature)",
+          "de": "App-Farbe (Temperatur)",
+          "ru": "Цвет приложения (температура)",
+          "pt": "Cor da aplicação (temperatura)",
+          "nl": "App kleur (temperature)",
+          "fr": "App couleur (température)",
+          "it": "Colore dell'app (temperatura)",
+          "es": "Color de aplicación (temperatura)",
+          "pl": "Ubarwienie (temperatura)",
+          "uk": "Колір додатка (температура)",
+          "zh-cn": "评 注"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TEMP_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorHumidity",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (humidity)",
+          "de": "App-Farbe (Feuchtigkeit)",
+          "ru": "Цвет приложения (влажность)",
+          "pt": "Cor do aplicativo (humidity)",
+          "nl": "App kleur (humidity)",
+          "fr": "App couleur (humidité)",
+          "it": "Colore dell'app (umidità)",
+          "es": "Color de aplicación (humididad)",
+          "pl": "Umiejętność (ang.)",
+          "uk": "Колір додатка (гумідність)",
+          "zh-cn": "评 注"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "HUM_COL"
+      }
+    },
+    {
+      "_id": "settings.appColorBattery",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App color (battery)",
+          "de": "App-Farbe (Batterie)",
+          "ru": "Цвет приложения (батареи)",
+          "pt": "Cor do aplicativo (bateria)",
+          "nl": "App kleur (battery)",
+          "fr": "App couleur (batterie)",
+          "it": "Colore dell'app (batteria)",
+          "es": "Color de la aplicación (batería)",
+          "pl": "Ubarwienie (pol.)",
+          "uk": "Колір додатка (баттерія)",
+          "zh-cn": "附录"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "BAT_COL"
+      }
+    },
+    {
+      "_id": "settings.textScrollSpeed",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Text scrolling speed",
+          "de": "Textlaufgeschwindigkeit",
+          "ru": "Скорость прокрутки текста",
+          "pt": "Velocidade de rolagem de texto",
+          "nl": "Vertaling:",
+          "fr": "Vitesse de défilement du texte",
+          "it": "Velocità di scorrimento del testo",
+          "es": "Velocidad de desplazamiento de texto",
+          "pl": "Szybkość",
+          "uk": "Швидкість прокручування тексту",
+          "zh-cn": "案文加速"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "min": 1,
+        "max": 100
+      },
+      "native": {
+        "settingsKey": "SSPEED"
+      }
+    },
+    {
+      "_id": "meta",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Meta information",
+          "de": "Meta-Informationen",
+          "ru": "Мета информация",
+          "pt": "Meta informação",
+          "nl": "Meta informatie",
+          "fr": "Méta-information",
+          "it": "Meta informazioni",
+          "es": "Meta informacion",
+          "pl": "Metainformacje",
+          "uk": "Мета",
+          "zh-cn": "元信息"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "meta.version",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "OS Version",
+          "de": "OS-Version",
+          "ru": "Версия ОС",
+          "pt": "Versão do sistema operacional",
+          "nl": "OS-versie",
+          "fr": "Version du système d'exploitation",
+          "it": "Versione del sistema operativo",
+          "es": "Versión del sistema operativo",
+          "pl": "Wersja systemu operacyjnego",
+          "uk": "Версія OS",
+          "zh-cn": "操作系统版本"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "device",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Device",
+          "de": "Gerät",
+          "ru": "Устройства",
+          "pt": "Dispositivo",
+          "nl": "Vernietiging",
+          "fr": "Dispositif",
+          "it": "Dispositivo",
+          "es": "Dispositivo",
+          "pl": "Device",
+          "uk": "Пристрої",
+          "zh-cn": "证人"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.update",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Start firmware update",
+          "de": "Firmware-Update starten",
+          "ru": "Начните обновление прошивки",
+          "pt": "Iniciar atualização de firmware",
+          "nl": "Start firmaware update",
+          "fr": "Mise à jour du firmware",
+          "it": "Avviare l'aggiornamento firmware",
+          "es": "Inicio actualización de firmware",
+          "pl": "Aktualizacja",
+          "uk": "Почати оновлення мікропрограми",
+          "zh-cn": "导 言"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.reboot",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Reboot",
+          "de": "Neustart",
+          "ru": "Перезагрузка",
+          "pt": "Reiniciar",
+          "nl": "Reboot",
+          "fr": "Reboot",
+          "it": "Reboot",
+          "es": "Reboot",
+          "pl": "Reboot",
+          "uk": "Перезавантаження",
+          "zh-cn": "Reboot"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.battery",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Battery",
+          "de": "Batterie",
+          "ru": "Батарея",
+          "pt": "Bateria",
+          "nl": "Batterij",
+          "fr": "Batterie",
+          "it": "Batteria",
+          "es": "Batería",
+          "pl": "Bateria",
+          "uk": "Акумулятор",
+          "zh-cn": "包 耳"
+        },
+        "type": "number",
+        "role": "value.battery",
+        "read": true,
+        "write": false,
+        "unit": "%"
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.wifiSignal",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "WiFi signal strength",
+          "de": "WiFi Signalstärke",
+          "ru": "WiFi сила сигнала",
+          "pt": "Resistência ao sinal WiFi",
+          "nl": "WiFi signaal",
+          "fr": "Puissance du signal WiFi",
+          "it": "Resistenza del segnale WiFi",
+          "es": "Fuerza de señal WiFi",
+          "pl": "Siła WiFi",
+          "uk": "Надійність сигналу WiFi",
+          "zh-cn": "WiFi信号强力"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "dBm"
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.freeRAM",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Available memory",
+          "de": "Verfügbarer Speicher",
+          "ru": "Доступная память",
+          "pt": "Memória disponível",
+          "nl": "Availabel geheugen",
+          "fr": "Mémoire disponible",
+          "it": "Memoria disponibile",
+          "es": "Memoria disponible",
+          "pl": "Pamięć pamięciowa",
+          "uk": "Доступна пам'ять",
+          "zh-cn": "现有记忆"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "Byte"
+      },
+      "native": {}
+    },
+    {
+      "_id": "device.uptime",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Uptime",
+          "de": "Betriebszeit",
+          "ru": "Uptime",
+          "pt": "Tempo de trabalho",
+          "nl": "Uptime",
+          "fr": "Heures supplémentaires",
+          "it": "Tempo",
+          "es": "Hora",
+          "pl": "Uptime",
+          "uk": "Час",
+          "zh-cn": "时间"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false,
+        "unit": "sec"
+      },
+      "native": {}
+    },
+    {
+      "_id": "sensor",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Sensor",
+          "de": "Sensor",
+          "ru": "Сенсор",
+          "pt": "Sensor de sensor",
+          "nl": "Sensor",
+          "fr": "Senseur",
+          "it": "Sensore",
+          "es": "Sensor",
+          "pl": "Sensor",
+          "uk": "Страхування",
+          "zh-cn": "许可证"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "sensor.lux",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Light sensor",
+          "de": "Lichtsensor",
+          "ru": "Датчик света",
+          "pt": "Sensor de luz",
+          "nl": "Licht",
+          "fr": "Capteur de lumière",
+          "it": "Sensore di luce",
+          "es": "Sensor de luz",
+          "pl": "Czujnik świetlny",
+          "uk": "Датчик світла",
+          "zh-cn": "照 传"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "Lux",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sensor.temp",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Temperature",
+          "de": "Temperatur",
+          "ru": "Температура",
+          "pt": "Temperatura",
+          "nl": "Temperatuur",
+          "fr": "Température",
+          "it": "Temperatura",
+          "es": "Temperatura",
+          "pl": "Temperatura",
+          "uk": "Погода",
+          "zh-cn": "模范"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "°C",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sensor.humidity",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Humidity",
+          "de": "Luftfeuchtigkeit",
+          "ru": "Влажность",
+          "pt": "Humidade",
+          "nl": "Humid",
+          "fr": "Humidité",
+          "it": "Umidità",
+          "es": "Humedad",
+          "pl": "Humity",
+          "uk": "Вологість",
+          "zh-cn": "死 情"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "%",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "display",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Display",
+          "de": "Anzeige",
+          "ru": "Показать",
+          "pt": "Exposição",
+          "nl": "Vertaling:",
+          "fr": "Afficher",
+          "it": "Visualizza",
+          "es": "Visualización",
+          "pl": "Display",
+          "uk": "Показати",
+          "zh-cn": "缺点"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.power",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Display activated",
+          "de": "Anzeige aktiviert",
+          "ru": "Дисплей активирован",
+          "pt": "Display ativado",
+          "nl": "Vertaling:",
+          "fr": "Affichage activé",
+          "it": "Visualizzazione attiva",
+          "es": "Visualización activada",
+          "pl": "Display activated",
+          "uk": "Активація дисплея",
+          "zh-cn": "B. 引起争议"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
         },
         "desc": {
-            "en": "Integrates your Ulanzi TC001 via HTTP",
-            "de": "Integriert Ihr Ulanzi TC001 über HTTP",
-            "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
-            "pt": "Integra seu Ulanzi TC001 via HTTP",
-            "nl": "Integreert uw Ulanzi TC001 via HTTP",
-            "fr": "Intègre votre Ulanzi TC001 via HTTP",
-            "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
-            "es": "Integra tu Ulanzi TC001 vía HTTP",
-            "pl": "Integruje twój Ulanzi TC001 przez HTTP",
-            "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
-            "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
+          "en": "Change brightness via settings",
+          "de": "Helligkeit ändern über Einstellungen",
+          "ru": "Изменить яркость через настройки",
+          "pt": "Alterar o brilho através de configurações",
+          "nl": "Verander de helderheid via de setting",
+          "fr": "Changer de luminosité via les paramètres",
+          "it": "Cambia luminosità tramite le impostazioni",
+          "es": "Cambiar el brillo mediante la configuración",
+          "pl": "Zmiana jasności poprzez ustawienie",
+          "uk": "Зміна яскравості через налаштування",
+          "zh-cn": "B. 通过环境改变光明"
         },
-        "authors": [
-            "Matthias Kleine <info@haus-automatisierung.com>"
-        ],
-        "keywords": [
-            "hardware",
-            "clock",
-            "message",
-            "notification",
-            "awtrix",
-            "ulanzi",
-            "tc001"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "awtrix-light.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
-        "readme": "https://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "hardware",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "blockly": true,
-        "messagebox": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "docs": {
-            "en": [
-                "docs/en/README.md"
-            ],
-            "de": [
-                "docs/de/README.md"
-            ]
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=4.0.15"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=6.6.0"
-            }
-        ]
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
     },
-    "native": {
-        "awtrixIp": "",
-        "foreignSettingsInstance": "",
-        "customApps": [],
-        "ignoreNewValueForAppInTimeRange": 3,
-        "historyApps": [],
-        "historyAppsBackgroundColor": "#000000",
-        "historyAppsRefreshInterval": 300,
-        "autoDeleteForeignApps": false,
-        "removeAppsOnStop": true,
-        "httpTimeout": 3
-    },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Information",
-                    "de": "Information",
-                    "ru": "Информация",
-                    "pt": "Em formação",
-                    "nl": "Informatie",
-                    "fr": "Informations",
-                    "it": "Informazione",
-                    "es": "Información",
-                    "pl": "Informacja",
-                    "uk": "Інформація",
-                    "zh-cn": "信息"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Connected to Awtrix",
-                    "de": "Verbindung mit Awtrix",
-                    "ru": "При подключении к Awtrix",
-                    "pt": "Se conectado ao Awtrix",
-                    "nl": "Indien verbonden met Awtrix",
-                    "fr": "Si connecté à Awtrix",
-                    "it": "Se connesso a Awtrix",
-                    "es": "Si está conectado a Awtrix",
-                    "pl": "W przypadku połączenia z Awtrix",
-                    "uk": "Підключення до Awtrix",
-                    "zh-cn": "如果连接到 Awtrix"
-                },
-                "type": "boolean",
-                "role": "indicator.reachable",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "settings",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Settings",
-                    "de": "Einstellungen",
-                    "ru": "Настройки",
-                    "pt": "Configurações",
-                    "nl": "Setting",
-                    "fr": "Réglages",
-                    "it": "Impostazioni impostazioni",
-                    "es": "Ajustes",
-                    "pl": "Setting",
-                    "uk": "Налаштування",
-                    "zh-cn": "确定"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "settings.appDisplayTime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App display duration",
-                    "de": "Anzeigedauer der Apps",
-                    "ru": "Продолжительность дисплея приложения",
-                    "pt": "Duração da exposição do aplicativo",
-                    "nl": "Vertaling:",
-                    "fr": "Durée de l'affichage",
-                    "it": "Durata dell'esposizione dell'app",
-                    "es": "Duración de la pantalla",
-                    "pl": "Czas trwania",
-                    "uk": "Тривалість відображення додатка",
-                    "zh-cn": "延长期限"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "sec",
-                "read": true,
-                "write": true,
-                "def": 7
-            },
-            "native": {
-                "settingsKey": "ATIME"
-            }
-        },
-        {
-            "_id": "settings.transitionSpeed",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Transition speed to the next app",
-                    "de": "Übergangsgeschwindigkeit zur nächsten App",
-                    "ru": "Скорость перехода к следующему приложению",
-                    "pt": "Velocidade de transição para o próximo aplicativo",
-                    "nl": "Vervoersnelheid naar de volgende app",
-                    "fr": "Vitesse de transition vers la prochaine application",
-                    "it": "Velocità di transizione alla prossima app",
-                    "es": "Velocidad de transición a la próxima aplicación",
-                    "pl": "Łączna prędkość do następnej aplikacji",
-                    "uk": "Швидкість переходу на наступний додаток",
-                    "zh-cn": "二. 向下一份报告过渡速度"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "ms",
-                "read": true,
-                "write": true,
-                "def": 500
-            },
-            "native": {
-                "settingsKey": "TSPEED"
-            }
-        },
-        {
-            "_id": "settings.textColor",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Text color",
-                    "de": "Textfarbe",
-                    "ru": "Цвет текста",
-                    "pt": "Cor do texto",
-                    "nl": "Vertaling:",
-                    "fr": "Couleur du texte",
-                    "it": "Colore del testo",
-                    "es": "Color de texto",
-                    "pl": "Kolor tekstowy",
-                    "uk": "Колір тексту",
-                    "zh-cn": "案文"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "TCOL"
-            }
-        },
-        {
-            "_id": "settings.displayWeekday",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Display weekday",
-                    "de": "Anzeige Wochentag",
-                    "ru": "Показать день недели",
-                    "pt": "Exibir dia da semana",
-                    "nl": "Vertaling:",
-                    "fr": "Afficher semaine",
-                    "it": "Visualizza giorno della settimana",
-                    "es": "Mostrar semanario",
-                    "pl": "Tygodnik dyskretny",
-                    "uk": "Показати тиждень",
-                    "zh-cn": "B. 日 失"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": true
-            },
-            "native": {
-                "settingsKey": "WD"
-            }
-        },
-        {
-            "_id": "settings.weekdayColorActive",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color for active week day",
-                    "de": "Farbe für aktiven Wochentag",
-                    "ru": "Цвет для активного дня недели",
-                    "pt": "Cor para o dia da semana ativa",
-                    "nl": "Kleur voor actieve weekdag",
-                    "fr": "Couleur pour une semaine active",
-                    "it": "Colore per il giorno della settimana attiva",
-                    "es": "Color para el día de semana activo",
-                    "pl": "Współzałożycielka tygodniowo",
-                    "uk": "Колір для активного тижня",
-                    "zh-cn": "积极周"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "WDCA"
-            }
-        },
-        {
-            "_id": "settings.weekdayColorInactive",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color for inactive week days",
-                    "de": "Farbe für inaktive Wochentage",
-                    "ru": "Цвет для неактивных дней недели",
-                    "pt": "Cor para dias semanais inativos",
-                    "nl": "Kleur voor inactieve weken",
-                    "fr": "Couleur pour les jours de semaine inactifs",
-                    "it": "Colore per giorni settimanali inattivi",
-                    "es": "Color para días de semana inactivos",
-                    "pl": "Współzałożyciel w nieczynny tydzień",
-                    "uk": "Колір для неактивних днів тижня",
-                    "zh-cn": "B. 活周"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "WDCI"
-            }
-        },
-        {
-            "_id": "settings.brightness",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness",
-                    "de": "Helligkeit",
-                    "ru": "Яркость",
-                    "pt": "Brilho",
-                    "nl": "Brightness",
-                    "fr": "Luminosité",
-                    "it": "Luminosità",
-                    "es": "Brillo",
-                    "pl": "Brightness",
-                    "uk": "Яскравість",
-                    "zh-cn": "B. 权利"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": true,
-                "min": 0,
-                "max": 255
-            },
-            "native": {
-                "settingsKey": "BRI"
-            }
-        },
-        {
-            "_id": "settings.brightnessAuto",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Automatic brightness",
-                    "de": "Automatische Helligkeit",
-                    "ru": "Автоматическая яркость",
-                    "pt": "Brilho automático",
-                    "nl": "Automatische helderheid",
-                    "fr": "Eclairage automatique",
-                    "it": "Luminosità automatica",
-                    "es": "Luminosidad automática",
-                    "pl": "Jasność automatyczna",
-                    "uk": "Автоматична яскравість",
-                    "zh-cn": "光明"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "ABRI"
-            }
-        },
-        {
-            "_id": "settings.appSwitchAuto",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Automatic app switching",
-                    "de": "Automatischer App-Wechsel",
-                    "ru": "Автоматический переключатель приложений",
-                    "pt": "Comutação automática de aplicativos",
-                    "nl": "Automatische app wisselen",
-                    "fr": "Interrupteur automatique d'application",
-                    "it": "Interruttore automatico dell'app",
-                    "es": "Interruptor automático de aplicaciones",
-                    "pl": "Automatyczne aplikacje przełączają",
-                    "uk": "Автоматичне перемикання додатків",
-                    "zh-cn": "自动转换"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "ATRANS"
-            }
-        },
-        {
-            "_id": "settings.formatTime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Time format",
-                    "de": "Zeitformat",
-                    "ru": "Формат времени",
-                    "pt": "Formato de hora",
-                    "nl": "Tijd formaat",
-                    "fr": "Format temporel",
-                    "it": "Formato del tempo",
-                    "es": "Formato del tiempo",
-                    "pl": "Format Time",
-                    "uk": "Формат",
-                    "zh-cn": "时间格式"
-                },
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "TFORMAT"
-            }
-        },
-        {
-            "_id": "settings.formatDate",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Date format",
-                    "de": "Datumsformat",
-                    "ru": "Формат даты",
-                    "pt": "Formato de data",
-                    "nl": "Datum formaat",
-                    "fr": "Date format",
-                    "it": "Formato della data",
-                    "es": "Formato de fecha",
-                    "pl": "Format",
-                    "uk": "Дата формат",
-                    "zh-cn": "日期"
-                },
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "DFORMAT"
-            }
-        },
-        {
-            "_id": "settings.weekStartMonday",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Week starts with monday",
-                    "de": "Woche beginnt mit Montag",
-                    "ru": "Неделя начинается с понедельника",
-                    "pt": "A semana começa com a segunda-feira",
-                    "nl": "Week begint met maandag",
-                    "fr": "La semaine commence avec le lundi",
-                    "it": "La settimana inizia con lunedì",
-                    "es": "La semana comienza con el lunes",
-                    "pl": "Tydzień zaczyna się od monday'u",
-                    "uk": "Тиждень починається з понеділка",
-                    "zh-cn": "每周开始开会"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": true
-            },
-            "native": {
-                "settingsKey": "SOM"
-            }
-        },
-        {
-            "_id": "settings.blockButtons",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Disable physical buttons",
-                    "de": "Physische Tasten deaktivieren",
-                    "ru": "Отключить физические кнопки",
-                    "pt": "Desativar botões físicos",
-                    "nl": "Disable fysieke knoppen",
-                    "fr": "Désactiver les boutons physiques",
-                    "it": "Disattivare i pulsanti fisici",
-                    "es": "Desactivar botones físicos",
-                    "pl": "Nieodpowiednie przycisk fizyczny",
-                    "uk": "Відключені фізичні кнопки",
-                    "zh-cn": "A. 有形但顿"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": false
-            },
-            "native": {
-                "settingsKey": "BLOCKN"
-            }
-        },
-        {
-            "_id": "settings.textUppercase",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Show texts in uppercase",
-                    "de": "Texte in Großbuchstaben anzeigen",
-                    "ru": "Показать тексты в верхнем регистре",
-                    "pt": "Mostrar textos em maiúscula",
-                    "nl": "Toon sms'jes in Uppercase",
-                    "fr": "Afficher les textes dans la majuscule",
-                    "it": "Mostra testi in maiuscolo",
-                    "es": "Mostrar textos en mayúscula",
-                    "pl": "Teksty w wyższych walizkach",
-                    "uk": "Показати тексти у верхньому регістру",
-                    "zh-cn": "评 注"
-                },
-                "type": "boolean",
-                "role": "state",
-                "read": true,
-                "write": true,
-                "def": true
-            },
-            "native": {
-                "settingsKey": "UPPERCASE"
-            }
-        },
-        {
-            "_id": "settings.appColorTime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App color (time)",
-                    "de": "App-Farbe (Zeit)",
-                    "ru": "Цвет приложения (время)",
-                    "pt": "Cor da aplicação (tempo)",
-                    "nl": "App kleur (tijd)",
-                    "fr": "App couleur (heure)",
-                    "it": "Colore dell'app (tempo)",
-                    "es": "Color de aplicación (tiempo)",
-                    "pl": "W kolorze (czasem)",
-                    "uk": "Колір додатка (час)",
-                    "zh-cn": "附录(时)"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "TIME_COL"
-            }
-        },
-        {
-            "_id": "settings.appColorDate",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App color (date)",
-                    "de": "App-Farbe (Datum)",
-                    "ru": "Цвет приложения (дата)",
-                    "pt": "Cor do aplicativo (data)",
-                    "nl": "App kleur (date)",
-                    "fr": "App couleur (date)",
-                    "it": "Colore dell'app (data)",
-                    "es": "Color de la aplicación (fecha)",
-                    "pl": "Apparent (ang.)",
-                    "uk": "Колір додатка (дата)",
-                    "zh-cn": "原件:英文"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "DATE_COL"
-            }
-        },
-        {
-            "_id": "settings.appColorTemperature",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App color (temperature)",
-                    "de": "App-Farbe (Temperatur)",
-                    "ru": "Цвет приложения (температура)",
-                    "pt": "Cor da aplicação (temperatura)",
-                    "nl": "App kleur (temperature)",
-                    "fr": "App couleur (température)",
-                    "it": "Colore dell'app (temperatura)",
-                    "es": "Color de aplicación (temperatura)",
-                    "pl": "Ubarwienie (temperatura)",
-                    "uk": "Колір додатка (температура)",
-                    "zh-cn": "评 注"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "TEMP_COL"
-            }
-        },
-        {
-            "_id": "settings.appColorHumidity",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App color (humidity)",
-                    "de": "App-Farbe (Feuchtigkeit)",
-                    "ru": "Цвет приложения (влажность)",
-                    "pt": "Cor do aplicativo (humidity)",
-                    "nl": "App kleur (humidity)",
-                    "fr": "App couleur (humidité)",
-                    "it": "Colore dell'app (umidità)",
-                    "es": "Color de aplicación (humididad)",
-                    "pl": "Umiejętność (ang.)",
-                    "uk": "Колір додатка (гумідність)",
-                    "zh-cn": "评 注"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "HUM_COL"
-            }
-        },
-        {
-            "_id": "settings.appColorBattery",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "App color (battery)",
-                    "de": "App-Farbe (Batterie)",
-                    "ru": "Цвет приложения (батареи)",
-                    "pt": "Cor do aplicativo (bateria)",
-                    "nl": "App kleur (battery)",
-                    "fr": "App couleur (batterie)",
-                    "it": "Colore dell'app (batteria)",
-                    "es": "Color de la aplicación (batería)",
-                    "pl": "Ubarwienie (pol.)",
-                    "uk": "Колір додатка (баттерія)",
-                    "zh-cn": "附录"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true
-            },
-            "native": {
-                "settingsKey": "BAT_COL"
-            }
-        },
-        {
-            "_id": "settings.textScrollSpeed",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Text scrolling speed",
-                    "de": "Textlaufgeschwindigkeit",
-                    "ru": "Скорость прокрутки текста",
-                    "pt": "Velocidade de rolagem de texto",
-                    "nl": "Vertaling:",
-                    "fr": "Vitesse de défilement du texte",
-                    "it": "Velocità di scorrimento del testo",
-                    "es": "Velocidad de desplazamiento de texto",
-                    "pl": "Szybkość",
-                    "uk": "Швидкість прокручування тексту",
-                    "zh-cn": "案文加速"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": true,
-                "min": 1,
-                "max": 100
-            },
-            "native": {
-                "settingsKey": "SSPEED"
-            }
-        },
-        {
-            "_id": "meta",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Meta information",
-                    "de": "Meta-Informationen",
-                    "ru": "Мета информация",
-                    "pt": "Meta informação",
-                    "nl": "Meta informatie",
-                    "fr": "Méta-information",
-                    "it": "Meta informazioni",
-                    "es": "Meta informacion",
-                    "pl": "Metainformacje",
-                    "uk": "Мета",
-                    "zh-cn": "元信息"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "meta.version",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "OS Version",
-                    "de": "OS-Version",
-                    "ru": "Версия ОС",
-                    "pt": "Versão do sistema operacional",
-                    "nl": "OS-versie",
-                    "fr": "Version du système d'exploitation",
-                    "it": "Versione del sistema operativo",
-                    "es": "Versión del sistema operativo",
-                    "pl": "Wersja systemu operacyjnego",
-                    "uk": "Версія OS",
-                    "zh-cn": "操作系统版本"
-                },
-                "type": "string",
-                "role": "text",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "device",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Device",
-                    "de": "Gerät",
-                    "ru": "Устройства",
-                    "pt": "Dispositivo",
-                    "nl": "Vernietiging",
-                    "fr": "Dispositif",
-                    "it": "Dispositivo",
-                    "es": "Dispositivo",
-                    "pl": "Device",
-                    "uk": "Пристрої",
-                    "zh-cn": "证人"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.update",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Start firmware update",
-                    "de": "Firmware-Update starten",
-                    "ru": "Начните обновление прошивки",
-                    "pt": "Iniciar atualização de firmware",
-                    "nl": "Start firmaware update",
-                    "fr": "Mise à jour du firmware",
-                    "it": "Avviare l'aggiornamento firmware",
-                    "es": "Inicio actualización de firmware",
-                    "pl": "Aktualizacja",
-                    "uk": "Почати оновлення мікропрограми",
-                    "zh-cn": "导 言"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.reboot",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Reboot",
-                    "de": "Neustart",
-                    "ru": "Перезагрузка",
-                    "pt": "Reiniciar",
-                    "nl": "Reboot",
-                    "fr": "Reboot",
-                    "it": "Reboot",
-                    "es": "Reboot",
-                    "pl": "Reboot",
-                    "uk": "Перезавантаження",
-                    "zh-cn": "Reboot"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.battery",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Battery",
-                    "de": "Batterie",
-                    "ru": "Батарея",
-                    "pt": "Bateria",
-                    "nl": "Batterij",
-                    "fr": "Batterie",
-                    "it": "Batteria",
-                    "es": "Batería",
-                    "pl": "Bateria",
-                    "uk": "Акумулятор",
-                    "zh-cn": "包 耳"
-                },
-                "type": "number",
-                "role": "value.battery",
-                "read": true,
-                "write": false,
-                "unit": "%"
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.wifiSignal",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "WiFi signal strength",
-                    "de": "WiFi Signalstärke",
-                    "ru": "WiFi сила сигнала",
-                    "pt": "Resistência ao sinal WiFi",
-                    "nl": "WiFi signaal",
-                    "fr": "Puissance du signal WiFi",
-                    "it": "Resistenza del segnale WiFi",
-                    "es": "Fuerza de señal WiFi",
-                    "pl": "Siła WiFi",
-                    "uk": "Надійність сигналу WiFi",
-                    "zh-cn": "WiFi信号强力"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false,
-                "unit": "dBm"
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.freeRAM",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Available memory",
-                    "de": "Verfügbarer Speicher",
-                    "ru": "Доступная память",
-                    "pt": "Memória disponível",
-                    "nl": "Availabel geheugen",
-                    "fr": "Mémoire disponible",
-                    "it": "Memoria disponibile",
-                    "es": "Memoria disponible",
-                    "pl": "Pamięć pamięciowa",
-                    "uk": "Доступна пам'ять",
-                    "zh-cn": "现有记忆"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false,
-                "unit": "Byte"
-            },
-            "native": {}
-        },
-        {
-            "_id": "device.uptime",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Uptime",
-                    "de": "Betriebszeit",
-                    "ru": "Uptime",
-                    "pt": "Tempo de trabalho",
-                    "nl": "Uptime",
-                    "fr": "Heures supplémentaires",
-                    "it": "Tempo",
-                    "es": "Hora",
-                    "pl": "Uptime",
-                    "uk": "Час",
-                    "zh-cn": "时间"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false,
-                "unit": "sec"
-            },
-            "native": {}
-        },
-        {
-            "_id": "sensor",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Sensor",
-                    "de": "Sensor",
-                    "ru": "Сенсор",
-                    "pt": "Sensor de sensor",
-                    "nl": "Sensor",
-                    "fr": "Senseur",
-                    "it": "Sensore",
-                    "es": "Sensor",
-                    "pl": "Sensor",
-                    "uk": "Страхування",
-                    "zh-cn": "许可证"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "sensor.lux",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Light sensor",
-                    "de": "Lichtsensor",
-                    "ru": "Датчик света",
-                    "pt": "Sensor de luz",
-                    "nl": "Licht",
-                    "fr": "Capteur de lumière",
-                    "it": "Sensore di luce",
-                    "es": "Sensor de luz",
-                    "pl": "Czujnik świetlny",
-                    "uk": "Датчик світла",
-                    "zh-cn": "照 传"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "Lux",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sensor.temp",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Temperature",
-                    "de": "Temperatur",
-                    "ru": "Температура",
-                    "pt": "Temperatura",
-                    "nl": "Temperatuur",
-                    "fr": "Température",
-                    "it": "Temperatura",
-                    "es": "Temperatura",
-                    "pl": "Temperatura",
-                    "uk": "Погода",
-                    "zh-cn": "模范"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "°C",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sensor.humidity",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Humidity",
-                    "de": "Luftfeuchtigkeit",
-                    "ru": "Влажность",
-                    "pt": "Humidade",
-                    "nl": "Humid",
-                    "fr": "Humidité",
-                    "it": "Umidità",
-                    "es": "Humedad",
-                    "pl": "Humity",
-                    "uk": "Вологість",
-                    "zh-cn": "死 情"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "%",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "display",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Display",
-                    "de": "Anzeige",
-                    "ru": "Показать",
-                    "pt": "Exposição",
-                    "nl": "Vertaling:",
-                    "fr": "Afficher",
-                    "it": "Visualizza",
-                    "es": "Visualización",
-                    "pl": "Display",
-                    "uk": "Показати",
-                    "zh-cn": "缺点"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.power",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Display activated",
-                    "de": "Anzeige aktiviert",
-                    "ru": "Дисплей активирован",
-                    "pt": "Display ativado",
-                    "nl": "Vertaling:",
-                    "fr": "Affichage activé",
-                    "it": "Visualizzazione attiva",
-                    "es": "Visualización activada",
-                    "pl": "Display activated",
-                    "uk": "Активація дисплея",
-                    "zh-cn": "B. 引起争议"
-                },
-                "type": "boolean",
-                "role": "indicator",
-                "read": true,
-                "write": true,
-                "def": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.brightness",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness",
-                    "de": "Helligkeit",
-                    "ru": "Яркость",
-                    "pt": "Brilho",
-                    "nl": "Brightness",
-                    "fr": "Luminosité",
-                    "it": "Luminosità",
-                    "es": "Brillo",
-                    "pl": "Brightness",
-                    "uk": "Яскравість",
-                    "zh-cn": "B. 权利"
-                },
-                "desc": {
-                    "en": "Change brightness via settings",
-                    "de": "Helligkeit ändern über Einstellungen",
-                    "ru": "Изменить яркость через настройки",
-                    "pt": "Alterar o brilho através de configurações",
-                    "nl": "Verander de helderheid via de setting",
-                    "fr": "Changer de luminosité via les paramètres",
-                    "it": "Cambia luminosità tramite le impostazioni",
-                    "es": "Cambiar el brillo mediante la configuración",
-                    "pl": "Zmiana jasności poprzez ustawienie",
-                    "uk": "Зміна яскравості через налаштування",
-                    "zh-cn": "B. 通过环境改变光明"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.moodlight",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Mood light",
-                    "de": "Stimmungslicht",
-                    "ru": "Настроение света",
-                    "pt": "Luz de umidade",
-                    "nl": "Stemmingslicht",
-                    "fr": "Lumière d'ambiance",
-                    "it": "Luce del fango",
-                    "es": "Luz ambiental",
-                    "pl": "Światło nastroju",
-                    "uk": "Мудрий світло",
-                    "zh-cn": "水"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.moodlight.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Active",
-                    "de": "Aktiv",
-                    "ru": "Активно",
-                    "pt": "Activo",
-                    "nl": "Active",
-                    "fr": "Active",
-                    "it": "Attivo",
-                    "es": "Activo",
-                    "pl": "Aktywny",
-                    "uk": "Активний",
-                    "zh-cn": "精算师"
-                },
-                "type": "boolean",
-                "role": "indicator",
-                "read": true,
-                "write": true,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.moodlight.brightness",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Brightness",
-                    "de": "Helligkeit",
-                    "ru": "Яркость",
-                    "pt": "Brilho",
-                    "nl": "Brightness",
-                    "fr": "Luminosité",
-                    "it": "Luminosità",
-                    "es": "Brillo",
-                    "pl": "Brightness",
-                    "uk": "Яскравість",
-                    "zh-cn": "B. 权利"
-                },
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": true,
-                "def": 0,
-                "min": 0
-            },
-            "native": {}
-        },
-        {
-            "_id": "display.moodlight.color",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color",
-                    "de": "Farbe",
-                    "ru": "Цвет",
-                    "pt": "Cor",
-                    "nl": "Color",
-                    "fr": "Couleur",
-                    "it": "Colore",
-                    "es": "Color",
-                    "pl": "Color",
-                    "uk": "Колір",
-                    "zh-cn": "科 法 律"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true,
-                "def": "#FF0000"
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Apps",
-                    "de": "Apps",
-                    "ru": "Программы",
-                    "pt": "Apps",
-                    "nl": "Apps",
-                    "fr": "applications",
-                    "it": "App",
-                    "es": "Aplicaciones",
-                    "pl": "Aplikacje",
-                    "uk": "Програми",
-                    "zh-cn": "应用"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps.next",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Next App",
-                    "de": "Nächste App",
-                    "ru": "Следующее приложение",
-                    "pt": "Próximo aplicativo",
-                    "nl": "Volgende app",
-                    "fr": "Application suivante",
-                    "it": "App successiva",
-                    "es": "Siguiente aplicación",
-                    "pl": "Następna aplikacja",
-                    "uk": "Додаток",
-                    "zh-cn": "下一个应用"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "apps.prev",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Previous App",
-                    "de": "Vorherige App",
-                    "ru": "Предыдущее приложение",
-                    "pt": "App anterior",
-                    "nl": "Vorige app",
-                    "fr": "Application précédente",
-                    "it": "App precedente",
-                    "es": "Aplicación anterior",
-                    "pl": "Poprzednia aplikacja",
-                    "uk": "Попередній додаток",
-                    "zh-cn": "上一个应用"
-                },
-                "type": "boolean",
-                "role": "button",
-                "read": false,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Indicator",
-                    "de": "Indikator",
-                    "ru": "Индикатор",
-                    "pt": "Indicador",
-                    "nl": "Indicator",
-                    "fr": "Indicateur",
-                    "it": "Indicatore",
-                    "es": "Indicador",
-                    "pl": "Indicator",
-                    "uk": "Індикатор",
-                    "zh-cn": "评 注"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.1",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Indicator",
-                    "de": "Indikator",
-                    "ru": "Индикатор",
-                    "pt": "Indicador",
-                    "nl": "Indicator",
-                    "fr": "Indicateur",
-                    "it": "Indicatore",
-                    "es": "Indicador",
-                    "pl": "Indicator",
-                    "uk": "Індикатор",
-                    "zh-cn": "评 注"
-                },
-                "desc": {
-                    "en": "Top right corner",
-                    "de": "Rechts oben",
-                    "ru": "Верхний правый угол",
-                    "pt": "Canto superior direito",
-                    "nl": "Bovenste hoek",
-                    "fr": "Coin supérieur droit",
-                    "it": "Angolo in alto a destra",
-                    "es": "Esquina superior derecha",
-                    "pl": "Top",
-                    "uk": "Топ правий кут",
-                    "zh-cn": "正确的角落"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.1.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Active",
-                    "de": "Aktiv",
-                    "ru": "Активно",
-                    "pt": "Activo",
-                    "nl": "Active",
-                    "fr": "Active",
-                    "it": "Attivo",
-                    "es": "Activo",
-                    "pl": "Aktywny",
-                    "uk": "Активний",
-                    "zh-cn": "精算师"
-                },
-                "type": "boolean",
-                "role": "indicator",
-                "read": true,
-                "write": true,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.1.blink",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Blink interval",
-                    "de": "Blink-Intervall",
-                    "ru": "Интервал Blink",
-                    "pt": "Intervalo de Blink",
-                    "nl": "Blink interval",
-                    "fr": "Intervalle de liaison",
-                    "it": "Intervallo di collegamento",
-                    "es": "Intervalo de enlace",
-                    "pl": "Blink interval",
-                    "uk": "Проміжок Blink",
-                    "zh-cn": "B. 联系"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "ms",
-                "read": true,
-                "write": true,
-                "def": 0,
-                "min": 0
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.1.color",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color",
-                    "de": "Farbe",
-                    "ru": "Цвет",
-                    "pt": "Cor",
-                    "nl": "Color",
-                    "fr": "Couleur",
-                    "it": "Colore",
-                    "es": "Color",
-                    "pl": "Color",
-                    "uk": "Колір",
-                    "zh-cn": "科 法 律"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true,
-                "def": "#FF0000"
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.2",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Indicator",
-                    "de": "Indikator",
-                    "ru": "Индикатор",
-                    "pt": "Indicador",
-                    "nl": "Indicator",
-                    "fr": "Indicateur",
-                    "it": "Indicatore",
-                    "es": "Indicador",
-                    "pl": "Indicator",
-                    "uk": "Індикатор",
-                    "zh-cn": "评 注"
-                },
-                "desc": {
-                    "en": "Right side",
-                    "de": "Rechte Seite",
-                    "ru": "Правая сторона",
-                    "pt": "Do lado direito",
-                    "nl": "Rechts",
-                    "fr": "Côté droit",
-                    "it": "Lato destro",
-                    "es": "El lado derecho",
-                    "pl": "Strona internetowa",
-                    "uk": "Правова сторона",
-                    "zh-cn": "权利方面"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.2.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Active",
-                    "de": "Aktiv",
-                    "ru": "Активно",
-                    "pt": "Activo",
-                    "nl": "Active",
-                    "fr": "Active",
-                    "it": "Attivo",
-                    "es": "Activo",
-                    "pl": "Aktywny",
-                    "uk": "Активний",
-                    "zh-cn": "精算师"
-                },
-                "type": "boolean",
-                "role": "indicator",
-                "read": true,
-                "write": true,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.2.blink",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Blink interval",
-                    "de": "Blink-Intervall",
-                    "ru": "Интервал Blink",
-                    "pt": "Intervalo de Blink",
-                    "nl": "Blink interval",
-                    "fr": "Intervalle de liaison",
-                    "it": "Intervallo di collegamento",
-                    "es": "Intervalo de enlace",
-                    "pl": "Blink interval",
-                    "uk": "Проміжок Blink",
-                    "zh-cn": "B. 联系"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "ms",
-                "read": true,
-                "write": true,
-                "def": 0,
-                "min": 0
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.2.color",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color",
-                    "de": "Farbe",
-                    "ru": "Цвет",
-                    "pt": "Cor",
-                    "nl": "Color",
-                    "fr": "Couleur",
-                    "it": "Colore",
-                    "es": "Color",
-                    "pl": "Color",
-                    "uk": "Колір",
-                    "zh-cn": "科 法 律"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true,
-                "def": "#FF0000"
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.3",
-            "type": "channel",
-            "common": {
-                "name": {
-                    "en": "Indicator",
-                    "de": "Indikator",
-                    "ru": "Индикатор",
-                    "pt": "Indicador",
-                    "nl": "Indicator",
-                    "fr": "Indicateur",
-                    "it": "Indicatore",
-                    "es": "Indicador",
-                    "pl": "Indicator",
-                    "uk": "Індикатор",
-                    "zh-cn": "评 注"
-                },
-                "desc": {
-                    "en": "Bottom right corner",
-                    "de": "Rechts unten",
-                    "ru": "Нижний правый угол",
-                    "pt": "Canto inferior direito",
-                    "nl": "Bottom rechter hoek",
-                    "fr": "Bottom right corner",
-                    "it": "Angolo inferiore destro",
-                    "es": "Bottom right corner",
-                    "pl": "Bottom right",
-                    "uk": "Підсумок правий кут",
-                    "zh-cn": "Bottom权角"
-                }
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.3.active",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Active",
-                    "de": "Aktiv",
-                    "ru": "Активно",
-                    "pt": "Activo",
-                    "nl": "Active",
-                    "fr": "Active",
-                    "it": "Attivo",
-                    "es": "Activo",
-                    "pl": "Aktywny",
-                    "uk": "Активний",
-                    "zh-cn": "精算师"
-                },
-                "type": "boolean",
-                "role": "indicator",
-                "read": true,
-                "write": true,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.3.blink",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Blink interval",
-                    "de": "Blink-Intervall",
-                    "ru": "Интервал Blink",
-                    "pt": "Intervalo de Blink",
-                    "nl": "Blink interval",
-                    "fr": "Intervalle de liaison",
-                    "it": "Intervallo di collegamento",
-                    "es": "Intervalo de enlace",
-                    "pl": "Blink interval",
-                    "uk": "Проміжок Blink",
-                    "zh-cn": "B. 联系"
-                },
-                "type": "number",
-                "role": "value",
-                "unit": "ms",
-                "read": true,
-                "write": true,
-                "def": 0,
-                "min": 0
-            },
-            "native": {}
-        },
-        {
-            "_id": "indicator.3.color",
-            "type": "state",
-            "common": {
-                "name": {
-                    "en": "Color",
-                    "de": "Farbe",
-                    "ru": "Цвет",
-                    "pt": "Cor",
-                    "nl": "Color",
-                    "fr": "Couleur",
-                    "it": "Colore",
-                    "es": "Color",
-                    "pl": "Color",
-                    "uk": "Колір",
-                    "zh-cn": "科 法 律"
-                },
-                "type": "string",
-                "role": "level.color.rgb",
-                "read": true,
-                "write": true,
-                "def": "#FF0000"
-            },
-            "native": {}
+    {
+      "_id": "display.moodlight",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Mood light",
+          "de": "Stimmungslicht",
+          "ru": "Настроение света",
+          "pt": "Luz de umidade",
+          "nl": "Stemmingslicht",
+          "fr": "Lumière d'ambiance",
+          "it": "Luce del fango",
+          "es": "Luz ambiental",
+          "pl": "Światło nastroju",
+          "uk": "Мудрий світло",
+          "zh-cn": "水"
         }
-    ]
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.brightness",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Brightness",
+          "de": "Helligkeit",
+          "ru": "Яркость",
+          "pt": "Brilho",
+          "nl": "Brightness",
+          "fr": "Luminosité",
+          "it": "Luminosità",
+          "es": "Brillo",
+          "pl": "Brightness",
+          "uk": "Яскравість",
+          "zh-cn": "B. 权利"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.moodlight.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Apps",
+          "de": "Apps",
+          "ru": "Программы",
+          "pt": "Apps",
+          "nl": "Apps",
+          "fr": "applications",
+          "it": "App",
+          "es": "Aplicaciones",
+          "pl": "Aplikacje",
+          "uk": "Програми",
+          "zh-cn": "应用"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps.next",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Next App",
+          "de": "Nächste App",
+          "ru": "Следующее приложение",
+          "pt": "Próximo aplicativo",
+          "nl": "Volgende app",
+          "fr": "Application suivante",
+          "it": "App successiva",
+          "es": "Siguiente aplicación",
+          "pl": "Następna aplikacja",
+          "uk": "Додаток",
+          "zh-cn": "下一个应用"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "apps.prev",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Previous App",
+          "de": "Vorherige App",
+          "ru": "Предыдущее приложение",
+          "pt": "App anterior",
+          "nl": "Vorige app",
+          "fr": "Application précédente",
+          "it": "App precedente",
+          "es": "Aplicación anterior",
+          "pl": "Poprzednia aplikacja",
+          "uk": "Попередній додаток",
+          "zh-cn": "上一个应用"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Top right corner",
+          "de": "Rechts oben",
+          "ru": "Верхний правый угол",
+          "pt": "Canto superior direito",
+          "nl": "Bovenste hoek",
+          "fr": "Coin supérieur droit",
+          "it": "Angolo in alto a destra",
+          "es": "Esquina superior derecha",
+          "pl": "Top",
+          "uk": "Топ правий кут",
+          "zh-cn": "正确的角落"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.1.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Right side",
+          "de": "Rechte Seite",
+          "ru": "Правая сторона",
+          "pt": "Do lado direito",
+          "nl": "Rechts",
+          "fr": "Côté droit",
+          "it": "Lato destro",
+          "es": "El lado derecho",
+          "pl": "Strona internetowa",
+          "uk": "Правова сторона",
+          "zh-cn": "权利方面"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.2.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Indicator",
+          "de": "Indikator",
+          "ru": "Индикатор",
+          "pt": "Indicador",
+          "nl": "Indicator",
+          "fr": "Indicateur",
+          "it": "Indicatore",
+          "es": "Indicador",
+          "pl": "Indicator",
+          "uk": "Індикатор",
+          "zh-cn": "评 注"
+        },
+        "desc": {
+          "en": "Bottom right corner",
+          "de": "Rechts unten",
+          "ru": "Нижний правый угол",
+          "pt": "Canto inferior direito",
+          "nl": "Bottom rechter hoek",
+          "fr": "Bottom right corner",
+          "it": "Angolo inferiore destro",
+          "es": "Bottom right corner",
+          "pl": "Bottom right",
+          "uk": "Підсумок правий кут",
+          "zh-cn": "Bottom权角"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.active",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Active",
+          "de": "Aktiv",
+          "ru": "Активно",
+          "pt": "Activo",
+          "nl": "Active",
+          "fr": "Active",
+          "it": "Attivo",
+          "es": "Activo",
+          "pl": "Aktywny",
+          "uk": "Активний",
+          "zh-cn": "精算师"
+        },
+        "type": "boolean",
+        "role": "indicator",
+        "read": true,
+        "write": true,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.blink",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Blink interval",
+          "de": "Blink-Intervall",
+          "ru": "Интервал Blink",
+          "pt": "Intervalo de Blink",
+          "nl": "Blink interval",
+          "fr": "Intervalle de liaison",
+          "it": "Intervallo di collegamento",
+          "es": "Intervalo de enlace",
+          "pl": "Blink interval",
+          "uk": "Проміжок Blink",
+          "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.color",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Color",
+          "de": "Farbe",
+          "ru": "Цвет",
+          "pt": "Cor",
+          "nl": "Color",
+          "fr": "Couleur",
+          "it": "Colore",
+          "es": "Color",
+          "pl": "Color",
+          "uk": "Колір",
+          "zh-cn": "科 法 律"
+        },
+        "type": "string",
+        "role": "level.color.rgb",
+        "read": true,
+        "write": true,
+        "def": "#FF0000"
+      },
+      "native": {}
+    }
+  ]
 }

@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.4.0 (2023-07-12)
 
 * (klein0r) Allow to import settings from another instance
 
@@ -63,14 +63,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### 0.3.1 (2023-07-06)
 
 * (klein0r) Some app options were ignored for static text apps
-
-### 0.3.0 (2023-07-05)
-
-Admin adapter in version 6.6.0 is required
-
-* (klein0r) Updated instance configuration (new admin component)
-* (klein0r) Added several options for custom apps
-* (klein0r) Individual background color for each app
 
 ## License
 MIT License
