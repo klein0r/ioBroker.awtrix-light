@@ -38,5 +38,10 @@
     "0 = default": "0 = за замовчуванням",
     "Use settings of other instance": "Використовуйте налаштування іншого екземпляра",
     "Copy app settings of": "Копіювати налаштування програми з",
-    "Select another instance": "Виберіть інший екземпляр"
+    "Select another instance": "Виберіть інший екземпляр",
+    "Text options": "Опції тексту",
+    "Threshold overrides (type of state must be number)": "Перевизначення порогових значень (тип стану має бути числом)",
+    "If value less than": "Якщо значення менше",
+    "If value greater than": "Якщо значення більше ніж",
+    "Set icon, text color or background color override": "Установити піктограму, змінити колір тексту чи фону"
 }

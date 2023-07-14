@@ -38,5 +38,10 @@
     "0 = default": "0 = standaard",
     "Use settings of other instance": "Gebruik instellingen van een andere instantie",
     "Copy app settings of": "Kopieer app-instellingen van",
-    "Select another instance": "Selecteer een andere instantie"
+    "Select another instance": "Selecteer een andere instantie",
+    "Text options": "Tekst opties",
+    "Threshold overrides (type of state must be number)": "Drempeloverschrijdingen (type status moet getal zijn)",
+    "If value less than": "Indien waarde kleiner dan",
+    "If value greater than": "Als de waarde groter is dan",
+    "Set icon, text color or background color override": "Stel pictogram, tekstkleur of achtergrondkleur override in"
 }

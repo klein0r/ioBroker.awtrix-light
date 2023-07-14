@@ -38,5 +38,10 @@
     "0 = default": "0 = predeterminado",
     "Use settings of other instance": "Usar la configuración de otra instancia",
     "Copy app settings of": "Copiar la configuración de la aplicación de",
-    "Select another instance": "Seleccione otra instancia"
+    "Select another instance": "Seleccione otra instancia",
+    "Text options": "Opciones de texto",
+    "Threshold overrides (type of state must be number)": "Anulaciones de umbral (el tipo de estado debe ser un número)",
+    "If value less than": "Si el valor es menor que",
+    "If value greater than": "Si el valor es mayor que",
+    "Set icon, text color or background color override": "Establecer anulación de icono, color de texto o color de fondo"
 }

@@ -38,5 +38,10 @@
     "0 = default": "0 = по умолчанию",
     "Use settings of other instance": "Использовать настройки другого экземпляра",
     "Copy app settings of": "Скопируйте настройки приложения из",
-    "Select another instance": "Выберите другой экземпляр"
+    "Select another instance": "Выберите другой экземпляр",
+    "Text options": "Параметры текста",
+    "Threshold overrides (type of state must be number)": "Переопределение порога (тип состояния должен быть числом)",
+    "If value less than": "Если значение меньше",
+    "If value greater than": "Если значение больше, чем",
+    "Set icon, text color or background color override": "Установка значка, цвета текста или фонового цвета"
 }
