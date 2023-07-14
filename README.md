@@ -41,6 +41,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added options to override icon, text color and backgroup color for thresholds
+
 ### 0.4.0 (2023-07-12)
 
 * (klein0r) Allow to import settings from another instance

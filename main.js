@@ -614,7 +614,7 @@ class AwtrixLight extends utils.Adapter {
                                         .trim();
 
                                     if (displayText.length > 0) {
-                                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', this.createAppRequestObj(customApp, displayText)).catch((error) => {
+                                        await this.buildRequestAsync(`custom?name=${customApp.name}`, 'POST', this.createAppRequestObj(customApp, displayText, val)).catch((error) => {
                                             this.log.warn(`(custom?name=${customApp.name}) Unable to update custom app "${customApp.name}": ${error}`);
                                         });
                                     } else {
@@ -643,8 +643,10 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    createAppRequestObj(customApp, text) {
-        const moreOptions = {};
+    createAppRequestObj(customApp, text, val) {
+        const moreOptions = {
+            background: customApp.backgroundColor || '#000000'
+        };
 
         // Set rainbow colors OR text color
         if (customApp.rainbow) {
@@ -670,8 +672,38 @@ class AwtrixLight extends utils.Adapter {
             moreOptions.duration = customApp.duration;
         }
 
+        // thresholds
+        if (!isNaN(val)) {
+            if (customApp.thresholdLtActive && customApp.thresholdLtValue < val) {
+                this.log.debug(`[createAppRequestObj] Custom app "${customApp.name}" has a value (${val}) less than ${customApp.thresholdLtValue} - overriding values`);
+
+                if (customApp.thresholdLtIcon) {
+                    moreOptions.icon = customApp.thresholdLtIcon;
+                }
+                if (customApp.thresholdLtTextColor) {
+                    moreOptions.color = customApp.thresholdLtTextColor;
+                    moreOptions.rainbow = false; // disable rainbow
+                }
+                if (customApp.thresholdLtBackgroundColor) {
+                    moreOptions.background = customApp.thresholdLtBackgroundColor;
+                }
+            } else if (customApp.thresholdGtActive && customApp.thresholdGtValue > val) {
+                this.log.debug(`[createAppRequestObj] Custom app "${customApp.name}" has a value (${val}) greater than ${customApp.thresholdLtValue} - overriding values`);
+
+                if (customApp.thresholdGtIcon) {
+                    moreOptions.icon = customApp.thresholdGtIcon;
+                }
+                if (customApp.thresholdGtTextColor) {
+                    moreOptions.color = customApp.thresholdGtTextColor;
+                    moreOptions.rainbow = false; // disable rainbow
+                }
+                if (customApp.thresholdGtBackgroundColor) {
+                    moreOptions.background = customApp.thresholdGtBackgroundColor;
+                }
+            }
+        }
+
         return {
-            background: customApp.backgroundColor || '#000000',
             text,
             textCase: 2, // show as sent
             repeat: customApp.repeat || 1,
