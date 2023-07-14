@@ -674,8 +674,8 @@ class AwtrixLight extends utils.Adapter {
 
         // thresholds
         if (!isNaN(val)) {
-            if (customApp.thresholdLtActive && customApp.thresholdLtValue < val) {
-                this.log.debug(`[createAppRequestObj] Custom app "${customApp.name}" has a value (${val}) less than ${customApp.thresholdLtValue} - overriding values`);
+            if (customApp.thresholdLtActive && val < customApp.thresholdLtValue) {
+                this.log.debug(`[createAppRequestObj] LT < custom app "${customApp.name}" has a value (${val}) less than ${customApp.thresholdLtValue} - overriding values`);
 
                 if (customApp.thresholdLtIcon) {
                     moreOptions.icon = customApp.thresholdLtIcon;
@@ -687,8 +687,8 @@ class AwtrixLight extends utils.Adapter {
                 if (customApp.thresholdLtBackgroundColor) {
                     moreOptions.background = customApp.thresholdLtBackgroundColor;
                 }
-            } else if (customApp.thresholdGtActive && customApp.thresholdGtValue > val) {
-                this.log.debug(`[createAppRequestObj] Custom app "${customApp.name}" has a value (${val}) greater than ${customApp.thresholdLtValue} - overriding values`);
+            } else if (customApp.thresholdGtActive && val > customApp.thresholdGtValue) {
+                this.log.debug(`[createAppRequestObj] GT > custom app "${customApp.name}" has a value (${val}) greater than ${customApp.thresholdGtValue} - overriding values`);
 
                 if (customApp.thresholdGtIcon) {
                     moreOptions.icon = customApp.thresholdGtIcon;
