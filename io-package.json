@@ -172,6 +172,8 @@
   },
   "native": {
     "awtrixIp": "",
+    "downloadScreenContent": false,
+    "downloadScreenContentInterval": 10,
     "foreignSettingsInstance": "",
     "customApps": [],
     "ignoreNewValueForAppInTimeRange": 3,
@@ -1165,6 +1167,43 @@
         },
         "type": "number",
         "role": "value",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "display.content",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Content",
+          "de": "Inhalt",
+          "ru": "Содержание",
+          "pt": "Conteúdo",
+          "nl": "Content",
+          "fr": "Table des matières",
+          "it": "Contenuto",
+          "es": "Índice",
+          "pl": "Konfrontacja",
+          "uk": "Зміст",
+          "zh-cn": "内容"
+        },
+        "desc": {
+          "en": "Screen content as SVG graphic",
+          "de": "Bildschirminhalt als SVG Grafik",
+          "ru": "Содержание экрана как SVG Graphic",
+          "pt": "Conteúdo da tela como gráfico SVG",
+          "nl": "Screen inhoud van SVG grafiek",
+          "fr": "Contenu écran comme graphique SVG",
+          "it": "Contenuto della schermata come grafica SVG",
+          "es": "Contenido de pantalla como gráfico SVG",
+          "pl": "Zawartość ekranu jako SVG",
+          "uk": "Зміст екрану як SVG графіка",
+          "zh-cn": "SVG图"
+        },
+        "type": "string",
+        "role": "html",
         "read": true,
         "write": false
       },

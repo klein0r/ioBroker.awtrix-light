@@ -22,8 +22,11 @@ class AwtrixLight extends utils.Adapter {
         this.displayedVersionWarning = false;
 
         this.apiConnected = false;
+
         this.refreshStateTimeout = null;
         this.refreshHistoryAppsTimeout = null;
+        this.downloadScreenContentInterval = null;
+
         this.customAppsForeignStates = {};
 
         this.on('ready', this.onReady.bind(this));
@@ -358,10 +361,49 @@ class AwtrixLight extends utils.Adapter {
 
                     // moodlight
                     await this.updateMoodlightByStates();
+
+                    if (this.config.downloadScreenContent && !this.downloadScreenContentInterval) {
+                        this.log.debug(`[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`);
+
+                        this.downloadScreenContentInterval = this.setInterval(() => {
+                            if (this.apiConnected) {
+                                this.buildRequestAsync('screen', 'GET')
+                                    .then(async (response) => {
+                                        if (response.status === 200) {
+                                            const pixelData = response.data;
+                                            const width = 640;
+                                            const height = 160;
+                                            const scaleX = width / 32;
+                                            const scaleY = height / 8;
+
+                                            let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">`;
+
+                                            for (let y = 0; y < 8; y++) {
+                                                for (let x = 0; x < 32; x++) {
+                                                    const color = colorConvert.rgb565to888Str(pixelData[y * 32 + x]);
+                                                    svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`
+                                                }
+                                            }
+
+                                            svg += '\n</svg>';
+
+                                            await this.setStateAsync('display.content', { val: svg, ack: true });
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        this.log.debug(`(screen) received error: ${JSON.stringify(error)}`);
+                                    });
+                            }
+                        }, this.config.downloadScreenContentInterval * 1000);
+                    }
                 } catch (error) {
                     this.log.error(`[setApiConnected] Unable to refresh settings, apps or indicators: ${error}`);
                 }
             } else {
+                if (this.downloadScreenContentInterval) {
+                    this.clearInterval(this.downloadScreenContentInterval);
+                    this.downloadScreenContentInterval = null;
+                }
                 this.log.debug('API is offline');
             }
         }
@@ -1129,6 +1171,11 @@ class AwtrixLight extends utils.Adapter {
             if (this.refreshHistoryAppsTimeout) {
                 this.log.debug('clearing history apps timeout');
                 this.clearTimeout(this.refreshHistoryAppsTimeout);
+            }
+
+            if (this.downloadScreenContentInterval) {
+                this.clearInterval(this.downloadScreenContentInterval);
+                this.downloadScreenContentInterval = null;
             }
 
             callback();

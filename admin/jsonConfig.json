@@ -6,6 +6,15 @@
             "type": "panel",
             "label": "Options",
             "items": {
+                "_headerOptionsConnection": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Connection",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
                 "awtrixIp": {
                     "type": "text",
                     "label": "IP",
@@ -16,6 +25,40 @@
                     "validator": "String(data.awtrixIp).length > 0 && !String(data.awtrixIp).startsWith('http')",
                     "validatorErrorText": "Invalid IP address",
                     "validatorNoSaveOnError": true
+                },
+                "_headerOptionsScreen": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Screen",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
+                },
+                "downloadScreenContent": {
+                    "type": "checkbox",
+                    "label": "Download screen content",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6
+                },
+                "downloadScreenContentInterval": {
+                    "hidden": "!data.downloadScreenContent",
+                    "type": "number",
+                    "label": "Download interval (in seconds)",
+                    "min": 1,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6
+                },
+                "_headerOptionsSupport": {
+                    "newLine": true,
+                    "type": "header",
+                    "text": "Support this project",
+                    "size": 2,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12
                 },
                 "_buyDeviceLink": {
                     "newLine": true,
@@ -539,12 +582,12 @@
             "items": {
                 "httpTimeout": {
                     "type": "number",
+                    "label": "HTTP timeout",
                     "min": 1,
                     "max": 10,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6,
-                    "label": "HTTP timeout"
+                    "lg": 6
                 }
             }
         }
