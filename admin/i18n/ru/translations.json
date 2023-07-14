@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Переопределение порога (тип состояния должен быть числом)",
     "If value less than": "Если значение меньше",
     "If value greater than": "Если значение больше, чем",
-    "Set icon, text color or background color override": "Установка значка, цвета текста или фонового цвета"
+    "Set icon, text color or background color override": "Установка значка, цвета текста или фонового цвета",
+    "Connection": "Связь",
+    "Support this project": "Поддержите этот проект",
+    "Download screen content": "Загрузить содержимое экрана",
+    "Download interval (in seconds)": "Интервал загрузки (в секундах)"
 }

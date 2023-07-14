@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Schwellenwert-Überschreibungen (Datentyp muss Zahl sein)",
     "If value less than": "Falls Wert kleiner als",
     "If value greater than": "Falls Wert größer als",
-    "Set icon, text color or background color override": "Lege ein Symbol, die Textfarbe oder die Hintergrundfarbe fest"
+    "Set icon, text color or background color override": "Lege ein Symbol, die Textfarbe oder die Hintergrundfarbe fest",
+    "Connection": "Verbindung",
+    "Support this project": "Unterstütze dieses Projekt",
+    "Download screen content": "Bildschirminhalt herunterladen",
+    "Download interval (in seconds)": "Download-Intervall (in Sekunden)"
 }

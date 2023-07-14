@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Substituições de limite (o tipo de estado deve ser número)",
     "If value less than": "Se valor menor que",
     "If value greater than": "Se valor maior que",
-    "Set icon, text color or background color override": "Definir ícone, cor de texto ou substituição de cor de fundo"
+    "Set icon, text color or background color override": "Definir ícone, cor de texto ou substituição de cor de fundo",
+    "Connection": "Conexão",
+    "Support this project": "Apoie este projeto",
+    "Download screen content": "Baixe o conteúdo da tela",
+    "Download interval (in seconds)": "Intervalo de download (em segundos)"
 }

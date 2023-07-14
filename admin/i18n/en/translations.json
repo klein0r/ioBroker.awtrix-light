@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Threshold overrides (type of state must be number)",
     "If value less than": "If value less than",
     "If value greater than": "If value greater than",
-    "Set icon, text color or background color override": "Set icon, text color or background color override"
+    "Set icon, text color or background color override": "Set icon, text color or background color override",
+    "Connection": "Connection",
+    "Support this project": "Support this project",
+    "Download screen content": "Download screen content",
+    "Download interval (in seconds)": "Download interval (in seconds)"
 }

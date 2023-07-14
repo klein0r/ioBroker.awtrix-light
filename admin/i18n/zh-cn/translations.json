@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "阈值覆盖（状态类型必须是数字）",
     "If value less than": "如果值小于",
     "If value greater than": "如果值大于",
-    "Set icon, text color or background color override": "设置图标、文本颜色或背景颜色覆盖"
+    "Set icon, text color or background color override": "设置图标、文本颜色或背景颜色覆盖",
+    "Connection": "联系",
+    "Support this project": "支持这个项目",
+    "Download screen content": "下载屏幕内容",
+    "Download interval (in seconds)": "下载间隔（秒）"
 }

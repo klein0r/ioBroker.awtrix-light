@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Anulaciones de umbral (el tipo de estado debe ser un número)",
     "If value less than": "Si el valor es menor que",
     "If value greater than": "Si el valor es mayor que",
-    "Set icon, text color or background color override": "Establecer anulación de icono, color de texto o color de fondo"
+    "Set icon, text color or background color override": "Establecer anulación de icono, color de texto o color de fondo",
+    "Connection": "Conexión",
+    "Support this project": "Apoya este proyecto",
+    "Download screen content": "Descargar contenido de la pantalla",
+    "Download interval (in seconds)": "Intervalo de descarga (en segundos)"
 }

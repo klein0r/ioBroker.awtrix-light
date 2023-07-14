@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Drempeloverschrijdingen (type status moet getal zijn)",
     "If value less than": "Indien waarde kleiner dan",
     "If value greater than": "Als de waarde groter is dan",
-    "Set icon, text color or background color override": "Stel pictogram, tekstkleur of achtergrondkleur override in"
+    "Set icon, text color or background color override": "Stel pictogram, tekstkleur of achtergrondkleur override in",
+    "Connection": "Verbinding",
+    "Support this project": "Steun dit project",
+    "Download screen content": "Scherminhoud downloaden",
+    "Download interval (in seconds)": "Downloadinterval (in seconden)"
 }

@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Перевизначення порогових значень (тип стану має бути числом)",
     "If value less than": "Якщо значення менше",
     "If value greater than": "Якщо значення більше ніж",
-    "Set icon, text color or background color override": "Установити піктограму, змінити колір тексту чи фону"
+    "Set icon, text color or background color override": "Установити піктограму, змінити колір тексту чи фону",
+    "Connection": "Підключення",
+    "Support this project": "Підтримайте цей проект",
+    "Download screen content": "Завантажити вміст екрана",
+    "Download interval (in seconds)": "Інтервал завантаження (у секундах)"
 }

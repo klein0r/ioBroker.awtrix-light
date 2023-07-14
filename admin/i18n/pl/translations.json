@@ -43,5 +43,9 @@
     "Threshold overrides (type of state must be number)": "Nadpisania wartości progowych (rodzaj stanu musi być liczbą)",
     "If value less than": "Jeśli wartość jest mniejsza niż",
     "If value greater than": "Jeśli wartość jest większa niż",
-    "Set icon, text color or background color override": "Ustaw ikonę, kolor tekstu lub nadpisanie koloru tła"
+    "Set icon, text color or background color override": "Ustaw ikonę, kolor tekstu lub nadpisanie koloru tła",
+    "Connection": "Połączenie",
+    "Support this project": "Wesprzyj ten projekt",
+    "Download screen content": "Pobierz zawartość ekranu",
+    "Download interval (in seconds)": "Interwał pobierania (w sekundach)"
 }
