@@ -381,7 +381,8 @@ class AwtrixLight extends utils.Adapter {
                                             for (let y = 0; y < 8; y++) {
                                                 for (let x = 0; x < 32; x++) {
                                                     const color = colorConvert.rgb565to888Str(pixelData[y * 32 + x]);
-                                                    svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`
+                                                    svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" `;
+                                                    svg += `x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`;
                                                 }
                                             }
 
@@ -687,7 +688,7 @@ class AwtrixLight extends utils.Adapter {
 
     createAppRequestObj(customApp, text, val) {
         const moreOptions = {
-            background: customApp.backgroundColor || '#000000'
+            background: customApp.backgroundColor || '#000000',
         };
 
         // Set rainbow colors OR text color
