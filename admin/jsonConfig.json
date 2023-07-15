@@ -312,6 +312,7 @@
                             "md": 2,
                             "lg": 2,
                             "default": 0,
+                            "step": 0.1,
                             "validator": "!isNaN(data.thresholdLtValue)",
                             "validatorErrorText": "Set valid number",
                             "validatorNoSaveOnError": true
@@ -374,6 +375,7 @@
                             "md": 2,
                             "lg": 2,
                             "default": 100,
+                            "step": 0.1,
                             "validator": "!isNaN(data.thresholdGtValue)",
                             "validatorErrorText": "Set valid number",
                             "validatorNoSaveOnError": true
