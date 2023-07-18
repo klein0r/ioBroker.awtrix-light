@@ -45,6 +45,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 * (klein0r) Added options to override icon, text color and backgroup color for thresholds
 * (klein0r) Added option to download screen content to state (as SVG graphic)
+* (klein0r) Draw welcome icon on connection
 
 ### 0.4.0 (2023-07-12)
 

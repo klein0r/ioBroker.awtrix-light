@@ -362,6 +362,20 @@ class AwtrixLight extends utils.Adapter {
                     // moodlight
                     await this.updateMoodlightByStates();
 
+                    // welcome (ioBroker icon)
+                    this.buildRequestAsync('notify', 'POST', {
+                        duration: 2,
+                        draw: [  
+                            {
+                                dc: [16, 4, 3, '#164477'], // [x, y, r, cl] Draw a circle with center at (x, y), radius r, and color cl
+                                dl: [16, 3, 16, 8, '#3399cc'], // [x0, y0, x1, y1, cl] Draw a line from (x0, y0) to (x1, y1) with color cl
+                                dp: [16, 1, '#3399cc'], // [x, y, cl] Draw a pixel at position (x, y) with color cl
+                            }
+                        ]
+                    }).catch((error) => {
+                        this.log.warn(error);
+                    });
+
                     if (this.config.downloadScreenContent && !this.downloadScreenContentInterval) {
                         this.log.debug(`[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`);
 
