@@ -1,4 +1,8 @@
 # Older changes
+## 0.3.1 (2023-07-06)
+
+* (klein0r) Some app options were ignored for static text apps
+
 ## 0.3.0 (2023-07-05)
 
 Admin adapter in version 6.6.0 is required

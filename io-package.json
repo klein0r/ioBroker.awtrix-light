@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "news": {
+      "0.5.0": {
+        "en": "Added options to override icon, text color and backgroup color for thresholds\nAdded option to download screen content to state (as SVG graphic)\nDraw welcome icon on connection",
+        "de": "Optionen hinzugefügt, um Icon, Textfarbe und Backgroup Farbe für Schwellen zu überschreiben\nZusätzliche Option zum Herunterladen von Bildschirminhalten zum Zustand (als SVG Grafik)\nWillkommenssymbol auf Verbindung zeichnen",
+        "ru": "Добавлены варианты переопределения иконки, цвета текста и задней группы для порогов\nДобавлена возможность загрузки контента экрана в состояние (как SVG Graphic)\nНарисуйте приветственную иконку на связи",
+        "pt": "Opções adicionadas para substituir ícone, cor de texto e cor de backgroup para limiares\nAdicionado opção para baixar o conteúdo da tela para estado (como gráfico SVG)\nDesenhe o ícone de boas-vindas na conexão",
+        "nl": "Toegevoegd opties om iconen te overschrijden, kleur en achtergrondkleur voor drempels\nToegevoegd optie om scherminhoud te downloaden naar staat\nDraw welkom icon",
+        "fr": "Ajout d'options pour remplacer l'icône, la couleur de texte et la couleur de backgroup pour les seuils\nAjout de l'option pour télécharger le contenu de l'écran vers l'état (comme graphique SVG)\nDessiner l'icône de bienvenue sur la connexion",
+        "it": "Aggiunte opzioni per sovrascrivere icona, colore testo e colore backgroup per soglie\nAggiunta opzione per scaricare il contenuto dello schermo a stato (come grafico SVG)\nDisegna icona di benvenuto sulla connessione",
+        "es": "Opciones adicionales para anular el icono, el color de texto y el color de backgroup para umbrales\nOpción adicional para descargar contenido de pantalla al estado (como gráfico SVG)\nDibujar icono de bienvenida en conexión",
+        "pl": "Dodzielonymi opcjami do przerywania ikon, koloru tekstowego i podgrupowania koloru dla progów\nWstępna opcja do pobrania treści ekranu do stanu (jako grafika SVG)\nWidoczne ikony na temat połączenia",
+        "uk": "Додана можливість перевизначення ікони, текстового кольору та кольору задньої групи для порогів\nДодано варіант для завантаження вмісту екрану до стану (як SVG графіка)\nПідібрати іконку на з'єднання",
+        "zh-cn": "增加以百计、皮特色和色色色组为阈值的选择\n增加将筛选内容下载到州(SVG图)的选择\n热烈欢迎一. 联系"
+      },
       "0.4.0": {
         "en": "Allow to import settings from another instance",
         "de": "Lassen Sie Einstellungen von einer anderen Instanz importieren",
@@ -80,19 +93,6 @@
         "pl": "Administrator w wersji 6.6.0\n\n* Zintegrowana konfiguracja instancji (nowa część)\n* Zbiór kilku opcji dla aplikacji zwyczajowych\nPoszczególne kolory tła dla każdej aplikacji",
         "uk": "English, Українська, Français..\n\n* Оновлення конфігурації екземпляра (новий компонент адміністратора)\n* Додано кілька варіантів для користувацьких додатків\n* Індивідуальний фоновий колір для кожного додатка",
         "zh-cn": "第6.6.0版的适应需要\n\n* 最新专题小组(新的专属部分)\n* 增加一些习惯材料的备选办法\n* 每一名照明的个人背景"
-      },
-      "0.2.0": {
-        "en": "Added default values to blockly blocks\nRemove custom apps when text is empty",
-        "de": "Standardwerte zu Blockblöcken hinzugefügt\nEntfernen Sie benutzerdefinierte Apps, wenn Text leer ist",
-        "ru": "Добавлены значения по умолчанию для блокировки блоков\nУдалить пользовательские приложения, когда текст пуст",
-        "pt": "Adicionados valores padrão para blocos bloqueados\nRemover aplicativos personalizados quando o texto está vazio",
-        "nl": "Geadresseerde defaultwaarden tot blokken\nVerwijder de app wanneer de tekst leeg is",
-        "fr": "Ajout de valeurs par défaut pour bloquer\nSupprimer les applications personnalisées lorsque le texte est vide",
-        "it": "Aggiunti i valori predefiniti per bloccare i blocchi\nRimuovere le app personalizzate quando il testo è vuoto",
-        "es": "Valores predeterminados añadidos a bloques bloqueados\nEliminar aplicaciones personalizadas cuando el texto está vacío",
-        "pl": "Domyślne wartości blokowania bloków\nRemove aplikacje, gdy tekst jest pusty",
-        "uk": "Додано значення за замовчуванням для блокнотів\nВидалити користувацькі додатки, коли текст порожній",
-        "zh-cn": "增加停滞值以阻挡\n在案文空洞时取消习俗"
       }
     },
     "titleLang": {

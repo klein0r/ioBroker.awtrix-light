@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.0 (2023-07-18)
 
 * (klein0r) Added options to override icon, text color and backgroup color for thresholds
 * (klein0r) Added option to download screen content to state (as SVG graphic)
@@ -65,10 +65,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 * (klein0r) Delete apps on instance stop (configurable)
 * (klein0r) Added scrolling speed to settings
 * (klein0r) Added block buttons to settings
-
-### 0.3.1 (2023-07-06)
-
-* (klein0r) Some app options were ignored for static text apps
 
 ## License
 MIT License
