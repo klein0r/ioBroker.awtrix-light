@@ -365,13 +365,13 @@ class AwtrixLight extends utils.Adapter {
                     // welcome (ioBroker icon)
                     this.buildRequestAsync('notify', 'POST', {
                         duration: 2,
-                        draw: [  
+                        draw: [
                             {
                                 dc: [16, 4, 3, '#164477'], // [x, y, r, cl] Draw a circle with center at (x, y), radius r, and color cl
                                 dl: [16, 3, 16, 8, '#3399cc'], // [x0, y0, x1, y1, cl] Draw a line from (x0, y0) to (x1, y1) with color cl
                                 dp: [16, 1, '#3399cc'], // [x, y, cl] Draw a pixel at position (x, y) with color cl
-                            }
-                        ]
+                            },
+                        ],
                     }).catch((error) => {
                         this.log.warn(error);
                     });
@@ -410,6 +410,8 @@ class AwtrixLight extends utils.Adapter {
                                     });
                             }
                         }, this.config.downloadScreenContentInterval * 1000);
+                    } else {
+                        await this.setStateAsync('display.content', { val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`, ack: true, c: 'Feature disabled', q: 0x01 });
                     }
                 } catch (error) {
                     this.log.error(`[setApiConnected] Unable to refresh settings, apps or indicators: ${error}`);
