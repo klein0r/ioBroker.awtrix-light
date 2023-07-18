@@ -573,8 +573,11 @@ class AwtrixLight extends utils.Adapter {
                                         ts: state ? state.ts : Date.now(),
                                     };
 
-                                    if (obj?.common.type && !['string', 'number'].includes(obj.common.type)) {
-                                        this.log.warn(`[initCustomApps] Object of app "${customApp.name}" with id "${objId}" has invalid type: ${obj.common.type}`);
+                                    const supportedTypes = ['string', 'number', 'mixed'];
+                                    if (obj?.common.type && !supportedTypes.includes(obj.common.type)) {
+                                        this.log.warn(
+                                            `[initCustomApps] Object of app "${customApp.name}" with id "${objId}" has invalid type: ${obj.common.type} instead of ${supportedTypes.join(', ')}`,
+                                        );
                                     }
 
                                     if (text.includes('%u') && !obj?.common?.unit) {
