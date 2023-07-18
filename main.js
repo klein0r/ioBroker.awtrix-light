@@ -94,7 +94,7 @@ class AwtrixLight extends utils.Adapter {
                     if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                         this.log.debug(`[onStateChange] received state change of "${id}" to ${state.val} - refreshing apps`);
 
-                        this.customAppsForeignStates[id].val = state?.val;
+                        this.customAppsForeignStates[id].val = this.customAppsForeignStates[id].type === 'mixed' ? String(state.val) : state.val;
                         this.customAppsForeignStates[id].ts = state.ts;
 
                         this.refreshCustomApps(id);
