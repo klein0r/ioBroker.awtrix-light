@@ -591,6 +591,8 @@ class AwtrixLight extends utils.Adapter {
                                     await this.subscribeForeignObjectsAsync(objId);
 
                                     this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId "${objId}" - subscribed to changes`);
+                                } else {
+                                    this.log.warn(`[initCustomApps] Custom app "${customApp.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
                                 }
                             } else {
                                 this.log.debug(`[initCustomApps] Found custom app "${customApp.name}" with objId "${objId}" - already subscribed to changes`);
