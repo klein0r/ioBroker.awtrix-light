@@ -41,6 +41,11 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Added support for state type "mixed"
+* (klein0r) Improved log messages
+
 ### 0.5.0 (2023-07-18)
 
 * (klein0r) Added options to override icon, text color and backgroup color for thresholds
