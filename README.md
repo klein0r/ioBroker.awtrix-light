@@ -24,7 +24,7 @@
 
 Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device (e.g. Ulanzi TC001) via HTTP
 
-Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.com](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
+Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
 ## Sponsored by
 
