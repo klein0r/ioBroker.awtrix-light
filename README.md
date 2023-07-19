@@ -43,6 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Fixed color conversion for svg
 * (klein0r) Added support for state type "mixed"
 * (klein0r) Improved log messages
 

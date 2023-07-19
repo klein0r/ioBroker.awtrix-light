@@ -392,11 +392,11 @@ class AwtrixLight extends utils.Adapter {
                                             const scaleX = width / 32;
                                             const scaleY = height / 8;
 
-                                            let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">`;
+                                            let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 640 160">`;
 
                                             for (let y = 0; y < 8; y++) {
                                                 for (let x = 0; x < 32; x++) {
-                                                    const color = colorConvert.rgb565to888Str(pixelData[y * 32 + x]);
+                                                    const color = colorConvert.rgb565to888StrSvg(pixelData[y * 32 + x]);
                                                     svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" `;
                                                     svg += `x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`;
                                                 }
