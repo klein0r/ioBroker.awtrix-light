@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "news": {
+      "0.5.1": {
+        "en": "Fixed color conversion for svg\nAdded support for state type \"mixed\"\nImproved log messages",
+        "de": "Feste Farbumwandlung für svg\nUnterstützung für Zustand gemischt\nVerbesserte Protokollnachrichten",
+        "ru": "Фиксированная цветовая конверсия для svg\nДобавлена поддержка государственного типа смешанная\nУлучшенные лог-сообщения",
+        "pt": "Conversão de cor fixa para svg\nAdicionado suporte para tipo de estado misturado\nMensagens de log melhoradas",
+        "nl": "Verfijnde kleuren bekering voor svg\nAangename steun voor staatstypes\nVertaling:",
+        "fr": "Conversion de couleur fixe pour svg\nAjout du support pour le type d'état mélangé\nAmélioration des messages journaux",
+        "it": "Conversione di colore fissa per svg\nAggiunto supporto per tipo di stato misto\nMessaggi di registro migliorati",
+        "es": "Conversión de color fija para svg\nApoyo añadido al tipo de estado mixto\nMejores mensajes de registro",
+        "pl": "Fixed color conversion for svgg\nWsparcie dla typu państwowego mieszane\nPoprawiona wiadomość",
+        "uk": "Фіксована конвертація кольору для КС\nДодано підтримку державного типу змішаних\nПокращені повідомлення журналу",
+        "zh-cn": "固定颜色转换\n增加对国家类型混杂的支助\n改进文 件"
+      },
       "0.5.0": {
         "en": "Added options to override icon, text color and backgroup color for thresholds\nAdded option to download screen content to state (as SVG graphic)\nDraw welcome icon on connection",
         "de": "Optionen hinzugefügt, um Icon, Textfarbe und Backgroup Farbe für Schwellen zu überschreiben\nZusätzliche Option zum Herunterladen von Bildschirminhalten zum Zustand (als SVG Grafik)\nWillkommenssymbol auf Verbindung zeichnen",
@@ -80,19 +93,6 @@
         "pl": "Niektóre opcje aplikacji zostały zignorowane za statyczne aplikacje tekstowe",
         "uk": "Деякі параметри програми ігнорувалися для статичних текстових додатків",
         "zh-cn": "对静态案文的一些可观的选择置若罔闻。"
-      },
-      "0.3.0": {
-        "en": "Admin adapter in version 6.6.0 is required\n\n* Updated instance configuration (new admin component)\n* Added several options for custom apps\n* Individual background color for each app",
-        "de": "Admin Adapter in Version 6.6.0 ist erforderlich\n\n* Aktualisierte Instanz-Konfiguration (neue Admin-Komponente)\n* Mehrere Optionen für benutzerdefinierte Apps hinzugefügt\n* Individuelle Hintergrundfarbe für jede App",
-        "ru": "Требуется админ адаптер в версии 6.6.0\n\n* Обновленная настройка (новый компонент админ)\n* Добавлены несколько вариантов для пользовательских приложений\n* Индивидуальный цвет фона для каждого приложения",
-        "pt": "Adaptador de administrador na versão 6.6.0 é necessário\n\n* Configuração de instância atualizada (novo componente admin)\n* Adicionado várias opções para aplicativos personalizados\n* Cor de fundo individual para cada aplicativo",
-        "nl": "Admin adapter in versie 6.6.0 is vereist\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVertaling:\n♪ Individuele achtergrondkleur voor elke app ♪",
-        "fr": "Adaptateur d'administration dans la version 6.6.0 est nécessaire\n\n* Configuration d'instance actualisée (nouveau composant admin)\n* Ajout de plusieurs options pour les applications personnalisées\n* Couleur de fond individuelle pour chaque application",
-        "it": "Adattatore di amministrazione nella versione 6.6.0 è richiesto\n\n* Configurazione delle istanze aggiornate (nuovo componente amministratore)\n* Aggiunto diverse opzioni per applicazioni personalizzate\n* Colore di sfondo individuale per ogni applicazione",
-        "es": "Admin adaptador en la versión 6.6.0 es necesario\n\n* Configuración actualizada de instancias (nuevo componente de administración)\n* Añadido varias opciones para aplicaciones personalizadas\n* Color de fondo individual para cada aplicación",
-        "pl": "Administrator w wersji 6.6.0\n\n* Zintegrowana konfiguracja instancji (nowa część)\n* Zbiór kilku opcji dla aplikacji zwyczajowych\nPoszczególne kolory tła dla każdej aplikacji",
-        "uk": "English, Українська, Français..\n\n* Оновлення конфігурації екземпляра (новий компонент адміністратора)\n* Додано кілька варіантів для користувацьких додатків\n* Індивідуальний фоновий колір для кожного додатка",
-        "zh-cn": "第6.6.0版的适应需要\n\n* 最新专题小组(新的专属部分)\n* 增加一些习惯材料的备选办法\n* 每一名照明的个人背景"
       }
     },
     "titleLang": {

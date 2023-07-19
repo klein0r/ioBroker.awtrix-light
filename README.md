@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.1 (2023-07-19)
 
 * (klein0r) Fixed color conversion for svg
 * (klein0r) Added support for state type "mixed"
@@ -65,12 +65,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### 0.3.3 (2023-07-07)
 
 * (klein0r) Use default duration if 0
-
-### 0.3.2 (2023-07-06)
-
-* (klein0r) Delete apps on instance stop (configurable)
-* (klein0r) Added scrolling speed to settings
-* (klein0r) Added block buttons to settings
 
 ## License
 MIT License
