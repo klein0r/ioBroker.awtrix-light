@@ -44,17 +44,17 @@ Blockly.Words['awtrix-light_timer'] = {
     'zh-cn': 'Awtrix-light 时间',
 };
 Blockly.Words['awtrix-light_playsound'] = {
-    en: 'Play sound',
-    de: 'Sound spielen',
-    ru: 'Играть звук',
-    pt: 'Tocar som',
-    nl: 'Speel',
-    fr: 'Play sound',
-    it: 'Suoni suono',
-    es: 'Jugar sonido',
-    pl: 'Dźwięk',
-    uk: 'Грати звук',
-    'zh-cn': '声音',
+    en: 'Awtrix-light Play sound',
+    de: 'Awtrix-light Sound spielen',
+    ru: 'Awtrix-light Играть звук',
+    pt: 'Awtrix-light Tocar som',
+    nl: 'Awtrix-light Speel',
+    fr: 'Awtrix-light Play sound',
+    it: 'Awtrix-light Suoni suono',
+    es: 'Awtrix-light Jugar sonido',
+    pl: 'Awtrix-light Dźwięk',
+    uk: 'Awtrix-light Грати звук',
+    'zh-cn': 'Awtrix-light 声音',
 };
 Blockly.Words['awtrix-light_message'] = {
     en: 'Message',
