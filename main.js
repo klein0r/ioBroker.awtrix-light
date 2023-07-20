@@ -738,6 +738,11 @@ class AwtrixLight extends utils.Adapter {
             moreOptions.duration = customApp.duration;
         }
 
+        // Repeat
+        if (customApp.repeat > 0) {
+            moreOptions.repeat = customApp.repeat;
+        }
+
         // thresholds
         if (!isNaN(val)) {
             if (customApp.thresholdLtActive && val < customApp.thresholdLtValue) {
@@ -772,7 +777,6 @@ class AwtrixLight extends utils.Adapter {
         return {
             text,
             textCase: 2, // show as sent
-            repeat: customApp.repeat || 1,
             ...moreOptions,
         };
     }
@@ -858,13 +862,17 @@ class AwtrixLight extends utils.Adapter {
                                             moreOptions.icon = historyApp.duration;
                                         }
 
+                                        // Repeat
+                                        if (historyApp.repeat > 0) {
+                                            moreOptions.repeat = historyApp.repeat;
+                                        }
+
                                         await this.buildRequestAsync(`custom?name=${historyApp.name}`, 'POST', {
-                                            color: historyApp.lineColor ?? '#FF0000',
+                                            color: historyApp.lineColor || '#FF0000',
                                             background: historyApp.backgroundColor || '#000000',
                                             line: lineData,
                                             autoscale: true,
                                             icon: historyApp.icon,
-                                            repeat: historyApp.repeat || 1,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
                                             ...moreOptions,
                                         }).catch((error) => {

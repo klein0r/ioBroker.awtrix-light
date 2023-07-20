@@ -262,7 +262,7 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '     </value>' +
     '     <value name="REPEAT">' +
     '         <shadow type="math_number">' +
-    '             <field name="NUM">1</field>' +
+    '             <field name="NUM">0</field>' +
     '         </shadow>' +
     '     </value>' +
     '     <value name="DURATION">' +
