@@ -709,8 +709,16 @@ class AwtrixLight extends utils.Adapter {
         // Set noScroll OR scroll speed
         if (customApp.noScroll) {
             moreOptions.noScroll = true;
-        } else if (customApp.scrollSpeed > 0) {
-            moreOptions.scrollSpeed = customApp.scrollSpeed;
+        } else {
+            // Scroll speed
+            if (customApp.scrollSpeed > 0) {
+                moreOptions.scrollSpeed = customApp.scrollSpeed;
+            }
+
+            // Repeat
+            if (customApp.repeat > 0) {
+                moreOptions.repeat = customApp.repeat;
+            }
         }
 
         // Icon
@@ -721,11 +729,6 @@ class AwtrixLight extends utils.Adapter {
         // Duration
         if (customApp.duration > 0) {
             moreOptions.duration = customApp.duration;
-        }
-
-        // Repeat
-        if (customApp.repeat > 0) {
-            moreOptions.repeat = customApp.repeat;
         }
 
         // thresholds
