@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "news": {
+      "0.6.0": {
+        "en": "Updated recommended firmware version to 0.71\n\n* Added option for background effects\n* Setting default of repeat to 0\n* Dropped timer support (removed in firmware 0.71)\n* Removed native app \"eyes\" (removed in firmware 0.71)",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,71\n\n* Option für Hintergrundeffekte hinzugefügt\n* Standardeinstellung der Wiederholung auf 0\n* Abgekürzte Timer-Unterstützung (entfernt in Firmware 0.71)\n* Entfernen von nativen App Augen (entfernt in Firmware 0.71)",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.71\n\n* Добавлена опция для фоновых эффектов\n* Установка по умолчанию повторения до 0\n* Dropped таймер поддержки (удалась в прошивке 0.71)\n* Удаленные носители (снятые в прошивке 0.71)",
+        "pt": "Versão de firmware recomendada atualizada para 0.71\n\n* opção adicionada para efeitos de fundo\n* Definir o padrão de repetição para 0\n* Suporte de temporizador dropped (removed no firmware 0.71)\n* Removido olhos de aplicativo nativo (removed no firmware 0.71)",
+        "nl": "Opgevolgd aanbevolen firmaware versie naar 0.71\n\n♪ Added option for achtergrondeffects ♪\n♪ Setting default of herhaling to 0 ♪\nVertaling:\nQuality over Quantity Releases Vertaling:",
+        "fr": "Version mise à jour du firmware recommandé à 0.71\n\n* Option supplémentaire pour les effets de fond\n* Paramètres par défaut de répéter à 0\n* Support de minuterie abandonné (retrait dans le firmware 0.71)\n* Les yeux d'application natifs enlevés (en fermeté 0,71)",
+        "it": "Versione firmware consigliata aggiornata a 0.71\n\n* Aggiunta opzione per gli effetti di sfondo\n* Impostazione di default di ripeti a 0\n* Supporto timer a goccia (rimossa nel firmware 0.71)\n* Rimuovere gli occhi app nativi (rimossa nel firmware 0.71)",
+        "es": "Versión actualizada de firmware recomendada a 0.71\n\n* opción adicional para efectos de fondo\n* Ajuste por defecto de repetición a 0\n* Soporte de temporizador eliminado (removido en firmware 0.71)\n* Ojos extraídos de la aplicación nativa (removidos en firmware 0.71)",
+        "pl": "Zalecona wersja oprogramowania dla 0,71\n\n* Added option for background effects\n* Domyślność powtórzenia się do 0\n* Dropped timer support (przewijał się w oprogramowaniem 0,71)\nRemoved native application (ang.)",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.71\n\n* Додано варіант для фонових ефектів\n* Встановлення за замовчуванням повторення до 0\n* Підтримувані таймери (видалено в прошивці 0.71)\n* Вилучено рідні очі додатка (видалено в прошивці 0.71)",
+        "zh-cn": "A. 最新建议的软件版本\n\n* 增加背景资料的选择\n* 规定重复至0\n* 装有时间限制的时间限制(移入警觉701)\n* 拆除当地的眼光(移植于坚实的认知0.7%1)"
+      },
       "0.5.1": {
         "en": "Fixed color conversion for svg\nAdded support for state type \"mixed\"\nImproved log messages",
         "de": "Feste Farbumwandlung für svg\nUnterstützung für Zustand gemischt\nVerbesserte Protokollnachrichten",
@@ -80,19 +93,6 @@
         "pl": "Aplikacja na przykład zatrzymuje (konfigurable)\nZwójna prędkość do ustawienia\nZamknięte przyciski do ustawienia",
         "uk": "Видалити додатки на зупинці екземпляра (налаштовується)\nДодано швидкість прокручування на налаштування\nДодано кнопки блокування для налаштування",
         "zh-cn": "删除关于停止(可能)的注释\n增加环境的速度\n增加进入环境的阻挡区"
-      },
-      "0.3.1": {
-        "en": "Some app options were ignored for static text apps",
-        "de": "Einige App-Optionen wurden für statische Text-Apps ignoriert",
-        "ru": "Некоторые варианты приложений были проигнорированы для статических текстовых приложений",
-        "pt": "Algumas opções de aplicativos foram ignoradas para aplicativos de texto estático",
-        "nl": "Sommige app opties werden genegeerd voor statische sms apps",
-        "fr": "Certaines options d'application ont été ignorées pour les applications de texte statique",
-        "it": "Alcune opzioni app sono state ignorate per applicazioni di testo statiche",
-        "es": "Algunas opciones de aplicación fueron ignoradas para aplicaciones de texto estático",
-        "pl": "Niektóre opcje aplikacji zostały zignorowane za statyczne aplikacje tekstowe",
-        "uk": "Деякі параметри програми ігнорувалися для статичних текстових додатків",
-        "zh-cn": "对静态案文的一些可观的选择置若罔闻。"
       }
     },
     "titleLang": {

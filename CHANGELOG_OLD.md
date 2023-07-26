@@ -1,4 +1,8 @@
 # Older changes
+## 0.3.3 (2023-07-07)
+
+* (klein0r) Use default duration if 0
+
 ## 0.3.2 (2023-07-06)
 
 * (klein0r) Delete apps on instance stop (configurable)

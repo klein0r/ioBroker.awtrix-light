@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.6.0 (2023-07-26)
 
 Updated recommended firmware version to 0.71
 
@@ -70,10 +70,6 @@ Updated recommended firmware version to 0.71
 
 * (klein0r) Use default scroll speed if 0
 * (klein0r) Instance selection for history apps
-
-### 0.3.3 (2023-07-07)
-
-* (klein0r) Use default duration if 0
 
 ## License
 MIT License
