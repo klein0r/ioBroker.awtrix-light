@@ -47,5 +47,9 @@
     "Connection": "Связь",
     "Support this project": "Поддержите этот проект",
     "Download screen content": "Загрузить содержимое экрана",
-    "Download interval (in seconds)": "Интервал загрузки (в секундах)"
+    "Download interval (in seconds)": "Интервал загрузки (в секундах)",
+    "Background options": "Параметры фона",
+    "Use background effect": "Использовать фоновый эффект",
+    "Background effect": "Фоновый эффект",
+    "See all effects": "Посмотреть все эффекты"
 }

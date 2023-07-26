@@ -47,5 +47,9 @@
     "Connection": "Підключення",
     "Support this project": "Підтримайте цей проект",
     "Download screen content": "Завантажити вміст екрана",
-    "Download interval (in seconds)": "Інтервал завантаження (у секундах)"
+    "Download interval (in seconds)": "Інтервал завантаження (у секундах)",
+    "Background options": "Варіанти фону",
+    "Use background effect": "Використовуйте фоновий ефект",
+    "Background effect": "фоновий ефект",
+    "See all effects": "Переглянути всі ефекти"
 }

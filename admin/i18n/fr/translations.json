@@ -47,5 +47,9 @@
     "Connection": "Connexion",
     "Support this project": "Soutenez ce projet",
     "Download screen content": "Télécharger le contenu de l'écran",
-    "Download interval (in seconds)": "Intervalle de téléchargement (en secondes)"
+    "Download interval (in seconds)": "Intervalle de téléchargement (en secondes)",
+    "Background options": "Options d'arrière-plan",
+    "Use background effect": "Utiliser l'effet de fond",
+    "Background effect": "Effet de fond",
+    "See all effects": "Voir tous les effets"
 }
