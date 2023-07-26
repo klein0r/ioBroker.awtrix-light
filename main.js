@@ -703,9 +703,14 @@ class AwtrixLight extends utils.Adapter {
     }
 
     createAppRequestObj(customApp, text, val) {
-        const moreOptions = {
-            background: customApp.backgroundColor || '#000000',
-        };
+        const moreOptions = {};
+
+        // Background
+        if (customApp.useBackgroundEffect) {
+            moreOptions.effect = customApp.backgroundEffect;
+        } else if (customApp.backgroundColor) {
+            moreOptions.background = customApp.backgroundColor;
+        }
 
         // Set rainbow colors OR text color
         if (customApp.rainbow) {
@@ -739,7 +744,7 @@ class AwtrixLight extends utils.Adapter {
             moreOptions.duration = customApp.duration;
         }
 
-        // thresholds
+        // Thresholds
         if (!isNaN(val)) {
             if (customApp.thresholdLtActive && val < customApp.thresholdLtValue) {
                 this.log.debug(`[createAppRequestObj] LT < custom app "${customApp.name}" has a value (${val}) less than ${customApp.thresholdLtValue} - overriding values`);

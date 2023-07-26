@@ -45,6 +45,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.71
 
+* (klein0r) Added option for background effects
 * (klein0r) Setting default of repeat to 0
 * (klein0r) Dropped timer support (removed in firmware 0.71)
 * (klein0r) Removed native app "eyes" (removed in firmware 0.71)

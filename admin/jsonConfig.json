@@ -245,15 +245,6 @@
                             "help": "Numeric values will be rounded"
                         },
                         {
-                            "type": "color",
-                            "attr": "backgroundColor",
-                            "label": "Background color",
-                            "sm": 12,
-                            "md": 2,
-                            "lg": 2,
-                            "default": "#000000"
-                        },
-                        {
                             "newLine": true,
                             "type": "header",
                             "attr": "_textHeader",
@@ -303,6 +294,118 @@
                             "min": 0,
                             "max": 100,
                             "help": "0 = default"
+                        },
+                        {
+                            "newLine": true,
+                            "type": "header",
+                            "attr": "_backgroundHeader",
+                            "text": "Background options",
+                            "size": 3,
+                            "sm": 12,
+                            "md": 12,
+                            "lg": 12
+                        },
+                        {
+                            "newLine": true,
+                            "type": "checkbox",
+                            "attr": "useBackgroundEffect",
+                            "label": "Use background effect",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "default": false
+                        },
+                        {
+                            "hidden": "!!data.useBackgroundEffect",
+                            "type": "color",
+                            "attr": "backgroundColor",
+                            "label": "Background color",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "default": "#000000"
+                        },
+                        {
+                            "hidden": "!data.useBackgroundEffect",
+                            "type": "select",
+                            "attr": "backgroundEffect",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "options": [
+                                {
+                                    "label": "BrickBreaker",
+                                    "value": "BrickBreaker"
+                                },
+                                {
+                                    "label": "Checkerboard",
+                                    "value": "Checkerboard"
+                                },
+                                {
+                                    "label": "Fireworks",
+                                    "value": "Fireworks"
+                                },
+                                {
+                                    "label": "PingPong",
+                                    "value": "PingPong"
+                                },
+                                {
+                                    "label": "Radar",
+                                    "value": "Radar"
+                                },
+                                {
+                                    "label": "Ripple",
+                                    "value": "Ripple"
+                                },
+                                {
+                                    "label": "Snake",
+                                    "value": "Snake"
+                                },
+                                {
+                                    "label": "TwinklingStars",
+                                    "value": "TwinklingStars"
+                                },
+                                {
+                                    "label": "TheaterChase",
+                                    "value": "TheaterChase"
+                                },
+                                {
+                                    "label": "ColorWaves",
+                                    "value": "ColorWaves"
+                                },
+                                {
+                                    "label": "SwirlOut",
+                                    "value": "SwirlOut"
+                                },
+                                {
+                                    "label": "SwirlIn",
+                                    "value": "SwirlIn"
+                                },
+                                {
+                                    "label": "LookingEyes",
+                                    "value": "LookingEyes"
+                                },
+                                {
+                                    "label": "Matrix",
+                                    "value": "Matrix"
+                                },
+                                {
+                                    "label": "Pacifica",
+                                    "value": "Pacifica"
+                                },
+                                {
+                                    "label": "Plasma",
+                                    "value": "Plasma"
+                                },
+                                {
+                                    "label": "PlasmaCloud",
+                                    "value": "PlasmaCloud"
+                                }
+                            ],
+                            "default": "BrickBreaker",
+                            "label": "Background effect",
+                            "help": "See all effects",
+                            "helpLink": "https://blueforcer.github.io/awtrix-light/#/effects"
                         },
                         {
                             "hidden": "data.objId.length == 0",
