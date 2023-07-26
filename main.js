@@ -18,7 +18,7 @@ class AwtrixLight extends utils.Adapter {
             useFormatDate: true,
         });
 
-        this.supportedVersion = '0.70';
+        this.supportedVersion = '0.71';
         this.displayedVersionWarning = false;
 
         this.apiConnected = false;

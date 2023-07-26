@@ -43,6 +43,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+Updated recommended firmware version to 0.71
+
 * (klein0r) Setting default of repeat to 0
 
 ### 0.5.1 (2023-07-19)
