@@ -296,21 +296,6 @@ class AwtrixLight extends utils.Adapter {
                 } else {
                     this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
                 }
-            } else if (obj.command === 'timer' && typeof obj.message === 'object') {
-                // Timer
-                if (this.apiConnected) {
-                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
-
-                    this.buildRequestAsync('timer', 'POST', msgFiltered)
-                        .then((response) => {
-                            this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
-                        })
-                        .catch((error) => {
-                            this.sendTo(obj.from, obj.command, { error }, obj.callback);
-                        });
-                } else {
-                    this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
-                }
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
                 if (this.apiConnected) {

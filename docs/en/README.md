@@ -54,7 +54,6 @@ Example:
 `sendTo` / message box can be used to
 
 - send one time notifications (with text, sound, duration, ...)
-- create a timer
 - play a custom sound
 
 ### Notifications
@@ -72,22 +71,6 @@ sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repea
 The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=json-properties) for details.
 
 *You can also use a Blockly block to send a notification (doesn't provide all available options).*
-
-### Timer
-
-Create a new timer (in 1 hour, 10 minutes and 5 seconds):
-
-```javascript
-sendTo('awtrix-light', 'timer', { sound: 'example', seconds: 5, minutes: 10, hours: 1 }, (res) => {
-    if (res && res.error) {
-        console.error(res.error);
-    }
-});
-```
-
-The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=timer) for details.
-
-*You can also use a Blockly block to create a timer.*
 
 ### Sounds
 

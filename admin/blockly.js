@@ -30,19 +30,6 @@ Blockly.Words['awtrix-light_notification'] = {
     uk: 'Awtrix-light повідомлення',
     'zh-cn': 'Awtrix-light 发出通知',
 };
-Blockly.Words['awtrix-light_timer'] = {
-    en: 'Awtrix-light Timer',
-    de: 'Awtrix-light Timer',
-    ru: 'Awtrix-light Таймер',
-    pt: 'Awtrix-light Temporizador',
-    nl: 'Awtrix-light Timer',
-    fr: 'Awtrix-light Timer',
-    it: 'Awtrix-light Timer',
-    es: 'Awtrix-light Timer',
-    pl: 'Awtrix-light Timer',
-    uk: 'Awtrix-light Таймер',
-    'zh-cn': 'Awtrix-light 时间',
-};
 Blockly.Words['awtrix-light_playsound'] = {
     en: 'Awtrix-light Play sound',
     de: 'Awtrix-light Sound spielen',
@@ -172,45 +159,6 @@ Blockly.Words['awtrix-light_wakeup'] = {
     pl: 'Wakeup',
     uk: 'Вейкап',
     'zh-cn': '瓦克鲁',
-};
-Blockly.Words['awtrix-light_seconds'] = {
-    en: 'Seconds',
-    de: 'Sekunden',
-    ru: 'Секунды',
-    pt: 'Segundos',
-    nl: 'Tweede',
-    fr: 'Seconds',
-    it: 'Secondo',
-    es: 'Segundos',
-    pl: 'Druga',
-    uk: 'Поза «69»',
-    'zh-cn': '第二委员会',
-};
-Blockly.Words['awtrix-light_minutes'] = {
-    en: 'Minutes',
-    de: 'Minuten',
-    ru: 'Минуты',
-    pt: 'Minutos',
-    nl: 'Minuten',
-    fr: 'Minutes',
-    it: 'Processo verbale',
-    es: 'Minutos',
-    pl: 'Minutes',
-    uk: 'Мінуси',
-    'zh-cn': '分钟',
-};
-Blockly.Words['awtrix-light_hours'] = {
-    en: 'Hours',
-    de: 'Stunden',
-    ru: 'Часы',
-    pt: 'Horas',
-    nl: 'Hours',
-    fr: 'Heures',
-    it: 'Ore',
-    es: 'Horas',
-    pl: 'Godzina',
-    uk: 'Час',
-    'zh-cn': '陪审团',
 };
 Blockly.Words['awtrix-light_anyInstance'] = {
     en: 'All instances',
@@ -350,85 +298,6 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     objText.push('wakeup: ' + wakeup);
 
     return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
-};
-
-Blockly.Sendto.blocks['awtrix-light_timer'] =
-    '<block type="awtrix-light_timer">' +
-    '     <value name="INSTANCE">' +
-    '     </value>' +
-    '     <value name="SOUND">' +
-    '         <shadow type="text">' +
-    '             <field name="TEXT">...</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="SECONDS">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">10</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="MINUTES">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">0</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="HOURS">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">0</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '</block>';
-
-Blockly.Blocks['awtrix-light_timer'] = {
-    init: function () {
-        const options = [];
-
-        if (typeof main !== 'undefined' && main.instances) {
-            for (let i = 0; i < main.instances.length; i++) {
-                const m = main.instances[i].match(/^system.adapter.awtrix-light.(\d+)$/);
-                if (m) {
-                    const n = parseInt(m[1], 10);
-                    options.push(['awtrix-light.' + n, '.' + n]);
-                }
-            }
-        }
-
-        if (!options.length) {
-            for (let k = 0; k <= 4; k++) {
-                options.push(['awtrix-light.' + k, '.' + k]);
-            }
-        }
-
-        options.unshift([Blockly.Translate('awtrix-light_anyInstance'), '']);
-
-        this.appendDummyInput('INSTANCE').appendField(Blockly.Translate('awtrix-light_timer')).appendField(new Blockly.FieldDropdown(options), 'INSTANCE');
-        this.appendValueInput('SOUND').appendField(Blockly.Translate('awtrix-light_sound'));
-        this.appendValueInput('SECONDS').appendField(Blockly.Translate('awtrix-light_seconds'));
-        this.appendValueInput('MINUTES').appendField(Blockly.Translate('awtrix-light_minutes'));
-        this.appendValueInput('HOURS').appendField(Blockly.Translate('awtrix-light_hours'));
-
-        this.setInputsInline(false);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-
-        this.setColour(Blockly.Sendto.HUE);
-        this.setTooltip(Blockly.Translate('awtrix-light_tooltip'));
-        this.setHelpUrl(Blockly.Translate('awtrix-light_help'));
-    },
-};
-
-Blockly.JavaScript['awtrix-light_timer'] = function (block) {
-    const sound = Blockly.JavaScript.valueToCode(block, 'SOUND', Blockly.JavaScript.ORDER_ATOMIC);
-    const seconds = Blockly.JavaScript.valueToCode(block, 'SECONDS', Blockly.JavaScript.ORDER_ATOMIC);
-    const minutes = Blockly.JavaScript.valueToCode(block, 'MINUTES', Blockly.JavaScript.ORDER_ATOMIC);
-    const hours = Blockly.JavaScript.valueToCode(block, 'HOURS', Blockly.JavaScript.ORDER_ATOMIC);
-
-    const objText = [];
-    sound && objText.push('sound: ' + sound);
-    seconds && objText.push('seconds: parseInt(' + seconds + ')');
-    minutes && objText.push('minutes: parseInt(' + minutes + ')');
-    hours && objText.push('hours: parseInt(' + hours + ')');
-
-    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'timer', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
 };
 
 Blockly.Sendto.blocks['awtrix-light_playsound'] =
