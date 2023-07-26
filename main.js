@@ -5,7 +5,7 @@ const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
 
-const NATIVE_APPS = ['time', 'eyes', 'date', 'temp', 'hum', 'bat'];
+const NATIVE_APPS = ['time', 'date', 'temp', 'hum', 'bat'];
 
 class AwtrixLight extends utils.Adapter {
     /**
@@ -41,6 +41,8 @@ class AwtrixLight extends utils.Adapter {
 
         await this.subscribeStatesAsync('*');
 
+        await this.upgradeFromPreviousVersion();
+
         if (!this.config.awtrixIp) {
             this.log.error(`IP address not configured - please check instance configuration and restart`);
             return;
@@ -54,6 +56,12 @@ class AwtrixLight extends utils.Adapter {
         }
 
         this.refreshState();
+    }
+
+    async upgradeFromPreviousVersion() {
+        this.log.debug(`Upgrading objects from previous version`);
+
+        await this.delObjectAsync('apps.eyes', { recursive: true }); // eyes app was removed in firmware 0.71
     }
 
     async importForeignSettings() {

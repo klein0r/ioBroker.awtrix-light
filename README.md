@@ -47,6 +47,7 @@ Updated recommended firmware version to 0.71
 
 * (klein0r) Setting default of repeat to 0
 * (klein0r) Dropped timer support (removed in firmware 0.71)
+* (klein0r) Removed native app "eyes" (removed in firmware 0.71)
 
 ### 0.5.1 (2023-07-19)
 
