@@ -757,6 +757,10 @@ class AwtrixLight extends utils.Adapter {
                 }
                 if (customApp.thresholdLtBackgroundColor) {
                     moreOptions.background = customApp.thresholdLtBackgroundColor;
+
+                    if (customApp.useBackgroundEffect) {
+                        delete moreOptions.effect;
+                    }
                 }
             } else if (customApp.thresholdGtActive && val > customApp.thresholdGtValue) {
                 this.log.debug(`[createAppRequestObj] GT > custom app "${customApp.name}" has a value (${val}) greater than ${customApp.thresholdGtValue} - overriding values`);
@@ -770,6 +774,10 @@ class AwtrixLight extends utils.Adapter {
                 }
                 if (customApp.thresholdGtBackgroundColor) {
                     moreOptions.background = customApp.thresholdGtBackgroundColor;
+
+                    if (customApp.useBackgroundEffect) {
+                        delete moreOptions.effect;
+                    }
                 }
             }
         }

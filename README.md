@@ -43,6 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (klein0r) Remove background effect in threshold overrides
 * (klein0r) Minor fixes in admin config
 
 ### 0.6.0 (2023-07-26)
