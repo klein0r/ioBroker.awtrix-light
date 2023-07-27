@@ -92,7 +92,7 @@ The message object supports all available options of the firmware. See [document
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`.
+The following names are used by internal apps and cannot be used: `time`, `date`, `temp`, `hum`, `bat`.
 
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
@@ -113,14 +113,14 @@ The following combinations will lead to a warning in the log:
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `eyes`, `date`, `temp`, `hum`, `bat`.
+The following names are used by internal apps and cannot be used: `time`, `date`, `temp`, `hum`, `bat`.
 
 **History apps just display acknowledged history values! Control states with `ack: false` are ignored!**
 
 ## App states
 
 - You can use the state `activate` of each app to bring that app to front
-- This state has the role `button` and allows just the value `true` (everything other value will raise a warning)
+- This state has the role `button` and allows just the value `true` (other values will raise a warning)
 
 ## Hide custom or history apps
 

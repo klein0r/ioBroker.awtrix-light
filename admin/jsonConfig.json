@@ -172,7 +172,7 @@
                             "lg": 4,
                             "default": "custom",
                             "help": "Just lower case letters (a-z)",
-                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'eyes', 'date', 'temp', 'hum', 'bat'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps].filter(app => app.name === data.name).length === 1",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temp', 'hum', 'bat'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps].filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",
                             "validatorNoSaveOnError": true
                         },
@@ -585,7 +585,7 @@
                             "lg": 4,
                             "default": "history",
                             "help": "Just lower case letters (a-z)",
-                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'eyes', 'date', 'temp', 'hum', 'bat'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps].filter(app => app.name === data.name).length === 1",
+                            "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temp', 'hum', 'bat'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps].filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",
                             "validatorNoSaveOnError": true
                         },
