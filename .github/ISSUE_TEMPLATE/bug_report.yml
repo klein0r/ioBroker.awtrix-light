@@ -58,6 +58,12 @@ body:
       required: true
   - type: input
     attributes:
+      label: Version of awtrix-light firmware
+      description: Displayed during startup of the device (and in the ioBroker states of this adapter)
+    validations:
+      required: true
+  - type: input
+    attributes:
       label: Operating system running ioBroker
       description: >-
         Linux, Windows, MacOS, something else? With version please?
