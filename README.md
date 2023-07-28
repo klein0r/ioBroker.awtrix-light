@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.6.1 (2023-07-28)
 
 * (klein0r) Remove background effect in threshold overrides
 * (klein0r) Minor fixes in admin config
@@ -71,11 +71,6 @@ Updated recommended firmware version to 0.71
 ### 0.4.0 (2023-07-12)
 
 * (klein0r) Allow to import settings from another instance
-
-### 0.3.4 (2023-07-11)
-
-* (klein0r) Use default scroll speed if 0
-* (klein0r) Instance selection for history apps
 
 ## License
 MIT License

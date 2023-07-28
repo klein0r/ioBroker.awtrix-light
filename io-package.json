@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "news": {
+      "0.6.1": {
+        "en": "Remove background effect in threshold overrides\nMinor fixes in admin config\nFixed missing icon in history apps",
+        "de": "Entfernen Sie den Hintergrundeffekt in Schwellenüberschreitungen\nMinor fixes in admin config\nBehoben fehlendes Icon in History Apps",
+        "ru": "Удалить фоновый эффект в пороговых перенапряжениях\nНезначительные исправления в admin config\nИсправлена недостающая икона в приложениях истории",
+        "pt": "Remova o efeito de fundo nas sobreposições de limiar\nPequenas correções em admin config\nÍcone ausente fixo em aplicativos de história",
+        "nl": "Verwijder achtergrondeffect in drempel overrides\nMinor fix in administratie\nVermiste icon in geschiedenis apps",
+        "fr": "Supprimer l'effet de fond dans les dépassements de seuil\nCorrections mineures dans la configuration admin\nIcône manquante fixe dans les applications d'histoire",
+        "it": "Rimuovere l'effetto di sfondo in override di soglia\nCorrezioni minori in configurazione admin\nFisso icona mancante nelle applicazioni di storia",
+        "es": "Eliminar el efecto de fondo en las anulas del umbral\nArreglos menores en config admin\nIcono perdido fijo en aplicaciones de historia",
+        "pl": "Przesunięcie efektu tła w przesunięciach progowych\nMniejsza sytuacja w adminach\nZaginięcie ikon w historii",
+        "uk": "Видалення фонового ефекту в порігових перепадах\nНормативні виправлення в налаштуваннях адміністратора\nВиправлено відсутні іконки в історичних додатках",
+        "zh-cn": "2. 取消在门槛上产生的背景效应\n特明特罗特的矿石\n历史遗漏的混合情况"
+      },
       "0.6.0": {
         "en": "Updated recommended firmware version to 0.71\n\n* Added option for background effects\n* Setting default of repeat to 0\n* Dropped timer support (removed in firmware 0.71)\n* Removed native app \"eyes\" (removed in firmware 0.71)",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,71\n\n* Option für Hintergrundeffekte hinzugefügt\n* Standardeinstellung der Wiederholung auf 0\n* Abgekürzte Timer-Unterstützung (entfernt in Firmware 0.71)\n* Entfernen von nativen App Augen (entfernt in Firmware 0.71)",
@@ -80,19 +93,6 @@
         "pl": "Wykorzystywanie czasu 0:",
         "uk": "Термін дії за замовчуванням, якщо 0",
         "zh-cn": "使用期"
-      },
-      "0.3.2": {
-        "en": "Delete apps on instance stop (configurable)\nAdded scrolling speed to settings\nAdded block buttons to settings",
-        "de": "Löschen von Apps auf Instanz Stop (konfigurierbar)\nHinzufügen der Scrollgeschwindigkeit zu den Einstellungen\nHinzugefügt Block-Tasten zu Einstellungen",
-        "ru": "Удалить приложения на остановке (конфигурируемый)\nДобавлена скорость прокрутки к настройкам\nДобавлены кнопки блоков в настройки",
-        "pt": "Excluir aplicativos na parada de instância (configurável)\nVelocidade de rolagem adicionada para configurações\nBotões de bloqueio adicionados para configurações",
-        "nl": "Verwijder apps op instance stop (configurable)\nVoeg de snelheid toe aan de setting\nVoeg blokknoppen toe aan de setting",
-        "fr": "Supprimer les applications sur l'arrêt d'instance (configurable)\nAjout de la vitesse de défilement aux réglages\nAjout de boutons de bloc aux paramètres",
-        "it": "Eliminare le applicazioni in caso di arresto (configurabile)\nAggiunta velocità di scorrimento alle impostazioni\nPulsanti di blocco aggiunti alle impostazioni",
-        "es": "Eliminar aplicaciones en la parada de instancia (configurable)\nVelocidad de desplazamiento adicional a la configuración\nBotones de bloque añadidos a la configuración",
-        "pl": "Aplikacja na przykład zatrzymuje (konfigurable)\nZwójna prędkość do ustawienia\nZamknięte przyciski do ustawienia",
-        "uk": "Видалити додатки на зупинці екземпляра (налаштовується)\nДодано швидкість прокручування на налаштування\nДодано кнопки блокування для налаштування",
-        "zh-cn": "删除关于停止(可能)的注释\n增加环境的速度\n增加进入环境的阻挡区"
       }
     },
     "titleLang": {

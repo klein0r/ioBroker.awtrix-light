@@ -1,4 +1,9 @@
 # Older changes
+## 0.3.4 (2023-07-11)
+
+* (klein0r) Use default scroll speed if 0
+* (klein0r) Instance selection for history apps
+
 ## 0.3.3 (2023-07-07)
 
 * (klein0r) Use default duration if 0
