@@ -867,7 +867,7 @@ class AwtrixLight extends utils.Adapter {
 
                                         // Duration
                                         if (historyApp.duration > 0) {
-                                            moreOptions.icon = historyApp.duration;
+                                            moreOptions.duration = historyApp.duration;
                                         }
 
                                         // Repeat
