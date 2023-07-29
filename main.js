@@ -98,16 +98,16 @@ class AwtrixLight extends utils.Adapter {
             if (state.ack) {
                 // Just refresh if value has changed
                 if (state.val !== this.customAppsForeignStates[id].val) {
-                    if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
-                        this.log.debug(`[onStateChange] received state change of "${id}" to ${state.val} (ts: ${state.ts}) - refreshing apps`);
+                    this.log.debug(`[onStateChange] received state change of objId "${id}" from ${this.customAppsForeignStates[id].val} to ${state.val} (ts: ${state.ts})`);
 
+                    if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                         this.customAppsForeignStates[id].val = this.customAppsForeignStates[id].type === 'mixed' ? String(state.val) : state.val;
                         this.customAppsForeignStates[id].ts = state.ts;
 
                         this.refreshCustomApps(id);
                     } else {
                         this.log.debug(
-                            `[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - refreshes too fast (within ${
+                            `[onStateChange] ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
                                 this.config.ignoreNewValueForAppInTimeRange
                             } seconds) - Last update: ${this.formatDate(this.customAppsForeignStates[id].ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                         );
@@ -566,7 +566,7 @@ class AwtrixLight extends utils.Adapter {
                                     const supportedTypes = ['string', 'number', 'mixed'];
                                     if (obj?.common.type && !supportedTypes.includes(obj.common.type)) {
                                         this.log.warn(
-                                            `[initCustomApps] Object of app "${customApp.name}" with id "${objId}" has invalid type: ${obj.common.type} instead of ${supportedTypes.join(', ')}`,
+                                            `[initCustomApps] Object of app "${customApp.name}" with objId "${objId}" has invalid type: ${obj.common.type} instead of ${supportedTypes.join(', ')}`,
                                         );
                                     }
 
@@ -662,7 +662,7 @@ class AwtrixLight extends utils.Adapter {
                                             }
 
                                             newVal = this.formatValue(val, countDecimals);
-                                            this.log.debug(`[refreshCustomApps] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                                            this.log.debug(`[refreshCustomApps] formatted value of objId "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                         }
                                     }
 
