@@ -41,6 +41,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed handling of state cache when object has been changed
+
 ### 0.6.1 (2023-07-28)
 
 * (klein0r) Remove background effect in threshold overrides

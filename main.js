@@ -99,7 +99,7 @@ class AwtrixLight extends utils.Adapter {
                 // Just refresh if value has changed
                 if (state.val !== this.customAppsForeignStates[id].val) {
                     if (this.customAppsForeignStates[id].ts + this.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
-                        this.log.debug(`[onStateChange] received state change of "${id}" to ${state.val} - refreshing apps`);
+                        this.log.debug(`[onStateChange] received state change of "${id}" to ${state.val} (ts: ${state.ts}) - refreshing apps`);
 
                         this.customAppsForeignStates[id].val = this.customAppsForeignStates[id].type === 'mixed' ? String(state.val) : state.val;
                         this.customAppsForeignStates[id].ts = state.ts;
@@ -219,7 +219,7 @@ class AwtrixLight extends utils.Adapter {
                         if (sourceObj && sourceObj.native?.name) {
                             this.log.debug(`changing visibility of app ${sourceObj.native.name} to ${state.val}`);
 
-                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            await this.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
 
                             this.initCustomApps();
                             this.initHistoryApps();
@@ -271,10 +271,8 @@ class AwtrixLight extends utils.Adapter {
             if (!obj) {
                 delete this.customAppsForeignStates[id];
             } else {
-                this.customAppsForeignStates[id] = {
-                    type: obj?.common.type,
-                    unit: obj?.common?.unit,
-                };
+                this.customAppsForeignStates[id].type = obj?.common.type;
+                this.customAppsForeignStates[id].unit = obj?.common?.unit;
 
                 this.refreshCustomApps(id);
             }
@@ -541,7 +539,7 @@ class AwtrixLight extends utils.Adapter {
 
                     // Ack if changed while instance was stopped
                     if (appVisibleState && !appVisibleState?.ack) {
-                        await this.setStateAsync(`apps.${customApp.name}.visible`, { val: appVisible, ack: true });
+                        await this.setStateAsync(`apps.${customApp.name}.visible`, { val: appVisible, ack: true, c: 'initCustomApps' });
                     }
 
                     if (!appVisible) {
@@ -633,13 +631,15 @@ class AwtrixLight extends utils.Adapter {
     }
 
     async refreshCustomApps(objId) {
-        if (this.apiConnected) {
+        if (this.apiConnected && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
+            this.log.debug(`[refreshCustomApps] Refreshing custom apps for objId "${objId}" with data ${JSON.stringify(this.customAppsForeignStates[objId])}`);
+
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
                     const text = String(customApp.text).trim();
 
                     if (customApp.objId && customApp.objId === objId && text.includes('%s')) {
-                        this.log.debug(`[refreshCustomApp] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
+                        this.log.debug(`[refreshCustomApps] Refreshing custom app "${customApp.name}" with icon "${customApp.icon}" and text "${customApp.text}"`);
 
                         try {
                             const appVisibleState = await this.getStateAsync(`apps.${customApp.name}.visible`);
@@ -662,7 +662,7 @@ class AwtrixLight extends utils.Adapter {
                                             }
 
                                             newVal = this.formatValue(val, countDecimals);
-                                            this.log.debug(`[refreshCustomApp] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                                            this.log.debug(`[refreshCustomApps] formatted value of "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
                                         }
                                     }
 
@@ -693,7 +693,7 @@ class AwtrixLight extends utils.Adapter {
                                 }
                             }
                         } catch (error) {
-                            this.log.error(`[refreshCustomApp] Unable to refresh custom app "${customApp.name}": ${error}`);
+                            this.log.error(`[refreshCustomApps] Unable to refresh custom app "${customApp.name}": ${error}`);
                         }
                     }
                 }
@@ -825,7 +825,7 @@ class AwtrixLight extends utils.Adapter {
 
                             // Ack if changed while instance was stopped
                             if (appVisibleState && !appVisibleState?.ack) {
-                                await this.setStateAsync(`apps.${historyApp.name}.visible`, { val: appVisible, ack: true });
+                                await this.setStateAsync(`apps.${historyApp.name}.visible`, { val: appVisible, ack: true, c: 'initHistoryApps' });
                             }
 
                             if (!appVisible) {
