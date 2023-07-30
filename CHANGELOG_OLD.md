@@ -1,4 +1,8 @@
 # Older changes
+## 0.4.0 (2023-07-12)
+
+* (klein0r) Allow to import settings from another instance
+
 ## 0.3.4 (2023-07-11)
 
 * (klein0r) Use default scroll speed if 0

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "news": {
+      "0.6.2": {
+        "en": "Fixed handling of state cache when object has been changed",
+        "de": "Feste Handhabung von Zustandscache, wenn Objekt geändert wurde",
+        "ru": "Исправлена обработка государственного кэша при изменении объекта",
+        "pt": "Manuseamento fixo de cache de estado quando o objeto foi alterado",
+        "nl": "Gereserveerd met staatskache als object is veranderd",
+        "fr": "Manipulation fixe du cache d'état lorsque l'objet a été changé",
+        "it": "Gestione fissa della cache di stato quando l'oggetto è stato modificato",
+        "es": "Manejo fijo de caché de estado cuando el objeto ha sido cambiado",
+        "pl": "Przestrzeń pamięci podręcznej, gdy obiekt został zmieniony",
+        "uk": "Виправлена обробка кешу стану при зміні об’єкта",
+        "zh-cn": "当目标发生变化时,固定地处理国家因果关系"
+      },
       "0.6.1": {
         "en": "Remove background effect in threshold overrides\nMinor fixes in admin config\nFixed missing icon in history apps",
         "de": "Entfernen Sie den Hintergrundeffekt in Schwellenüberschreitungen\nMinor fixes in admin config\nBehoben fehlendes Icon in History Apps",
@@ -80,19 +93,6 @@
         "pl": "Dowolna szybkość zwoju towarowego jeśli 0\nInspekcjacjatywa dotycząca historii",
         "uk": "Використовуйте швидкість прокрутки за замовчуванням, якщо 0\nВибір історії додатків",
         "zh-cn": "使用违约率\n选择历史遗骸"
-      },
-      "0.3.3": {
-        "en": "Use default duration if 0",
-        "de": "Standarddauer verwenden, wenn 0",
-        "ru": "Используйте продолжительность по умолчанию, если 0",
-        "pt": "Use a duração padrão se 0",
-        "nl": "Gebruik defecte duration",
-        "fr": "Utiliser la durée par défaut si 0",
-        "it": "Utilizzare la durata predefinita se 0",
-        "es": "Use la duración predeterminada si 0",
-        "pl": "Wykorzystywanie czasu 0:",
-        "uk": "Термін дії за замовчуванням, якщо 0",
-        "zh-cn": "使用期"
       }
     },
     "titleLang": {

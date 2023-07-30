@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.6.2 (2023-07-30)
 
 * (klein0r) Fixed handling of state cache when object has been changed
 
@@ -71,10 +71,6 @@ Updated recommended firmware version to 0.71
 * (klein0r) Added options to override icon, text color and backgroup color for thresholds
 * (klein0r) Added option to download screen content to state (as SVG graphic)
 * (klein0r) Draw welcome icon on connection
-
-### 0.4.0 (2023-07-12)
-
-* (klein0r) Allow to import settings from another instance
 
 ## License
 MIT License
