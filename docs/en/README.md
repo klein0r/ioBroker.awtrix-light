@@ -61,7 +61,7 @@ Example:
 Send a "one time" notification to your device:
 
 ```javascript
-sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, duration: 5, stack: true, wakeup: true }, (res) => {
+sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }

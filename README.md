@@ -41,6 +41,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Setting repeat to 1 in blockly notifications
+
 ### 0.6.2 (2023-07-30)
 
 * (klein0r) Fixed handling of state cache when object has been changed

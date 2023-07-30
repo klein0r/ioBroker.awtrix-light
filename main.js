@@ -291,6 +291,16 @@ class AwtrixLight extends utils.Adapter {
                 if (this.apiConnected) {
                     const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
+                    // Remove repeat if <= 0
+                    if (Object.prototype.hasOwnProperty.call(msgFiltered, 'repeat') && msgFiltered.repeat <= 0) {
+                        delete msgFiltered.repeat;
+                    }
+
+                    // Remove duration if <= 0
+                    if (Object.prototype.hasOwnProperty.call(msgFiltered, 'duration') && msgFiltered.duration <= 0) {
+                        delete msgFiltered.duration;
+                    }
+
                     this.buildRequestAsync('notify', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);

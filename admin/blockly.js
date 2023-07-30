@@ -186,7 +186,7 @@ Blockly.Words['awtrix-light_tooltip'] = {
     uk: 'Надіслати повідомлення на Awtrix',
     'zh-cn': '向Awtrix发出通知',
 };
-Blockly.Words['awtrix-light_help'] = { en: 'http://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md', de: 'http://github.com/klein0r/ioBroker.awtrix-light/blob/master/README.md' };
+Blockly.Words['awtrix-light_help'] = { en: 'https://github.com/klein0r/ioBroker.awtrix-light/blob/master/docs/en/README.md', de: 'https://github.com/klein0r/ioBroker.awtrix-light/blob/master/docs/de/README.md' };
 
 Blockly.Sendto.blocks['awtrix-light'] =
     '<block type="awtrix-light">' +
@@ -210,12 +210,12 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '     </value>' +
     '     <value name="REPEAT">' +
     '         <shadow type="math_number">' +
-    '             <field name="NUM">0</field>' +
+    '             <field name="NUM">1</field>' +
     '         </shadow>' +
     '     </value>' +
     '     <value name="DURATION">' +
     '         <shadow type="math_number">' +
-    '             <field name="NUM">5</field>' +
+    '             <field name="NUM">0</field>' +
     '         </shadow>' +
     '     </value>' +
     '     <value name="RAINBOW">' +

@@ -206,7 +206,7 @@
                             "md": 2,
                             "lg": 2,
                             "default": 0,
-                            "min": 0
+                            "min": 1
                         },
                         {
                             "type": "text",
@@ -619,7 +619,7 @@
                             "md": 2,
                             "lg": 2,
                             "default": 0,
-                            "min": 0
+                            "min": 1
                         },
                         {
                             "newLine": true,
