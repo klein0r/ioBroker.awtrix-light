@@ -493,6 +493,58 @@
       }
     },
     {
+      "_id": "settings.appTransitionEffect",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "App transition effect",
+          "de": "Effekt bei App-Wechsel",
+          "ru": "Эффект перехода приложения",
+          "pt": "Aplicação efeito de transição",
+          "nl": "Veranderings effect",
+          "fr": "Effet de transition",
+          "it": "Effetto di transizione dell'app",
+          "es": "Efecto de transición de la aplicación",
+          "pl": "Efekty przejściowe",
+          "uk": "Ефект переходу додатку",
+          "zh-cn": "过渡效果"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TEFF"
+      }
+    },
+    {
+      "_id": "settings.timeStyle",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Style of time app",
+          "de": "Stil der Zeit App",
+          "ru": "Стиль приложения времени",
+          "pt": "Estilo de aplicativo de tempo",
+          "nl": "Style tijd app",
+          "fr": "Style de l'application temps",
+          "it": "Stile di applicazione del tempo",
+          "es": "Estilo de aplicación de tiempo",
+          "pl": "Styl czasu",
+          "uk": "Стиль додатка часу",
+          "zh-cn": "时间的选择"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true
+      },
+      "native": {
+        "settingsKey": "TMODE"
+      }
+    },
+    {
       "_id": "settings.formatTime",
       "type": "state",
       "common": {
