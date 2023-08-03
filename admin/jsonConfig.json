@@ -400,6 +400,10 @@
                                 {
                                     "label": "PlasmaCloud",
                                     "value": "PlasmaCloud"
+                                },
+                                {
+                                    "label": "MovingLine",
+                                    "value": "MovingLine"
                                 }
                             ],
                             "default": "BrickBreaker",
