@@ -43,6 +43,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+Updated recommended firmware version to 0.72
+
 * (klein0r) Setting repeat to 1 in blockly notifications
 
 ### 0.6.2 (2023-07-30)
