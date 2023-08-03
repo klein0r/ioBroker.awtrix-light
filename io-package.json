@@ -512,7 +512,8 @@
         "type": "number",
         "role": "value",
         "read": true,
-        "write": true
+        "write": true,
+        "def": 0
       },
       "native": {
         "settingsKey": "TEFF"
@@ -538,7 +539,8 @@
         "type": "number",
         "role": "value",
         "read": true,
-        "write": true
+        "write": true,
+        "def": 1
       },
       "native": {
         "settingsKey": "TMODE"
