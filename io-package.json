@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.6.2",
+    "version": "0.7.0",
     "news": {
+      "0.7.0": {
+        "en": "Updated recommended firmware version to 0.72\n\n* Added MovingLine effect\n* Added settings for time style and transition effect\n* Setting repeat to 1 in blockly notifications",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,72\n\n* Hinzugefügt MovingLine Effekt\n* Hinzugefügt Einstellungen für Zeitstil und Übergangseffekt\n* Wiederholen der Einstellungen auf 1 in sperrigen Benachrichtigungen",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.72\n\n* Добавлен эффект MovingLine\n* Добавлены настройки для стиля времени и эффекта перехода\n* Установка повторения до 1 в блочных уведомлениях",
+        "pt": "Versão de firmware recomendada atualizada para 0.72\n\n* Adicionado efeito MovingLine\n* Configurações adicionadas para o estilo de tempo e efeito de transição\n* Definir repetição a 1 em notificações bloqueadas",
+        "nl": "Aanbevolen firmaware versie naar 0.72\n\n♪ Added MovingLine effect ♪\n♪ Added settings for time style and transition effect\nQuality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "Version mise à jour du firmware recommandé à 0.72\n\n* Ajout de l'effet MovingLine\n* Ajout de paramètres pour le style de temps et l'effet de transition\n* Setting repeat to 1 in blockly notifications",
+        "it": "Versione firmware consigliata aggiornata a 0.72\n\n* Aggiunto effetto MoveLine\n* Aggiunte le impostazioni per lo stile del tempo e l'effetto di transizione\n* Impostazione ripetizione a 1 in notifiche bloccate",
+        "es": "Versión actualizada de firmware recomendada a 0.72\n\n* Efecto MovingLine añadido\n* Ajustes adicionales para el estilo del tiempo y el efecto de transición\n* Ajuste de repetición a 1 en notificaciones bloqueadas",
+        "pl": "Zalecona wersja oprogramowania do wersji 0.72\n\nAdded MovingLine effect\n* Wstępowanie do stylu i efektu przejściowego\n* Setting repeat to 1 in blockly notification (ang.)",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.72\n\n* Додано ефект MovingLine\n* Додано налаштування для стилю часу та ефекту переходу\n* Налаштування повторення до 1 в блокнотних повідомленнях",
+        "zh-cn": "最新建议的警觉版本\n\n* 增加Moving Line效力\n* 增加时间风格和过渡效力的环境\n* 在软禁通知中重新编号1"
+      },
       "0.6.2": {
         "en": "Fixed handling of state cache when object has been changed",
         "de": "Feste Handhabung von Zustandscache, wenn Objekt geändert wurde",
@@ -80,19 +93,6 @@
         "pl": "Allow by importować ustawienia z innego przykładu",
         "uk": "Дозволяє імпортувати налаштування з іншого екземпляра",
         "zh-cn": "允许从另一个例子进口环境"
-      },
-      "0.3.4": {
-        "en": "Use default scroll speed if 0\nInstance selection for history apps",
-        "de": "Standard-Scroll-Geschwindigkeit verwenden, wenn 0\nInstanzauswahl für Geschichtsapps",
-        "ru": "Используйте скорость прокрутки по умолчанию, если 0\nОтбор Instance для приложений истории",
-        "pt": "Use a velocidade de rolagem padrão se 0\nSeleção de instância para aplicativos de história",
-        "nl": "Gebruik default scroll snelheid als 0\nInstance selectie voor geschiedenis apps",
-        "fr": "Utiliser la vitesse de défilement par défaut si 0\nChoix de cas pour les applications historiques",
-        "it": "Utilizzare la velocità di scorrimento predefinita se 0\nSelezione delle istanze per le app di storia",
-        "es": "Use velocidad de desplazamiento predeterminada si 0\nSelección de instalación para aplicaciones de historia",
-        "pl": "Dowolna szybkość zwoju towarowego jeśli 0\nInspekcjacjatywa dotycząca historii",
-        "uk": "Використовуйте швидкість прокрутки за замовчуванням, якщо 0\nВибір історії додатків",
-        "zh-cn": "使用违约率\n选择历史遗骸"
       }
     },
     "titleLang": {
