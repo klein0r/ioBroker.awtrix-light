@@ -802,6 +802,13 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
+        const customApps = this.config.customApps;
+        for (let i = 0; i < customApps.length; i += 1) {
+            if (customApps[i].name === customApp.name) {
+                moreOptions.pos = i;
+            }
+        }
+
         return {
             text,
             textCase: 2, // show as sent
@@ -834,6 +841,7 @@ class AwtrixLight extends utils.Adapter {
                 }
             }
 
+            let pos = this.config.customApps.length; // history apps after custom apps
             for (const historyApp of this.config.historyApps) {
                 if (historyApp.name) {
                     if (historyApp.objId && historyApp.sourceInstance) {
@@ -902,6 +910,7 @@ class AwtrixLight extends utils.Adapter {
                                             autoscale: true,
                                             icon: historyApp.icon,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
+                                            pos: pos++,
                                             ...moreOptions,
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
