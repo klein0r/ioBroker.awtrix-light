@@ -717,8 +717,39 @@
                     "min": 1,
                     "max": 10,
                     "sm": 12,
-                    "md": 6,
-                    "lg": 6
+                    "md": 4,
+                    "lg": 4
+                },
+                "numberFormat": {
+                    "newLine": true,
+                    "type": "select",
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4,
+                    "options": [
+                        {
+                            "label": "System",
+                            "value": "system"
+                        },
+                        {
+                            "label": "xx.xxx,xx",
+                            "value": ".,"
+                        },
+                        {
+                            "label": "xx,xxx.xx",
+                            "value": ",."
+                        },
+                        {
+                            "label": "xxxxx,xx",
+                            "value": ","
+                        },
+                        {
+                            "label": "xxxxx.xx",
+                            "value": "."
+                        }
+                    ],
+                    "default": "system",
+                    "label": "Number format"
                 }
             }
         }

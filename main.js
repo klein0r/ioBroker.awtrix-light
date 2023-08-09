@@ -671,8 +671,18 @@ class AwtrixLight extends utils.Adapter {
                                                 countDecimals = decimals; // limit
                                             }
 
-                                            newVal = this.formatValue(val, countDecimals);
-                                            this.log.debug(`[refreshCustomApps] formatted value of objId "${objId}" from ${val} to ${newVal} (${countDecimals} decimals)`);
+                                            const numFormat = this.config.numberFormat;
+                                            if (numFormat === 'system') {
+                                                newVal = this.formatValue(val, countDecimals);
+                                            } else if (['.,', ',.'].includes(numFormat)) {
+                                                newVal = this.formatValue(val, countDecimals, numFormat);
+                                            } else if (numFormat === '.') {
+                                                newVal = val.toFixed(countDecimals);
+                                            } else if (numFormat === ',') {
+                                                newVal = val.toFixed(countDecimals).replace('.', ',');
+                                            }
+
+                                            this.log.debug(`[refreshCustomApps] formatted value of objId "${objId}" from ${val} to ${newVal} (${countDecimals} decimals) with "${numFormat}"`);
                                         }
                                     }
 

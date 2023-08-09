@@ -182,7 +182,8 @@
     "historyAppsRefreshInterval": 300,
     "autoDeleteForeignApps": false,
     "removeAppsOnStop": true,
-    "httpTimeout": 3
+    "httpTimeout": 3,
+    "numberFormat": "system"
   },
   "objects": [],
   "instanceObjects": [
