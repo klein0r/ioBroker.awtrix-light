@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "news": {
+      "0.7.1": {
+        "en": "Added option for number format",
+        "de": "Option für Zahlenformat hinzugefügt",
+        "ru": "Добавлена опция для формата номера",
+        "pt": "Opção adicionada para o formato de número",
+        "nl": "Optie voor nummervorming",
+        "fr": "Option ajoutée pour le format de nombre",
+        "it": "Opzione aggiunta per il formato di numero",
+        "es": "Opción agregada para formato número",
+        "pl": "Wstępna opcja dla formatu liczbowego",
+        "uk": "Додано варіант для формату номеру",
+        "zh-cn": "增加编号选择"
+      },
       "0.7.0": {
         "en": "Updated recommended firmware version to 0.72\n\n* Added MovingLine effect\n* Added settings for time style and transition effect\n* Setting repeat to 1 in blockly notifications",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,72\n\n* Hinzugefügt MovingLine Effekt\n* Hinzugefügt Einstellungen für Zeitstil und Übergangseffekt\n* Wiederholen der Einstellungen auf 1 in sperrigen Benachrichtigungen",
@@ -80,19 +93,6 @@
         "pl": "Dodzielonymi opcjami do przerywania ikon, koloru tekstowego i podgrupowania koloru dla progów\nWstępna opcja do pobrania treści ekranu do stanu (jako grafika SVG)\nWidoczne ikony na temat połączenia",
         "uk": "Додана можливість перевизначення ікони, текстового кольору та кольору задньої групи для порогів\nДодано варіант для завантаження вмісту екрану до стану (як SVG графіка)\nПідібрати іконку на з'єднання",
         "zh-cn": "增加以百计、皮特色和色色色组为阈值的选择\n增加将筛选内容下载到州(SVG图)的选择\n热烈欢迎一. 联系"
-      },
-      "0.4.0": {
-        "en": "Allow to import settings from another instance",
-        "de": "Lassen Sie Einstellungen von einer anderen Instanz importieren",
-        "ru": "Разрешить импортировать настройки из другого экземпляра",
-        "pt": "Permitir importar configurações de outra instância",
-        "nl": "Sta op de instelling van een ander voorbeeld",
-        "fr": "Permettre d'importer des paramètres d'une autre instance",
-        "it": "Consentire di importare le impostazioni da un'altra istanza",
-        "es": "Permitir la importación de ajustes de otra instancia",
-        "pl": "Allow by importować ustawienia z innego przykładu",
-        "uk": "Дозволяє імпортувати налаштування з іншого екземпляра",
-        "zh-cn": "允许从另一个例子进口环境"
       }
     },
     "titleLang": {

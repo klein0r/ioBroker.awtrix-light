@@ -1,4 +1,10 @@
 # Older changes
+## 0.5.1 (2023-07-19)
+
+* (klein0r) Fixed color conversion for svg
+* (klein0r) Added support for state type "mixed"
+* (klein0r) Improved log messages
+
 ## 0.5.0 (2023-07-18)
 
 * (klein0r) Added options to override icon, text color and backgroup color for thresholds

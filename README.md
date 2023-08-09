@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.7.1 (2023-08-09)
 
 * (klein0r) Added option for number format
 
@@ -71,12 +71,6 @@ Updated recommended firmware version to 0.71
 * (klein0r) Setting default of repeat to 0
 * (klein0r) Dropped timer support (removed in firmware 0.71)
 * (klein0r) Removed native app "eyes" (removed in firmware 0.71)
-
-### 0.5.1 (2023-07-19)
-
-* (klein0r) Fixed color conversion for svg
-* (klein0r) Added support for state type "mixed"
-* (klein0r) Improved log messages
 
 ## License
 MIT License
