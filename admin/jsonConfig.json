@@ -547,6 +547,29 @@
                             "validator": "data.thresholdGtIcon || data.thresholdGtTextColor || data.thresholdGtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
                             "validatorNoSaveOnError": true
+                        },
+                        {
+                            "hidden": "!globalData.customPositions",
+                            "newLine": true,
+                            "type": "header",
+                            "attr": "_expertOptionsHeader",
+                            "text": "Expert options",
+                            "size": 3,
+                            "sm": 12,
+                            "md": 12,
+                            "lg": 12
+                        },
+                        {
+                            "hidden": "!globalData.customPositions",
+                            "type": "number",
+                            "attr": "position",
+                            "label": "Position",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "default": 0,
+                            "min": 0,
+                            "step": 1
                         }
                     ]
                 },
@@ -667,6 +690,29 @@
                             "md": 2,
                             "lg": 2,
                             "default": "#000000"
+                        },
+                        {
+                            "hidden": "!globalData.customPositions",
+                            "newLine": true,
+                            "type": "header",
+                            "attr": "_expertOptionsHeader",
+                            "text": "Expert options",
+                            "size": 3,
+                            "sm": 12,
+                            "md": 12,
+                            "lg": 12
+                        },
+                        {
+                            "hidden": "!globalData.customPositions",
+                            "type": "number",
+                            "attr": "position",
+                            "label": "Position",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "default": 0,
+                            "min": 0,
+                            "step": 1
                         }
                     ]
                 },
@@ -750,6 +796,14 @@
                     ],
                     "default": "system",
                     "label": "Number format"
+                },
+                "customPositions": {
+                    "newLine": true,
+                    "type": "checkbox",
+                    "label": "Own position for each app",
+                    "sm": 12,
+                    "md": 4,
+                    "lg": 4
                 }
             }
         }

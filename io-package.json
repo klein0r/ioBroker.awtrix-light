@@ -183,7 +183,8 @@
     "autoDeleteForeignApps": false,
     "removeAppsOnStop": true,
     "httpTimeout": 3,
-    "numberFormat": "system"
+    "numberFormat": "system",
+    "customPositions": false
   },
   "objects": [],
   "instanceObjects": [

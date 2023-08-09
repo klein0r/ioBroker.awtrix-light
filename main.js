@@ -54,6 +54,22 @@ class AwtrixLight extends utils.Adapter {
             await this.importForeignSettings();
         }
 
+        // Apply positions of instance configuration
+        if (!this.config.customPositions) {
+            this.log.debug(`[onReady] Setting position of each app as ordered in instance configuration (custom positions are disabled)`);
+
+            let pos = 0;
+            for (const customApp of this.config.customApps) {
+                customApp.position = pos++;
+            }
+
+            for (const historyApp of this.config.historyApps) {
+                historyApp.position = pos++;
+            }
+        } else {
+            this.log.debug(`[onReady] Custom positions are enabled - using app positions of instance configuration`);
+        }
+
         this.refreshState();
     }
 
@@ -802,16 +818,10 @@ class AwtrixLight extends utils.Adapter {
             }
         }
 
-        const customApps = this.config.customApps;
-        for (let i = 0; i < customApps.length; i += 1) {
-            if (customApps[i].name === customApp.name) {
-                moreOptions.pos = i;
-            }
-        }
-
         return {
             text,
             textCase: 2, // show as sent
+            pos: customApp.position,
             ...moreOptions,
         };
     }
@@ -841,7 +851,6 @@ class AwtrixLight extends utils.Adapter {
                 }
             }
 
-            let pos = this.config.customApps.length; // history apps after custom apps
             for (const historyApp of this.config.historyApps) {
                 if (historyApp.name) {
                     if (historyApp.objId && historyApp.sourceInstance) {
@@ -910,7 +919,7 @@ class AwtrixLight extends utils.Adapter {
                                             autoscale: true,
                                             icon: historyApp.icon,
                                             lifetime: this.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
-                                            pos: pos++,
+                                            pos: historyApp.position,
                                             ...moreOptions,
                                         }).catch((error) => {
                                             this.log.warn(`(custom?name=${historyApp.name}) Unable to create history app "${historyApp.name}": ${error}`);
