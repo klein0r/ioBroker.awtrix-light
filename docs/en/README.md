@@ -39,11 +39,21 @@ The hardware design is not the best. Please use a power supply which deliveres m
 
 Yes, but you have to open the case with a heat gun (since the front glued to the case) and [modify the PCB with a step down converter](https://github.com/Blueforcer/awtrix-light/issues/67#issuecomment-1595418765).
 
-**It is possible to re-order apps?**
+**Is it possible to re-order apps?**
 
 By default, apps are displayed in the same order as in the instance configuration. Just move an app up or down to change it's position. History apps are always positioned after all custom apps!
 
 To set custom positions for each app, the expert option `custom positions` has to be enabled. After that, it is possible to define a position on each app.
+
+**Can I define a custom number format?**
+
+All states (of common.type `number`) are formatted as configured in the system settings of ioBroker. It is possible to override the system format (since adapter version 0.7.1) by using an expert option. Numbers can be formatted in the following styles:
+
+- System default
+- `xx.xxx,xx`
+- `xx,xxx.xx` (US-Format)
+- `xxxxx,xx`
+- `xxxxx.xx` (US-Format)
 
 ## Same apps on multiple devices
 
