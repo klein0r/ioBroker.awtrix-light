@@ -184,7 +184,8 @@
     "removeAppsOnStop": true,
     "httpTimeout": 3,
     "numberFormat": "system",
-    "customPositions": false
+    "customPositions": false,
+    "expertApps": []
   },
   "objects": [],
   "instanceObjects": [

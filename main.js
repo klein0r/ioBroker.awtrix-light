@@ -88,7 +88,7 @@ class AwtrixLight extends utils.Adapter {
             if (instanceObj && instanceObj.native) {
                 if (!instanceObj.native?.foreignSettingsInstance) {
                     // Copy values
-                    const copySettings = ['customApps', 'ignoreNewValueForAppInTimeRange', 'historyApps', 'historyAppsRefreshInterval', 'autoDeleteForeignApps', 'removeAppsOnStop'];
+                    const copySettings = ['customApps', 'ignoreNewValueForAppInTimeRange', 'historyApps', 'historyAppsRefreshInterval', 'autoDeleteForeignApps', 'removeAppsOnStop', 'expertApps'];
 
                     for (const setting of copySettings) {
                         this.config[setting] = instanceObj.native[setting];
@@ -372,6 +372,9 @@ class AwtrixLight extends utils.Adapter {
                     await this.initCustomApps();
                     await this.initHistoryApps();
 
+                    // Subscribe to all states
+                    await this.subscribeForeignStatesAsync(Object.keys(this.customAppsForeignStates));
+
                     // indicators
                     for (let i = 1; i <= 3; i++) {
                         await this.updateIndicatorByStates(i);
@@ -439,6 +442,10 @@ class AwtrixLight extends utils.Adapter {
                     this.clearInterval(this.downloadScreenContentInterval);
                     this.downloadScreenContentInterval = null;
                 }
+
+                // Unsubscribe from all states to avoid errors
+                await this.unsubscribeForeignStatesAsync(Object.keys(this.customAppsForeignStates));
+
                 this.log.debug('API is offline');
             }
         }
@@ -972,8 +979,9 @@ class AwtrixLight extends utils.Adapter {
                             const appPath = 'apps';
                             const customApps = this.config.customApps.map((a) => a.name);
                             const historyApps = this.config.historyApps.map((a) => a.name);
+                            const expertApps = this.config.expertApps.map((a) => a.name);
                             const existingApps = content.map((a) => a.name);
-                            const allApps = [...NATIVE_APPS, ...customApps, ...historyApps];
+                            const allApps = [...NATIVE_APPS, ...customApps, ...historyApps, ...expertApps];
 
                             this.log.debug(`[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
 
@@ -1008,6 +1016,7 @@ class AwtrixLight extends utils.Adapter {
                                         isNativeApp: NATIVE_APPS.includes(name),
                                         isCustomApp: customApps.includes(name),
                                         isHistoryApp: historyApps.includes(name),
+                                        isExpertApp: expertApps.includes(name),
                                     },
                                 });
 
@@ -1037,7 +1046,7 @@ class AwtrixLight extends utils.Adapter {
                                 });
 
                                 // "Own" apps can be hidden via state
-                                if (customApps.includes(name) || historyApps.includes(name)) {
+                                if ([...customApps, ...historyApps, ...expertApps].includes(name)) {
                                     await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
                                         type: 'state',
                                         common: {
