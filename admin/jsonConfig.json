@@ -831,7 +831,7 @@
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
-                            "default": "history",
+                            "default": "expert",
                             "help": "Just lower case letters (a-z)",
                             "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temp', 'hum', 'bat'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps, ...globalData.expertApps].filter(app => app.name === data.name).length === 1",
                             "validatorErrorText": "Just lower case letters (a-z)",

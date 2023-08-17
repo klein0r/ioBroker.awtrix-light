@@ -66,6 +66,10 @@ class AwtrixLight extends utils.Adapter {
             for (const historyApp of this.config.historyApps) {
                 historyApp.position = pos++;
             }
+
+            for (const expertApp of this.config.expertApps) {
+                expertApp.position = pos++;
+            }
         } else {
             this.log.debug(`[onReady] Custom positions are enabled - using app positions of instance configuration`);
         }
@@ -237,8 +241,7 @@ class AwtrixLight extends utils.Adapter {
 
                             await this.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
 
-                            this.initCustomApps();
-                            this.initHistoryApps();
+                            await this.initAllApps();
                         }
                     }
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
@@ -278,8 +281,7 @@ class AwtrixLight extends utils.Adapter {
             // Refresh apps (may have changed)
             if (this.apiConnected) {
                 await this.createAppObjects();
-                await this.initCustomApps();
-                await this.initHistoryApps();
+                await this.initAllApps();
             }
         }
 
@@ -369,8 +371,7 @@ class AwtrixLight extends utils.Adapter {
 
                     // apps
                     await this.createAppObjects();
-                    await this.initCustomApps();
-                    await this.initHistoryApps();
+                    await this.initAllApps();
 
                     // Subscribe to all states
                     await this.subscribeForeignStatesAsync(Object.keys(this.customAppsForeignStates));
@@ -560,6 +561,12 @@ class AwtrixLight extends utils.Adapter {
                 reject('API not connected');
             }
         });
+    }
+
+    async initAllApps() {
+        await this.initCustomApps();
+        await this.initHistoryApps();
+        await this.initExpertApps();
     }
 
     async initCustomApps() {
@@ -968,6 +975,10 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
+    async initExpertApps() {
+
+    }
+
     createAppObjects() {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
@@ -1006,17 +1017,21 @@ class AwtrixLight extends utils.Adapter {
                                 appsKeep.push(`${appPath}.${name}`);
                                 this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
 
+                                const isCustomApp = customApps.includes(name);
+                                const isHistoryApp = historyApps.includes(name);
+                                const isExpertApp = expertApps.includes(name);
+
                                 await this.extendObjectAsync(`${appPath}.${name}`, {
                                     type: 'channel',
                                     common: {
                                         name: `App`,
-                                        desc: `${name}${customApps.includes(name) ? ' (custom app)' : ''}${historyApps.includes(name) ? ' (history app)' : ''}`,
+                                        desc: `${name}${isCustomApp ? ' (custom app)' : ''}${isHistoryApp ? ' (history app)' : ''}${isExpertApp ? ' (expert app)' : ''}`,
                                     },
                                     native: {
                                         isNativeApp: NATIVE_APPS.includes(name),
-                                        isCustomApp: customApps.includes(name),
-                                        isHistoryApp: historyApps.includes(name),
-                                        isExpertApp: expertApps.includes(name),
+                                        isCustomApp,
+                                        isHistoryApp,
+                                        isExpertApp,
                                     },
                                 });
 
@@ -1033,6 +1048,7 @@ class AwtrixLight extends utils.Adapter {
                                             it: 'Attivare',
                                             es: 'Activar',
                                             pl: 'Aktywuj',
+                                            uk: 'Активувати',
                                             'zh-cn': '启用',
                                         },
                                         type: 'boolean',
@@ -1046,7 +1062,7 @@ class AwtrixLight extends utils.Adapter {
                                 });
 
                                 // "Own" apps can be hidden via state
-                                if ([...customApps, ...historyApps, ...expertApps].includes(name)) {
+                                if (isCustomApp || isHistoryApp || isExpertApp) {
                                     await this.setObjectNotExistsAsync(`${appPath}.${name}.visible`, {
                                         type: 'state',
                                         common: {
@@ -1073,6 +1089,34 @@ class AwtrixLight extends utils.Adapter {
                                             name,
                                         },
                                     });
+
+                                    if (isExpertApp) {
+                                        await this.setObjectNotExistsAsync(`${appPath}.${name}.text`, {
+                                            type: 'state',
+                                            common: {
+                                                name: {
+                                                    en: 'Text',
+                                                    de: 'Text',
+                                                    ru: 'Текст',
+                                                    pt: 'Texto',
+                                                    nl: 'Text',
+                                                    fr: 'Texte',
+                                                    it: 'Testo',
+                                                    es: 'Texto',
+                                                    pl: 'Tekst',
+                                                    uk: 'Головна',
+                                                    'zh-cn': '案文'
+                                                },
+                                                type: 'string',
+                                                role: 'text',
+                                                read: true,
+                                                write: true,
+                                            },
+                                            native: {
+                                                name,
+                                            },
+                                        });
+                                    }
                                 }
                             }
 
