@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
-Updated recommended firmware version to 0.74
+Updated recommended firmware version to 0.82
 
 * (klein0r) Allow to set custom app positions (expert options)
 * (klein0r) Unsubscribe from all states if device is not reachable

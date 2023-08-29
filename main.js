@@ -18,7 +18,7 @@ class AwtrixLight extends utils.Adapter {
             useFormatDate: true,
         });
 
-        this.supportedVersion = '0.74';
+        this.supportedVersion = '0.82';
         this.displayedVersionWarning = false;
 
         this.apiConnected = false;
@@ -241,8 +241,12 @@ class AwtrixLight extends utils.Adapter {
 
                             await this.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
 
+                            // ToDo: Just update a single app
                             await this.initAllApps();
                         }
+                    } else {
+                        // Expert apps
+                        await this.initExpertApps();
                     }
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
                     const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
