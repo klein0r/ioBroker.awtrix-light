@@ -29,6 +29,28 @@ class AwtrixLight extends utils.Adapter {
 
         this.customAppsForeignStates = {};
 
+        this.backgroundEffects = [
+            'Fade',
+            'MovingLine',
+            'BrickBreaker',
+            'PingPong',
+            'Radar',
+            'Checkerboard',
+            'Fireworks',
+            'PlasmaCloud',
+            'Ripple',
+            'Snake',
+            'Pacifica',
+            'TheaterChase',
+            'Plasma',
+            'Matrix',
+            'SwirlIn',
+            'SwirlOut',
+            'LookingEyes',
+            'TwinklingStars',
+            'ColorWaves'
+        ];
+
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('objectChange', this.onObjectChange.bind(this));
@@ -305,10 +327,12 @@ class AwtrixLight extends utils.Adapter {
      * @param {ioBroker.Message} obj
      */
     onMessage(obj) {
-        this.log.debug(`[onMessage] received message: ${JSON.stringify(obj.message)}`);
+        this.log.debug(`[onMessage] received command "${obj.command}" with message: ${JSON.stringify(obj.message)}`);
 
         if (obj && obj.message) {
-            if (obj.command === 'notification' && typeof obj.message === 'object') {
+            if (obj.command === 'getBackgroundEffects') {
+                this.sendTo(obj.from, obj.command, this.backgroundEffects.map((v) => ({ value: v, label: v })), obj.callback);
+            } else if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
                 if (this.apiConnected) {
                     const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
@@ -372,6 +396,7 @@ class AwtrixLight extends utils.Adapter {
                 try {
                     // settings
                     await this.refreshSettings();
+                    await this.refreshBackgroundEffects();
 
                     // apps
                     await this.createAppObjects();
@@ -545,6 +570,24 @@ class AwtrixLight extends utils.Adapter {
 
                     reject(error);
                 });
+        });
+    }
+
+    async refreshBackgroundEffects() {
+        return new Promise((resolve, reject) => {
+            this.buildRequestAsync('effects')
+                .then((response) => {
+                    if (response.status === 200) {
+                        this.log.debug(`[refreshBackgroundEffects] Existing effects "${JSON.stringify(response.data)}"`);
+
+                        this.backgroundEffects = response.data;
+
+                        resolve(true);
+                    } else {
+                        reject(`${response.status}: ${response.data}`);
+                    }
+                })
+                .catch(reject);
         });
     }
 

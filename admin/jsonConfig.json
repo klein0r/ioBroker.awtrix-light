@@ -344,85 +344,14 @@
                         },
                         {
                             "hidden": "!data.useBackgroundEffect",
-                            "type": "select",
+                            "type": "selectSendTo",
                             "attr": "backgroundEffect",
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
-                            "options": [
-                                {
-                                    "label": "BrickBreaker",
-                                    "value": "BrickBreaker"
-                                },
-                                {
-                                    "label": "Checkerboard",
-                                    "value": "Checkerboard"
-                                },
-                                {
-                                    "label": "Fireworks",
-                                    "value": "Fireworks"
-                                },
-                                {
-                                    "label": "PingPong",
-                                    "value": "PingPong"
-                                },
-                                {
-                                    "label": "Radar",
-                                    "value": "Radar"
-                                },
-                                {
-                                    "label": "Ripple",
-                                    "value": "Ripple"
-                                },
-                                {
-                                    "label": "Snake",
-                                    "value": "Snake"
-                                },
-                                {
-                                    "label": "TwinklingStars",
-                                    "value": "TwinklingStars"
-                                },
-                                {
-                                    "label": "TheaterChase",
-                                    "value": "TheaterChase"
-                                },
-                                {
-                                    "label": "ColorWaves",
-                                    "value": "ColorWaves"
-                                },
-                                {
-                                    "label": "SwirlOut",
-                                    "value": "SwirlOut"
-                                },
-                                {
-                                    "label": "SwirlIn",
-                                    "value": "SwirlIn"
-                                },
-                                {
-                                    "label": "LookingEyes",
-                                    "value": "LookingEyes"
-                                },
-                                {
-                                    "label": "Matrix",
-                                    "value": "Matrix"
-                                },
-                                {
-                                    "label": "Pacifica",
-                                    "value": "Pacifica"
-                                },
-                                {
-                                    "label": "Plasma",
-                                    "value": "Plasma"
-                                },
-                                {
-                                    "label": "PlasmaCloud",
-                                    "value": "PlasmaCloud"
-                                },
-                                {
-                                    "label": "MovingLine",
-                                    "value": "MovingLine"
-                                }
-                            ],
+                            "command": "getBackgroundEffects",
+                            "data": "all",
+                            "noTranslation": true,
                             "default": "BrickBreaker",
                             "label": "Background effect",
                             "help": "See all effects",
