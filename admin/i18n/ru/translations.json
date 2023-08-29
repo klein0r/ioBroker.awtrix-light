@@ -52,5 +52,10 @@
     "Use background effect": "Использовать фоновый эффект",
     "Background effect": "Фоновый эффект",
     "See all effects": "Посмотреть все эффекты",
-    "Number format": "Формат номера"
+    "Number format": "Формат номера",
+    "Own position for each app": "Своя позиция для каждого приложения",
+    "Position": "Позиция",
+    "Expert Apps": "Экспертные приложения",
+    "Username": "Имя пользователя",
+    "Password": "Пароль"
 }
