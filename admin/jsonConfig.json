@@ -26,6 +26,23 @@
                     "validatorErrorText": "Invalid IP address",
                     "validatorNoSaveOnError": true
                 },
+                "userName": {
+                    "newLine": true,
+                    "type": "text",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Username"
+                },
+                "userPassword": {
+                    "type": "password",
+                    "repeat": false,
+                    "visible": false,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6,
+                    "label": "Password"
+                },
                 "_headerOptionsScreen": {
                     "newLine": true,
                     "type": "header",

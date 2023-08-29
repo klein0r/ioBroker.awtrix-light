@@ -1228,6 +1228,13 @@ class AwtrixLight extends utils.Adapter {
                     baseURL: `http://${this.config.awtrixIp}:80`,
                     url: url,
                     timeout: timeoutMs,
+                    auth: {
+                        username: this.config.userName,
+                        password: this.config.userPassword,
+                    },
+                    validateStatus: (status) => {
+                        return [200, 201].indexOf(status) > -1;
+                    },
                     responseType: 'json',
                 })
                     .then((response) => {
@@ -1242,7 +1249,11 @@ class AwtrixLight extends utils.Adapter {
                         if (error.response) {
                             // The request was made and the server responded with a status code
 
-                            this.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+                            if (error.response.status === 401) {
+                                this.log.warn('Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!');
+                            } else {
+                                this.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+                            }
                         } else if (error.request) {
                             // The request was made but no response was received
                             // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

@@ -170,8 +170,17 @@
       }
     ]
   },
+  "protectedNative": [
+    "userName",
+    "userPassword"
+  ],
+  "encryptedNative": [
+    "userPassword"
+  ],
   "native": {
-    "awtrixIp": "",
+    "awtrixIp": "192.168.0.111",
+    "userName": "",
+    "userPassword": "",
     "downloadScreenContent": false,
     "downloadScreenContentInterval": 10,
     "foreignSettingsInstance": "",
