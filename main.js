@@ -397,6 +397,7 @@ class AwtrixLight extends utils.Adapter {
                     // settings
                     await this.refreshSettings();
                     await this.refreshBackgroundEffects();
+                    await this.refreshTransitions();
 
                     // apps
                     await this.createAppObjects();
@@ -583,6 +584,31 @@ class AwtrixLight extends utils.Adapter {
                         this.backgroundEffects = response.data;
 
                         resolve(true);
+                    } else {
+                        reject(`${response.status}: ${response.data}`);
+                    }
+                })
+                .catch(reject);
+        });
+    }
+
+    async refreshTransitions() {
+        return new Promise((resolve, reject) => {
+            this.buildRequestAsync('transitions')
+                .then((response) => {
+                    if (response.status === 200) {
+                        this.log.debug(`[refreshTransitions] Existing transitions "${JSON.stringify(response.data)}"`);
+
+                        const states = {};
+                        for (let i = 0; i < response.data.length; i++) {
+                            states[i] = response.data[i];
+                        }
+
+                        this.extendObjectAsync('settings.appTransitionEffect', {
+                            common: {
+                                states,
+                            },
+                        }).then(resolve);
                     } else {
                         reject(`${response.status}: ${response.data}`);
                     }
