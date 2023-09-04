@@ -739,7 +739,7 @@ class AwtrixLight extends utils.Adapter {
                                     let newVal = val;
 
                                     if (this.customAppsForeignStates[objId].type === 'number') {
-                                        const decimals = customApp.decimals ?? 3;
+                                        const decimals = parseInt(customApp.decimals) ?? 3;
 
                                         if (!isNaN(val) && val % 1 !== 0) {
                                             let countDecimals = String(val).split('.')[1].length || 2;

@@ -50,6 +50,7 @@ Updated recommended firmware version to 0.83
 * (klein0r) Added expert apps
 * (klein0r) Added options basic auth
 * (klein0r) Get background effects via API
+* (klein0r) Fixed 0 decimals setting
 
 ### 0.7.1 (2023-08-09)
 
