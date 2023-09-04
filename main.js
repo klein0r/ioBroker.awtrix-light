@@ -48,7 +48,7 @@ class AwtrixLight extends utils.Adapter {
             'SwirlOut',
             'LookingEyes',
             'TwinklingStars',
-            'ColorWaves'
+            'ColorWaves',
         ];
 
         this.on('ready', this.onReady.bind(this));
@@ -331,7 +331,12 @@ class AwtrixLight extends utils.Adapter {
 
         if (obj && obj.message) {
             if (obj.command === 'getBackgroundEffects') {
-                this.sendTo(obj.from, obj.command, this.backgroundEffects.map((v) => ({ value: v, label: v })), obj.callback);
+                this.sendTo(
+                    obj.from,
+                    obj.command,
+                    this.backgroundEffects.map((v) => ({ value: v, label: v })),
+                    obj.callback,
+                );
             } else if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
                 if (this.apiConnected) {
@@ -1048,9 +1053,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    async initExpertApps() {
-
-    }
+    async initExpertApps() {}
 
     createAppObjects() {
         return new Promise((resolve, reject) => {
@@ -1178,7 +1181,7 @@ class AwtrixLight extends utils.Adapter {
                                                     es: 'Texto',
                                                     pl: 'Tekst',
                                                     uk: 'Головна',
-                                                    'zh-cn': '案文'
+                                                    'zh-cn': '案文',
                                                 },
                                                 type: 'string',
                                                 role: 'text',
