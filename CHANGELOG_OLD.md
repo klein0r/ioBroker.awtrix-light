@@ -1,4 +1,13 @@
 # Older changes
+## 0.6.0 (2023-07-26)
+
+Updated recommended firmware version to 0.71
+
+* (klein0r) Added option for background effects
+* (klein0r) Setting default of repeat to 0
+* (klein0r) Dropped timer support (removed in firmware 0.71)
+* (klein0r) Removed native app "eyes" (removed in firmware 0.71)
+
 ## 0.5.1 (2023-07-19)
 
 * (klein0r) Fixed color conversion for svg

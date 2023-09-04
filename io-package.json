@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.7.1",
+    "version": "0.8.0",
     "news": {
+      "0.8.0": {
+        "en": "Updated recommended firmware version to 0.83\n\n* Allow to set custom app positions (expert options)\n* Unsubscribe from all states if device is not reachable\n* Added options basic auth\n* Get background effects via API\n* Fixed 0 decimals setting\n* Changed log level of some messages\n* Added states for transitions",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,83\n\n* Lassen Sie benutzerdefinierte App-Positionen (Expert-Optionen) einstellen\n* Abonnieren Sie von allen Zuständen, wenn das Gerät nicht erreichbar ist\n* Zusätzliche Optionen grundlegende Auth\n* Erhalten Sie Hintergrundeffekte über API\n* Feste Einstellung von 0 Dezimals\n* Änderte Protokollebene einiger Nachrichten\n* Hinzugefügt Zustände für Übergänge",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.83\n\n* Разрешить установить пользовательские позиции приложения (экспертные опции)\n* Отписаться от всех штатов, если устройство не доступно\n* Добавлены опции базового auth\n* Получите фоновые эффекты через API\n* Исправлена настройка 0 десятичных знаков\n* Изменен уровень лога некоторых сообщений\n* Добавлены государства для переходов",
+        "pt": "Versão de firmware recomendada atualizada para 0.83\n\n* Permitir definir posições de aplicativo personalizadas (opções de especialistas)\n* Inscreva-se em todos os estados se o dispositivo não for acessível\n* Adicionado opções básico auth\n* Obter efeitos de fundo via API\n* Configuração decimais fixa 0\n* Nível de log alterado de algumas mensagens\n* estados adicionados para transições",
+        "nl": "Aanbevolen firmaware versie naar 0.83\n\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Onbeschrijving van alle staten als apparaat niet bereikbaar is\n♪ Added options basic auth ♪\n♪ Haal achtergrondeffecten via API\n♪ Fixed 0 decimals setting\nVeranderde log niveau van sommige berichten\n♪ Added states for transitions ♪",
+        "fr": "Version mise à jour du firmware recommandé à 0.83\n\n* Permettre de définir des positions d'application personnalisées (options d'experts)\n* Se désabonner de tous les états si l'appareil n'est pas accessible\n* Ajout d'options de base authent\n* Obtenir des effets de fond via API\n* Réglage fixe de 0 décimales\n* Changement de niveau de journal de certains messages\n* États ajoutés pour les transitions",
+        "it": "Versione firmware consigliata aggiornata a 0.83\n\n* Permettere di impostare posizioni app personalizzate (opzioni esperte)\n# Cancellare da tutti gli stati se il dispositivo non è raggiungibile\n* Opzioni aggiuntive base auth\n# Ottenere gli effetti di sfondo tramite API\n* Impostazione 0 decimali fissi\n* Livello di registro modificato di alcuni messaggi\n* Stati aggiunti per transizioni",
+        "es": "Versión actualizada de firmware recomendada a 0.83\n\n* Permitir establecer posiciones de aplicación personalizadas (opciones de expertos)\n* Suscríbete de todos los estados si el dispositivo no es accesible\n* Opciones adicionales de austeridad básica\n* Obtener efectos de fondo a través de API\n* Ajuste de 0 decimales\n* Nivel de registro cambiado de algunos mensajes\n* Estados añadidos para las transiciones",
+        "pl": "Zalecona wersja oprogramowania do 0.8383\n\n* Allow, aby ustawić niestandardowe stanowiska aplikacji (z wyjątkiem)\n* Niepodpisany ze wszystkich stanów, jeśli urządzenie nie jest dopasowalne\nAdddition Basic Auth (ang.)\n* Efekty tła przez API\n* Fixed 0 decimals setting\n* Zmienił poziom logowania niektórych wiadomości\nW: Państwa Adresowe dla przejść",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.83\n\n* Дозволяє встановлювати користувацькі позиції програми (опціональні параметри)\nІм'я * Якщо пристрій не досягається\n* Додано параметри базової auth\nІм'я * Отримайте фонові ефекти за допомогою API\n* Виправлено налаштування 0 десяткових чисел\n* Змінений рівень входу деяких повідомлень\n* Додано стани для переходів",
+        "zh-cn": "最新建议的软件版本为0.83\n\n* 允许设立习俗评估职位(无选择)\n* A/64/50。 如果装置无法到达,则不从所有各州登记。\n* 增加基本选择\n* A/64/50。 B. 通过知识产权产生的全球背景效应\n* 固定的0.标记\n* 某些信息的变化逻辑水平\n* 增加过渡国"
+      },
       "0.7.1": {
         "en": "Added option for number format",
         "de": "Option für Zahlenformat hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Fixed color conversion for svgg\nWsparcie dla typu państwowego mieszane\nPoprawiona wiadomość",
         "uk": "Фіксована конвертація кольору для КС\nДодано підтримку державного типу змішаних\nПокращені повідомлення журналу",
         "zh-cn": "固定颜色转换\n增加对国家类型混杂的支助\n改进文 件"
-      },
-      "0.5.0": {
-        "en": "Added options to override icon, text color and backgroup color for thresholds\nAdded option to download screen content to state (as SVG graphic)\nDraw welcome icon on connection",
-        "de": "Optionen hinzugefügt, um Icon, Textfarbe und Backgroup Farbe für Schwellen zu überschreiben\nZusätzliche Option zum Herunterladen von Bildschirminhalten zum Zustand (als SVG Grafik)\nWillkommenssymbol auf Verbindung zeichnen",
-        "ru": "Добавлены варианты переопределения иконки, цвета текста и задней группы для порогов\nДобавлена возможность загрузки контента экрана в состояние (как SVG Graphic)\nНарисуйте приветственную иконку на связи",
-        "pt": "Opções adicionadas para substituir ícone, cor de texto e cor de backgroup para limiares\nAdicionado opção para baixar o conteúdo da tela para estado (como gráfico SVG)\nDesenhe o ícone de boas-vindas na conexão",
-        "nl": "Toegevoegd opties om iconen te overschrijden, kleur en achtergrondkleur voor drempels\nToegevoegd optie om scherminhoud te downloaden naar staat\nDraw welkom icon",
-        "fr": "Ajout d'options pour remplacer l'icône, la couleur de texte et la couleur de backgroup pour les seuils\nAjout de l'option pour télécharger le contenu de l'écran vers l'état (comme graphique SVG)\nDessiner l'icône de bienvenue sur la connexion",
-        "it": "Aggiunte opzioni per sovrascrivere icona, colore testo e colore backgroup per soglie\nAggiunta opzione per scaricare il contenuto dello schermo a stato (come grafico SVG)\nDisegna icona di benvenuto sulla connessione",
-        "es": "Opciones adicionales para anular el icono, el color de texto y el color de backgroup para umbrales\nOpción adicional para descargar contenido de pantalla al estado (como gráfico SVG)\nDibujar icono de bienvenida en conexión",
-        "pl": "Dodzielonymi opcjami do przerywania ikon, koloru tekstowego i podgrupowania koloru dla progów\nWstępna opcja do pobrania treści ekranu do stanu (jako grafika SVG)\nWidoczne ikony na temat połączenia",
-        "uk": "Додана можливість перевизначення ікони, текстового кольору та кольору задньої групи для порогів\nДодано варіант для завантаження вмісту екрану до стану (як SVG графіка)\nПідібрати іконку на з'єднання",
-        "zh-cn": "增加以百计、皮特色和色色色组为阈值的选择\n增加将筛选内容下载到州(SVG图)的选择\n热烈欢迎一. 联系"
       }
     },
     "titleLang": {

@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.0 (2023-09-04)
 
 Updated recommended firmware version to 0.83
 
@@ -74,15 +74,6 @@ Updated recommended firmware version to 0.72
 * (klein0r) Remove background effect in threshold overrides
 * (klein0r) Minor fixes in admin config
 * (klein0r) Fixed missing icon in history apps
-
-### 0.6.0 (2023-07-26)
-
-Updated recommended firmware version to 0.71
-
-* (klein0r) Added option for background effects
-* (klein0r) Setting default of repeat to 0
-* (klein0r) Dropped timer support (removed in firmware 0.71)
-* (klein0r) Removed native app "eyes" (removed in firmware 0.71)
 
 ## License
 MIT License
