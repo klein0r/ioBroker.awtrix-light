@@ -752,7 +752,7 @@
                     "lg": 4
                 },
                 "_headerExpertApps": {
-                    "hidden": "true",
+                    "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "header",
                     "text": "Expert Apps",
@@ -762,7 +762,7 @@
                     "lg": 12
                 },
                 "expertApps": {
-                    "hidden": "true",
+                    "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
