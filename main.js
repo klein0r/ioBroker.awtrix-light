@@ -290,7 +290,7 @@ class AwtrixLight extends utils.Adapter {
                     }
                 }
             } else {
-                this.log.error(`Unable to perform action for ${idNoNamespace} - API is not connected (device not reachable?)`);
+                this.log.warn(`Unable to perform action for ${idNoNamespace} - API is not connected (device not reachable?)`);
             }
         }
     }
