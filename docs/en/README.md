@@ -7,7 +7,7 @@
 - nodejs 14.5 (or later)
 - js-controller 4.0.15 (or later)
 - Admin Adapter 6.6.0 (or later)
-- _Awtrix Light_ device with firmware _0.83_ (or later) - e.g. Ulanzi TC001
+- _Awtrix Light_ device with firmware _0.84_ (or later) - e.g. Ulanzi TC001
 
 Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
@@ -23,7 +23,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 No, this feature has been removed in the awtrix light firmware. Please use the on screen menu to hide these apps.
 
-**Is it possible to display boolean values with other text (not true/false)?**
+**Is it possible to replace boolean values with other text (not true/false)?**
 
 Just create an alias in `alias.0` of type `string` and convert your `boolean` value into any other text with a read function (like `val ? 'open' : 'closed'`). *This is an ioBroker feature and not related to this adapter.*
 
@@ -69,7 +69,7 @@ Example:
 
 `sendTo` / message box can be used to
 
-- send one time notifications (with text, sound, duration, ...)
+- send one time notifications (with text, sound, icon, ...)
 - play a custom sound
 
 ### Notifications
@@ -100,7 +100,7 @@ sendTo('awtrix-light', 'sound', { sound: 'example' }, (res) => {
 });
 ```
 
-The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=play-a-sound) for details.
+The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=sound-playback) for details.
 
 *You can also use a Blockly block to play a sound.*
 
@@ -117,7 +117,7 @@ It is possible to define a custom text with those placeholders (e.g. `Outside: %
 
 **Custom apps just display acknowledged values! Control states with `ack: false` are ignored (to prevent duplicate requests and to ensure that values are valid / confirmed)!**
 
-The selected state should have the data type `string` or `number`. Other tyes (like `boolean`) are also supported but raise a warning. It is recommended to use an alias state with a convert function to replace a boolean value with text (e.g. `val ? 'on' : 'off'` or `val ? 'open' : 'closed'`). See ioBroker documentation for details. *This feature is not related to this adapter.*
+The selected state should have the data type `string` or `number`. Other tyes (like `boolean`) are also supported but raise a warning. It is recommended to use an alias state with a convert function to replace a boolean value with text (e.g. `val ? 'on' : 'off'` or `val ? 'open' : 'closed'`). See ioBroker documentation for details. *This standard feature is not related to this adapter.*
 
 The following combinations will lead to a warning in the log:
 
@@ -125,13 +125,13 @@ The following combinations will lead to a warning in the log:
 - A custom app with a selected object id of a state without a unit `common.unit`, but `%u` is used in the text
 - A custom app without a selected object, but `%s` has been used in the text
 
-## History apps
+## History apps / graphs
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
 The following names are used by internal apps and cannot be used: `time`, `date`, `temp`, `hum`, `bat`.
 
-**History apps just display acknowledged history values! Control states with `ack: false` are ignored!**
+**History apps just display acknowledged history values! Control states with `ack: false` are filtered and ignored!**
 
 ## App states
 
