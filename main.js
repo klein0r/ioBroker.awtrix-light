@@ -1197,12 +1197,10 @@ class AwtrixLight extends utils.Adapter {
                             }
 
                             // Delete non existent apps
-                            for (let i = 0; i < appsAll.length; i++) {
-                                const id = appsAll[i];
-
-                                if (appsKeep.indexOf(id) === -1) {
-                                    await this.delObjectAsync(id, { recursive: true });
-                                    this.log.debug(`[createAppObjects] deleted: ${id}`);
+                            for (const app of appsAll) {
+                                if (!appsKeep.includes(app)) {
+                                    await this.delObjectAsync(app, { recursive: true });
+                                    this.log.debug(`[createAppObjects] deleted: ${app}`);
                                 }
                             }
 
