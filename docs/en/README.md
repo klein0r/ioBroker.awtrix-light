@@ -55,6 +55,10 @@ All states (of common.type `number`) are formatted as configured in the system s
 - `xxxxx,xx`
 - `xxxxx.xx` (US-Format)
 
+**Is it possible to protect web ui of the device?**
+
+Yes, since firware version 0.82 it is possible to configure a user name and a password to protect the access. Since adapter version 0.8.0 it is also possible to enter these credentials in the instance configuration.
+
 ## Same apps on multiple devices
 
 If you have multiple awtrix-light devices, it is required to create a new instance for each device. But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.

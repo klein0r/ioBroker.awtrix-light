@@ -55,6 +55,10 @@ Alle Zustände vom Typ Zahl (common.type `number`) werden so formatiert, wie es 
 - `xxxxx,xx`
 - `xxxxx.xx` (US-Format)
 
+**Kann man den Zugriff auf die Weboberfläche der awtrix-light beschränken?**
+
+Ja, seit Firware-Version 0.82 kann der Zugriff mit einem Benutzernamen und Passwort geschützt werden. Seit Adapter-Version 0.8.0 können diese Benutzerdaten ebenfalls in den Instanz-Einstellungen hinterlegt werden.
+
 ## Identische Apps auf mehreren Geräten
 
 Falls mehrere awtrix-light Geräte mit den gleichen Apps angesteuert werden sollen, muss eine eigene Instanz für jedes Gerät angelegt werden. Allerdings kann in den Instanzeinstellungen der weiteren Geräte dann festgelegt werden, dass die Apps aus einer anderen Instanz übernommen werden sollen.
