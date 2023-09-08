@@ -32,8 +32,8 @@
         "@typescript-eslint/explicit-function-return-type": [
             "warn",
             {
-                allowExpressions: true,
-                allowTypedFunctionExpressions: true
+                "allowExpressions": true,
+                "allowTypedFunctionExpressions": true
             }
         ],
         "@typescript-eslint/no-object-literal-type-assertion": "off",

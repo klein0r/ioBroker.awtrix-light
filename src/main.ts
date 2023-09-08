@@ -4,17 +4,28 @@
 
 import * as utils from '@iobroker/adapter-core';
 
-const axios = require('axios').default;
-const colorConvert = require('./lib/color-convert');
-const adapterName = require('./package.json').name.split('.').pop();
+import axios from 'axios';
+import { rgb565to888Str, rgb565to888StrSvg } from './lib/color-convert';
 
 const NATIVE_APPS = ['time', 'date', 'temp', 'hum', 'bat'];
 
 class AwtrixLight extends utils.Adapter {
+    supportedVersion: string;
+    displayedVersionWarning: boolean;
+
+    apiConnected: boolean;
+    refreshStateTimeout: NodeJS.Timeout | null;
+    refreshHistoryAppsTimeout: NodeJS.Timeout | null;
+    downloadScreenContentInterval: NodeJS.Timeout | null;
+
+    customAppsForeignStates: object;
+
+    backgroundEffects: Array<string>;
+
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
-            name: adapterName,
+            name: 'awtrix-light',
             useFormatDate: true,
         });
 
@@ -99,13 +110,13 @@ class AwtrixLight extends utils.Adapter {
         this.refreshState();
     }
 
-    private async upgradeFromPreviousVersion() {
+    private async upgradeFromPreviousVersion(): Promise<void> {
         this.log.debug(`Upgrading objects from previous version`);
 
         await this.delObjectAsync('apps.eyes', { recursive: true }); // eyes app was removed in firmware 0.71
     }
 
-    private async importForeignSettings() {
+    private async importForeignSettings(): Promise<void> {
         try {
             this.log.info(`Using settings of other instance: ${this.config.foreignSettingsInstance}`);
 
@@ -131,7 +142,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private async onStateChange(id: string, state: ioBroker.State | null | undefined): void {
+    private async onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void> {
         if (id && state && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             if (state.ack) {
                 // Just refresh if value has changed
@@ -291,7 +302,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private async onObjectChange(id: string, obj: ioBroker.Object | null | undefined): void {
+    private async onObjectChange(id: string, obj: ioBroker.Object | null | undefined): Promise<void> {
         // Imported settings changed
         if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
             await this.importForeignSettings();
@@ -378,7 +389,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private async setApiConnected(connection) {
+    private async setApiConnected(connection: boolean): Promise<void> {
         if (connection !== this.apiConnected) {
             await this.setStateChangedAsync('info.connection', { val: connection, ack: true });
             this.apiConnected = connection;
@@ -440,7 +451,7 @@ class AwtrixLight extends utils.Adapter {
 
                                             for (let y = 0; y < 8; y++) {
                                                 for (let x = 0; x < 32; x++) {
-                                                    const color = colorConvert.rgb565to888StrSvg(pixelData[y * 32 + x]);
+                                                    const color = rgb565to888StrSvg(pixelData[y * 32 + x]);
                                                     svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" `;
                                                     svg += `x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`;
                                                 }
@@ -476,7 +487,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private refreshState() {
+    private refreshState(): void {
         this.log.debug('refreshing device state');
 
         this.buildRequestAsync('stats', 'GET')
@@ -519,7 +530,7 @@ class AwtrixLight extends utils.Adapter {
             }, 60000);
     }
 
-    private async refreshSettings() {
+    private async refreshSettings(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('settings', 'GET')
                 .then(async (response) => {
@@ -545,7 +556,7 @@ class AwtrixLight extends utils.Adapter {
                         for (const [settingsKey, val] of Object.entries(content)) {
                             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
                                 if (knownSettings[settingsKey].role === 'level.color.rgb') {
-                                    const newVal = colorConvert.rgb565to888Str(val);
+                                    const newVal = rgb565to888Str(val);
                                     this.log.debug(`[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${newVal} (converted from ${val})`);
 
                                     await this.setStateChangedAsync(knownSettings[settingsKey].id, { val: newVal, ack: true, c: 'Updated from API (converted from RGB565)' });
@@ -568,7 +579,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async refreshBackgroundEffects() {
+    private async refreshBackgroundEffects(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('effects')
                 .then((response) => {
@@ -586,7 +597,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async refreshTransitions() {
+    private async refreshTransitions(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('transitions')
                 .then((response) => {
@@ -611,7 +622,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async removeApp(name) {
+    private async removeApp(name: string): Promise<void> {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
                 this.buildRequestAsync(`custom?name=${name}`, 'POST')
@@ -630,13 +641,13 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async initAllApps() {
+    private async initAllApps(): Promise<void> {
         await this.initCustomApps();
         await this.initHistoryApps();
         await this.initExpertApps();
     }
 
-    private async initCustomApps() {
+    private async initCustomApps(): Promise<void> {
         if (this.apiConnected) {
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
@@ -737,7 +748,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private async refreshCustomApps(objId) {
+    private async refreshCustomApps(objId: string): Promise<void> {
         if (this.apiConnected && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
             this.log.debug(`[refreshCustomApps] Refreshing custom apps for objId "${objId}" with data ${JSON.stringify(this.customAppsForeignStates[objId])}`);
 
@@ -818,7 +829,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private createAppRequestObj(customApp, text, val) {
+    private createAppRequestObj(customApp: object, text: string, val): Promise<void> {
         const moreOptions = {};
 
         // Background
@@ -907,7 +918,7 @@ class AwtrixLight extends utils.Adapter {
         };
     }
 
-    private async initHistoryApps() {
+    private async initHistoryApps(): Promise<void> {
         if (this.apiConnected && this.config.historyApps.length > 0) {
             const validSourceInstances = [];
 
@@ -1042,9 +1053,9 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private async initExpertApps() {}
+    private async initExpertApps(): Promise<void> {}
 
-    private createAppObjects() {
+    private async createAppObjects(): Promise<void> {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
                 this.buildRequestAsync('apps', 'GET')
@@ -1224,7 +1235,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async updateIndicatorByStates(index) {
+    private async updateIndicatorByStates(index: number): Promise<void> {
         this.log.debug(`Updating indicator with index ${index}`);
 
         const indicatorStates = await this.getStatesAsync(`indicator.${index}.*`);
@@ -1249,7 +1260,7 @@ class AwtrixLight extends utils.Adapter {
         return this.buildRequestAsync(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : '');
     }
 
-    private async updateMoodlightByStates() {
+    private async updateMoodlightByStates(): Promise<void> {
         this.log.debug(`Updating moodlight`);
 
         const moodlightStates = await this.getStatesAsync('display.moodlight.*');
@@ -1269,7 +1280,7 @@ class AwtrixLight extends utils.Adapter {
         return this.buildRequestAsync('moodlight', 'POST', moodlightValues['display.moodlight.active'] ? postObj : '');
     }
 
-    private buildRequestAsync(service, method, data) {
+    private buildRequestAsync(service: string, method: string, data: object): Promise<void> {
         return new Promise((resolve, reject) => {
             const url = `/api/${service}`;
             const timeoutMs = this.config.httpTimeout * 1000 || 3000;
@@ -1338,12 +1349,12 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private removeNamespace(id) {
+    private removeNamespace(id): Promise<void> {
         const re = new RegExp(this.namespace + '*\\.', 'g');
         return id.replace(re, '');
     }
 
-    private onUnload(callback: () => void): void {
+    private async onUnload(callback: () => void): Promise<void> {
         try {
             if (this.config.removeAppsOnStop) {
                 const customApps = this.config.customApps.map((a) => a.name);
@@ -1386,7 +1397,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    private isNewerVersion(oldVer, newVer) {
+    private isNewerVersion(oldVer: string, newVer: string): boolean {
         const oldParts = oldVer.split('.');
         const newParts = newVer.split('.');
         for (let i = 0; i < newParts.length; i++) {
