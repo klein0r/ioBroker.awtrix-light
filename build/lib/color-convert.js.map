@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/lib/color-convert.ts"],
+  "sourcesContent": ["export function rgb565to888(val: number): number {\n    const b = Math.floor((((val >> 11) & 31) * 255) / 31 + 0.5);\n    const c = Math.floor((((val >> 5) & 63) * 255) / 63 + 0.5);\n    const d = Math.floor(((31 & val) * 255) / 31 + 0.5);\n\n    return (b << 16) | (c << 8) | d;\n}\n\nexport function rgb565to888Svg(val: number): number {\n    const r = (val & 0xff0000) >> 16;\n    const g = (val & 0x00ff00) >> 8;\n    const b = val & 0x0000ff;\n\n    return (r << 16) | (g << 8) | b;\n}\n\nexport function rgb565to888Str(val: number): string {\n    return '#' + rgb565to888(val).toString(16).toUpperCase().padStart(6, '0');\n}\n\nexport function rgb565to888StrSvg(val: number): string {\n    return '#' + rgb565to888Svg(val).toString(16).toUpperCase().padStart(6, '0');\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,SAAS,YAAY,KAAqB;AAC7C,QAAM,IAAI,KAAK,OAAS,OAAO,KAAM,MAAM,MAAO,KAAK,GAAG;AAC1D,QAAM,IAAI,KAAK,OAAS,OAAO,IAAK,MAAM,MAAO,KAAK,GAAG;AACzD,QAAM,IAAI,KAAK,OAAQ,KAAK,OAAO,MAAO,KAAK,GAAG;AAElD,SAAQ,KAAK,KAAO,KAAK,IAAK;AAClC;AAEO,SAAS,eAAe,KAAqB;AAChD,QAAM,KAAK,MAAM,aAAa;AAC9B,QAAM,KAAK,MAAM,UAAa;AAC9B,QAAM,IAAI,MAAM;AAEhB,SAAQ,KAAK,KAAO,KAAK,IAAK;AAClC;AAEO,SAAS,eAAe,KAAqB;AAChD,SAAO,MAAM,YAAY,GAAG,EAAE,SAAS,EAAE,EAAE,YAAY,EAAE,SAAS,GAAG,GAAG;AAC5E;AAEO,SAAS,kBAAkB,KAAqB;AACnD,SAAO,MAAM,eAAe,GAAG,EAAE,SAAS,EAAE,EAAE,YAAY,EAAE,SAAS,GAAG,GAAG;AAC/E;",
+  "names": []
+}
