@@ -13,10 +13,10 @@
     "connectionType": "local",
     "dataSource": "poll",
     "connectionIndicator": "yes",
-    "language": "JavaScript",
+    "language": "TypeScript",
     "nodeVersion": "14",
     "adminUi": "json",
-    "tools": ["ESLint", "type checking", "Prettier"],
+    "tools": ["ESLint", "Prettier"],
     "releaseScript": "yes",
     "devServer": "yes",
     "devServerPort": 8081,
@@ -31,5 +31,5 @@
     "defaultBranch": "master",
     "license": "MIT License",
     "dependabot": "yes",
-    "creatorVersion": "2.4.0"
+    "creatorVersion": "2.5.0"
 }

@@ -28,17 +28,20 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: "16.x"
+          node-version: '18.x'
+          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+          # install-command: 'npm install'
+          type-checking: true
           lint: true
-          lint-command: "npm run lint ."
 
+  # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
@@ -46,11 +49,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
-          extra-tests: npm run test:js
+          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+          # install-command: 'npm install'
+          build: true
 
   deploy:
     needs: [check-and-lint, adapter-tests]
 
+    # Trigger this step only when a commit on any branch is tagged with a version number
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&
       github.event_name == 'push' &&
@@ -58,10 +64,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # Write permissions are required to create Github releases
+    permissions:
+      contents: write
+
     steps:
       - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: "16.x"
+          node-version: '18.x'
+          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+          # install-command: 'npm install'
+          build: true
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -69,8 +82,10 @@ jobs:
           # To enable create a API-Token in Sentry (User settings, API keys)
           # Enter this token as a GitHub secret (with name SENTRY_AUTH_TOKEN) in the repository options
           # Then uncomment and customize the following block:
+          # sentry: true
           # sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
           # sentry-project: "iobroker-awtrix-light"
           # sentry-version-prefix: "iobroker.awtrix-light"
+          # sentry-sourcemap-paths: "build/"
           # If your sentry project is linked to a GitHub repository, you can enable the following option
           # sentry-github-integration: true

@@ -1,6 +1,9 @@
-'use strict';
+/*
+ * Created with @iobroker/create-adapter v2.5.0
+ */
 
-const utils = require('@iobroker/adapter-core');
+import * as utils from '@iobroker/adapter-core';
+
 const axios = require('axios').default;
 const colorConvert = require('./lib/color-convert');
 const adapterName = require('./package.json').name.split('.').pop();
@@ -8,10 +11,7 @@ const adapterName = require('./package.json').name.split('.').pop();
 const NATIVE_APPS = ['time', 'date', 'temp', 'hum', 'bat'];
 
 class AwtrixLight extends utils.Adapter {
-    /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
-     */
-    constructor(options) {
+    public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
             name: adapterName,
@@ -58,7 +58,7 @@ class AwtrixLight extends utils.Adapter {
         this.on('unload', this.onUnload.bind(this));
     }
 
-    async onReady() {
+    private async onReady(): Promise<void> {
         this.setApiConnected(false);
 
         await this.upgradeFromPreviousVersion();
@@ -99,13 +99,13 @@ class AwtrixLight extends utils.Adapter {
         this.refreshState();
     }
 
-    async upgradeFromPreviousVersion() {
+    private async upgradeFromPreviousVersion() {
         this.log.debug(`Upgrading objects from previous version`);
 
         await this.delObjectAsync('apps.eyes', { recursive: true }); // eyes app was removed in firmware 0.71
     }
 
-    async importForeignSettings() {
+    private async importForeignSettings() {
         try {
             this.log.info(`Using settings of other instance: ${this.config.foreignSettingsInstance}`);
 
@@ -131,11 +131,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    /**
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
-     */
-    async onStateChange(id, state) {
+    private async onStateChange(id: string, state: ioBroker.State | null | undefined): void {
         if (id && state && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, id)) {
             if (state.ack) {
                 // Just refresh if value has changed
@@ -295,11 +291,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    /**
-     * @param {string} id
-     * @param {ioBroker.Object | null | undefined} obj
-     */
-    async onObjectChange(id, obj) {
+    private async onObjectChange(id: string, obj: ioBroker.Object | null | undefined): void {
         // Imported settings changed
         if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
             await this.importForeignSettings();
@@ -323,10 +315,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    /**
-     * @param {ioBroker.Message} obj
-     */
-    onMessage(obj) {
+    private onMessage(obj: ioBroker.Message): void {
         this.log.debug(`[onMessage] received command "${obj.command}" with message: ${JSON.stringify(obj.message)}`);
 
         if (obj && obj.message) {
@@ -389,7 +378,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    async setApiConnected(connection) {
+    private async setApiConnected(connection) {
         if (connection !== this.apiConnected) {
             await this.setStateChangedAsync('info.connection', { val: connection, ack: true });
             this.apiConnected = connection;
@@ -487,7 +476,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    refreshState() {
+    private refreshState() {
         this.log.debug('refreshing device state');
 
         this.buildRequestAsync('stats', 'GET')
@@ -530,7 +519,7 @@ class AwtrixLight extends utils.Adapter {
             }, 60000);
     }
 
-    async refreshSettings() {
+    private async refreshSettings() {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('settings', 'GET')
                 .then(async (response) => {
@@ -579,7 +568,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async refreshBackgroundEffects() {
+    private async refreshBackgroundEffects() {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('effects')
                 .then((response) => {
@@ -597,7 +586,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async refreshTransitions() {
+    private async refreshTransitions() {
         return new Promise((resolve, reject) => {
             this.buildRequestAsync('transitions')
                 .then((response) => {
@@ -622,7 +611,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async removeApp(name) {
+    private async removeApp(name) {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
                 this.buildRequestAsync(`custom?name=${name}`, 'POST')
@@ -641,13 +630,13 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async initAllApps() {
+    private async initAllApps() {
         await this.initCustomApps();
         await this.initHistoryApps();
         await this.initExpertApps();
     }
 
-    async initCustomApps() {
+    private async initCustomApps() {
         if (this.apiConnected) {
             for (const customApp of this.config.customApps) {
                 if (customApp.name) {
@@ -748,7 +737,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    async refreshCustomApps(objId) {
+    private async refreshCustomApps(objId) {
         if (this.apiConnected && Object.prototype.hasOwnProperty.call(this.customAppsForeignStates, objId)) {
             this.log.debug(`[refreshCustomApps] Refreshing custom apps for objId "${objId}" with data ${JSON.stringify(this.customAppsForeignStates[objId])}`);
 
@@ -829,7 +818,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    createAppRequestObj(customApp, text, val) {
+    private createAppRequestObj(customApp, text, val) {
         const moreOptions = {};
 
         // Background
@@ -918,7 +907,7 @@ class AwtrixLight extends utils.Adapter {
         };
     }
 
-    async initHistoryApps() {
+    private async initHistoryApps() {
         if (this.apiConnected && this.config.historyApps.length > 0) {
             const validSourceInstances = [];
 
@@ -1053,9 +1042,9 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    async initExpertApps() {}
+    private async initExpertApps() {}
 
-    createAppObjects() {
+    private createAppObjects() {
         return new Promise((resolve, reject) => {
             if (this.apiConnected) {
                 this.buildRequestAsync('apps', 'GET')
@@ -1235,7 +1224,7 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    async updateIndicatorByStates(index) {
+    private async updateIndicatorByStates(index) {
         this.log.debug(`Updating indicator with index ${index}`);
 
         const indicatorStates = await this.getStatesAsync(`indicator.${index}.*`);
@@ -1260,7 +1249,7 @@ class AwtrixLight extends utils.Adapter {
         return this.buildRequestAsync(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : '');
     }
 
-    async updateMoodlightByStates() {
+    private async updateMoodlightByStates() {
         this.log.debug(`Updating moodlight`);
 
         const moodlightStates = await this.getStatesAsync('display.moodlight.*');
@@ -1280,7 +1269,7 @@ class AwtrixLight extends utils.Adapter {
         return this.buildRequestAsync('moodlight', 'POST', moodlightValues['display.moodlight.active'] ? postObj : '');
     }
 
-    buildRequestAsync(service, method, data) {
+    private buildRequestAsync(service, method, data) {
         return new Promise((resolve, reject) => {
             const url = `/api/${service}`;
             const timeoutMs = this.config.httpTimeout * 1000 || 3000;
@@ -1349,15 +1338,12 @@ class AwtrixLight extends utils.Adapter {
         });
     }
 
-    removeNamespace(id) {
+    private removeNamespace(id) {
         const re = new RegExp(this.namespace + '*\\.', 'g');
         return id.replace(re, '');
     }
 
-    /**
-     * @param {() => void} callback
-     */
-    async onUnload(callback) {
+    private onUnload(callback: () => void): void {
         try {
             if (this.config.removeAppsOnStop) {
                 const customApps = this.config.customApps.map((a) => a.name);
@@ -1400,7 +1386,7 @@ class AwtrixLight extends utils.Adapter {
         }
     }
 
-    isNewerVersion(oldVer, newVer) {
+    private isNewerVersion(oldVer, newVer) {
         const oldParts = oldVer.split('.');
         const newParts = newVer.split('.');
         for (let i = 0; i < newParts.length; i++) {
@@ -1415,11 +1401,8 @@ class AwtrixLight extends utils.Adapter {
 
 if (require.main !== module) {
     // Export the constructor in compact mode
-    /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
-     */
-    module.exports = (options) => new AwtrixLight(options);
+    module.exports = (options: Partial<utils.AdapterOptions> | undefined) => new AwtrixLight(options);
 } else {
     // otherwise start the instance directly
-    new AwtrixLight();
+    (() => new AwtrixLight())();
 }

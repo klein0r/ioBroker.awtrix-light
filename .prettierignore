@@ -4,3 +4,4 @@ README.md
 io-package.json
 docs/**
 .github/**
+build/
