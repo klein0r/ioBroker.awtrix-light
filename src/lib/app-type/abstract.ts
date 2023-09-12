@@ -103,6 +103,7 @@ export namespace AppType {
             await this.stateChanged(id, state);
         }
 
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         protected async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
             // override
         }
@@ -111,6 +112,7 @@ export namespace AppType {
             await this.objectChanged(id, obj);
         }
 
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         protected async objectChanged(id: string, obj: ioBroker.Object | null | undefined): Promise<void> {
             // override
         }

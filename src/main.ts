@@ -281,6 +281,7 @@ export class AwtrixLight extends utils.Adapter {
         }
     }
 
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     private async onObjectChange(id: string, obj: ioBroker.Object | null | undefined): Promise<void> {
         // Imported settings changed
         if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {

@@ -83,7 +83,7 @@ export namespace AwtrixApi {
             this.lastErrorCode = -1;
         }
 
-        public isConnected() {
+        public isConnected(): boolean {
             return this.apiConnected;
         }
 
