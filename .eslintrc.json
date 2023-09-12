@@ -39,13 +39,16 @@
         "@typescript-eslint/no-object-literal-type-assertion": "off",
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-namespace": "off",
         "no-var": "error",
         "prefer-const": "error",
         "no-trailing-spaces": "error"
     },
     "overrides": [
         {
-            "files": ["*.test.ts"],
+            "files": [
+                "*.test.ts"
+            ],
             "rules": {
                 "@typescript-eslint/explicit-function-return-type": "off"
             }
