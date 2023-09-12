@@ -13,9 +13,19 @@ export namespace AppType {
             this.appDefinition = definition;
         }
 
-        public override async init(): Promise<void> {
+        public override async init(): Promise<boolean> {
 
-            super.init();
+            return super.init();
+        }
+
+        private override async refresh(): Promise<boolean> {
+            let refreshed = false;
+
+            if (await super.refresh()) {
+                
+            }
+
+            return refreshed;
         }
 
         public async createObjects(prefix: string): Promise<void> {

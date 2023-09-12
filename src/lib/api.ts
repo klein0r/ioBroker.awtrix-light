@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { AwtrixLight } from '../../main';
+import { AwtrixLight } from '../main';
 
 export namespace AwtrixApi {
     export type App = {

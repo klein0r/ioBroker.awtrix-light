@@ -14,37 +14,26 @@ export namespace AppType {
     export class Custom extends AbstractAppType.AbstractApp {
         private appDefinition: CustomApp;
         private objCache: ObjCache | undefined;
+        private isStaticText: boolean;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: CustomApp) {
             super(apiClient, adapter, definition);
 
             this.appDefinition = definition;
             this.objCache = undefined;
+            this.isStaticText = false;
         }
 
-        public override async init(): Promise<void> {
+        public override async init(): Promise<boolean> {
             const text = String(this.appDefinition.text).trim();
-            const appVisibleState = await this.adapter.getStateAsync(`apps.${this.appDefinition.name}.visible`);
-            const appVisible = appVisibleState ? appVisibleState.val : true;
-
-            // Ack if changed while instance was stopped
-            if (appVisibleState && !appVisibleState?.ack) {
-                await this.adapter.setStateAsync(`apps.${this.appDefinition.name}.visible`, { val: appVisible, ack: true, c: 'initCustomApp' });
-            }
-
-            if (!appVisible) {
-                this.adapter.log.debug(`[initCustomApp] Going to remove app "${this.appDefinition.name}" (was hidden by state: apps.${this.appDefinition.name}.visible)`);
-
-                await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                    this.adapter.log.warn(`[initCustomApp] Unable to remove app "${this.appDefinition.name}" (hidden by state): ${error}`);
-                });
-            } else if (this.appDefinition.objId && text.includes('%s')) {
+            if (this.appDefinition.objId && text.includes('%s')) {
                 try {
                     const objId = this.appDefinition.objId;
                     const obj = await this.adapter.getForeignObjectAsync(objId);
                     if (obj && obj.type === 'state') {
                         const state = await this.adapter.getForeignStateAsync(objId);
 
+                        this.isStaticText = false;
                         this.objCache = {
                             val: state && state.ack ? state.val : undefined,
                             type: obj?.common.type,
@@ -73,41 +62,15 @@ export namespace AppType {
                         await this.adapter.subscribeForeignObjectsAsync(objId);
 
                         this.adapter.log.debug(`[initCustomApp] Found app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
-
-                        await this.refresh();
                     } else {
                         this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
                     }
                 } catch (error) {
                     this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
                 }
-            } else if (text.length > 0) {
-                // App with static text (no %s specified)
-                this.adapter.log.debug(`[initCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`);
-
-                if (this.appDefinition.objId) {
-                    this.adapter.log.warn(
-                        `[initCustomApp] App "${this.appDefinition.name}" was defined with objId "${this.appDefinition.objId}" but "%s" is not used in the text - state changes will be ignored`,
-                    );
-                }
-
-                const displayText = text.replace('%u', '').trim();
-
-                if (displayText.length > 0) {
-                    await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText)).catch((error) => {
-                        this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`);
-                    });
-                } else {
-                    // Empty text => remove app
-                    this.adapter.log.debug(`[initCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`);
-
-                    await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                        this.adapter.log.warn(`[initCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`);
-                    });
-                }
             }
 
-            super.init();
+            return super.init();
         }
 
         private createAppRequestObj(text: string, val?: ioBroker.StateValue): AwtrixApi.App {
@@ -199,18 +162,17 @@ export namespace AppType {
             };
         }
 
-        private async refresh(): Promise<void> {
-            if (this.apiClient.isConnected()) {
+        private override async refresh(): Promise<boolean> {
+            let refreshed = false;
+
+            if (await super.refresh()) {
                 const text = String(this.appDefinition.text).trim();
 
-                if (this.objCache && text.includes('%s')) {
+                if (this.objCache && !this.isStaticText) {
                     this.adapter.log.debug(`[refreshCustomApp] Refreshing custom app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and text "${this.appDefinition.text}"`);
 
                     try {
-                        const appVisibleState = await this.adapter.getStateAsync(`apps.${this.appDefinition.name}.visible`);
-                        const appVisible = appVisibleState ? appVisibleState.val : true;
-
-                        if (appVisible) {
+                        if (this.isVisible) {
                             const val = this.objCache.val;
 
                             if (typeof val !== 'undefined') {
@@ -251,11 +213,13 @@ export namespace AppType {
                                     await this.apiClient!.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText, val)).catch((error) => {
                                         this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
                                     });
+
+                                    refreshed = true;
                                 } else {
                                     // Empty text => remove app
                                     this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (empty text)`);
 
-                                    await this.apiClient!.appRequestAsync(this.appDefinition.name).catch((error) => {
+                                    await this.apiClient!.removeAppAsync(this.appDefinition.name).catch((error) => {
                                         this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (empty text): ${error}`);
                                     });
                                 }
@@ -263,25 +227,53 @@ export namespace AppType {
                                 // No state value => remove app
                                 this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (no state data)`);
 
-                                await this.apiClient!.appRequestAsync(this.appDefinition.name).catch((error) => {
-                                    this.adapter.log.warn(`Unable to remove customApp app "${this.appDefinition.name}" (no state data): ${error}`);
+                                await this.apiClient!.removeAppAsync(this.appDefinition.name).catch((error) => {
+                                    this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (no state data): ${error}`);
                                 });
                             }
                         }
                     } catch (error) {
                         this.adapter.log.error(`[refreshCustomApp] Unable to refresh app "${this.appDefinition.name}": ${error}`);
                     }
+                } else if (this.isStaticText) {
+                    // App with static text (no %s specified)
+                    this.adapter.log.debug(`[refreshCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`);
+
+                    if (this.appDefinition.objId) {
+                        this.adapter.log.warn(
+                            `[refreshCustomApp] App "${this.appDefinition.name}" was defined with objId "${this.appDefinition.objId}" but "%s" is not used in the text - state changes will be ignored`,
+                        );
+                    }
+
+                    const displayText = text.replace('%u', '').trim();
+
+                    if (displayText.length > 0) {
+                        await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText)).catch((error) => {
+                            this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`);
+                        });
+
+                        refreshed = true;
+                    } else {
+                        // Empty text => remove app
+                        this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`);
+
+                        await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
+                            this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`);
+                        });
+                    }
                 }
             }
+
+            return refreshed;
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
-            if (this.objCache) {
+            if (this.objCache && !this.isStaticText) {
                 if (id && state && id === this.appDefinition.objId) {
                     if (state.ack) {
                         // Just refresh if value has changed
                         if (state.val !== this.objCache.val) {
-                            this.adapter.log.debug(`[onStateChange] received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`);
+                            this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`);
 
                             if (this.objCache.ts + this.adapter.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                                 this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
@@ -290,21 +282,21 @@ export namespace AppType {
                                 this.refresh();
                             } else {
                                 this.adapter.log.debug(
-                                    `[onStateChange] ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
+                                    `[onStateChange] "${this.appDefinition.name}" ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
                                         this.adapter.config.ignoreNewValueForAppInTimeRange
                                     } seconds) - Last update: ${this.adapter.formatDate(this.objCache.ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                                 );
                             }
                         }
                     } else {
-                        this.adapter.log.debug(`[onStateChange] ignoring customApps state change of "${id}" to ${state.val} - ack is false`);
+                        this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" ignoring state change of "${id}" to ${state.val} - ack is false`);
                     }
                 }
             }
         }
 
         protected override async objectChanged(id: string, obj: ioBroker.Object | null | undefined): Promise<void> {
-            if (this.objCache) {
+            if (this.objCache && !this.isStaticText) {
                 if (id && id === this.appDefinition.objId) {
                     if (!obj) {
                         this.objCache = undefined;

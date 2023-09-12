@@ -386,7 +386,9 @@ export class AwtrixLight extends utils.Adapter {
                     await this.createAppObjects();
 
                     for (const app of this.apps) {
-                        await app.init();
+                        if (await app.init()) {
+                            await app.refresh();
+                        }
                     }
 
                     // indicators

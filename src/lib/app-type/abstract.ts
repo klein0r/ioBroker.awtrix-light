@@ -4,14 +4,17 @@ import { AwtrixApi } from '../api';
 
 export namespace AppType {
     export abstract class AbstractApp {
+        private definition: DefaultApp;
+
         protected apiClient: AwtrixApi.Client;
         protected adapter: AwtrixLight;
-        private definition: DefaultApp;
+        protected isVisible: boolean;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: DefaultApp) {
             this.apiClient = apiClient;
             this.adapter = adapter;
             this.definition = definition;
+            this.isVisible = false;
 
             adapter.on('stateChange', this.onStateChange.bind(this));
             adapter.on('objectChange', this.onObjectChange.bind(this));
@@ -21,8 +24,21 @@ export namespace AppType {
             return this.definition.name;
         }
 
-        public async init(): Promise<void> {
-            
+        public async init(): Promise<boolean> {
+            const appName = this.getName();
+            const appVisibleState = await this.adapter.getStateAsync(`apps.${appName}.visible`);
+            this.isVisible = appVisibleState ? !!appVisibleState.val : true;
+
+            // Ack if changed while instance was stopped
+            if (appVisibleState && !appVisibleState?.ack) {
+                await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'initCustomApp' });
+            }
+
+            return this.isVisible;
+        }
+
+        public async refresh(): Promise<boolean> {
+            return this.isVisible && this.apiClient.isConnected();
         }
 
         public async createObjects(prefix: string): Promise<void> {
@@ -79,6 +95,7 @@ export namespace AppType {
                 if (idNoNamespace == `apps.${appName}.visible`) {
                     this.adapter.log.debug(`changing visibility of app ${appName} to ${state.val}`);
 
+                    this.isVisible = !!state.val;
                     await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
                 }
             }
