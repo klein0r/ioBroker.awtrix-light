@@ -38,6 +38,14 @@ export namespace AppType {
         }
 
         public async refresh(): Promise<boolean> {
+            if (!this.isVisible && this.apiClient.isConnected()) {
+                // Hide app automatically
+                const appName = this.getName();
+                this.apiClient.removeAppAsync(appName).catch((error) => {
+                    this.adapter.log.warn(`[refreshApp] Unable to remove app "${appName}": ${error}`);
+                });
+            }
+
             return this.isVisible && this.apiClient.isConnected();
         }
 
