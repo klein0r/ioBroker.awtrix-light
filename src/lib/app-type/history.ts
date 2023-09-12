@@ -46,7 +46,9 @@ export namespace AppType {
                         if (sourceObj && Object.prototype.hasOwnProperty.call(sourceObj?.common?.custom ?? {}, this.appDefinition.sourceInstance)) {
                             this.isValidObjId = true;
                         } else {
-                            this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": logging is not configured for this object`);
+                            this.adapter.log.info(
+                                `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": logging is not configured for this object`,
+                            );
                         }
                     } else {
                         this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`);
@@ -62,7 +64,7 @@ export namespace AppType {
         private override async refresh(): Promise<boolean> {
             let refreshed = false;
 
-            if (await super.refresh() && this.isValidSourceInstance && this.isValidObjId) {
+            if ((await super.refresh()) && this.isValidSourceInstance && this.isValidObjId) {
                 const itemCount = this.appDefinition.icon ? 11 : 16; // Can display 11 values with icon or 16 values without icon
 
                 const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, 'getHistory', {

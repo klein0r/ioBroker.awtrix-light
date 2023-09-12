@@ -14,15 +14,13 @@ export namespace AppType {
         }
 
         public override async init(): Promise<boolean> {
-
             return super.init();
         }
 
         private override async refresh(): Promise<boolean> {
-            let refreshed = false;
+            const refreshed = false;
 
             if (await super.refresh()) {
-                
             }
 
             return refreshed;
@@ -67,8 +65,6 @@ export namespace AppType {
                 if (idNoNamespace == `apps.${appName}.text`) {
                     if (state.val) {
                         this.adapter.log.debug(`activating app ${appName}`);
-
-                        
                     } else {
                         this.adapter.log.warn(`Received invalid value for state ${idNoNamespace}`);
                     }

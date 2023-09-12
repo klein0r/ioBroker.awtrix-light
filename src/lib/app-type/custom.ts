@@ -9,7 +9,7 @@ export namespace AppType {
         unit: any;
         type: string;
         ts: number;
-    }
+    };
 
     export class Custom extends AbstractAppType.AbstractApp {
         private appDefinition: CustomApp;
@@ -49,9 +49,7 @@ export namespace AppType {
                         }
 
                         if (text.includes('%u') && !obj?.common?.unit) {
-                            this.adapter.log.warn(
-                                `[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`,
-                            );
+                            this.adapter.log.warn(`[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
                         }
 
                         if (state && !state.ack) {
@@ -118,7 +116,9 @@ export namespace AppType {
             // Thresholds
             if (typeof val === 'number') {
                 if (this.appDefinition.thresholdLtActive && val < this.appDefinition.thresholdLtValue) {
-                    this.adapter.log.debug(`[createAppRequestObj] LT < custom app "${this.appDefinition.name}" has a value (${val}) less than ${this.appDefinition.thresholdLtValue} - overriding values`);
+                    this.adapter.log.debug(
+                        `[createAppRequestObj] LT < custom app "${this.appDefinition.name}" has a value (${val}) less than ${this.appDefinition.thresholdLtValue} - overriding values`,
+                    );
 
                     if (this.appDefinition.thresholdLtIcon) {
                         moreOptions.icon = this.appDefinition.thresholdLtIcon;
@@ -129,14 +129,15 @@ export namespace AppType {
                     }
                     if (this.appDefinition.thresholdLtBackgroundColor) {
                         moreOptions.background = this.appDefinition.thresholdLtBackgroundColor;
-    
+
                         if (this.appDefinition.useBackgroundEffect) {
                             delete moreOptions.effect;
                         }
                     }
                 } else if (this.appDefinition.thresholdGtActive && val > this.appDefinition.thresholdGtValue) {
-                    this.adapter.log.debug(`[createAppRequestObj] GT > custom app "${this.appDefinition.name}" has a value (${val}) greater than ${this.appDefinition.thresholdGtValue} - overriding values`);
-    
+                    this.adapter.log.debug(
+                        `[createAppRequestObj] GT > custom app "${this.appDefinition.name}" has a value (${val}) greater than ${this.appDefinition.thresholdGtValue} - overriding values`,
+
                     if (this.appDefinition.thresholdGtIcon) {
                         moreOptions.icon = this.appDefinition.thresholdGtIcon;
                     }
@@ -146,7 +147,7 @@ export namespace AppType {
                     }
                     if (this.appDefinition.thresholdGtBackgroundColor) {
                         moreOptions.background = this.appDefinition.thresholdGtBackgroundColor;
-    
+
                         if (this.appDefinition.useBackgroundEffect) {
                             delete moreOptions.effect;
                         }
@@ -200,7 +201,9 @@ export namespace AppType {
                                             newVal = oldVal.toFixed(countDecimals).replace('.', ',');
                                         }
 
-                                        this.adapter.log.debug(`[refreshCustomApp] formatted value of objId "${this.appDefinition.objId}" from ${oldVal} to ${newVal} (${countDecimals} decimals) with "${numFormat}"`);
+                                        this.adapter.log.debug(
+                                            `[refreshCustomApp] formatted value of objId "${this.appDefinition.objId}" from ${oldVal} to ${newVal} (${countDecimals} decimals) with "${numFormat}"`,
+                                        );
                                     }
                                 }
 

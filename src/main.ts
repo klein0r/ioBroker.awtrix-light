@@ -171,7 +171,8 @@ export class AwtrixLight extends utils.Adapter {
 
                     const settingsObj = await this.getObjectAsync(idNoNamespace);
                     if (settingsObj && settingsObj.native?.settingsKey) {
-                        this.apiClient?.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val })
+                        this.apiClient
+                            ?.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val })
                             .then(async (response) => {
                                 if (response.status === 200 && response.data === 'OK') {
                                     await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
@@ -585,7 +586,6 @@ export class AwtrixLight extends utils.Adapter {
 
     private async initHistoryApps(): Promise<void> {
         if (this.apiConnected && this.config.historyApps.length > 0) {
-            
         }
 
         if (this.config.historyApps.length > 0) {
@@ -603,7 +603,7 @@ export class AwtrixLight extends utils.Adapter {
     }
 
     private findAppWithName(name: string): AppTypeAbstract.AbstractApp | undefined {
-        return this.apps.find(app => app.getName() === name);
+        return this.apps.find((app) => app.getName() === name);
     }
 
     private async createAppObjects(): Promise<number> {
@@ -612,7 +612,7 @@ export class AwtrixLight extends utils.Adapter {
                 this.apiClient!.requestAsync('apps', 'GET')
                     .then(async (response) => {
                         if (response.status === 200) {
-                            const content = response.data as Array<{ name: string; }>;
+                            const content = response.data as Array<{ name: string }>;
 
                             const appPath = 'apps';
                             const customApps = this.config.customApps.map((a) => a.name);

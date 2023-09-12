@@ -33,22 +33,22 @@ export namespace AwtrixApi {
         effect?: string;
         effectSettings?: Array<object>;
         save?: boolean;
-    }
+    };
 
     export type Settings = {
-        key: string,
+        key: string;
         value: any;
-    }
+    };
 
     export type Indicator = {
         color?: string;
         blink?: number;
-    }
+    };
 
     export type Moodlight = {
         brightness?: number;
         color?: string;
-    }
+    };
 
     export class Client {
         private adapter: AwtrixLight;
@@ -56,7 +56,7 @@ export namespace AwtrixApi {
         private ipAddress: string;
         private port: number;
         private httpTimeout: number;
-        
+
         private apiConnected: boolean;
         private auth: axios.AxiosBasicCredentials | undefined;
 
@@ -87,7 +87,7 @@ export namespace AwtrixApi {
             return this.apiConnected;
         }
 
-        public async getStatsAsync() : Promise<any> {
+        public async getStatsAsync(): Promise<any> {
             return new Promise<any>((resolve, reject) => {
                 this.requestAsync('stats', 'GET')
                     .then(async (response) => {
@@ -125,7 +125,7 @@ export namespace AwtrixApi {
         }
 
         public async settingsRequestAsync(data: AwtrixApi.Settings): Promise<AxiosResponse> {
-            return this.requestAsync('settings', 'POST', { [data.key]: data.value })
+            return this.requestAsync('settings', 'POST', { [data.key]: data.value });
         }
 
         public async appRequestAsync(name: string, data?: AwtrixApi.App): Promise<AxiosResponse> {

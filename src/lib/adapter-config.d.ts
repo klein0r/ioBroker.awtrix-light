@@ -3,7 +3,7 @@
 export type DefaultApp = {
     name: string;
     position: number;
-}
+};
 
 export type CustomApp = DefaultApp & {
     icon: string;
@@ -31,7 +31,7 @@ export type CustomApp = DefaultApp & {
     thresholdGtIcon: string;
     thresholdGtTextColor: string;
     thresholdGtBackgroundColor: string;
-}
+};
 
 export type HistoryApp = DefaultApp & {
     icon: string;
@@ -41,11 +41,11 @@ export type HistoryApp = DefaultApp & {
     objId: string;
     lineColor: string;
     backgroundColor: string;
-}
+};
 
 export type ExpertApp = DefaultApp & {
     name: string;
-}
+};
 
 // Augment the globally declared type ioBroker.AdapterConfig
 declare global {
@@ -73,4 +73,4 @@ declare global {
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export { };
+export {};
