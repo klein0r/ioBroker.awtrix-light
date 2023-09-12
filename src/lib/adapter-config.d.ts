@@ -1,7 +1,11 @@
 // This file extends the AdapterConfig type from "@types/iobroker"
 
-export type CustomApp = {
+export type DefaultApp = {
     name: string;
+    position: number;
+}
+
+export type CustomApp = DefaultApp & {
     icon: string;
     duration: number;
     repeat: number;
@@ -27,12 +31,9 @@ export type CustomApp = {
     thresholdGtIcon: string;
     thresholdGtTextColor: string;
     thresholdGtBackgroundColor: string;
-
-    position: number;
 }
 
-export type HistoryApp = {
-    name: string;
+export type HistoryApp = DefaultApp & {
     icon: string;
     duration: number;
     repeat: number;
@@ -40,12 +41,10 @@ export type HistoryApp = {
     objId: string;
     lineColor: string;
     backgroundColor: string;
-    position: number;
 }
 
-export type ExpertApp = {
+export type ExpertApp = DefaultApp & {
     name: string;
-    position: number;
 }
 
 // Augment the globally declared type ioBroker.AdapterConfig
