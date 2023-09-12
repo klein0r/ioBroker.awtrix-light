@@ -17,7 +17,7 @@ export namespace AppType {
             return super.init();
         }
 
-        private override async refresh(): Promise<boolean> {
+        public override async refresh(): Promise<boolean> {
             const refreshed = false;
 
             if (await super.refresh()) {

@@ -137,6 +137,7 @@ export namespace AppType {
                 } else if (this.appDefinition.thresholdGtActive && val > this.appDefinition.thresholdGtValue) {
                     this.adapter.log.debug(
                         `[createAppRequestObj] GT > custom app "${this.appDefinition.name}" has a value (${val}) greater than ${this.appDefinition.thresholdGtValue} - overriding values`,
+                    );
 
                     if (this.appDefinition.thresholdGtIcon) {
                         moreOptions.icon = this.appDefinition.thresholdGtIcon;
@@ -163,7 +164,7 @@ export namespace AppType {
             };
         }
 
-        private override async refresh(): Promise<boolean> {
+        public override async refresh(): Promise<boolean> {
             let refreshed = false;
 
             if (await super.refresh()) {

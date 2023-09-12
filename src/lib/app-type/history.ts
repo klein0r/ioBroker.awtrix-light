@@ -61,7 +61,7 @@ export namespace AppType {
             return super.init();
         }
 
-        private override async refresh(): Promise<boolean> {
+        public override async refresh(): Promise<boolean> {
             let refreshed = false;
 
             if ((await super.refresh()) && this.isValidSourceInstance && this.isValidObjId) {
