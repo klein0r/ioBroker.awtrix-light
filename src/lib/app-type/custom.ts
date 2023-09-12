@@ -154,6 +154,8 @@ export namespace AppType {
                         }
                     }
                 }
+            } else if (this.appDefinition.thresholdLtActive || this.appDefinition.thresholdGtActive) {
+                this.adapter.log.warn(`[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`);
             }
 
             return {

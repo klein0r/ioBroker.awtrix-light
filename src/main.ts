@@ -22,7 +22,6 @@ export class AwtrixLight extends utils.Adapter {
     apiClient: AwtrixApi.Client | null;
     apiConnected: boolean;
     refreshStateTimeout: void | NodeJS.Timeout | null;
-    refreshHistoryAppsTimeout: void | NodeJS.Timeout | null;
     downloadScreenContentInterval: void | NodeJS.Timeout | null;
 
     apps: Array<AppTypeAbstract.AbstractApp>;
@@ -42,7 +41,6 @@ export class AwtrixLight extends utils.Adapter {
         this.apiConnected = false;
 
         this.refreshStateTimeout = null;
-        this.refreshHistoryAppsTimeout = null;
         this.downloadScreenContentInterval = null;
 
         this.apps = [];
@@ -584,24 +582,6 @@ export class AwtrixLight extends utils.Adapter {
         });
     }
 
-    private async initHistoryApps(): Promise<void> {
-        if (this.apiConnected && this.config.historyApps.length > 0) {
-        }
-
-        if (this.config.historyApps.length > 0) {
-            this.log.debug(`re-creating history apps timeout (${this.config.historyAppsRefreshInterval ?? 300} seconds)`);
-            this.refreshHistoryAppsTimeout =
-                this.refreshHistoryAppsTimeout ||
-                this.setTimeout(
-                    () => {
-                        this.refreshHistoryAppsTimeout = null;
-                        this.initHistoryApps();
-                    },
-                    this.config.historyAppsRefreshInterval * 1000 || 300 * 1000,
-                );
-        }
-    }
-
     private findAppWithName(name: string): AppTypeAbstract.AbstractApp | undefined {
         return this.apps.find((app) => app.getName() === name);
     }
@@ -651,7 +631,7 @@ export class AwtrixLight extends utils.Adapter {
                                 await this.extendObjectAsync(`${appPath}.${name}`, {
                                     type: 'channel',
                                     common: {
-                                        name: `App`,
+                                        name: `App ${name}`,
                                         desc: `${name}${isCustomApp ? ' (custom app)' : ''}${isHistoryApp ? ' (history app)' : ''}${isExpertApp ? ' (expert app)' : ''}`,
                                     },
                                     native: {
@@ -795,11 +775,6 @@ export class AwtrixLight extends utils.Adapter {
             if (this.refreshStateTimeout) {
                 this.log.debug('clearing refresh state timeout');
                 this.clearTimeout(this.refreshStateTimeout);
-            }
-
-            if (this.refreshHistoryAppsTimeout) {
-                this.log.debug('clearing history apps timeout');
-                this.clearTimeout(this.refreshHistoryAppsTimeout);
             }
 
             if (this.downloadScreenContentInterval) {

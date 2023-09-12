@@ -8,6 +8,7 @@ export namespace AppType {
         private appDefinition: HistoryApp;
         private isValidSourceInstance: boolean;
         private isValidObjId: boolean;
+        private refreshTimeout: void | NodeJS.Timeout | null;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: HistoryApp) {
             super(apiClient, adapter, definition);
@@ -15,6 +16,7 @@ export namespace AppType {
             this.appDefinition = definition;
             this.isValidSourceInstance = false;
             this.isValidObjId = false;
+            this.refreshTimeout = null;
         }
 
         public override async init(): Promise<boolean> {
@@ -125,7 +127,27 @@ export namespace AppType {
                 }
             }
 
+            this.adapter.log.debug(`re-creating history apps timeout (${this.adapter.config.historyAppsRefreshInterval ?? 300} seconds)`);
+            this.refreshTimeout =
+                this.refreshTimeout ||
+                this.adapter.setTimeout(
+                    () => {
+                        this.refreshTimeout = null;
+                        this.refresh();
+                    },
+                    this.adapter.config.historyAppsRefreshInterval * 1000 || 5 * 60 * 1000,
+                );
+
             return refreshed;
+        }
+
+        public override async unloadAsync(): Promise<void> {
+            if (this.refreshTimeout) {
+                this.adapter.log.debug(`clearing history app timeout for "${this.getName()}"`);
+                this.adapter.clearTimeout(this.refreshTimeout);
+            }
+
+            await super.unloadAsync();
         }
     }
 }
