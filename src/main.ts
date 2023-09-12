@@ -505,8 +505,8 @@ export class AwtrixLight extends utils.Adapter {
                         const knownSettings: { [key: string]: { id: string; role: string } } = {};
                         for (const settingsObj of settingsStates.rows) {
                             if (settingsObj.value?.native?.settingsKey) {
-                                knownSettings[this.removeNamespace(settingsObj.value?.native?.settingsKey)] = {
-                                    id: settingsObj.id,
+                                knownSettings[settingsObj.value.native.settingsKey] = {
+                                    id: this.removeNamespace(settingsObj.id),
                                     role: settingsObj.value.common.role,
                                 };
                             }

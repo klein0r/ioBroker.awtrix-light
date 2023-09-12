@@ -46,6 +46,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 Updated recommended firmware version to 0.86
 
 * (klein0r) Added expert apps
+* (klein0r) Added settings for calendar colors
 
 ### 0.8.0 (2023-09-04)
 

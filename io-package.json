@@ -559,6 +559,87 @@
       }
     },
     {
+      "_id": "settings.calendarHeaderColor",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Calendar header color",
+          "de": "Kalender Kopffarbe",
+          "ru": "Календарь header color",
+          "pt": "Cor do cabeçalho do calendário",
+          "nl": "Calendar hoofdkleur",
+          "fr": "Calendrier header color",
+          "it": "Colore dell'intestazione del calendario",
+          "es": "Calendario de encabezado color",
+          "pl": "Kalendarz",
+          "uk": "Колір головки календаря",
+          "zh-cn": "加德·曼"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "def": 1
+      },
+      "native": {
+        "settingsKey": "CHCOL"
+      }
+    },
+    {
+      "_id": "settings.calendarBodyColor",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Calendar body color",
+          "de": "Kalender Körperfarbe",
+          "ru": "Календарь Цвет тела",
+          "pt": "Cor do corpo do calendário",
+          "nl": "Calendar kleur",
+          "fr": "Calendrier couleur du corps",
+          "it": "Colore del corpo del calendario",
+          "es": "Color del cuerpo del calendario",
+          "pl": "Koloru ciała",
+          "uk": "Колір тіла календаря",
+          "zh-cn": "统计院"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "def": 1
+      },
+      "native": {
+        "settingsKey": "CBCOL"
+      }
+    },
+    {
+      "_id": "settings.calendarTextColor",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Calendar text color",
+          "de": "Kalender Textfarbe",
+          "ru": "Календарь текст цвет",
+          "pt": "Cor do texto do calendário",
+          "nl": "Calendar sms kleur",
+          "fr": "Calendrier texte couleur",
+          "it": "Colore del testo del calendario",
+          "es": "Color de texto del calendario",
+          "pl": "Kalendarz",
+          "uk": "Календар текстового кольору",
+          "zh-cn": "订正案文"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "def": 1
+      },
+      "native": {
+        "settingsKey": "CTCOL"
+      }
+    },
+    {
       "_id": "settings.formatTime",
       "type": "state",
       "common": {
