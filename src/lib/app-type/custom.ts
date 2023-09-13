@@ -15,6 +15,7 @@ export namespace AppType {
         private appDefinition: CustomApp;
         private objCache: ObjCache | undefined;
         private isStaticText: boolean;
+        private isBackgroundOny: boolean;
         private cooldownTimeout: void | NodeJS.Timeout | null;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: CustomApp) {
@@ -23,99 +24,112 @@ export namespace AppType {
             this.appDefinition = definition;
             this.objCache = undefined;
             this.isStaticText = false;
+            this.isBackgroundOny = true;
             this.cooldownTimeout = null;
         }
 
         public override async init(): Promise<boolean> {
             const text = String(this.appDefinition.text).trim();
-            if (this.appDefinition.objId && text.includes('%s')) {
-                try {
-                    const objId = this.appDefinition.objId;
-                    const obj = await this.adapter.getForeignObjectAsync(objId);
-                    if (obj && obj.type === 'state') {
-                        const state = await this.adapter.getForeignStateAsync(objId);
+            if (text.length > 0) {
+                if (this.appDefinition.objId && text.includes('%s')) {
+                    try {
+                        const objId = this.appDefinition.objId;
+                        const obj = await this.adapter.getForeignObjectAsync(objId);
+                        if (obj && obj.type === 'state') {
+                            const state = await this.adapter.getForeignStateAsync(objId);
 
-                        this.isStaticText = false;
-                        this.objCache = {
-                            val: state && state.ack ? state.val : undefined,
-                            type: obj?.common.type,
-                            unit: obj?.common?.unit,
-                            ts: state ? state.ts : Date.now(),
-                        };
+                            this.isStaticText = false;
+                            this.objCache = {
+                                val: state && state.ack ? state.val : undefined,
+                                type: obj?.common.type,
+                                unit: obj?.common?.unit,
+                                ts: state ? state.ts : Date.now(),
+                            };
 
-                        const supportedTypes = ['string', 'number', 'mixed'];
-                        if (obj?.common.type && !supportedTypes.includes(obj.common.type)) {
-                            this.adapter.log.warn(
-                                `[initCustomApp] Object of app "${this.appDefinition.name}" with objId "${objId}" has invalid type: ${obj.common.type} instead of ${supportedTypes.join(', ')}`,
-                            );
+                            const supportedTypes = ['string', 'number', 'mixed'];
+                            if (obj?.common.type && !supportedTypes.includes(obj.common.type)) {
+                                this.adapter.log.warn(
+                                    `[initCustomApp] Object of app "${this.appDefinition.name}" with objId "${objId}" has invalid type: ${obj.common.type} instead of ${supportedTypes.join(', ')}`,
+                                );
+                            }
+
+                            if (text.includes('%u') && !obj?.common?.unit) {
+                                this.adapter.log.warn(`[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
+                            }
+
+                            if (state && !state.ack) {
+                                this.adapter.log.info(`[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
+                            }
+
+                            await this.adapter.subscribeForeignStatesAsync(objId);
+                            await this.adapter.subscribeForeignObjectsAsync(objId);
+
+                            this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
+                        } else {
+                            this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
                         }
-
-                        if (text.includes('%u') && !obj?.common?.unit) {
-                            this.adapter.log.warn(`[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
-                        }
-
-                        if (state && !state.ack) {
-                            this.adapter.log.info(`[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
-                        }
-
-                        await this.adapter.subscribeForeignStatesAsync(objId);
-                        await this.adapter.subscribeForeignObjectsAsync(objId);
-
-                        this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
-                    } else {
-                        this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
+                    } catch (error) {
+                        this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
                     }
-                } catch (error) {
-                    this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
+                } else {
+                    this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with static text`);
+                    this.isStaticText = true;
                 }
-            } else {
-                this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with static text`);
-                this.isStaticText = true;
+            } else if (this.appDefinition.useBackgroundEffect && this.appDefinition.backgroundEffect) {
+                this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with background only`);
+                this.isBackgroundOny = true;
             }
 
             return super.init();
         }
 
         private createAppRequestObj(text: string, val?: ioBroker.StateValue): AwtrixApi.App {
-            const moreOptions: AwtrixApi.App = {};
+            const app: AwtrixApi.App = {
+                pos: this.appDefinition.position
+            };
+
+            if (text !== '') {
+                app.text = text;
+                app.textCase = 2; // show as sent
+            }
 
             // Background
             if (this.appDefinition.useBackgroundEffect) {
-                moreOptions.effect = this.appDefinition.backgroundEffect;
+                app.effect = this.appDefinition.backgroundEffect;
             } else if (this.appDefinition.backgroundColor) {
-                moreOptions.background = this.appDefinition.backgroundColor;
+                app.background = this.appDefinition.backgroundColor;
             }
 
             // Set rainbow colors OR text color
             if (this.appDefinition.rainbow) {
-                moreOptions.rainbow = true;
+                app.rainbow = true;
             } else if (this.appDefinition.textColor) {
-                moreOptions.color = this.appDefinition.textColor;
+                app.color = this.appDefinition.textColor;
             }
 
             // Set noScroll OR scroll speed
             if (this.appDefinition.noScroll) {
-                moreOptions.noScroll = true;
+                app.noScroll = true;
             } else {
                 // Scroll speed
                 if (this.appDefinition.scrollSpeed > 0) {
-                    moreOptions.scrollSpeed = this.appDefinition.scrollSpeed;
+                    app.scrollSpeed = this.appDefinition.scrollSpeed;
                 }
 
                 // Repeat
                 if (this.appDefinition.repeat > 0) {
-                    moreOptions.repeat = this.appDefinition.repeat;
+                    app.repeat = this.appDefinition.repeat;
                 }
             }
 
             // Icon
             if (this.appDefinition.icon) {
-                moreOptions.icon = this.appDefinition.icon;
+                app.icon = this.appDefinition.icon;
             }
 
             // Duration
             if (this.appDefinition.duration > 0) {
-                moreOptions.duration = this.appDefinition.duration;
+                app.duration = this.appDefinition.duration;
             }
 
             // Thresholds
@@ -126,17 +140,17 @@ export namespace AppType {
                     );
 
                     if (this.appDefinition.thresholdLtIcon) {
-                        moreOptions.icon = this.appDefinition.thresholdLtIcon;
+                        app.icon = this.appDefinition.thresholdLtIcon;
                     }
                     if (this.appDefinition.thresholdLtTextColor) {
-                        moreOptions.color = this.appDefinition.thresholdLtTextColor;
-                        moreOptions.rainbow = false; // disable rainbow
+                        app.color = this.appDefinition.thresholdLtTextColor;
+                        app.rainbow = false; // disable rainbow
                     }
                     if (this.appDefinition.thresholdLtBackgroundColor) {
-                        moreOptions.background = this.appDefinition.thresholdLtBackgroundColor;
+                        app.background = this.appDefinition.thresholdLtBackgroundColor;
 
                         if (this.appDefinition.useBackgroundEffect) {
-                            delete moreOptions.effect;
+                            delete app.effect;
                         }
                     }
                 } else if (this.appDefinition.thresholdGtActive && val > this.appDefinition.thresholdGtValue) {
@@ -145,17 +159,17 @@ export namespace AppType {
                     );
 
                     if (this.appDefinition.thresholdGtIcon) {
-                        moreOptions.icon = this.appDefinition.thresholdGtIcon;
+                        app.icon = this.appDefinition.thresholdGtIcon;
                     }
                     if (this.appDefinition.thresholdGtTextColor) {
-                        moreOptions.color = this.appDefinition.thresholdGtTextColor;
-                        moreOptions.rainbow = false; // disable rainbow
+                        app.color = this.appDefinition.thresholdGtTextColor;
+                        app.rainbow = false; // disable rainbow
                     }
                     if (this.appDefinition.thresholdGtBackgroundColor) {
-                        moreOptions.background = this.appDefinition.thresholdGtBackgroundColor;
+                        app.background = this.appDefinition.thresholdGtBackgroundColor;
 
                         if (this.appDefinition.useBackgroundEffect) {
-                            delete moreOptions.effect;
+                            delete app.effect;
                         }
                     }
                 }
@@ -163,12 +177,7 @@ export namespace AppType {
                 this.adapter.log.warn(`[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`);
             }
 
-            return {
-                text,
-                textCase: 2, // show as sent
-                pos: this.appDefinition.position,
-                ...moreOptions,
-            };
+            return app;
         }
 
         public override async refresh(): Promise<boolean> {
@@ -272,6 +281,12 @@ export namespace AppType {
                             this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`);
                         });
                     }
+                } else if (this.isBackgroundOny) {
+                    await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj('')).catch((error) => {
+                        this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with background only: ${error}`);
+                    });
+
+                    refreshed = true;
                 }
             }
 
