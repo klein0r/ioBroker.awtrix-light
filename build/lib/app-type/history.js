@@ -28,17 +28,19 @@ var AppType;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
+      this.isValidSourceInstance = false;
+      this.isValidObjId = false;
+      this.refreshTimeout = null;
     }
     async init() {
       var _a, _b, _c;
-      let isValidSourceInstance = false;
       if (this.appDefinition.sourceInstance) {
         const sourceInstanceObj = await this.adapter.getForeignObjectAsync(`system.adapter.${this.appDefinition.sourceInstance}`);
         if (sourceInstanceObj && ((_a = sourceInstanceObj.common) == null ? void 0 : _a.getHistory)) {
           const sourceInstanceAliveState = await this.adapter.getForeignStateAsync(`system.adapter.${this.appDefinition.sourceInstance}.alive`);
           if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
             this.adapter.log.debug(`[initHistoryApp] Found valid source instance for history data: ${this.appDefinition.sourceInstance}`);
-            isValidSourceInstance = true;
+            this.isValidSourceInstance = true;
           } else {
             this.adapter.log.warn(`[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": instance not running (stopped)`);
           }
@@ -49,65 +51,14 @@ var AppType;
       if (this.appDefinition.objId) {
         this.adapter.log.debug(`[initHistoryApp] getting history data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" from ${this.appDefinition.sourceInstance}`);
         try {
-          const appVisibleState = await this.adapter.getStateAsync(`apps.${this.appDefinition.name}.visible`);
-          const appVisible = appVisibleState ? appVisibleState.val : true;
-          if (appVisibleState && !(appVisibleState == null ? void 0 : appVisibleState.ack)) {
-            await this.adapter.setStateAsync(`apps.${this.appDefinition.name}.visible`, { val: appVisible, ack: true, c: "initHistoryApp" });
-          }
-          if (!appVisible) {
-            this.adapter.log.debug(`[initHistoryApp] Going to remove app "${this.appDefinition.name}" (was hidden by state: apps.${this.appDefinition.name}.visible)`);
-            await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-              this.adapter.log.warn(`[initHistoryApp] Unable to remove app "${this.appDefinition.name}" (hidden by state): ${error}`);
-            });
-          } else if (isValidSourceInstance) {
+          if (this.isValidSourceInstance) {
             const sourceObj = await this.adapter.getForeignObjectAsync(this.appDefinition.objId);
             if (sourceObj && Object.prototype.hasOwnProperty.call((_c = (_b = sourceObj == null ? void 0 : sourceObj.common) == null ? void 0 : _b.custom) != null ? _c : {}, this.appDefinition.sourceInstance)) {
-              const itemCount = this.appDefinition.icon ? 11 : 16;
-              const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, "getHistory", {
-                id: this.appDefinition.objId,
-                options: {
-                  start: 1,
-                  end: Date.now(),
-                  aggregate: "none",
-                  limit: itemCount,
-                  returnNewestEntries: true,
-                  ignoreNull: 0,
-                  removeBorderValues: true,
-                  ack: true
-                }
-              });
-              const lineData = historyData == null ? void 0 : historyData.result.filter((state) => typeof state.val === "number" && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
-              this.adapter.log.debug(
-                `[initHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`
-              );
-              if (lineData.length > 0) {
-                const moreOptions = {};
-                if (this.appDefinition.duration > 0) {
-                  moreOptions.duration = this.appDefinition.duration;
-                }
-                if (this.appDefinition.repeat > 0) {
-                  moreOptions.repeat = this.appDefinition.repeat;
-                }
-                await this.apiClient.appRequestAsync(this.appDefinition.name, {
-                  color: this.appDefinition.lineColor || "#FF0000",
-                  background: this.appDefinition.backgroundColor || "#000000",
-                  line: lineData,
-                  autoscale: true,
-                  icon: this.appDefinition.icon,
-                  lifetime: this.adapter.config.historyAppsRefreshInterval + 60,
-                  pos: this.appDefinition.position,
-                  ...moreOptions
-                }).catch((error) => {
-                  this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`);
-                });
-              } else {
-                this.adapter.log.debug(`[initHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`);
-                await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                  this.adapter.log.warn(`Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`);
-                });
-              }
+              this.isValidObjId = true;
             } else {
-              this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": logging is not configured for this object`);
+              this.adapter.log.info(
+                `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": logging is not configured for this object`
+              );
             }
           } else {
             this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`);
@@ -116,7 +67,74 @@ var AppType;
           this.adapter.log.error(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${error}`);
         }
       }
-      super.init();
+      return super.init();
+    }
+    async refresh() {
+      var _a;
+      let refreshed = false;
+      if (await super.refresh() && this.isValidSourceInstance && this.isValidObjId) {
+        const itemCount = this.appDefinition.icon ? 11 : 16;
+        const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, "getHistory", {
+          id: this.appDefinition.objId,
+          options: {
+            start: 1,
+            end: Date.now(),
+            aggregate: "none",
+            limit: itemCount,
+            returnNewestEntries: true,
+            ignoreNull: 0,
+            removeBorderValues: true,
+            ack: true
+          }
+        });
+        const lineData = historyData == null ? void 0 : historyData.result.filter((state) => typeof state.val === "number" && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
+        this.adapter.log.debug(
+          `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`
+        );
+        if (lineData.length > 0) {
+          const moreOptions = {};
+          if (this.appDefinition.duration > 0) {
+            moreOptions.duration = this.appDefinition.duration;
+          }
+          if (this.appDefinition.repeat > 0) {
+            moreOptions.repeat = this.appDefinition.repeat;
+          }
+          await this.apiClient.appRequestAsync(this.appDefinition.name, {
+            color: this.appDefinition.lineColor || "#FF0000",
+            background: this.appDefinition.backgroundColor || "#000000",
+            line: lineData,
+            autoscale: true,
+            icon: this.appDefinition.icon,
+            lifetime: this.adapter.config.historyAppsRefreshInterval + 60,
+            pos: this.appDefinition.position,
+            ...moreOptions
+          }).catch((error) => {
+            this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`);
+          });
+          refreshed = true;
+        } else {
+          this.adapter.log.debug(`[refreshHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`);
+          await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
+            this.adapter.log.warn(`[refreshHistoryApp] Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`);
+          });
+        }
+      }
+      this.adapter.log.debug(`re-creating history apps timeout (${(_a = this.adapter.config.historyAppsRefreshInterval) != null ? _a : 300} seconds)`);
+      this.refreshTimeout = this.refreshTimeout || this.adapter.setTimeout(
+        () => {
+          this.refreshTimeout = null;
+          this.refresh();
+        },
+        this.adapter.config.historyAppsRefreshInterval * 1e3 || 5 * 60 * 1e3
+      );
+      return refreshed;
+    }
+    async unloadAsync() {
+      if (this.refreshTimeout) {
+        this.adapter.log.debug(`clearing history app timeout for "${this.getName()}"`);
+        this.adapter.clearTimeout(this.refreshTimeout);
+      }
+      await super.unloadAsync();
     }
   }
   AppType2.History = History;

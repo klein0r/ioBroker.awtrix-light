@@ -46,7 +46,6 @@ class AwtrixLight extends utils.Adapter {
     this.apiClient = null;
     this.apiConnected = false;
     this.refreshStateTimeout = null;
-    this.refreshHistoryAppsTimeout = null;
     this.downloadScreenContentInterval = null;
     this.apps = [];
     this.backgroundEffects = [
@@ -151,7 +150,7 @@ class AwtrixLight extends utils.Adapter {
     if (id && state && !state.ack) {
       const idNoNamespace = this.removeNamespace(id);
       this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
-      if (this.apiConnected) {
+      if (this.apiClient.isConnected()) {
         if (idNoNamespace.startsWith("settings.")) {
           this.log.debug(`changing setting ${idNoNamespace} power to ${state.val}`);
           const settingsObj = await this.getObjectAsync(idNoNamespace);
@@ -263,7 +262,7 @@ class AwtrixLight extends utils.Adapter {
           obj.callback
         );
       } else if (obj.command === "notification" && typeof obj.message === "object") {
-        if (this.apiConnected) {
+        if (this.apiClient.isConnected()) {
           const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
           if (msgFiltered.repeat !== void 0 && msgFiltered.repeat <= 0) {
             delete msgFiltered.repeat;
@@ -280,7 +279,7 @@ class AwtrixLight extends utils.Adapter {
           this.sendTo(obj.from, obj.command, { error: "API is not connected (device offline ?)" }, obj.callback);
         }
       } else if (obj.command === "sound" && typeof obj.message === "object") {
-        if (this.apiConnected) {
+        if (this.apiClient.isConnected()) {
           const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
           this.apiClient.requestAsync("sound", "POST", msgFiltered).then((response) => {
             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
@@ -324,7 +323,9 @@ class AwtrixLight extends utils.Adapter {
           await this.refreshTransitions();
           await this.createAppObjects();
           for (const app of this.apps) {
-            await app.init();
+            if (await app.init()) {
+              await app.refresh();
+            }
           }
           for (let i = 1; i <= 3; i++) {
             await this.updateIndicatorByStates(i);
@@ -333,7 +334,7 @@ class AwtrixLight extends utils.Adapter {
           if (this.config.downloadScreenContent && !this.downloadScreenContentInterval) {
             this.log.debug(`[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`);
             this.downloadScreenContentInterval = this.setInterval(() => {
-              if (this.apiConnected) {
+              if (this.apiClient.isConnected()) {
                 this.apiClient.requestAsync("screen", "GET").then(async (response) => {
                   if (response.status === 200) {
                     const pixelData = response.data;
@@ -403,7 +404,7 @@ class AwtrixLight extends utils.Adapter {
   async refreshSettings() {
     return new Promise((resolve, reject) => {
       this.apiClient.requestAsync("settings", "GET").then(async (response) => {
-        var _a, _b, _c, _d;
+        var _a, _b;
         if (response.status === 200) {
           const content = response.data;
           const settingsStates = await this.getObjectViewAsync("system", "state", {
@@ -413,8 +414,8 @@ class AwtrixLight extends utils.Adapter {
           const knownSettings = {};
           for (const settingsObj of settingsStates.rows) {
             if ((_b = (_a = settingsObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.settingsKey) {
-              knownSettings[this.removeNamespace((_d = (_c = settingsObj.value) == null ? void 0 : _c.native) == null ? void 0 : _d.settingsKey)] = {
-                id: settingsObj.id,
+              knownSettings[settingsObj.value.native.settingsKey] = {
+                id: this.removeNamespace(settingsObj.id),
                 role: settingsObj.value.common.role
               };
             }
@@ -474,27 +475,12 @@ class AwtrixLight extends utils.Adapter {
       }).catch(reject);
     });
   }
-  async initHistoryApps() {
-    var _a;
-    if (this.apiConnected && this.config.historyApps.length > 0) {
-    }
-    if (this.config.historyApps.length > 0) {
-      this.log.debug(`re-creating history apps timeout (${(_a = this.config.historyAppsRefreshInterval) != null ? _a : 300} seconds)`);
-      this.refreshHistoryAppsTimeout = this.refreshHistoryAppsTimeout || this.setTimeout(
-        () => {
-          this.refreshHistoryAppsTimeout = null;
-          this.initHistoryApps();
-        },
-        this.config.historyAppsRefreshInterval * 1e3 || 300 * 1e3
-      );
-    }
-  }
   findAppWithName(name) {
     return this.apps.find((app) => app.getName() === name);
   }
   async createAppObjects() {
     return new Promise((resolve, reject) => {
-      if (this.apiConnected) {
+      if (this.apiClient.isConnected()) {
         this.apiClient.requestAsync("apps", "GET").then(async (response) => {
           if (response.status === 200) {
             const content = response.data;
@@ -525,8 +511,8 @@ class AwtrixLight extends utils.Adapter {
               await this.extendObjectAsync(`${appPath}.${name}`, {
                 type: "channel",
                 common: {
-                  name: `App`,
-                  desc: `${name}${isCustomApp ? " (custom app)" : ""}${isHistoryApp ? " (history app)" : ""}${isExpertApp ? " (expert app)" : ""}`
+                  name: `App ${name}`,
+                  desc: `${isCustomApp ? "custom app" : ""}${isHistoryApp ? "history app" : ""}${isExpertApp ? "expert app" : ""}`
                 },
                 native: {
                   isNativeApp: NATIVE_APPS.includes(name),
@@ -591,6 +577,8 @@ class AwtrixLight extends utils.Adapter {
           this.log.debug(`[createAppObjects] received error: ${JSON.stringify(error)}`);
           reject(error);
         });
+      } else {
+        reject("API_OFFLINE");
       }
     });
   }
@@ -644,10 +632,6 @@ class AwtrixLight extends utils.Adapter {
       if (this.refreshStateTimeout) {
         this.log.debug("clearing refresh state timeout");
         this.clearTimeout(this.refreshStateTimeout);
-      }
-      if (this.refreshHistoryAppsTimeout) {
-        this.log.debug("clearing history apps timeout");
-        this.clearTimeout(this.refreshHistoryAppsTimeout);
       }
       if (this.downloadScreenContentInterval) {
         this.clearInterval(this.downloadScreenContentInterval);

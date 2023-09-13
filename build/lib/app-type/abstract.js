@@ -28,6 +28,7 @@ var AppType;
       this.apiClient = apiClient;
       this.adapter = adapter;
       this.definition = definition;
+      this.isVisible = false;
       adapter.on("stateChange", this.onStateChange.bind(this));
       adapter.on("objectChange", this.onObjectChange.bind(this));
     }
@@ -35,6 +36,22 @@ var AppType;
       return this.definition.name;
     }
     async init() {
+      const appName = this.getName();
+      const appVisibleState = await this.adapter.getStateAsync(`apps.${appName}.visible`);
+      this.isVisible = appVisibleState ? !!appVisibleState.val : true;
+      if (appVisibleState && !(appVisibleState == null ? void 0 : appVisibleState.ack)) {
+        await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "initCustomApp" });
+      }
+      return this.isVisible;
+    }
+    async refresh() {
+      if (!this.isVisible && this.apiClient.isConnected()) {
+        const appName = this.getName();
+        this.apiClient.removeAppAsync(appName).catch((error) => {
+          this.adapter.log.warn(`[refreshApp] Unable to remove hidden app "${appName}": ${error}`);
+        });
+      }
+      return this.isVisible && this.apiClient.isConnected();
     }
     async createObjects(prefix) {
       const appName = this.getName();
@@ -59,9 +76,7 @@ var AppType;
           write: true,
           def: true
         },
-        native: {
-          name: appName
-        }
+        native: {}
       });
     }
     async unloadAsync() {
@@ -81,7 +96,8 @@ var AppType;
       const appName = this.getName();
       if (id && state && !state.ack) {
         if (idNoNamespace == `apps.${appName}.visible`) {
-          this.adapter.log.debug(`changing visibility of app ${appName} to ${state.val}`);
+          this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
+          this.isVisible = !!state.val;
           await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange" });
         }
       }
