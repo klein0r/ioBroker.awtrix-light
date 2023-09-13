@@ -6,7 +6,7 @@
 
 - nodejs 14.5 (oder neuer)
 - js-controller 4.0.15 (oder neuer)
-- Admin Adapter 6.0.0 (oder neuer)
+- Admin Adapter 6.6.0 (oder neuer)
 - _Awtrix Light_ Gerät mit Firmware-Version _0.86_ (oder neuer) - z.B. Ulanzi TC001
 
 Hier kaufen: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) oder hier: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
