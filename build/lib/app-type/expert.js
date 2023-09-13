@@ -28,16 +28,37 @@ var AppType;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
+      this.appStates = {};
     }
     async init() {
+      var _a, _b;
       const appName = this.getName();
-      const appStates = await this.adapter.getStatesAsync(`apps.${appName}.*`);
-      this.adapter.log.debug(`[initExpertApp] current states of app "${appName}": ${JSON.stringify(appStates)}`);
+      const appObjects = await this.adapter.getObjectViewAsync("system", "state", {
+        startkey: `${this.adapter.namespace}.apps.${appName}.`,
+        endkey: `${this.adapter.namespace}.apps.${appName}.\u9999`
+      });
+      for (const appObj of appObjects.rows) {
+        if ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute) {
+          const appState = await this.adapter.getStateAsync(appObj.id);
+          if (appState) {
+            this.appStates[appObj.value.native.attribute] = appState.val;
+          }
+        }
+      }
+      this.adapter.log.debug(`[initExpertApp] current states of app "${appName}": ${JSON.stringify(this.appStates)}`);
       return super.init();
     }
     async refresh() {
-      const refreshed = false;
+      let refreshed = false;
       if (await super.refresh()) {
+        await this.apiClient.appRequestAsync(this.appDefinition.name, {
+          text: typeof this.appStates.text === "string" ? this.appStates.text : "",
+          icon: typeof this.appStates.icon === "string" ? this.appStates.icon : "",
+          duration: typeof this.appStates.duration === "number" ? this.appStates.duration : 0
+        }).catch((error) => {
+          this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
+        });
+        refreshed = true;
       }
       return refreshed;
     }
@@ -68,14 +89,71 @@ var AppType;
           attribute: "text"
         }
       });
+      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.icon`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Icon",
+            de: "Symbol",
+            ru: "\u0418\u043C\u044F",
+            pt: "\xCDcone",
+            nl: "Icoon",
+            fr: "Ic\xF4ne",
+            it: "Icona",
+            es: "Icono",
+            pl: "Ikona",
+            "zh-cn": "\u56FE\u6807"
+          },
+          type: "string",
+          role: "text",
+          read: true,
+          write: true,
+          def: ""
+        },
+        native: {
+          attribute: "icon"
+        }
+      });
+      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.duration`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Icon",
+            de: "Symbol",
+            ru: "\u0418\u043C\u044F",
+            pt: "\xCDcone",
+            nl: "Icoon",
+            fr: "Ic\xF4ne",
+            it: "Icona",
+            es: "Icono",
+            pl: "Ikona",
+            "zh-cn": "\u56FE\u6807"
+          },
+          type: "number",
+          role: "value",
+          read: true,
+          write: true,
+          def: 0
+        },
+        native: {
+          attribute: "duration"
+        }
+      });
     }
     async stateChanged(id, state) {
+      var _a, _b;
       const idNoNamespace = this.adapter.removeNamespace(id);
       const appName = this.getName();
       if (id && state && !state.ack) {
-        if (idNoNamespace == `apps.${appName}.text`) {
-          this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}"`);
-          await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+        if (idNoNamespace.startsWith(`apps.${appName}.`)) {
+          const obj = await this.adapter.getObjectAsync(idNoNamespace);
+          if (obj && ((_a = obj == null ? void 0 : obj.native) == null ? void 0 : _a.attribute)) {
+            this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}" (${(_b = obj == null ? void 0 : obj.native) == null ? void 0 : _b.attribute})`);
+            this.appStates[obj.native.attribute] = state.val;
+            if (await this.refresh()) {
+              await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+            }
+          }
         }
       }
     }
