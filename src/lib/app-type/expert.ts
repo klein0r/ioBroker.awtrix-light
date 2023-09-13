@@ -100,8 +100,8 @@ export namespace AppType {
                         es: 'Icono',
                         pl: 'Ikona',
                         //uk: 'значок',
-                        'zh-cn': '图标'
-                      },
+                        'zh-cn': '图标',
+                    },
                     type: 'string',
                     role: 'text',
                     read: true,
@@ -127,8 +127,8 @@ export namespace AppType {
                         es: 'Icono',
                         pl: 'Ikona',
                         //uk: 'значок',
-                        'zh-cn': '图标'
-                      },
+                        'zh-cn': '图标',
+                    },
                     type: 'number',
                     role: 'value',
                     read: true,

@@ -54,7 +54,9 @@ export namespace AppType {
                             }
 
                             if (text.includes('%u') && !obj?.common?.unit) {
-                                this.adapter.log.warn(`[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`);
+                                this.adapter.log.warn(
+                                    `[initCustomApp] Object of app "${this.appDefinition.name}" (${objId}) has no unit - remove "%u" from text or define unit in object (common.unit)`,
+                                );
                             }
 
                             if (state && !state.ack) {
@@ -85,7 +87,7 @@ export namespace AppType {
 
         private createAppRequestObj(text: string, val?: ioBroker.StateValue): AwtrixApi.App {
             const app: AwtrixApi.App = {
-                pos: this.appDefinition.position
+                pos: this.appDefinition.position,
             };
 
             if (text !== '') {
