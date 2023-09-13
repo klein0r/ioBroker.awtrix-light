@@ -15,6 +15,7 @@ export namespace AppType {
         private appDefinition: CustomApp;
         private objCache: ObjCache | undefined;
         private isStaticText: boolean;
+        private cooldownTimeout: void | NodeJS.Timeout | null;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: CustomApp) {
             super(apiClient, adapter, definition);
@@ -22,6 +23,7 @@ export namespace AppType {
             this.appDefinition = definition;
             this.objCache = undefined;
             this.isStaticText = false;
+            this.cooldownTimeout = null;
         }
 
         public override async init(): Promise<boolean> {
@@ -288,12 +290,29 @@ export namespace AppType {
                                 this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
                                 this.objCache.ts = state.ts;
 
+                                this.clearCooldownTimeout();
                                 this.refresh();
                             } else {
                                 this.adapter.log.debug(
                                     `[onStateChange] "${this.appDefinition.name}" ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
                                         this.adapter.config.ignoreNewValueForAppInTimeRange
                                     } seconds) - Last update: ${this.adapter.formatDate(this.objCache.ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
+                                );
+
+                                // Set this value as the new value if no new value arrives
+                                this.clearCooldownTimeout();
+                                this.cooldownTimeout = this.adapter.setTimeout(
+                                    () => {
+                                        this.cooldownTimeout = null;
+
+                                        if (this.objCache) {
+                                            this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
+                                            this.objCache.ts = state.ts;
+
+                                            this.refresh();
+                                        }
+                                    },
+                                    (this.adapter.config.ignoreNewValueForAppInTimeRange + 5) * 1000, // +5 seconds
                                 );
                             }
                         }
@@ -317,6 +336,22 @@ export namespace AppType {
                     }
                 }
             }
+        }
+
+        private clearCooldownTimeout(): void {
+            if (this.cooldownTimeout) {
+                this.adapter.clearTimeout(this.cooldownTimeout);
+                this.cooldownTimeout = null;
+            }
+        }
+
+        public override async unloadAsync(): Promise<void> {
+            if (this.cooldownTimeout) {
+                this.adapter.log.debug(`clearing custom app cooldown timeout for "${this.getName()}"`);
+                this.adapter.clearTimeout(this.cooldownTimeout);
+            }
+
+            await super.unloadAsync();
         }
     }
 }
