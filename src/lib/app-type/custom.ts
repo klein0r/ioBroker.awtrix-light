@@ -59,13 +59,16 @@ export namespace AppType {
                         await this.adapter.subscribeForeignStatesAsync(objId);
                         await this.adapter.subscribeForeignObjectsAsync(objId);
 
-                        this.adapter.log.debug(`[initCustomApp] Found app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
+                        this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
                     } else {
                         this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
                     }
                 } catch (error) {
                     this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
                 }
+            } else {
+                this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with static text`);
+                this.isStaticText = true;
             }
 
             return super.init();

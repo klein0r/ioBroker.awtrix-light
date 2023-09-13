@@ -16,16 +16,16 @@ import { AppType as AppTypeHistory } from './lib/app-type/history';
 const NATIVE_APPS = ['time', 'date', 'temp', 'hum', 'bat'];
 
 export class AwtrixLight extends utils.Adapter {
-    supportedVersion: string;
-    displayedVersionWarning: boolean;
+    private supportedVersion: string;
+    private displayedVersionWarning: boolean;
 
-    apiClient: AwtrixApi.Client | null;
-    apiConnected: boolean;
-    refreshStateTimeout: void | NodeJS.Timeout | null;
-    downloadScreenContentInterval: void | NodeJS.Timeout | null;
+    private apiClient: AwtrixApi.Client | null;
+    private apiConnected: boolean;
+    private refreshStateTimeout: void | NodeJS.Timeout | null;
+    private downloadScreenContentInterval: void | NodeJS.Timeout | null;
 
-    apps: Array<AppTypeAbstract.AbstractApp>;
-    backgroundEffects: Array<string>;
+    private apps: Array<AppTypeAbstract.AbstractApp>;
+    private backgroundEffects: Array<string>;
 
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
@@ -163,7 +163,7 @@ export class AwtrixLight extends utils.Adapter {
 
             this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
 
-            if (this.apiConnected) {
+            if (this.apiClient!.isConnected()) {
                 if (idNoNamespace.startsWith('settings.')) {
                     this.log.debug(`changing setting ${idNoNamespace} power to ${state.val}`);
 
@@ -303,7 +303,7 @@ export class AwtrixLight extends utils.Adapter {
                 );
             } else if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
-                if (this.apiConnected) {
+                if (this.apiClient!.isConnected()) {
                     const msgFiltered: AwtrixApi.App = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
                     // Remove repeat if <= 0
@@ -328,7 +328,7 @@ export class AwtrixLight extends utils.Adapter {
                 }
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
-                if (this.apiConnected) {
+                if (this.apiClient!.isConnected()) {
                     const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
 
                     this.apiClient!.requestAsync('sound', 'POST', msgFiltered)
@@ -403,7 +403,7 @@ export class AwtrixLight extends utils.Adapter {
                         this.log.debug(`[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`);
 
                         this.downloadScreenContentInterval = this.setInterval(() => {
-                            if (this.apiConnected) {
+                            if (this.apiClient!.isConnected()) {
                                 this.apiClient!.requestAsync('screen', 'GET')
                                     .then(async (response) => {
                                         if (response.status === 200) {
@@ -589,7 +589,7 @@ export class AwtrixLight extends utils.Adapter {
 
     private async createAppObjects(): Promise<number> {
         return new Promise<number>((resolve, reject) => {
-            if (this.apiConnected) {
+            if (this.apiClient!.isConnected()) {
                 this.apiClient!.requestAsync('apps', 'GET')
                     .then(async (response) => {
                         if (response.status === 200) {
@@ -633,7 +633,7 @@ export class AwtrixLight extends utils.Adapter {
                                     type: 'channel',
                                     common: {
                                         name: `App ${name}`,
-                                        desc: `${name}${isCustomApp ? ' (custom app)' : ''}${isHistoryApp ? ' (history app)' : ''}${isExpertApp ? ' (expert app)' : ''}`,
+                                        desc: `${isCustomApp ? 'custom app' : ''}${isHistoryApp ? 'history app' : ''}${isExpertApp ? 'expert app' : ''}`,
                                     },
                                     native: {
                                         isNativeApp: NATIVE_APPS.includes(name),
@@ -710,6 +710,8 @@ export class AwtrixLight extends utils.Adapter {
 
                         reject(error);
                     });
+            } else {
+                reject('API_OFFLINE');
             }
         });
     }

@@ -14,6 +14,11 @@ export namespace AppType {
         }
 
         public override async init(): Promise<boolean> {
+            const appName = this.getName();
+
+            const appStates = await this.adapter.getStatesAsync(`apps.${appName}.*`);
+            this.adapter.log.debug(`[initExpertApp] current states of app "${appName}": ${JSON.stringify(appStates)}`);
+
             return super.init();
         }
 
@@ -21,6 +26,7 @@ export namespace AppType {
             const refreshed = false;
 
             if (await super.refresh()) {
+                
             }
 
             return refreshed;
@@ -49,9 +55,10 @@ export namespace AppType {
                     role: 'text',
                     read: true,
                     write: true,
+                    def: '',
                 },
                 native: {
-                    name: appName,
+                    attribute: 'text',
                 },
             });
         }
@@ -63,11 +70,9 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 if (idNoNamespace == `apps.${appName}.text`) {
-                    if (state.val) {
-                        this.adapter.log.debug(`activating app ${appName}`);
-                    } else {
-                        this.adapter.log.warn(`Received invalid value for state ${idNoNamespace}`);
-                    }
+                    this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}"`);
+
+                    await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                 }
             }
         }

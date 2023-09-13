@@ -42,7 +42,7 @@ export namespace AppType {
                 // Hide app automatically
                 const appName = this.getName();
                 this.apiClient.removeAppAsync(appName).catch((error) => {
-                    this.adapter.log.warn(`[refreshApp] Unable to remove app "${appName}": ${error}`);
+                    this.adapter.log.warn(`[refreshApp] Unable to remove hidden app "${appName}": ${error}`);
                 });
             }
 
@@ -74,9 +74,7 @@ export namespace AppType {
                     write: true,
                     def: true,
                 },
-                native: {
-                    name: appName,
-                },
+                native: {},
             });
         }
 
@@ -101,7 +99,7 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 if (idNoNamespace == `apps.${appName}.visible`) {
-                    this.adapter.log.debug(`changing visibility of app ${appName} to ${state.val}`);
+                    this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
 
                     this.isVisible = !!state.val;
                     await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
