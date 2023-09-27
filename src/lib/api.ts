@@ -132,7 +132,7 @@ export namespace AwtrixApi {
             return this.requestAsync(`custom?name=${name}`, 'POST', data);
         }
 
-        public async requestAsync(service: string, method?: string, data?: object): Promise<AxiosResponse> {
+        public async requestAsync(service: string, method?: string, data?: object | string): Promise<AxiosResponse> {
             return new Promise<AxiosResponse>((resolve, reject) => {
                 const url = `/api/${service}`;
                 const timeout = this.httpTimeout * 1000 || 3000;
@@ -155,6 +155,9 @@ export namespace AwtrixApi {
                             return [200, 201].indexOf(status) > -1;
                         },
                         responseType: 'json',
+                        headers: {
+                            'Content-Type': typeof data === 'string' ? 'text/plain' : 'application/json',
+                        },
                     })
                         .then((response) => {
                             this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
