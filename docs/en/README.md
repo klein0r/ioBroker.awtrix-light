@@ -108,6 +108,16 @@ The message object supports all available options of the firmware. See [document
 
 *You can also use a Blockly block to play a sound.*
 
+To play a custom ringtone:
+
+```javascript
+sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
+    if (res && res.error) {
+        console.error(res.error);
+    }
+});
+```
+
 ## Custom apps
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
