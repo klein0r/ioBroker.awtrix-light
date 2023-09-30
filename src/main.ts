@@ -341,6 +341,15 @@ export class AwtrixLight extends utils.Adapter {
                 } else {
                     this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
                 }
+            } else if (obj.command === 'rtttl' && typeof obj.message === 'string') {
+                // RTTTL sounds
+                this.apiClient!.requestAsync('rtttl', 'POST', obj.message)
+                    .then((response) => {
+                        this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
+                    })
+                    .catch((error) => {
+                        this.sendTo(obj.from, obj.command, { error }, obj.callback);
+                    });
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 
