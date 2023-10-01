@@ -33,7 +33,7 @@ var import_api = require("./lib/api");
 var import_custom = require("./lib/app-type/custom");
 var import_expert = require("./lib/app-type/expert");
 var import_history = require("./lib/app-type/history");
-const NATIVE_APPS = ["time", "date", "temp", "hum", "bat"];
+const NATIVE_APPS = ["Time", "Date", "Temperature", "Humidity", "Battery"];
 class AwtrixLight extends utils.Adapter {
   constructor(options = {}) {
     super({
@@ -41,7 +41,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.86";
+    this.supportedVersion = "0.88";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "news": {
+      "0.9.0": {
+        "en": "Updated recommended firmware version to 0.88\n\n* Added expert apps\n* Use the last value of fast refreshing states\n* Added settings for calendar colors\n* Allow to use apps without text (just background effect)\n* Added rtttl api endpoint support (via sendTo)\n* Native apps have been renamed",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0,88\n\n* Hinzugefügt Experten-Apps\n* Verwenden Sie den letzten Wert schnell erfrischender Zustände\n* Einstellungen für Kalenderfarben hinzugefügt\n* Apps ohne Text verwenden (nur Hintergrundeffekt)\n* Hinzugefügt rttl api Endpoint-Unterstützung (via sendTo)\n* Native Apps wurden umbenannt",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.88\n\n* Добавлены экспертные приложения\n* Используйте последнюю ценность быстрых освежающих государств\n* Добавлены настройки для цветов календаря\n* Разрешить использовать приложения без текста (просто фоновый эффект)\n* Добавлена поддержка rtttl api endpoint (через sendTo)\n* Родные приложения были переименованы",
+        "pt": "Versão de firmware recomendada atualizada para 0.88\n\n* Adicionados aplicativos de especialistas\n* Use o último valor de estados refrescantes rápidos\n* Configurações adicionadas para cores do calendário\n* Permitir usar aplicativos sem texto (apenas efeito de fundo)\n* Adicionado rtttl api apoio endpoint (via sendTo)\n* Aplicativos nativos foram renomeados",
+        "nl": "Aanbevolen firmaware versie tot 0.88\n\n♪ Added expert apps\n♪ Gebruik de laatste waarde van snel verfrissende staten\n♪ Added settings for kalender kleuren ♪\nQuality over Quantity (QoQ) Releases Vertaling:\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Native apps are re named",
+        "fr": "Version mise à jour du firmware recommandé à 0.88\n\n* Ajout d ' applications d ' experts\n* Utiliser la dernière valeur des états rafraîchissants\n* Ajout de paramètres pour les couleurs du calendrier\n* Permettre d'utiliser des applications sans texte (effet de fond juste)\n* Ajout de rttl api endpoint support (via sendTo)\n* Les applications autochtones ont été rebaptisées",
+        "it": "Versione firmware consigliata aggiornata a 0.88\n\n* Aggiunte app per esperti\n# Utilizzare l'ultimo valore degli stati rinfrescanti veloci\n* Impostazioni aggiuntive per i colori del calendario\n* Permettere di utilizzare applicazioni senza testo (solo effetto di sfondo)\n* Aggiunto rtttl api endpoint supporto (via sendTo)\n* Le app native sono state rinominate",
+        "es": "Versión actualizada de firmware recomendada a 0.88\n\n* Aplicaciones de expertos adicionales\n* Utilice el último valor de estados de actualización rápido\n* Ajustes añadidos para los colores del calendario\n* Permitir usar aplicaciones sin texto (sólo efecto de fondo)\n* Añadido rttl api endpoint support (via sendTo)\n* Las aplicaciones nativas han sido renombradas",
+        "pl": "Zalecona wersja oprogramowania do wersji 0.8888\n\n* Ekspertywna aplikacja\n* Wykorzystywana jest ostatnia wartość szybkiego odświeżania stanu\n* Podstawy do kolorów kalendarzowych\n* Allow do korzystania z aplikacji bez tekstu (zwłaszcza efekt tła)\n* Added rtttl api endpoint support (via sendTo) (ang.)\nIdentyfikacja rdzennych aplikacji została zmieniona",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.88\n\n* Додано додатки експерта\nІм'я * Використовуйте останнє значення швидко освіжаючих станів\n* Додано налаштування для календарних кольорів\n* Дозволяє використовувати додатки без тексту (тільки фоновий ефект)\n* Додано rtttl api endpoint support (через відправленняTo)\n* Нативні програми були перейменовані",
+        "zh-cn": "最新建议的警觉版本到0.88\n\n* 增加专家。\n* A/64/50。 利用快建国的最后价值\n* 会议日历上的增加\n* 允许无案文使用(实际背景)\n* 增加第1款次(待补)\n* 附录已改为:"
+      },
       "0.8.0": {
         "en": "Updated recommended firmware version to 0.83\n\n* Allow to set custom app positions (expert options)\n* Unsubscribe from all states if device is not reachable\n* Added options basic auth\n* Get background effects via API\n* Fixed 0 decimals setting\n* Changed log level of some messages\n* Added states for transitions",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,83\n\n* Lassen Sie benutzerdefinierte App-Positionen (Expert-Optionen) einstellen\n* Abonnieren Sie von allen Zuständen, wenn das Gerät nicht erreichbar ist\n* Zusätzliche Optionen grundlegende Auth\n* Erhalten Sie Hintergrundeffekte über API\n* Feste Einstellung von 0 Dezimals\n* Änderte Protokollebene einiger Nachrichten\n* Hinzugefügt Zustände für Übergänge",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania dla 0,71\n\n* Added option for background effects\n* Domyślność powtórzenia się do 0\n* Dropped timer support (przewijał się w oprogramowaniem 0,71)\nRemoved native application (ang.)",
         "uk": "Оновлено рекомендовану версію прошивки до 0.71\n\n* Додано варіант для фонових ефектів\n* Встановлення за замовчуванням повторення до 0\n* Підтримувані таймери (видалено в прошивці 0.71)\n* Вилучено рідні очі додатка (видалено в прошивці 0.71)",
         "zh-cn": "A. 最新建议的软件版本\n\n* 增加背景资料的选择\n* 规定重复至0\n* 装有时间限制的时间限制(移入警觉701)\n* 拆除当地的眼光(移植于坚实的认知0.7%1)"
-      },
-      "0.5.1": {
-        "en": "Fixed color conversion for svg\nAdded support for state type \"mixed\"\nImproved log messages",
-        "de": "Feste Farbumwandlung für svg\nUnterstützung für Zustand gemischt\nVerbesserte Protokollnachrichten",
-        "ru": "Фиксированная цветовая конверсия для svg\nДобавлена поддержка государственного типа смешанная\nУлучшенные лог-сообщения",
-        "pt": "Conversão de cor fixa para svg\nAdicionado suporte para tipo de estado misturado\nMensagens de log melhoradas",
-        "nl": "Verfijnde kleuren bekering voor svg\nAangename steun voor staatstypes\nVertaling:",
-        "fr": "Conversion de couleur fixe pour svg\nAjout du support pour le type d'état mélangé\nAmélioration des messages journaux",
-        "it": "Conversione di colore fissa per svg\nAggiunto supporto per tipo di stato misto\nMessaggi di registro migliorati",
-        "es": "Conversión de color fija para svg\nApoyo añadido al tipo de estado mixto\nMejores mensajes de registro",
-        "pl": "Fixed color conversion for svgg\nWsparcie dla typu państwowego mieszane\nPoprawiona wiadomość",
-        "uk": "Фіксована конвертація кольору для КС\nДодано підтримку державного типу змішаних\nПокращені повідомлення журналу",
-        "zh-cn": "固定颜色转换\n增加对国家类型混杂的支助\n改进文 件"
       }
     },
     "titleLang": {

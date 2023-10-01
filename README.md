@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.9.0 (2023-10-01)
 
 Updated recommended firmware version to 0.88
 
@@ -77,12 +77,6 @@ Updated recommended firmware version to 0.72
 ### 0.6.2 (2023-07-30)
 
 * (klein0r) Fixed handling of state cache when object has been changed
-
-### 0.6.1 (2023-07-28)
-
-* (klein0r) Remove background effect in threshold overrides
-* (klein0r) Minor fixes in admin config
-* (klein0r) Fixed missing icon in history apps
 
 ## License
 MIT License

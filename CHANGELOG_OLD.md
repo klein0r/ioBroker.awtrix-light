@@ -1,4 +1,10 @@
 # Older changes
+## 0.6.1 (2023-07-28)
+
+* (klein0r) Remove background effect in threshold overrides
+* (klein0r) Minor fixes in admin config
+* (klein0r) Fixed missing icon in history apps
+
 ## 0.6.0 (2023-07-26)
 
 Updated recommended firmware version to 0.71

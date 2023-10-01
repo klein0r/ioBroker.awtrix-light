@@ -32,19 +32,27 @@ var AwtrixApi;
 ((AwtrixApi2) => {
   class Client {
     constructor(adapter, ipAddress, port, httpTimeout, userName, userPassword) {
-      this.adapter = adapter;
-      this.ipAddress = ipAddress;
-      this.port = port;
-      this.httpTimeout = httpTimeout;
-      this.adapter.log.info(`Starting - connecting to http://${this.ipAddress}:${this.port}/`);
+      this.axiosInstance = void 0;
       this.apiConnected = false;
+      this.lastErrorCode = -1;
+      this.adapter = adapter;
+      this.adapter.log.info(`Starting - connecting to http://${ipAddress}:${port}/`);
+      let httpAuth = void 0;
       if (userName) {
-        this.auth = {
+        httpAuth = {
           username: userName,
           password: userPassword
         };
       }
-      this.lastErrorCode = -1;
+      this.axiosInstance = import_axios.default.create({
+        baseURL: `http://${ipAddress}:${port}/api/`,
+        timeout: httpTimeout * 1e3 || 3e3,
+        auth: httpAuth,
+        validateStatus: (status) => {
+          return [200, 201].indexOf(status) > -1;
+        },
+        responseType: "json"
+      });
     }
     isConnected() {
       return this.apiConnected;
@@ -86,56 +94,43 @@ var AwtrixApi;
     async appRequestAsync(name, data) {
       return this.requestAsync(`custom?name=${name}`, "POST", data);
     }
-    async requestAsync(service, method, data) {
+    async requestAsync(url, method, data) {
       return new Promise((resolve, reject) => {
-        const url = `/api/${service}`;
-        const timeout = this.httpTimeout * 1e3 || 3e3;
-        if (this.ipAddress) {
-          if (data) {
-            this.adapter.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
-          } else {
-            this.adapter.log.debug(`sending "${method}" request to "${url}" without data`);
-          }
-          (0, import_axios.default)({
-            method,
-            data,
-            baseURL: `http://${this.ipAddress}:${this.port}`,
-            url,
-            timeout,
-            auth: this.auth,
-            validateStatus: (status) => {
-              return [200, 201].indexOf(status) > -1;
-            },
-            responseType: "json",
-            headers: {
-              "Content-Type": typeof data === "string" ? "text/plain" : "application/json"
-            }
-          }).then((response) => {
-            this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
-            this.lastErrorCode = -1;
-            resolve(response);
-          }).catch((error) => {
-            if (error.response) {
-              if (error.response.status === 401) {
-                this.adapter.log.warn("Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!");
-              } else {
-                this.adapter.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
-              }
-            } else if (error.request) {
-              if (error.code === this.lastErrorCode) {
-                this.adapter.log.debug(error.message);
-              } else {
-                this.adapter.log.info(`error ${error.code} from ${url}: ${error.message}`);
-                this.lastErrorCode = error.code;
-              }
-            } else {
-              this.adapter.log.error(error.message);
-            }
-            reject(error);
-          });
+        if (data) {
+          this.adapter.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
         } else {
-          reject("Device IP is not configured");
+          this.adapter.log.debug(`sending "${method}" request to "${url}" without data`);
         }
+        this.axiosInstance.request({
+          url,
+          method,
+          data,
+          headers: {
+            "Content-Type": typeof data === "string" ? "text/plain" : "application/json"
+          }
+        }).then((response) => {
+          this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
+          this.lastErrorCode = -1;
+          resolve(response);
+        }).catch((error) => {
+          if (error.response) {
+            if (error.response.status === 401) {
+              this.adapter.log.warn("Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!");
+            } else {
+              this.adapter.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+            }
+          } else if (error.request) {
+            if (error.code === this.lastErrorCode) {
+              this.adapter.log.debug(error.message);
+            } else {
+              this.adapter.log.info(`error ${error.code} from ${url}: ${error.message}`);
+              this.lastErrorCode = error.code;
+            }
+          } else {
+            this.adapter.log.error(error.message);
+          }
+          reject(error);
+        });
       });
     }
   }
