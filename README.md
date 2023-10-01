@@ -4,7 +4,6 @@
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.awtrix-light?style=flat-square)](https://www.npmjs.com/package/iobroker.awtrix-light)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.awtrix-light?label=npm%20downloads&style=flat-square)](https://www.npmjs.com/package/iobroker.awtrix-light)
-![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/iobroker.awtrix-light?label=npm%20vulnerabilities&style=flat-square)
 ![node-lts](https://img.shields.io/node/v-lts/iobroker.awtrix-light?style=flat-square)
 ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/iobroker.awtrix-light?label=npm%20dependencies&style=flat-square)
 
@@ -14,7 +13,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/klein0r/iobroker.awtrix-light?logo=github&style=flat-square)
 ![GitHub issues](https://img.shields.io/github/issues/klein0r/iobroker.awtrix-light?logo=github&style=flat-square)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/klein0r/iobroker.awtrix-light/test-and-release.yml?branch=master&logo=github&style=flat-square)
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/klein0r/iobroker.awtrix-light?label=repo%20vulnerabilities&logo=github&style=flat-square)
 
 ## Versions
 

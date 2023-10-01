@@ -129,16 +129,22 @@ export namespace AwtrixApi {
             return this.requestAsync(`custom?name=${name}`, 'POST', data);
         }
 
-        public async requestAsync(url: string, method?: string, data?: object): Promise<AxiosResponse> {
+        public async requestAsync(url: string, method?: string, data?: object | string): Promise<AxiosResponse> {
             return new Promise<AxiosResponse>((resolve, reject) => {
-
                 if (data) {
                     this.adapter.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
                 } else {
                     this.adapter.log.debug(`sending "${method}" request to "${url}" without data`);
                 }
 
-                this.axiosInstance!.request({ url, method, data })
+                this.axiosInstance!.request({
+                    url,
+                    method,
+                    data,
+                    headers: {
+                        'Content-Type': typeof data === 'string' ? 'text/plain' : 'application/json',
+                    },
+                })
                     .then((response) => {
                         this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
 

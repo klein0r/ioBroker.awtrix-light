@@ -108,6 +108,16 @@ Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware 
 
 *Es kann ein Blockly-Block verwendet werden, um diesen Aufruf noch einfacher zu verwenden.*
 
+Um einen eigenen Klingelton abzuspielen:
+
+```javascript
+sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
+    if (res && res.error) {
+        console.error(res.error);
+    }
+});
+```
+
 ## Benutzerdefinierte Apps
 
 **App-Namen dürfen nur Kleinbuchstaben (a-z) enthalten und müssen eindeutig sein. Keine Zahlen, keine Sonderzeichen, keine Leerzeichen.**

@@ -106,7 +106,10 @@ var AwtrixApi;
             validateStatus: (status) => {
               return [200, 201].indexOf(status) > -1;
             },
-            responseType: "json"
+            responseType: "json",
+            headers: {
+              "Content-Type": typeof data === "string" ? "text/plain" : "application/json"
+            }
           }).then((response) => {
             this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
             this.lastErrorCode = -1;
