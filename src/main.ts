@@ -13,7 +13,7 @@ import { AppType as AppTypeCustom } from './lib/app-type/custom';
 import { AppType as AppTypeExpert } from './lib/app-type/expert';
 import { AppType as AppTypeHistory } from './lib/app-type/history';
 
-const NATIVE_APPS = ['time', 'date', 'temp', 'hum', 'bat'];
+const NATIVE_APPS = ['Time', 'Date', 'Temperature', 'Humidity', 'Battery'];
 
 export class AwtrixLight extends utils.Adapter {
     private supportedVersion: string;
