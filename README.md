@@ -43,6 +43,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 NodeJS 16.x is required
 
+* (klein0r) Fixed color conversions of settings
+
 ### 0.9.0 (2023-10-01)
 
 Updated recommended firmware version to 0.88
