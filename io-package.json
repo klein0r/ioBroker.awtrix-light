@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "news": {
+      "0.9.1": {
+        "en": "NodeJS 16.x is required\n\n* Fixed hidden apps\n* Fixed color conversions of settings",
+        "de": "NodeJS 16.x ist erforderlich\n\n* Feste versteckte Apps\n* Feste Farbumwandlungen der Einstellungen",
+        "ru": "NodeJS 16.x требуется\n\n* Исправлены скрытые приложения\n* Исправлены цветовые преобразования настроек",
+        "pt": "NodeJS 16.x é necessário\n\n* Aplicativos ocultos fixos\n* Conversões de cores fixas de configurações",
+        "nl": "NodeJS 16.x is vereist\n\nVerborgen apps\nVertaling:",
+        "fr": "NodeJS 16.x est nécessaire\n\n* Apps cachées fixes\n* Conversions de couleurs fixes des paramètres",
+        "it": "NodeJS 16.x è richiesto\n\n* App nascoste riparate\n* Conversioni di colori fissi di impostazioni",
+        "es": "NodeJS 16.x es necesario\n\n* Aplicaciones ocultas fijas\n* Conversiones de color fijas de la configuración",
+        "pl": "NodeJS 16 (ang.)\n\n* Wszystko ukryte\n* Zwyczajowe przekształcenia kolorów w ustawienia",
+        "uk": "NodeJS 16.x обов'язковий\n\n* Виправлені приховані додатки\n* Виправлені кольорові перетворення параметрів",
+        "zh-cn": "不需要16.JS16x。\n\n* 固定的藏匿物品\n* 固定地点的颜色转换"
+      },
       "0.9.0": {
         "en": "Updated recommended firmware version to 0.88\n\n* Added expert apps\n* Use the last value of fast refreshing states\n* Added settings for calendar colors\n* Allow to use apps without text (just background effect)\n* Added rtttl api endpoint support (via sendTo)\n* Native apps have been renamed",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0,88\n\n* Hinzugefügt Experten-Apps\n* Verwenden Sie den letzten Wert schnell erfrischender Zustände\n* Einstellungen für Kalenderfarben hinzugefügt\n* Apps ohne Text verwenden (nur Hintergrundeffekt)\n* Hinzugefügt rttl api Endpoint-Unterstützung (via sendTo)\n* Native Apps wurden umbenannt",
@@ -80,19 +93,6 @@
         "pl": "Przesunięcie efektu tła w przesunięciach progowych\nMniejsza sytuacja w adminach\nZaginięcie ikon w historii",
         "uk": "Видалення фонового ефекту в порігових перепадах\nНормативні виправлення в налаштуваннях адміністратора\nВиправлено відсутні іконки в історичних додатках",
         "zh-cn": "2. 取消在门槛上产生的背景效应\n特明特罗特的矿石\n历史遗漏的混合情况"
-      },
-      "0.6.0": {
-        "en": "Updated recommended firmware version to 0.71\n\n* Added option for background effects\n* Setting default of repeat to 0\n* Dropped timer support (removed in firmware 0.71)\n* Removed native app \"eyes\" (removed in firmware 0.71)",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0,71\n\n* Option für Hintergrundeffekte hinzugefügt\n* Standardeinstellung der Wiederholung auf 0\n* Abgekürzte Timer-Unterstützung (entfernt in Firmware 0.71)\n* Entfernen von nativen App Augen (entfernt in Firmware 0.71)",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.71\n\n* Добавлена опция для фоновых эффектов\n* Установка по умолчанию повторения до 0\n* Dropped таймер поддержки (удалась в прошивке 0.71)\n* Удаленные носители (снятые в прошивке 0.71)",
-        "pt": "Versão de firmware recomendada atualizada para 0.71\n\n* opção adicionada para efeitos de fundo\n* Definir o padrão de repetição para 0\n* Suporte de temporizador dropped (removed no firmware 0.71)\n* Removido olhos de aplicativo nativo (removed no firmware 0.71)",
-        "nl": "Opgevolgd aanbevolen firmaware versie naar 0.71\n\n♪ Added option for achtergrondeffects ♪\n♪ Setting default of herhaling to 0 ♪\nVertaling:\nQuality over Quantity Releases Vertaling:",
-        "fr": "Version mise à jour du firmware recommandé à 0.71\n\n* Option supplémentaire pour les effets de fond\n* Paramètres par défaut de répéter à 0\n* Support de minuterie abandonné (retrait dans le firmware 0.71)\n* Les yeux d'application natifs enlevés (en fermeté 0,71)",
-        "it": "Versione firmware consigliata aggiornata a 0.71\n\n* Aggiunta opzione per gli effetti di sfondo\n* Impostazione di default di ripeti a 0\n* Supporto timer a goccia (rimossa nel firmware 0.71)\n* Rimuovere gli occhi app nativi (rimossa nel firmware 0.71)",
-        "es": "Versión actualizada de firmware recomendada a 0.71\n\n* opción adicional para efectos de fondo\n* Ajuste por defecto de repetición a 0\n* Soporte de temporizador eliminado (removido en firmware 0.71)\n* Ojos extraídos de la aplicación nativa (removidos en firmware 0.71)",
-        "pl": "Zalecona wersja oprogramowania dla 0,71\n\n* Added option for background effects\n* Domyślność powtórzenia się do 0\n* Dropped timer support (przewijał się w oprogramowaniem 0,71)\nRemoved native application (ang.)",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.71\n\n* Додано варіант для фонових ефектів\n* Встановлення за замовчуванням повторення до 0\n* Підтримувані таймери (видалено в прошивці 0.71)\n* Вилучено рідні очі додатка (видалено в прошивці 0.71)",
-        "zh-cn": "A. 最新建议的软件版本\n\n* 增加背景资料的选择\n* 规定重复至0\n* 装有时间限制的时间限制(移入警觉701)\n* 拆除当地的眼光(移植于坚实的认知0.7%1)"
       }
     },
     "titleLang": {

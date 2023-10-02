@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.9.1 (2023-10-02)
 
 NodeJS 16.x is required
 
@@ -80,10 +80,6 @@ Updated recommended firmware version to 0.72
 * (klein0r) Added MovingLine effect
 * (klein0r) Added settings for time style and transition effect
 * (klein0r) Setting repeat to 1 in blockly notifications
-
-### 0.6.2 (2023-07-30)
-
-* (klein0r) Fixed handling of state cache when object has been changed
 
 ## License
 MIT License

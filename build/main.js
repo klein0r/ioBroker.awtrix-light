@@ -351,7 +351,7 @@ class AwtrixLight extends utils.Adapter {
                     let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 640 160">`;
                     for (let y = 0; y < 8; y++) {
                       for (let x = 0; x < 32; x++) {
-                        const color = (0, import_color_convert.rgb565to888StrSvg)(pixelData[y * 32 + x]);
+                        const color = (0, import_color_convert.rgb565to888Str)(pixelData[y * 32 + x]);
                         svg += `
   <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" `;
                         svg += `x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`;
@@ -490,7 +490,6 @@ class AwtrixLight extends utils.Adapter {
         this.apiClient.requestAsync("apps", "GET").then(async (response) => {
           if (response.status === 200) {
             const content = response.data;
-            const appPath = "apps";
             const customApps = this.config.customApps.map((a) => a.name);
             const historyApps = this.config.historyApps.map((a) => a.name);
             const expertApps = this.config.expertApps.map((a) => a.name);
@@ -499,7 +498,7 @@ class AwtrixLight extends utils.Adapter {
             this.log.debug(`[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`);
             const appsAll = [];
             const appsKeep = [];
-            const existingChannels = await this.getChannelsOfAsync(appPath);
+            const existingChannels = await this.getChannelsOfAsync("apps");
             if (existingChannels) {
               for (const existingChannel of existingChannels) {
                 const id = this.removeNamespace(existingChannel._id);
@@ -509,12 +508,12 @@ class AwtrixLight extends utils.Adapter {
               }
             }
             for (const name of allApps) {
-              appsKeep.push(`${appPath}.${name}`);
-              this.log.debug(`[createAppObjects] found (keep): ${appPath}.${name}`);
+              appsKeep.push(`apps.${name}`);
+              this.log.debug(`[createAppObjects] found (keep): apps.${name}`);
               const isCustomApp = customApps.includes(name);
               const isHistoryApp = historyApps.includes(name);
               const isExpertApp = expertApps.includes(name);
-              await this.extendObjectAsync(`${appPath}.${name}`, {
+              await this.extendObjectAsync(`apps.${name}`, {
                 type: "channel",
                 common: {
                   name: `App ${name}`,
@@ -527,7 +526,7 @@ class AwtrixLight extends utils.Adapter {
                   isExpertApp
                 }
               });
-              await this.setObjectNotExistsAsync(`${appPath}.${name}.activate`, {
+              await this.setObjectNotExistsAsync(`apps.${name}.activate`, {
                 type: "state",
                 common: {
                   name: {
@@ -553,7 +552,7 @@ class AwtrixLight extends utils.Adapter {
               });
               const app = this.findAppWithName(name);
               if (app) {
-                await app.createObjects(appPath);
+                await app.createObjects();
               }
             }
             for (const app of appsAll) {

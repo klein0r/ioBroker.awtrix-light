@@ -62,9 +62,9 @@ var AppType;
       }
       return refreshed;
     }
-    async createObjects(prefix) {
+    async createObjects() {
       const appName = this.getName();
-      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.text`, {
+      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.text`, {
         type: "state",
         common: {
           name: {
@@ -89,7 +89,7 @@ var AppType;
           attribute: "text"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.icon`, {
+      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.icon`, {
         type: "state",
         common: {
           name: {
@@ -114,7 +114,7 @@ var AppType;
           attribute: "icon"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.duration`, {
+      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.duration`, {
         type: "state",
         common: {
           name: {

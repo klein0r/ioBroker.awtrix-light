@@ -53,9 +53,9 @@ var AppType;
       }
       return this.isVisible && this.apiClient.isConnected();
     }
-    async createObjects(prefix) {
+    async createObjects() {
       const appName = this.getName();
-      await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.visible`, {
+      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.visible`, {
         type: "state",
         common: {
           name: {
@@ -96,9 +96,16 @@ var AppType;
       const appName = this.getName();
       if (id && state && !state.ack) {
         if (idNoNamespace == `apps.${appName}.visible`) {
-          this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
-          this.isVisible = !!state.val;
-          await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange" });
+          if (state.val !== this.isVisible) {
+            this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
+            this.isVisible = !!state.val;
+            if (await this.refresh()) {
+              await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange" });
+            }
+          } else {
+            this.adapter.log.debug(`[onStateChange] visibility of app ${appName} was already ${state.val} - ignoring`);
+            await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
+          }
         }
       }
       await this.stateChanged(id, state);

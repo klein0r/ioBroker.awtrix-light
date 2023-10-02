@@ -1,4 +1,8 @@
 # Older changes
+## 0.6.2 (2023-07-30)
+
+* (klein0r) Fixed handling of state cache when object has been changed
+
 ## 0.6.1 (2023-07-28)
 
 * (klein0r) Remove background effect in threshold overrides
