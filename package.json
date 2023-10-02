@@ -22,7 +22,7 @@
     "url": "git+https://github.com/klein0r/ioBroker.awtrix-light"
   },
   "engines": {
-    "node": ">=14.5.0"
+    "node": ">=16"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.0.3",
