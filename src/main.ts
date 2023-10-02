@@ -5,7 +5,7 @@
 import * as utils from '@iobroker/adapter-core';
 import { AxiosResponse } from 'axios';
 
-import { rgb565to888Str, rgb565to888StrSvg } from './lib/color-convert';
+import { rgb565to888Str } from './lib/color-convert';
 
 import { AwtrixApi } from './lib/api';
 import { AppType as AppTypeAbstract } from './lib/app-type/abstract';
@@ -426,7 +426,7 @@ export class AwtrixLight extends utils.Adapter {
 
                                             for (let y = 0; y < 8; y++) {
                                                 for (let x = 0; x < 32; x++) {
-                                                    const color = rgb565to888StrSvg(pixelData[y * 32 + x]);
+                                                    const color = rgb565to888Str(pixelData[y * 32 + x]);
                                                     svg += `\n  <rect style="fill: ${color}; stroke: #000000; stroke-width: 2px;" `;
                                                     svg += `x="${x * scaleX}" y="${y * scaleY}" width="${scaleX}" height="${scaleY}"/>`;
                                                 }
