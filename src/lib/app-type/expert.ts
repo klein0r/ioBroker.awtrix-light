@@ -56,10 +56,10 @@ export namespace AppType {
             return refreshed;
         }
 
-        public async createObjects(prefix: string): Promise<void> {
+        public async createObjects(): Promise<void> {
             const appName = this.getName();
 
-            await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.text`, {
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.text`, {
                 type: 'state',
                 common: {
                     name: {
@@ -86,7 +86,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.icon`, {
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.icon`, {
                 type: 'state',
                 common: {
                     name: {
@@ -113,7 +113,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.duration`, {
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.duration`, {
                 type: 'state',
                 common: {
                     name: {

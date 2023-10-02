@@ -103,12 +103,14 @@ export namespace AppType {
                         this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
 
                         this.isVisible = !!state.val;
-                        this.refresh();
+                        if (await this.refresh()) {
+                            await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
+                        }
                     } else {
                         this.adapter.log.debug(`[onStateChange] visibility of app ${appName} was already ${state.val} - ignoring`);
-                    }
 
-                    await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
+                        await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
+                    }
                 }
             }
 
