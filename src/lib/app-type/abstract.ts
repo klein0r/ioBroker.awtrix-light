@@ -49,10 +49,10 @@ export namespace AppType {
             return this.isVisible && this.apiClient.isConnected();
         }
 
-        public async createObjects(prefix: string): Promise<void> {
+        public async createObjects(): Promise<void> {
             const appName = this.getName();
 
-            await this.adapter.setObjectNotExistsAsync(`${prefix}.${appName}.visible`, {
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.visible`, {
                 type: 'state',
                 common: {
                     name: {
@@ -99,9 +99,15 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 if (idNoNamespace == `apps.${appName}.visible`) {
-                    this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
+                    if (state.val !== this.isVisible) {
+                        this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
 
-                    this.isVisible = !!state.val;
+                        this.isVisible = !!state.val;
+                        this.refresh();
+                    } else {
+                        this.adapter.log.debug(`[onStateChange] visibility of app ${appName} was already ${state.val} - ignoring`);
+                    }
+
                     await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
                 }
             }
