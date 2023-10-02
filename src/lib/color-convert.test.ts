@@ -1,4 +1,3 @@
-
 describe('Test color convertions', function () {
     /*
     it('rgb565 to rgb888', function () {
