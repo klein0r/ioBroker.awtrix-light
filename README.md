@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed: Visisble state of expert apps
+
 ### 0.9.1 (2023-10-02)
 
 NodeJS 16.x is required

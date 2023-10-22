@@ -139,6 +139,8 @@ export namespace AppType {
                     attribute: 'duration',
                 },
             });
+
+            return super.createObjects();
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {

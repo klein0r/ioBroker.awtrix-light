@@ -139,6 +139,7 @@ var AppType;
           attribute: "duration"
         }
       });
+      return super.createObjects();
     }
     async stateChanged(id, state) {
       var _a, _b;
