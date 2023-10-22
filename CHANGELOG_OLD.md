@@ -1,4 +1,12 @@
 # Older changes
+## 0.7.0 (2023-08-03)
+
+Updated recommended firmware version to 0.72
+
+* (klein0r) Added MovingLine effect
+* (klein0r) Added settings for time style and transition effect
+* (klein0r) Setting repeat to 1 in blockly notifications
+
 ## 0.6.2 (2023-07-30)
 
 * (klein0r) Fixed handling of state cache when object has been changed

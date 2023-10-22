@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.9.1",
+    "version": "0.9.2",
     "news": {
+      "0.9.2": {
+        "en": "Fixed: Visisble state of expert apps",
+        "de": "Behoben: Visisble Zustand von Experten-Apps",
+        "ru": "Исправлено: Visisble состояние экспертных приложений",
+        "pt": "Corrigido: estado visível de aplicações especializadas",
+        "nl": "Visuele toestand van expert apps",
+        "fr": "Correction : état visible des applications expertes",
+        "it": "Risolto: Visible stato delle app di esperti",
+        "es": "Fijación: estado visible de las aplicaciones expertas",
+        "pl": "Strona oficjalna portalu",
+        "uk": "Виправлено: Візубний стан експертних додатків",
+        "zh-cn": "Ixed: Visisble of Experts"
+      },
       "0.9.1": {
         "en": "NodeJS 16.x is required\n\n* Fixed hidden apps\n* Fixed color conversions of settings",
         "de": "NodeJS 16.x ist erforderlich\n\n* Feste versteckte Apps\n* Feste Farbumwandlungen der Einstellungen",
@@ -80,19 +93,6 @@
         "pl": "Przestrzeń pamięci podręcznej, gdy obiekt został zmieniony",
         "uk": "Виправлена обробка кешу стану при зміні об’єкта",
         "zh-cn": "当目标发生变化时,固定地处理国家因果关系"
-      },
-      "0.6.1": {
-        "en": "Remove background effect in threshold overrides\nMinor fixes in admin config\nFixed missing icon in history apps",
-        "de": "Entfernen Sie den Hintergrundeffekt in Schwellenüberschreitungen\nMinor fixes in admin config\nBehoben fehlendes Icon in History Apps",
-        "ru": "Удалить фоновый эффект в пороговых перенапряжениях\nНезначительные исправления в admin config\nИсправлена недостающая икона в приложениях истории",
-        "pt": "Remova o efeito de fundo nas sobreposições de limiar\nPequenas correções em admin config\nÍcone ausente fixo em aplicativos de história",
-        "nl": "Verwijder achtergrondeffect in drempel overrides\nMinor fix in administratie\nVermiste icon in geschiedenis apps",
-        "fr": "Supprimer l'effet de fond dans les dépassements de seuil\nCorrections mineures dans la configuration admin\nIcône manquante fixe dans les applications d'histoire",
-        "it": "Rimuovere l'effetto di sfondo in override di soglia\nCorrezioni minori in configurazione admin\nFisso icona mancante nelle applicazioni di storia",
-        "es": "Eliminar el efecto de fondo en las anulas del umbral\nArreglos menores en config admin\nIcono perdido fijo en aplicaciones de historia",
-        "pl": "Przesunięcie efektu tła w przesunięciach progowych\nMniejsza sytuacja w adminach\nZaginięcie ikon w historii",
-        "uk": "Видалення фонового ефекту в порігових перепадах\nНормативні виправлення в налаштуваннях адміністратора\nВиправлено відсутні іконки в історичних додатках",
-        "zh-cn": "2. 取消在门槛上产生的背景效应\n特明特罗特的矿石\n历史遗漏的混合情况"
       }
     },
     "titleLang": {
