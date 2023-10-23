@@ -1,4 +1,8 @@
 # Older changes
+## 0.7.1 (2023-08-09)
+
+* (klein0r) Added option for number format
+
 ## 0.7.0 (2023-08-03)
 
 Updated recommended firmware version to 0.72

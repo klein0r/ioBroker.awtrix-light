@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.9.2",
+    "version": "0.10.0",
     "news": {
+      "0.10.0": {
+        "en": "Updated recommended firmware version to 0.90\n\n* Added support for sleep mode\n* Added fading for indicators",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.90\n\n* Unterstützung für den Schlafmodus hinzugefügt\n* Hinzugefügt Fading für Indikatoren",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.90\n\n* Добавлена поддержка режима сна\n* Добавлена фадинг для индикаторов",
+        "pt": "Versão de firmware recomendada atualizada para 0.90\n\n* Adicionado suporte para o modo de sono\n* Adicionado fading para indicadores",
+        "nl": "Opgewaardeerd aanbevolen firmaware versie naar 0.90\n\n♪ Added support for sleep mode ♪\n♪ Added fading for indicators ♪",
+        "fr": "Version de firmware recommandée à 0.90\n\n* Ajout du support pour le mode sommeil\n* Ajout d ' une baisse des indicateurs",
+        "it": "Versione firmware consigliata aggiornata a 0.90\n\n* Aggiunto supporto per la modalità sonno\n* Aggiunto dissolvenza per indicatori",
+        "es": "Versión actualizada de firmware recomendada a 0.90\n\n* Apoyo añadido para el modo de sueño\n* Aumento de la pérdida de indicadores",
+        "pl": "Zalecona wersja oprogramowania do wersji 0.90\n\n* Wsparcie dla trybu snu\n* Wstępowanie dla wskaźników",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.90\n\n* Додано підтримку режиму сну\n* Додано захоплення для показників",
+        "zh-cn": "最新建议的软件版本到0.90\n\n* 增加对睡觉模式的支持\n* 增加指标"
+      },
       "0.9.2": {
         "en": "Fixed: Visisble state of expert apps",
         "de": "Behoben: Visisble Zustand von Experten-Apps",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do wersji 0.72\n\nAdded MovingLine effect\n* Wstępowanie do stylu i efektu przejściowego\n* Setting repeat to 1 in blockly notification (ang.)",
         "uk": "Оновлено рекомендовану версію прошивки до 0.72\n\n* Додано ефект MovingLine\n* Додано налаштування для стилю часу та ефекту переходу\n* Налаштування повторення до 1 в блокнотних повідомленнях",
         "zh-cn": "最新建议的警觉版本\n\n* 增加Moving Line效力\n* 增加时间风格和过渡效力的环境\n* 在软禁通知中重新编号1"
-      },
-      "0.6.2": {
-        "en": "Fixed handling of state cache when object has been changed",
-        "de": "Feste Handhabung von Zustandscache, wenn Objekt geändert wurde",
-        "ru": "Исправлена обработка государственного кэша при изменении объекта",
-        "pt": "Manuseamento fixo de cache de estado quando o objeto foi alterado",
-        "nl": "Gereserveerd met staatskache als object is veranderd",
-        "fr": "Manipulation fixe du cache d'état lorsque l'objet a été changé",
-        "it": "Gestione fissa della cache di stato quando l'oggetto è stato modificato",
-        "es": "Manejo fijo de caché de estado cuando el objeto ha sido cambiado",
-        "pl": "Przestrzeń pamięci podręcznej, gdy obiekt został zmieniony",
-        "uk": "Виправлена обробка кешу стану при зміні об’єкта",
-        "zh-cn": "当目标发生变化时,固定地处理国家因果关系"
       }
     },
     "titleLang": {

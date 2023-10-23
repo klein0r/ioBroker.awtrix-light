@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.10.0 (2023-10-23)
 
 Updated recommended firmware version to 0.90
 
@@ -79,10 +79,6 @@ Updated recommended firmware version to 0.83
 * (klein0r) Fixed 0 decimals setting
 * (klein0r) Changed log level of some messages
 * (klein0r) Added states for transitions
-
-### 0.7.1 (2023-08-09)
-
-* (klein0r) Added option for number format
 
 ## License
 MIT License
