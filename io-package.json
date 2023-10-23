@@ -1143,6 +1143,31 @@
       "native": {}
     },
     {
+      "_id": "device.sleep",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Sleep mode",
+          "de": "Schlafmodus",
+          "ru": "Спальный режим",
+          "pt": "Modo de dormir",
+          "nl": "Slaapmodus",
+          "fr": "Mode sommeil",
+          "it": "Modalità sonno",
+          "es": "Modo de sueño",
+          "pl": "Tryb Sleep",
+          "uk": "Режим сну",
+          "zh-cn": "Sleep模式"
+        },
+        "type": "number",
+        "role": "value",
+        "read": false,
+        "write": true,
+        "unit": "sec"
+      },
+      "native": {}
+    },
+    {
       "_id": "sensor",
       "type": "channel",
       "common": {

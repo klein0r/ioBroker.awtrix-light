@@ -196,6 +196,19 @@ export class AwtrixLight extends utils.Adapter {
                         .catch((error) => {
                             this.log.warn(`(power) Unable to execute action: ${error}`);
                         });
+                } else if (idNoNamespace === 'device.sleep') {
+                    this.log.debug(`enable sleep mode of device for ${state.val} seconds`);
+
+                    this.apiClient!.requestAsync('sleep', 'POST', { sleep: state.val })
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                this.setApiConnected(false);
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`(power) Unable to execute action: ${error}`);
+                        });
                 } else if (idNoNamespace.startsWith('display.moodlight.')) {
                     this.updateMoodlightByStates()
                         .then(async (response) => {
