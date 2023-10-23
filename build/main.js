@@ -41,7 +41,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.88";
+    this.supportedVersion = "0.90";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
@@ -171,6 +171,16 @@ class AwtrixLight extends utils.Adapter {
           this.apiClient.requestAsync("power", "POST", { power: state.val }).then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
               await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+            }
+          }).catch((error) => {
+            this.log.warn(`(power) Unable to execute action: ${error}`);
+          });
+        } else if (idNoNamespace === "device.sleep") {
+          this.log.debug(`enable sleep mode of device for ${state.val} seconds`);
+          this.apiClient.requestAsync("sleep", "POST", { sleep: state.val }).then(async (response) => {
+            if (response.status === 200 && response.data === "OK") {
+              await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+              this.setApiConnected(false);
             }
           }).catch((error) => {
             this.log.warn(`(power) Unable to execute action: ${error}`);
@@ -604,6 +614,9 @@ class AwtrixLight extends utils.Adapter {
       const blink = indicatorValues[`indicator.${index}.blink`];
       if (blink > 0) {
         postObj.blink = blink;
+      } else {
+        const fade = indicatorValues[`indicator.${index}.fade`];
+        postObj.fade = fade;
       }
     }
     return this.apiClient.requestAsync(`indicator${index}`, "POST", indicatorValues[`indicator.${index}.active`] ? postObj : void 0);

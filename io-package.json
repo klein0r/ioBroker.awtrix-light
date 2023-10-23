@@ -1651,6 +1651,33 @@
       "native": {}
     },
     {
+      "_id": "indicator.1.fade",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fade interval",
+          "de": "Fade-Intervall",
+          "ru": "Fade интервал",
+          "pt": "Intervalo de destino",
+          "nl": "Vertaling:",
+          "fr": "Intervalle de Fade",
+          "it": "Intervallo fascio",
+          "es": "Intervalo de fracaso",
+          "pl": "Przedział Fade",
+          "uk": "Проміжок дії",
+          "zh-cn": "间隔"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
       "_id": "indicator.1.color",
       "type": "state",
       "common": {
@@ -1761,6 +1788,33 @@
       "native": {}
     },
     {
+      "_id": "indicator.2.fade",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fade interval",
+          "de": "Fade-Intervall",
+          "ru": "Fade интервал",
+          "pt": "Intervalo de destino",
+          "nl": "Vertaling:",
+          "fr": "Intervalle de Fade",
+          "it": "Intervallo fascio",
+          "es": "Intervalo de fracaso",
+          "pl": "Przedział Fade",
+          "uk": "Проміжок дії",
+          "zh-cn": "间隔"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
       "_id": "indicator.2.color",
       "type": "state",
       "common": {
@@ -1859,6 +1913,33 @@
           "pl": "Blink interval",
           "uk": "Проміжок Blink",
           "zh-cn": "B. 联系"
+        },
+        "type": "number",
+        "role": "value",
+        "unit": "ms",
+        "read": true,
+        "write": true,
+        "def": 0,
+        "min": 0
+      },
+      "native": {}
+    },
+    {
+      "_id": "indicator.3.fade",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Fade interval",
+          "de": "Fade-Intervall",
+          "ru": "Fade интервал",
+          "pt": "Intervalo de destino",
+          "nl": "Vertaling:",
+          "fr": "Intervalle de Fade",
+          "it": "Intervallo fascio",
+          "es": "Intervalo de fracaso",
+          "pl": "Przedział Fade",
+          "uk": "Проміжок дії",
+          "zh-cn": "间隔"
         },
         "type": "number",
         "role": "value",

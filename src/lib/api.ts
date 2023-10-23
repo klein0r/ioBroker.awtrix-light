@@ -43,6 +43,7 @@ export namespace AwtrixApi {
     export type Indicator = {
         color?: string;
         blink?: number;
+        fade?: number;
     };
 
     export type Moodlight = {

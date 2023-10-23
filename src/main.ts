@@ -757,6 +757,9 @@ export class AwtrixLight extends utils.Adapter {
             const blink = indicatorValues[`indicator.${index}.blink`] as number;
             if (blink > 0) {
                 postObj.blink = blink;
+            } else {
+                const fade = indicatorValues[`indicator.${index}.fade`] as number;
+                postObj.fade = fade;
             }
         }
 
