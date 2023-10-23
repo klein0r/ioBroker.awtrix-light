@@ -763,7 +763,7 @@ export class AwtrixLight extends utils.Adapter {
             }
         }
 
-        return this.apiClient!.requestAsync(`indicator${index}`, 'POST', indicatorValues[`indicator.${index}.active`] ? postObj : undefined);
+        return this.apiClient!.indicatorRequestAsync(index, indicatorValues[`indicator.${index}.active`] ? postObj : undefined);
     }
 
     private async updateMoodlightByStates(): Promise<AxiosResponse> {
