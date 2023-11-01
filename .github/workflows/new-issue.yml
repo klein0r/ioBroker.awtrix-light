@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Get NPM version
         id: get_npm_version
-        uses: satak/webrequest-action@v1.2.3
+        uses: satak/webrequest-action@v1.4.0
         with:
           url: https://registry.npmjs.org/iobroker.awtrix-light
           method: GET
