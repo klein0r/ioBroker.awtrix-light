@@ -126,7 +126,7 @@ export namespace AwtrixApi {
             return this.requestAsync('settings', 'POST', { [data.key]: data.value });
         }
 
-        public async indicatorRequestAsync(index: number, data?: AwtrixApi.Indicator) : Promise<AxiosResponse> {
+        public async indicatorRequestAsync(index: number, data?: AwtrixApi.Indicator): Promise<AxiosResponse> {
             return this.requestAsync(`indicator${index}`, 'POST', data);
         }
 
