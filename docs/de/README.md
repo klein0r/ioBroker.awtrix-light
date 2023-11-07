@@ -122,7 +122,7 @@ sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
 
 **App-Namen dürfen nur Kleinbuchstaben (a-z) enthalten und müssen eindeutig sein. Keine Zahlen, keine Sonderzeichen, keine Leerzeichen.**
 
-Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `time`, `date`, `temp`, `hum`, `bat`.
+Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
 
 - `%s` ist ein Platzhalter für den Zustands-Wert
 - `%u` ist ein Platzhalter für die Einheit des Zustandes (z.B. `°C`)
@@ -143,7 +143,7 @@ Die folgenden Kombinationen führen zu einer Warnung im Log:
 
 **App-Namen dürfen nur Kleinbuchstaben (a-z) enthalten und müssen eindeutig sein. Keine Zahlen, keine Sonderzeichen, keine Leerzeichen.**
 
-Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `time`, `date`, `temp`, `hum`, `bat`.
+Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
 
 **In den Graphen werden nur bestätigte Werte dargestellt. Steuere-Werte mit `ack: false` werden gefiltert und ignoriert!**
 

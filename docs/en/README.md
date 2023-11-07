@@ -122,7 +122,7 @@ sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `date`, `temp`, `hum`, `bat`.
+The following names are used by internal apps and cannot be used: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
 
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
@@ -143,7 +143,7 @@ The following combinations will lead to a warning in the log:
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
-The following names are used by internal apps and cannot be used: `time`, `date`, `temp`, `hum`, `bat`.
+The following names are used by internal apps and cannot be used: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
 
 **History apps just display acknowledged history values! Control states with `ack: false` are filtered and ignored!**
 
