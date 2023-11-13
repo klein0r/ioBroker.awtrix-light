@@ -118,11 +118,18 @@ sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
 });
 ```
 
-## Custom apps
+## Apps
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
 
 The following names are used by internal apps and cannot be used: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
+
+- You can use the state `activate` of each app to bring that app to front
+- This state has the role `button` and allows just the value `true` (other values will raise a warning)
+
+Each custom and history app has a state `apps.<name>.visible`. If this state is set to `false`, the app will be removed from the device and no further updates are pushed. This is useful, if a certain app should only be displayed during day time or in a given time range.
+
+### Custom apps
 
 - `%s` is a placeholder for the state value
 - `%u` is a placeholder for the unit of the state object (e.g. `°C`)
@@ -139,22 +146,21 @@ The following combinations will lead to a warning in the log:
 - A custom app with a selected object id of a state without a unit `common.unit`, but `%u` is used in the text
 - A custom app without a selected object, but `%s` has been used in the text
 
-## History apps / graphs
+### History apps / graphs
 
-**App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**
-
-The following names are used by internal apps and cannot be used: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
+TODO
 
 **History apps just display acknowledged history values! Control states with `ack: false` are filtered and ignored!**
 
-## App states
+### Expert apps
 
-- You can use the state `activate` of each app to bring that app to front
-- This state has the role `button` and allows just the value `true` (other values will raise a warning)
+Expert apps are available since apdater version 0.10.0. They allow to set all values manually and to implement your own logic by controlling all data via states. To create a new expert app
 
-## Hide custom or history apps
+- Go to expert options in instance settings
+- Create a new expert app by choosing a name (e.g. `test`)
+- Save and close the instance settings
 
-Each custom and history app has a state `apps.<name>.visible`. If this state is set to `false`, the app will be removed from the device and no further updates are pushed. This is useful, if a certain app should only be displayed during day time or in a given time range.
+After that, all controllable states for the app name `test` will be created in `awtrix-light.0.apps.test`. Just set values of `icon`, `text` and other states by using your own scripts and logic (e.g. JavaScript or Blockly).
 
 ## Hide native apps
 

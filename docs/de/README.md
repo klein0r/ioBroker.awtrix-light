@@ -118,11 +118,18 @@ sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
 });
 ```
 
-## Benutzerdefinierte Apps
+## Apps
 
 **App-Namen dürfen nur Kleinbuchstaben (a-z) enthalten und müssen eindeutig sein. Keine Zahlen, keine Sonderzeichen, keine Leerzeichen.**
 
 Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
+
+- Mit dem `activate`-Zustand jeder App kann diese in den Vordergrund geholt werden
+- Diese Zustände haben die Rolle `button` und erlauben nur den boolschen Wert `true` (andere Werte führen zu einer Warnung im Log)
+
+Jede selbst angelegte App hat einen Zustand mit der ID `apps.<name>.visible`. Wenn dieser Zustand auf `false` (falsch) gesetzt wird, wird die App vom Gerät entfernt und nicht mehr dargestellt. Dies ist nützlich, um bestimmte Apps z.B. nur tagsüber oder in bestimmten Zeiträumen darzustellen.
+
+### Benutzerdefinierte Apps
 
 - `%s` ist ein Platzhalter für den Zustands-Wert
 - `%u` ist ein Platzhalter für die Einheit des Zustandes (z.B. `°C`)
@@ -139,22 +146,21 @@ Die folgenden Kombinationen führen zu einer Warnung im Log:
 - Eine benutzerdefinierte App wird mit einer gewählten Objekt-ID ohne Einheit in `common.unit` angelegt, aber `%u` ist im Text enthalten
 - Es wird keine Objekt-ID ausgewählt, aber `%s` im Text verwendet
 
-## Historische Apps / Graphen
+### Historische Apps / Graphen
 
-**App-Namen dürfen nur Kleinbuchstaben (a-z) enthalten und müssen eindeutig sein. Keine Zahlen, keine Sonderzeichen, keine Leerzeichen.**
-
-Die folgenden App-Namen sind von den internen apps reserviert und können nicht verwendet werden: `Time`, `Date`, `Temperature`, `Humidity`, `Battery`.
+TODO
 
 **In den Graphen werden nur bestätigte Werte dargestellt. Steuere-Werte mit `ack: false` werden gefiltert und ignoriert!**
 
-## App-Zustände
+### Experten Apps
 
-- Mit dem `activate`-Zustand jeder App kann diese in den Vordergrund geholt werden
-- Diese Zustände haben die Rolle `button` und erlauben nur den boolschen Wert `true` (andere Werte führen zu einer Warnung im Log)
+Experten-Apps sind seit Adapter-Version 0.10.0 verfügbar. Diese Apps erlauben es, alle Werte manuell über Zustände zu setzen und diese mit eigenen Logiken zu steuern. Um eine neue Experten-App zu erstellen:
 
-## Benutzerdefinierte Apps verstecken
+- Öffne das Tab Expertenoptionen in den Instanz-Einstellungen
+- Erstelle eine neue Experten-App mit einem frei wählbaren Namen (z.B. `test`)
+- Speichere die Instanz-Einstellungen
 
-Jede selbst angelegte App hat einen Zustand mit der ID `apps.<name>.visible`. Wenn dieser Zustand auf `false` (falsch) gesetzt wird, wird die App vom Gerät entfernt und nicht mehr dargestellt. Dies ist nützlich, um bestimmte Apps z.B. nur tagsüber oder in bestimmten Zeiträumen darzustellen.
+Danach werden alle steuerbaren Zustände der App `test` unter `awtrix-light.0.apps.test` erstellt. Um die jeweiligen Werte einer App zu verändern, kann einfach der Wert der Zustände `icon`, `text`, usw. mit eigenen Scripts (z.B. JavaScript oder Blockly) gesetzt werden.
 
 ## Native Apps verstecken
 
