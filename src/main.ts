@@ -484,6 +484,7 @@ export class AwtrixLight extends utils.Adapter {
                     this.displayedVersionWarning = true; // Just show once
                 }
 
+                await this.setStateChangedAsync('meta.uid', { val: content.uid, ack: true });
                 await this.setStateChangedAsync('meta.version', { val: content.version, ack: true });
 
                 await this.setStateChangedAsync('sensor.lux', { val: parseInt(content.lux), ack: true });
@@ -493,6 +494,7 @@ export class AwtrixLight extends utils.Adapter {
                 await this.setStateChangedAsync('display.brightness', { val: content.bri, ack: true });
 
                 await this.setStateChangedAsync('device.battery', { val: content.bat, ack: true });
+                await this.setStateChangedAsync('device.ipAddress', { val: content.ip_address, ack: true });
                 await this.setStateChangedAsync('device.wifiSignal', { val: content.wifi_signal, ack: true });
                 await this.setStateChangedAsync('device.freeRAM', { val: content.ram, ack: true });
                 await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });

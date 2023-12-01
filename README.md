@@ -43,6 +43,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.91
 
+* (klein0r) Added uid and ip address states
+
 ### 0.10.0 (2023-10-23)
 
 Updated recommended firmware version to 0.90
