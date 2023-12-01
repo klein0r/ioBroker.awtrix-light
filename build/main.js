@@ -41,7 +41,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.90";
+    this.supportedVersion = "0.91";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
@@ -398,12 +398,14 @@ class AwtrixLight extends utils.Adapter {
         this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
         this.displayedVersionWarning = true;
       }
+      await this.setStateChangedAsync("meta.uid", { val: content.uid, ack: true });
       await this.setStateChangedAsync("meta.version", { val: content.version, ack: true });
       await this.setStateChangedAsync("sensor.lux", { val: parseInt(content.lux), ack: true });
       await this.setStateChangedAsync("sensor.temp", { val: parseInt(content.temp), ack: true });
       await this.setStateChangedAsync("sensor.humidity", { val: parseInt(content.hum), ack: true });
       await this.setStateChangedAsync("display.brightness", { val: content.bri, ack: true });
       await this.setStateChangedAsync("device.battery", { val: content.bat, ack: true });
+      await this.setStateChangedAsync("device.ipAddress", { val: content.ip_address, ack: true });
       await this.setStateChangedAsync("device.wifiSignal", { val: content.wifi_signal, ack: true });
       await this.setStateChangedAsync("device.freeRAM", { val: content.ram, ack: true });
       await this.setStateChangedAsync("device.uptime", { val: parseInt(content.uptime), ack: true });
@@ -619,7 +621,7 @@ class AwtrixLight extends utils.Adapter {
         postObj.fade = fade;
       }
     }
-    return this.apiClient.requestAsync(`indicator${index}`, "POST", indicatorValues[`indicator.${index}.active`] ? postObj : void 0);
+    return this.apiClient.indicatorRequestAsync(index, indicatorValues[`indicator.${index}.active`] ? postObj : void 0);
   }
   async updateMoodlightByStates() {
     this.log.debug(`Updating moodlight`);

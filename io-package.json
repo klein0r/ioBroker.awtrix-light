@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.10.0",
+    "version": "0.10.1",
     "news": {
+      "0.10.1": {
+        "en": "Updated recommended firmware version to 0.91\n\n* Added uid and ip address states",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.91\n\n* Hinzugefügt uid und ip Adresszustände",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.91\n\n* Добавлены страны uid и ip адреса",
+        "pt": "Versão de firmware recomendada atualizada para 0.91\n\n* Adicionado uid e ip address estados",
+        "nl": "Aanbevolen firmaware versie naar 0.91\n\n♪ Added uid and ip adres states",
+        "fr": "Version mise à jour du firmware recommandé à 0.91\n\n* Ajout des états uid et ip",
+        "it": "Versione firmware consigliata aggiornata a 0.91\n\n* Aggiunto uid e ip indirizzi stati",
+        "es": "Versión actualizada de firmware recomendada a 0.91\n\n* estados de dirección uid y ip",
+        "pl": "Zalecona wersja oprogramowania do 0.91\n\n* Added uid and ip address states",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.91\n\n* Додані і ip адресні стани",
+        "zh-cn": "最新建议的警觉版本到0.91\n\n* 增编和参加国"
+      },
       "0.10.0": {
         "en": "Updated recommended firmware version to 0.90\n\n* Added support for sleep mode\n* Added fading for indicators",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.90\n\n* Unterstützung für den Schlafmodus hinzugefügt\n* Hinzugefügt Fading für Indikatoren",
@@ -80,19 +93,6 @@
         "pl": "Wstępna opcja dla formatu liczbowego",
         "uk": "Додано варіант для формату номеру",
         "zh-cn": "增加编号选择"
-      },
-      "0.7.0": {
-        "en": "Updated recommended firmware version to 0.72\n\n* Added MovingLine effect\n* Added settings for time style and transition effect\n* Setting repeat to 1 in blockly notifications",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0,72\n\n* Hinzugefügt MovingLine Effekt\n* Hinzugefügt Einstellungen für Zeitstil und Übergangseffekt\n* Wiederholen der Einstellungen auf 1 in sperrigen Benachrichtigungen",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.72\n\n* Добавлен эффект MovingLine\n* Добавлены настройки для стиля времени и эффекта перехода\n* Установка повторения до 1 в блочных уведомлениях",
-        "pt": "Versão de firmware recomendada atualizada para 0.72\n\n* Adicionado efeito MovingLine\n* Configurações adicionadas para o estilo de tempo e efeito de transição\n* Definir repetição a 1 em notificações bloqueadas",
-        "nl": "Aanbevolen firmaware versie naar 0.72\n\n♪ Added MovingLine effect ♪\n♪ Added settings for time style and transition effect\nQuality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "Version mise à jour du firmware recommandé à 0.72\n\n* Ajout de l'effet MovingLine\n* Ajout de paramètres pour le style de temps et l'effet de transition\n* Setting repeat to 1 in blockly notifications",
-        "it": "Versione firmware consigliata aggiornata a 0.72\n\n* Aggiunto effetto MoveLine\n* Aggiunte le impostazioni per lo stile del tempo e l'effetto di transizione\n* Impostazione ripetizione a 1 in notifiche bloccate",
-        "es": "Versión actualizada de firmware recomendada a 0.72\n\n* Efecto MovingLine añadido\n* Ajustes adicionales para el estilo del tiempo y el efecto de transición\n* Ajuste de repetición a 1 en notificaciones bloqueadas",
-        "pl": "Zalecona wersja oprogramowania do wersji 0.72\n\nAdded MovingLine effect\n* Wstępowanie do stylu i efektu przejściowego\n* Setting repeat to 1 in blockly notification (ang.)",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.72\n\n* Додано ефект MovingLine\n* Додано налаштування для стилю часу та ефекту переходу\n* Налаштування повторення до 1 в блокнотних повідомленнях",
-        "zh-cn": "最新建议的警觉版本\n\n* 增加Moving Line效力\n* 增加时间风格和过渡效力的环境\n* 在软禁通知中重新编号1"
       }
     },
     "titleLang": {

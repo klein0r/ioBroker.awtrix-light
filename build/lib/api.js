@@ -91,6 +91,9 @@ var AwtrixApi;
     async settingsRequestAsync(data) {
       return this.requestAsync("settings", "POST", { [data.key]: data.value });
     }
+    async indicatorRequestAsync(index, data) {
+      return this.requestAsync(`indicator${index}`, "POST", data);
+    }
     async appRequestAsync(name, data) {
       return this.requestAsync(`custom?name=${name}`, "POST", data);
     }

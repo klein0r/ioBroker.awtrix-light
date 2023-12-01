@@ -1,4 +1,16 @@
 # Older changes
+## 0.8.0 (2023-09-04)
+
+Updated recommended firmware version to 0.83
+
+* (klein0r) Allow to set custom app positions (expert options)
+* (klein0r) Unsubscribe from all states if device is not reachable
+* (klein0r) Added options basic auth
+* (klein0r) Get background effects via API
+* (klein0r) Fixed 0 decimals setting
+* (klein0r) Changed log level of some messages
+* (klein0r) Added states for transitions
+
 ## 0.7.1 (2023-08-09)
 
 * (klein0r) Added option for number format
