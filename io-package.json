@@ -1111,8 +1111,7 @@
         "type": "string",
         "role": "info.ip",
         "read": true,
-        "write": false,
-        "unit": "dBm"
+        "write": false
       },
       "native": {}
     },
