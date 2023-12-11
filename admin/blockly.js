@@ -297,7 +297,7 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     objText.push('stack: ' + stack);
     objText.push('wakeup: ' + wakeup);
 
-    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
+    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} });`;
 };
 
 Blockly.Sendto.blocks['awtrix-light_playsound'] =
@@ -352,5 +352,5 @@ Blockly.JavaScript['awtrix-light_playsound'] = function (block) {
     const objText = [];
     sound && objText.push('sound: ' + sound);
 
-    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'sound', { ${objText.join(', ')} }, (res) => { if (res && res.error) { console.error(res.error); } });`;
+    return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'sound', { ${objText.join(', ')} });`;
 };
