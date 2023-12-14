@@ -1,4 +1,15 @@
 # Older changes
+## 0.9.0 (2023-10-01)
+
+Updated recommended firmware version to 0.88
+
+* (klein0r) Added expert apps
+* (klein0r) Use the last value of fast refreshing states
+* (klein0r) Added settings for calendar colors
+* (klein0r) Allow to use apps without text (just background effect)
+* (AlCalzone) Added rtttl api endpoint support (via sendTo)
+* (klein0r) Native apps have been renamed
+
 ## 0.8.0 (2023-09-04)
 
 Updated recommended firmware version to 0.83

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "news": {
+      "0.10.2": {
+        "en": "Removed callbacks in blockly code to prevent timeouts",
+        "de": "Entfernen von Callbacks im Block-Code, um Timeouts zu verhindern",
+        "ru": "Удалены обратный звонок в блокнотном коде для предотвращения таймаут",
+        "pt": "Retornos de chamada removidos em código bloqueado para evitar prazos",
+        "nl": "Verwijderde telefoontjes in blokkeer code om time-outs te voorkomen",
+        "fr": "Rappels supprimés en code bloqué pour éviter les timeouts",
+        "it": "Rimozione delle chiamate in codice blockly per evitare timeout",
+        "es": "Retractos eliminados en código bloqueado para evitar los timeouts",
+        "pl": "Przewidywania połączeń w trybie blokowania w celu zapobiegania czasu",
+        "uk": "Видалення зворотнього зв'язку в блокнотному коді для запобігання часових відходів",
+        "zh-cn": "取消阻碍时限的呼吁"
+      },
       "0.10.1": {
         "en": "Updated recommended firmware version to 0.91\n\n* Added uid and ip address states",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.91\n\n* Hinzugefügt uid und ip Adresszustände",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do 0.8383\n\n* Allow, aby ustawić niestandardowe stanowiska aplikacji (z wyjątkiem)\n* Niepodpisany ze wszystkich stanów, jeśli urządzenie nie jest dopasowalne\nAdddition Basic Auth (ang.)\n* Efekty tła przez API\n* Fixed 0 decimals setting\n* Zmienił poziom logowania niektórych wiadomości\nW: Państwa Adresowe dla przejść",
         "uk": "Оновлено рекомендовану версію прошивки до 0.83\n\n* Дозволяє встановлювати користувацькі позиції програми (опціональні параметри)\nІм'я * Якщо пристрій не досягається\n* Додано параметри базової auth\nІм'я * Отримайте фонові ефекти за допомогою API\n* Виправлено налаштування 0 десяткових чисел\n* Змінений рівень входу деяких повідомлень\n* Додано стани для переходів",
         "zh-cn": "最新建议的软件版本为0.83\n\n* 允许设立习俗评估职位(无选择)\n* A/64/50。 如果装置无法到达,则不从所有各州登记。\n* 增加基本选择\n* A/64/50。 B. 通过知识产权产生的全球背景效应\n* 固定的0.标记\n* 某些信息的变化逻辑水平\n* 增加过渡国"
-      },
-      "0.7.1": {
-        "en": "Added option for number format",
-        "de": "Option für Zahlenformat hinzugefügt",
-        "ru": "Добавлена опция для формата номера",
-        "pt": "Opção adicionada para o formato de número",
-        "nl": "Optie voor nummervorming",
-        "fr": "Option ajoutée pour le format de nombre",
-        "it": "Opzione aggiunta per il formato di numero",
-        "es": "Opción agregada para formato número",
-        "pl": "Wstępna opcja dla formatu liczbowego",
-        "uk": "Додано варіант для формату номеру",
-        "zh-cn": "增加编号选择"
       }
     },
     "titleLang": {
