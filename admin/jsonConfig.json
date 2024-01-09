@@ -709,6 +709,17 @@
                             "label": "Aggregation"
                         },
                         {
+                            "hidden": "data.mode !== 'aggregate'",
+                            "type": "number",
+                            "attr": "step",
+                            "label": "Step size",
+                            "sm": 12,
+                            "md": 2,
+                            "lg": 2,
+                            "default": 3600,
+                            "min": 1
+                        },
+                        {
                             "hidden": "!globalData.customPositions",
                             "newLine": true,
                             "type": "header",

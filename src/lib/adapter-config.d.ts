@@ -43,7 +43,8 @@ export type HistoryApp = DefaultApp & {
     backgroundColor: string;
     display: 'bar' | 'line';
     mode: 'last' | 'aggregate';
-    aggregation: 'average' | 'min' | 'max' | 'count';
+    aggregation?: 'average' | 'min' | 'max' | 'count';
+    step?: number;
 };
 
 export type ExpertApp = DefaultApp & {

@@ -9,6 +9,7 @@ export namespace AppType {
         end: number;
         limit: number;
         aggregate?: 'none' | 'average' | 'min' | 'max' | 'count';
+        step?: number;
         returnNewestEntries: boolean;
         ignoreNull: number;
         removeBorderValues: boolean;
@@ -92,6 +93,7 @@ export namespace AppType {
 
                 if (this.appDefinition.mode == 'aggregate') {
                     options.aggregate = this.appDefinition.aggregation;
+                    options.step = this.appDefinition.step ? this.appDefinition.step * 1000 : 3600;
                 } else {
                     // mode = last
                     options.aggregate = 'none';
