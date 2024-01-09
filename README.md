@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+Updated recommended firmware version to 0.94
+
 ### 0.10.2 (2023-12-14)
 
 * (klein0r) Removed callbacks in blockly code to prevent timeouts
