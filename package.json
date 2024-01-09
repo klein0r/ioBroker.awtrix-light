@@ -1,6 +1,6 @@
 {
   "name": "iobroker.awtrix-light",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "Integrate your Awtrix Light device (e.g. Ulanzi TC001) via HTTP  ",
   "author": {
     "name": "Matthias Kleine",
@@ -49,7 +49,6 @@
     "chai-as-promised": "^7.1.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.2",
     "eslint-plugin-prettier": "^5.1.2",
     "mocha": "^10.2.0",
     "prettier": "^3.1.1",

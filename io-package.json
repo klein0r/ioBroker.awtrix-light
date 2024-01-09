@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.10.2",
+    "version": "0.11.0",
     "news": {
+      "0.11.0": {
+        "en": "Updated recommended firmware version to 0.94\n\n* Added bar graph to history apps\n* Added aggregation for history apps",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.94\n\n* Hinzugefügt Balkendiagramm zu Geschichtsapps\n* Hinzugefügt Aggregation für Geschichtsapps",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0.94\n\n* Добавлен штрих-граф в приложения истории\n* Добавлена агрегация для приложений истории",
+        "pt": "Versão de firmware recomendada atualizada para 0.94\n\n* Adicionado gráfico de barras para aplicativos de história\n* Agregação adicionada para aplicativos de história",
+        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.94\n\n* Toegevoegde staaf grafiek aan geschiedenis apps\n* Toegevoegde aggregatie voor geschiedenis-apps",
+        "fr": "Mise à jour de la version firmware recommandée à 0.94\n\n* Ajout d'un graphique à barres aux applications d'historique\n* Ajout de l'agrégation pour les applications d'historique",
+        "it": "Versione firmware consigliata aggiornata a 0.94\n\n* Aggiunto grafico della barra alle app di storia\n* Aggiunto aggregazione per le app di storia",
+        "es": "Versión actualizada de firmware recomendada a 0.94\n\n* Gráfico de barras añadido a aplicaciones de historia\n* Agregado agregación para aplicaciones de historia",
+        "pl": "Aktualizacja zalecanej wersji firmware do 0.94\n\n* Dodano wykres bar do aplikacji historii\n* Dodano agregację dla aplikacji historii",
+        "uk": "Оновлено рекомендовану версію мікропрограми до 0.94\n\n* Додано графік штриху до історичних додатків\n* Додано агрегацію для історичних додатків",
+        "zh-cn": "最新推荐的固件版本为0.94\n\n* 添加到历史应用中的条形图\n* 为历史应用程序添加的汇总"
+      },
       "0.10.2": {
         "en": "Removed callbacks in blockly code to prevent timeouts",
         "de": "Entfernen von Callbacks im Block-Code, um Timeouts zu verhindern",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do wersji 0.8888\n\n* Ekspertywna aplikacja\n* Wykorzystywana jest ostatnia wartość szybkiego odświeżania stanu\n* Podstawy do kolorów kalendarzowych\n* Allow do korzystania z aplikacji bez tekstu (zwłaszcza efekt tła)\n* Added rtttl api endpoint support (via sendTo) (ang.)\nIdentyfikacja rdzennych aplikacji została zmieniona",
         "uk": "Оновлено рекомендовану версію прошивки до 0.88\n\n* Додано додатки експерта\nІм'я * Використовуйте останнє значення швидко освіжаючих станів\n* Додано налаштування для календарних кольорів\n* Дозволяє використовувати додатки без тексту (тільки фоновий ефект)\n* Додано rtttl api endpoint support (через відправленняTo)\n* Нативні програми були перейменовані",
         "zh-cn": "最新建议的警觉版本到0.88\n\n* 增加专家。\n* A/64/50。 利用快建国的最后价值\n* 会议日历上的增加\n* 允许无案文使用(实际背景)\n* 增加第1款次(待补)\n* 附录已改为:"
-      },
-      "0.8.0": {
-        "en": "Updated recommended firmware version to 0.83\n\n* Allow to set custom app positions (expert options)\n* Unsubscribe from all states if device is not reachable\n* Added options basic auth\n* Get background effects via API\n* Fixed 0 decimals setting\n* Changed log level of some messages\n* Added states for transitions",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0,83\n\n* Lassen Sie benutzerdefinierte App-Positionen (Expert-Optionen) einstellen\n* Abonnieren Sie von allen Zuständen, wenn das Gerät nicht erreichbar ist\n* Zusätzliche Optionen grundlegende Auth\n* Erhalten Sie Hintergrundeffekte über API\n* Feste Einstellung von 0 Dezimals\n* Änderte Protokollebene einiger Nachrichten\n* Hinzugefügt Zustände für Übergänge",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.83\n\n* Разрешить установить пользовательские позиции приложения (экспертные опции)\n* Отписаться от всех штатов, если устройство не доступно\n* Добавлены опции базового auth\n* Получите фоновые эффекты через API\n* Исправлена настройка 0 десятичных знаков\n* Изменен уровень лога некоторых сообщений\n* Добавлены государства для переходов",
-        "pt": "Versão de firmware recomendada atualizada para 0.83\n\n* Permitir definir posições de aplicativo personalizadas (opções de especialistas)\n* Inscreva-se em todos os estados se o dispositivo não for acessível\n* Adicionado opções básico auth\n* Obter efeitos de fundo via API\n* Configuração decimais fixa 0\n* Nível de log alterado de algumas mensagens\n* estados adicionados para transições",
-        "nl": "Aanbevolen firmaware versie naar 0.83\n\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Onbeschrijving van alle staten als apparaat niet bereikbaar is\n♪ Added options basic auth ♪\n♪ Haal achtergrondeffecten via API\n♪ Fixed 0 decimals setting\nVeranderde log niveau van sommige berichten\n♪ Added states for transitions ♪",
-        "fr": "Version mise à jour du firmware recommandé à 0.83\n\n* Permettre de définir des positions d'application personnalisées (options d'experts)\n* Se désabonner de tous les états si l'appareil n'est pas accessible\n* Ajout d'options de base authent\n* Obtenir des effets de fond via API\n* Réglage fixe de 0 décimales\n* Changement de niveau de journal de certains messages\n* États ajoutés pour les transitions",
-        "it": "Versione firmware consigliata aggiornata a 0.83\n\n* Permettere di impostare posizioni app personalizzate (opzioni esperte)\n# Cancellare da tutti gli stati se il dispositivo non è raggiungibile\n* Opzioni aggiuntive base auth\n# Ottenere gli effetti di sfondo tramite API\n* Impostazione 0 decimali fissi\n* Livello di registro modificato di alcuni messaggi\n* Stati aggiunti per transizioni",
-        "es": "Versión actualizada de firmware recomendada a 0.83\n\n* Permitir establecer posiciones de aplicación personalizadas (opciones de expertos)\n* Suscríbete de todos los estados si el dispositivo no es accesible\n* Opciones adicionales de austeridad básica\n* Obtener efectos de fondo a través de API\n* Ajuste de 0 decimales\n* Nivel de registro cambiado de algunos mensajes\n* Estados añadidos para las transiciones",
-        "pl": "Zalecona wersja oprogramowania do 0.8383\n\n* Allow, aby ustawić niestandardowe stanowiska aplikacji (z wyjątkiem)\n* Niepodpisany ze wszystkich stanów, jeśli urządzenie nie jest dopasowalne\nAdddition Basic Auth (ang.)\n* Efekty tła przez API\n* Fixed 0 decimals setting\n* Zmienił poziom logowania niektórych wiadomości\nW: Państwa Adresowe dla przejść",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.83\n\n* Дозволяє встановлювати користувацькі позиції програми (опціональні параметри)\nІм'я * Якщо пристрій не досягається\n* Додано параметри базової auth\nІм'я * Отримайте фонові ефекти за допомогою API\n* Виправлено налаштування 0 десяткових чисел\n* Змінений рівень входу деяких повідомлень\n* Додано стани для переходів",
-        "zh-cn": "最新建议的软件版本为0.83\n\n* 允许设立习俗评估职位(无选择)\n* A/64/50。 如果装置无法到达,则不从所有各州登记。\n* 增加基本选择\n* A/64/50。 B. 通过知识产权产生的全球背景效应\n* 固定的0.标记\n* 某些信息的变化逻辑水平\n* 增加过渡国"
       }
     },
     "titleLang": {

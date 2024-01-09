@@ -1,4 +1,11 @@
 # Older changes
+## 0.9.1 (2023-10-02)
+
+NodeJS 16.x is required
+
+* (klein0r) Fixed hidden apps
+* (klein0r) Fixed color conversions of settings
+
 ## 0.9.0 (2023-10-01)
 
 Updated recommended firmware version to 0.88

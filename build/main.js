@@ -41,7 +41,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.91";
+    this.supportedVersion = "0.94";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
@@ -198,6 +198,7 @@ class AwtrixLight extends utils.Adapter {
           this.apiClient.requestAsync("doupdate", "POST").then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
               this.log.info("started firmware update");
+              this.setApiConnected(false);
             }
           }).catch((error) => {
             this.log.warn(`(doupdate) Unable to execute firmware update (maybe this is already the newest version): ${error}`);

@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.11.0 (2024-01-09)
 
 Updated recommended firmware version to 0.94
 
@@ -66,13 +66,6 @@ Updated recommended firmware version to 0.90
 ### 0.9.2 (2023-10-22)
 
 * (klein0r) Fixed: Visisble state of expert apps
-
-### 0.9.1 (2023-10-02)
-
-NodeJS 16.x is required
-
-* (klein0r) Fixed hidden apps
-* (klein0r) Fixed color conversions of settings
 
 ## License
 MIT License

@@ -74,24 +74,30 @@ var AppType;
       let refreshed = false;
       if (await super.refresh() && this.isValidSourceInstance && this.isValidObjId) {
         const itemCount = this.appDefinition.icon ? 11 : 16;
+        const options = {
+          start: 1,
+          end: Date.now(),
+          limit: itemCount,
+          returnNewestEntries: true,
+          ignoreNull: 0,
+          removeBorderValues: true,
+          ack: true
+        };
+        if (this.appDefinition.mode == "aggregate") {
+          options.aggregate = this.appDefinition.aggregation;
+          options.step = this.appDefinition.step ? this.appDefinition.step * 1e3 : 3600;
+        } else {
+          options.aggregate = "none";
+        }
         const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, "getHistory", {
           id: this.appDefinition.objId,
-          options: {
-            start: 1,
-            end: Date.now(),
-            aggregate: "none",
-            limit: itemCount,
-            returnNewestEntries: true,
-            ignoreNull: 0,
-            removeBorderValues: true,
-            ack: true
-          }
+          options
         });
-        const lineData = historyData == null ? void 0 : historyData.result.filter((state) => typeof state.val === "number" && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
+        const graphData = historyData == null ? void 0 : historyData.result.filter((state) => typeof state.val === "number" && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
         this.adapter.log.debug(
-          `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`
+          `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`
         );
-        if (lineData.length > 0) {
+        if (graphData.length > 0) {
           const moreOptions = {};
           if (this.appDefinition.duration > 0) {
             moreOptions.duration = this.appDefinition.duration;
@@ -99,10 +105,14 @@ var AppType;
           if (this.appDefinition.repeat > 0) {
             moreOptions.repeat = this.appDefinition.repeat;
           }
+          if (this.appDefinition.display == "bar") {
+            moreOptions.bar = graphData;
+          } else {
+            moreOptions.line = graphData;
+          }
           await this.apiClient.appRequestAsync(this.appDefinition.name, {
             color: this.appDefinition.lineColor || "#FF0000",
             background: this.appDefinition.backgroundColor || "#000000",
-            line: lineData,
             autoscale: true,
             icon: this.appDefinition.icon,
             lifetime: this.adapter.config.historyAppsRefreshInterval + 60,
