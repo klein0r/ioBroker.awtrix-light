@@ -641,6 +641,74 @@
                             "default": "#000000"
                         },
                         {
+                            "newLine": true,
+                            "attr": "display",
+                            "type": "select",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "options": [
+                                {
+                                    "label": "Line",
+                                    "value": "line"
+                                },
+                                {
+                                    "label": "Bar",
+                                    "value": "bar"
+                                }
+                            ],
+                            "default": "line",
+                            "label": "Display as"
+                        },
+                        {
+                            "newLine": true,
+                            "attr": "mode",
+                            "type": "select",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "options": [
+                                {
+                                    "label": "Last values",
+                                    "value": "last"
+                                },
+                                {
+                                    "label": "Aggregated values",
+                                    "value": "aggregate"
+                                }
+                            ],
+                            "default": "last",
+                            "label": "Mode"
+                        },
+                        {
+                            "hidden": "data.mode !== 'aggregate'",
+                            "attr": "aggregation",
+                            "type": "select",
+                            "sm": 12,
+                            "md": 4,
+                            "lg": 4,
+                            "options": [
+                                {
+                                    "label": "average",
+                                    "value": "average"
+                                },
+                                {
+                                    "label": "min",
+                                    "value": "min"
+                                },
+                                {
+                                    "label": "max",
+                                    "value": "max"
+                                },
+                                {
+                                    "label": "count",
+                                    "value": "count"
+                                }
+                            ],
+                            "default": "average",
+                            "label": "Aggregation"
+                        },
+                        {
                             "hidden": "!globalData.customPositions",
                             "newLine": true,
                             "type": "header",

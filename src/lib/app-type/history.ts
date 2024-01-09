@@ -4,6 +4,17 @@ import { AwtrixApi } from '../api';
 import { AppType as AbstractAppType } from './abstract';
 
 export namespace AppType {
+    export type HistoryOptions = {
+        start: number;
+        end: number;
+        limit: number;
+        aggregate?: 'none' | 'average' | 'min' | 'max' | 'count';
+        returnNewestEntries: boolean;
+        ignoreNull: number;
+        removeBorderValues: boolean;
+        ack: boolean;
+    };
+
     export class History extends AbstractAppType.AbstractApp {
         private appDefinition: HistoryApp;
         private isValidSourceInstance: boolean;
@@ -67,31 +78,39 @@ export namespace AppType {
             let refreshed = false;
 
             if ((await super.refresh()) && this.isValidSourceInstance && this.isValidObjId) {
-                const itemCount = this.appDefinition.icon ? 11 : 16; // Can display 11 values with icon or 16 values without icon
+                const itemCount = this.appDefinition.icon ? 11 : 16; // can display 11 values with icon or 16 values without icon
+
+                const options: HistoryOptions = {
+                    start: 1,
+                    end: Date.now(),
+                    limit: itemCount,
+                    returnNewestEntries: true,
+                    ignoreNull: 0,
+                    removeBorderValues: true,
+                    ack: true,
+                };
+
+                if (this.appDefinition.mode == 'aggregate') {
+                    options.aggregate = this.appDefinition.aggregation;
+                } else {
+                    // mode = last
+                    options.aggregate = 'none';
+                }
 
                 const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, 'getHistory', {
                     id: this.appDefinition.objId,
-                    options: {
-                        start: 1,
-                        end: Date.now(),
-                        aggregate: 'none',
-                        limit: itemCount,
-                        returnNewestEntries: true,
-                        ignoreNull: 0,
-                        removeBorderValues: true,
-                        ack: true,
-                    },
+                    options,
                 });
-                const lineData = (historyData as any)?.result
+                const graphData = (historyData as any)?.result
                     .filter((state: ioBroker.State) => typeof state.val === 'number' && state.ack)
                     .map((state: ioBroker.State) => Math.round(state.val as number))
                     .slice(itemCount * -1);
 
                 this.adapter.log.debug(
-                    `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(lineData)}`,
+                    `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`,
                 );
 
-                if (lineData.length > 0) {
+                if (graphData.length > 0) {
                     const moreOptions: AwtrixApi.App = {};
 
                     // Duration
@@ -104,10 +123,16 @@ export namespace AppType {
                         moreOptions.repeat = this.appDefinition.repeat;
                     }
 
+                    // Bar or line graph
+                    if (this.appDefinition.display == 'bar') {
+                        moreOptions.bar = graphData;
+                    } else {
+                        moreOptions.line = graphData;
+                    }
+
                     await this.apiClient!.appRequestAsync(this.appDefinition.name, {
                         color: this.appDefinition.lineColor || '#FF0000',
                         background: this.appDefinition.backgroundColor || '#000000',
-                        line: lineData,
                         autoscale: true,
                         icon: this.appDefinition.icon,
                         lifetime: this.adapter.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)

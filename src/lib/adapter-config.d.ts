@@ -41,6 +41,9 @@ export type HistoryApp = DefaultApp & {
     objId: string;
     lineColor: string;
     backgroundColor: string;
+    display: 'bar' | 'line';
+    mode: 'last' | 'aggregate';
+    aggregation: 'average' | 'min' | 'max' | 'count';
 };
 
 export type ExpertApp = DefaultApp & {
@@ -73,4 +76,5 @@ declare global {
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export {};
+export { };
+
