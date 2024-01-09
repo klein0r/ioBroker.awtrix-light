@@ -226,6 +226,7 @@ export class AwtrixLight extends utils.Adapter {
                         .then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('started firmware update');
+                                this.setApiConnected(false);
                             }
                         })
                         .catch((error) => {
