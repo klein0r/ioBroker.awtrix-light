@@ -160,6 +160,19 @@ Blockly.Words['awtrix-light_wakeup'] = {
     uk: 'Вейкап',
     'zh-cn': '瓦克鲁',
 };
+Blockly.Words['awtrix-light_hold'] = {
+    en: 'Hold',
+    de: 'Halten',
+    ru: 'Стойте',
+    pt: 'Espere',
+    nl: 'Wacht',
+    fr: 'Attendez',
+    it: 'Aspetta',
+    es: 'Espera',
+    pl: 'Trzymaj',
+    uk: 'Прованс',
+    'zh-cn': '坚持住',
+};
 Blockly.Words['awtrix-light_anyInstance'] = {
     en: 'All instances',
     de: 'Alle Instanzen',
@@ -224,6 +237,8 @@ Blockly.Sendto.blocks['awtrix-light'] =
     '     </value>' +
     '     <value name="WAKEUP">' +
     '     </value>' +
+    '     <value name="HOLD">' +
+    '     </value>' +
     '</block>';
 
 Blockly.Blocks['awtrix-light'] = {
@@ -258,6 +273,7 @@ Blockly.Blocks['awtrix-light'] = {
         this.appendDummyInput('RAINBOW').appendField(Blockly.Translate('awtrix-light_rainbow')).appendField(new Blockly.FieldCheckbox('FALSE'), 'RAINBOW');
         this.appendDummyInput('STACK_INPUT').appendField(Blockly.Translate('awtrix-light_stack')).appendField(new Blockly.FieldCheckbox('TRUE'), 'STACK');
         this.appendDummyInput('WAKEUP_INPUT').appendField(Blockly.Translate('awtrix-light_wakeup')).appendField(new Blockly.FieldCheckbox('TRUE'), 'WAKEUP');
+        this.appendDummyInput('HOLD_INPUT').appendField(Blockly.Translate('awtrix-light_hold')).appendField(new Blockly.FieldCheckbox('FALSE'), 'HOLD');
 
         this.setInputsInline(false);
         this.setPreviousStatement(true, null);
@@ -286,6 +302,9 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     let wakeup = block.getFieldValue('WAKEUP');
     wakeup = wakeup === 'TRUE' || wakeup === 'true' || wakeup === true;
 
+    let hold = block.getFieldValue('WAKEUP');
+    hold = hold === 'TRUE' || hold === 'true' || hold === true;
+
     const objText = [];
     message && objText.push('text: ' + message);
     color && !rainbow && objText.push('color: String(' + color + ').toUpperCase()');
@@ -296,6 +315,7 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     objText.push('rainbow: ' + rainbow);
     objText.push('stack: ' + stack);
     objText.push('wakeup: ' + wakeup);
+    objText.push('hold: ' + hold);
 
     return `sendTo('awtrix-light${block.getFieldValue('INSTANCE')}', 'notification', { ${objText.join(', ')} });`;
 };
