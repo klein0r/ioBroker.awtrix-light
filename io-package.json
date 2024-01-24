@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "news": {
+      "0.12.0": {
+        "en": "Added hold option to blockly\nAdded state to dismiss notifications",
+        "de": "Option zum Blockieren hinzugefügt\nZulässige Meldungen hinzugefügt",
+        "ru": "Добавлена возможность блокировки\nДобавленное состояние для отклонения уведомлений",
+        "pt": "Adicionado opção de retenção para blockly\nEstado adicionado para dispensar notificações",
+        "nl": "Toegevoegde hold optie om te blokkeren\nToegevoegde status om kennisgevingen te verwerpen",
+        "fr": "Ajout de l'option hold pour bloquer\nÉtat ajouté pour rejeter les notifications",
+        "it": "Aggiunta opzione di attesa per bloccare\nStato aggiunto per annullare le notifiche",
+        "es": "Añadido opción de retención para bloquear\nEstado añadido para desestimar las notificaciones",
+        "pl": "Dodano opcję hold do blockly\nDodano państwo, które odrzuciło powiadomienia",
+        "uk": "Додано варіант утримання для блокування\nДодано стан для звільнення повідомлень",
+        "zh-cn": "添加控件选项以屏蔽\n驳回通知的添加状态"
+      },
       "0.11.0": {
         "en": "Updated recommended firmware version to 0.94\n\n* Added bar graph to history apps\n* Added aggregation for history apps",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.94\n\n* Hinzugefügt Balkendiagramm zu Geschichtsapps\n* Hinzugefügt Aggregation für Geschichtsapps",
@@ -80,19 +93,6 @@
         "pl": "NodeJS 16 (ang.)\n\n* Wszystko ukryte\n* Zwyczajowe przekształcenia kolorów w ustawienia",
         "uk": "NodeJS 16.x обов'язковий\n\n* Виправлені приховані додатки\n* Виправлені кольорові перетворення параметрів",
         "zh-cn": "不需要16.JS16x。\n\n* 固定的藏匿物品\n* 固定地点的颜色转换"
-      },
-      "0.9.0": {
-        "en": "Updated recommended firmware version to 0.88\n\n* Added expert apps\n* Use the last value of fast refreshing states\n* Added settings for calendar colors\n* Allow to use apps without text (just background effect)\n* Added rtttl api endpoint support (via sendTo)\n* Native apps have been renamed",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0,88\n\n* Hinzugefügt Experten-Apps\n* Verwenden Sie den letzten Wert schnell erfrischender Zustände\n* Einstellungen für Kalenderfarben hinzugefügt\n* Apps ohne Text verwenden (nur Hintergrundeffekt)\n* Hinzugefügt rttl api Endpoint-Unterstützung (via sendTo)\n* Native Apps wurden umbenannt",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.88\n\n* Добавлены экспертные приложения\n* Используйте последнюю ценность быстрых освежающих государств\n* Добавлены настройки для цветов календаря\n* Разрешить использовать приложения без текста (просто фоновый эффект)\n* Добавлена поддержка rtttl api endpoint (через sendTo)\n* Родные приложения были переименованы",
-        "pt": "Versão de firmware recomendada atualizada para 0.88\n\n* Adicionados aplicativos de especialistas\n* Use o último valor de estados refrescantes rápidos\n* Configurações adicionadas para cores do calendário\n* Permitir usar aplicativos sem texto (apenas efeito de fundo)\n* Adicionado rtttl api apoio endpoint (via sendTo)\n* Aplicativos nativos foram renomeados",
-        "nl": "Aanbevolen firmaware versie tot 0.88\n\n♪ Added expert apps\n♪ Gebruik de laatste waarde van snel verfrissende staten\n♪ Added settings for kalender kleuren ♪\nQuality over Quantity (QoQ) Releases Vertaling:\nQuality over Quantity (QoQ) Releases Vertaling:\n♪ Native apps are re named",
-        "fr": "Version mise à jour du firmware recommandé à 0.88\n\n* Ajout d ' applications d ' experts\n* Utiliser la dernière valeur des états rafraîchissants\n* Ajout de paramètres pour les couleurs du calendrier\n* Permettre d'utiliser des applications sans texte (effet de fond juste)\n* Ajout de rttl api endpoint support (via sendTo)\n* Les applications autochtones ont été rebaptisées",
-        "it": "Versione firmware consigliata aggiornata a 0.88\n\n* Aggiunte app per esperti\n# Utilizzare l'ultimo valore degli stati rinfrescanti veloci\n* Impostazioni aggiuntive per i colori del calendario\n* Permettere di utilizzare applicazioni senza testo (solo effetto di sfondo)\n* Aggiunto rtttl api endpoint supporto (via sendTo)\n* Le app native sono state rinominate",
-        "es": "Versión actualizada de firmware recomendada a 0.88\n\n* Aplicaciones de expertos adicionales\n* Utilice el último valor de estados de actualización rápido\n* Ajustes añadidos para los colores del calendario\n* Permitir usar aplicaciones sin texto (sólo efecto de fondo)\n* Añadido rttl api endpoint support (via sendTo)\n* Las aplicaciones nativas han sido renombradas",
-        "pl": "Zalecona wersja oprogramowania do wersji 0.8888\n\n* Ekspertywna aplikacja\n* Wykorzystywana jest ostatnia wartość szybkiego odświeżania stanu\n* Podstawy do kolorów kalendarzowych\n* Allow do korzystania z aplikacji bez tekstu (zwłaszcza efekt tła)\n* Added rtttl api endpoint support (via sendTo) (ang.)\nIdentyfikacja rdzennych aplikacji została zmieniona",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.88\n\n* Додано додатки експерта\nІм'я * Використовуйте останнє значення швидко освіжаючих станів\n* Додано налаштування для календарних кольорів\n* Дозволяє використовувати додатки без тексту (тільки фоновий ефект)\n* Додано rtttl api endpoint support (через відправленняTo)\n* Нативні програми були перейменовані",
-        "zh-cn": "最新建议的警觉版本到0.88\n\n* 增加专家。\n* A/64/50。 利用快建国的最后价值\n* 会议日历上的增加\n* 允许无案文使用(实际背景)\n* 增加第1款次(待补)\n* 附录已改为:"
       }
     },
     "titleLang": {

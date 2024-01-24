@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.12.0 (2024-01-24)
 
 * (klein0r) Added hold option to blockly
 * (klein0r) Added state to dismiss notifications
@@ -67,10 +67,6 @@ Updated recommended firmware version to 0.90
 
 * (klein0r) Added support for sleep mode
 * (klein0r) Added fading for indicators
-
-### 0.9.2 (2023-10-22)
-
-* (klein0r) Fixed: Visisble state of expert apps
 
 ## License
 MIT License

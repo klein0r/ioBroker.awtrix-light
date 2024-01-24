@@ -1,4 +1,8 @@
 # Older changes
+## 0.9.2 (2023-10-22)
+
+* (klein0r) Fixed: Visisble state of expert apps
+
 ## 0.9.1 (2023-10-02)
 
 NodeJS 16.x is required
