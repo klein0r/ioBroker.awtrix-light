@@ -42,6 +42,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Added hold option to blockly
+* (klein0r) Added state to dismiss notifications
 
 ### 0.11.0 (2024-01-09)
 

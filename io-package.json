@@ -2023,6 +2023,50 @@
         "def": "#FF0000"
       },
       "native": {}
+    },
+    {
+      "_id": "notification",
+      "type": "channel",
+      "common": {
+        "name": {
+          "en": "Notification",
+          "de": "Benachrichtigung",
+          "ru": "Уведомление",
+          "pt": "Notificação",
+          "nl": "Kennisgeving",
+          "fr": "Notification",
+          "it": "Notifica",
+          "es": "Notificación",
+          "pl": "Powiadomienie",
+          "uk": "Повідомлення",
+          "zh-cn": "通知"
+        }
+      },
+      "native": {}
+    },
+    {
+      "_id": "notification.dismiss",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Dismiss messages",
+          "de": "Löschen von Nachrichten",
+          "ru": "Отзывы",
+          "pt": "Mensagens dismissas",
+          "nl": "Berichten verwerpen",
+          "fr": "Rejeter les messages",
+          "it": "Ricevi messaggi",
+          "es": "Desestimar los mensajes",
+          "pl": "Odrzuć wiadomości",
+          "uk": "Видалення повідомлень",
+          "zh-cn": "解职信息"
+        },
+        "type": "boolean",
+        "role": "button",
+        "read": false,
+        "write": true
+      },
+      "native": {}
     }
   ]
 }

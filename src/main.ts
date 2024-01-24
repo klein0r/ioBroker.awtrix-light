@@ -243,6 +243,16 @@ export class AwtrixLight extends utils.Adapter {
                         .catch((error) => {
                             this.log.warn(`(reboot) Unable to execute action: ${error}`);
                         });
+                } else if (idNoNamespace === 'notification.dismiss') {
+                    this.apiClient!.requestAsync('notify/dismiss', 'POST')
+                        .then(async (response) => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                this.log.info('dismissed notifications');
+                            }
+                        })
+                        .catch((error) => {
+                            this.log.warn(`(notify/dismiss) Unable to execute action: ${error}`);
+                        });
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
