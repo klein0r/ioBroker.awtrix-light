@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "news": {
+      "0.13.1": {
+        "en": "Fixed hold option in blockly",
+        "de": "Festhalten Option in blockweise",
+        "ru": "Фиксированный вариант удержания в блоке",
+        "pt": "Opção de retenção fixa em bloco",
+        "nl": "Vaste bewaaroptie in blokvorm",
+        "fr": "Option de maintien fixe en bloc",
+        "it": "Opzione di attesa fissa in blocco",
+        "es": "Opción de sujeción fija en bloque",
+        "pl": "Poprawiona opcja przytrzymaj w blockly",
+        "uk": "Виправлений варіант утримання в блоклі",
+        "zh-cn": "固定控件选项以区块方式"
+      },
       "0.13.0": {
         "en": "Added state for text color and background color in expert apps\nAvoid app refresh when no values have been changed",
         "de": "Hinzugefügt Zustand für Textfarbe und Hintergrundfarbe in Experten-Apps\nVermeiden Sie App-Erfrischung, wenn keine Werte geändert wurden",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do wersji 0.90\n\n* Wsparcie dla trybu snu\n* Wstępowanie dla wskaźników",
         "uk": "Оновлено рекомендовану версію прошивки до 0.90\n\n* Додано підтримку режиму сну\n* Додано захоплення для показників",
         "zh-cn": "最新建议的软件版本到0.90\n\n* 增加对睡觉模式的支持\n* 增加指标"
-      },
-      "0.9.2": {
-        "en": "Fixed: Visisble state of expert apps",
-        "de": "Behoben: Visisble Zustand von Experten-Apps",
-        "ru": "Исправлено: Visisble состояние экспертных приложений",
-        "pt": "Corrigido: estado visível de aplicações especializadas",
-        "nl": "Visuele toestand van expert apps",
-        "fr": "Correction : état visible des applications expertes",
-        "it": "Risolto: Visible stato delle app di esperti",
-        "es": "Fijación: estado visible de las aplicaciones expertas",
-        "pl": "Strona oficjalna portalu",
-        "uk": "Виправлено: Візубний стан експертних додатків",
-        "zh-cn": "Ixed: Visisble of Experts"
       }
     },
     "titleLang": {

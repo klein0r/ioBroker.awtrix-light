@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.13.1 (2024-01-25)
 
 * (klein0r) Fixed hold option in blockly
 
@@ -63,12 +63,6 @@ Updated recommended firmware version to 0.94
 ### 0.10.2 (2023-12-14)
 
 * (klein0r) Removed callbacks in blockly code to prevent timeouts
-
-### 0.10.1 (2023-12-01)
-
-Updated recommended firmware version to 0.91
-
-* (klein0r) Added uid and ip address states
 
 ## License
 MIT License

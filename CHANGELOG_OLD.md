@@ -1,4 +1,10 @@
 # Older changes
+## 0.10.1 (2023-12-01)
+
+Updated recommended firmware version to 0.91
+
+* (klein0r) Added uid and ip address states
+
 ## 0.10.0 (2023-10-23)
 
 Updated recommended firmware version to 0.90
