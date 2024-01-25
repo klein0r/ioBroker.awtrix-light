@@ -7,12 +7,14 @@ export namespace AppType {
     export class Expert extends AbstractAppType.AbstractApp {
         private appDefinition: ExpertApp;
         private appStates: { [key: string]: ioBroker.StateValue };
+        private refreshTimeout: void | NodeJS.Timeout | null;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: ExpertApp) {
             super(apiClient, adapter, definition);
 
             this.appDefinition = definition;
             this.appStates = {};
+            this.refreshTimeout = null;
         }
 
         public override async init(): Promise<boolean> {
@@ -42,8 +44,12 @@ export namespace AppType {
             let refreshed = false;
 
             if (await super.refresh()) {
+                this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
+
                 await this.apiClient!.appRequestAsync(this.appDefinition.name, {
                     text: typeof this.appStates.text === 'string' ? this.appStates.text : '',
+                    color: typeof this.appStates.color === 'string' ? this.appStates.color : '#FFFFFF',
+                    background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
                     icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
                     duration: typeof this.appStates.duration === 'number' ? this.appStates.duration : 0,
                 }).catch((error) => {
@@ -83,6 +89,60 @@ export namespace AppType {
                 },
                 native: {
                     attribute: 'text',
+                },
+            });
+
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.textColor`, {
+                type: 'state',
+                common: {
+                    name: {
+                        en: 'Text color',
+                        de: 'Textfarbe',
+                        ru: 'Текстовый цвет',
+                        pt: 'Cor do texto',
+                        nl: 'Tekstkleur',
+                        fr: 'Couleur du texte',
+                        it: 'Colore del testo',
+                        es: 'Color de texto',
+                        pl: 'Kolor tekstu',
+                        //uk: 'Колір тексту',
+                        'zh-cn': '文本颜色',
+                    },
+                    type: 'string',
+                    role: 'level.color.rgb',
+                    read: true,
+                    write: true,
+                    def: '#FFFFFF',
+                },
+                native: {
+                    attribute: 'color',
+                },
+            });
+
+            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.backgroundColor`, {
+                type: 'state',
+                common: {
+                    name: {
+                        en: 'Background color',
+                        de: 'Hintergrundfarbe',
+                        ru: 'Фоновый цвет',
+                        pt: 'Cor de fundo',
+                        nl: 'Achtergrondkleur',
+                        fr: 'Couleur de fond',
+                        it: 'Colore dello sfondo',
+                        es: 'Color de fondo',
+                        pl: 'Kolor tła',
+                        //uk: 'Колір фону',
+                        'zh-cn': '背景颜色',
+                    },
+                    type: 'string',
+                    role: 'level.color.rgb',
+                    read: true,
+                    write: true,
+                    def: '#000000',
+                },
+                native: {
+                    attribute: 'background',
                 },
             });
 
@@ -153,12 +213,25 @@ export namespace AppType {
                     const obj = await this.adapter.getObjectAsync(idNoNamespace);
 
                     if (obj && obj?.native?.attribute) {
-                        this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}" (${obj?.native?.attribute})`);
+                        const attr = obj.native.attribute as string;
+                        if (this.appStates[attr] !== state.val) {
+                            this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}" (${obj?.native?.attribute})`);
 
-                        this.appStates[obj.native.attribute as string] = state.val;
+                            this.appStates[attr] = state.val;
 
-                        if (await this.refresh()) {
-                            await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            if (!this.refreshTimeout) {
+                                this.refreshTimeout = this.adapter.setTimeout(async () => {
+                                    this.refreshTimeout = null;
+
+                                    if (await this.refresh()) {
+                                        await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                    }
+                                }, 100);
+                            } else {
+                                await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        } else {
+                            this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
                         }
                     }
                 }
