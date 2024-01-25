@@ -302,7 +302,7 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
     let wakeup = block.getFieldValue('WAKEUP');
     wakeup = wakeup === 'TRUE' || wakeup === 'true' || wakeup === true;
 
-    let hold = block.getFieldValue('WAKEUP');
+    let hold = block.getFieldValue('HOLD');
     hold = hold === 'TRUE' || hold === 'true' || hold === true;
 
     const objText = [];
