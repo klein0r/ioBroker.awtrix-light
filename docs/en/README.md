@@ -59,6 +59,10 @@ All states (of common.type `number`) are formatted as configured in the system s
 
 Yes, since firware version 0.82 it is possible to configure a user name and a password to protect the access. Since adapter version 0.8.0 it is also possible to enter these credentials in the instance configuration.
 
+**How does the hold option in notifications work?**
+
+When sending a notification with `hold: true`, the text will stay on the display until the notification will be confirmed. This can either happen with a press on the middle button of the device, or by setting the state `notification.dismiss` to `true`.
+
 ## Same apps on multiple devices
 
 If you have multiple awtrix-light devices, it is required to create a new instance for each device. But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.
@@ -81,7 +85,7 @@ Example:
 Send a "one time" notification to your device:
 
 ```javascript
-sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true }, (res) => {
+sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }

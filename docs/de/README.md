@@ -59,6 +59,10 @@ Alle Zustände vom Typ Zahl (common.type `number`) werden so formatiert, wie es 
 
 Ja, seit Firware-Version 0.82 kann der Zugriff mit einem Benutzernamen und Passwort geschützt werden. Seit Adapter-Version 0.8.0 können diese Benutzerdaten ebenfalls in den Instanz-Einstellungen hinterlegt werden.
 
+**Wie funktioniert die halten-Option bei Benachrichtigungen?**
+
+Wenn eine Benachrichtigung mit der Option `hold: true` gesendet wird, bleibt der Text auf dem Display so lange stehen, bis die Benachrichtigung bestätigt wird. Das kann entweder über den mittleren Taster auf dem Gerät passieren, oder indem der Zustand `notification.dismiss` auf `true` gesetzt wird.
+
 ## Identische Apps auf mehreren Geräten
 
 Falls mehrere awtrix-light Geräte mit den gleichen Apps angesteuert werden sollen, muss eine eigene Instanz für jedes Gerät angelegt werden. Allerdings kann in den Instanzeinstellungen der weiteren Geräte dann festgelegt werden, dass die Apps aus einer anderen Instanz übernommen werden sollen.
@@ -81,7 +85,7 @@ Beispiel
 Sende eine einmalige Benachrichtigung an das Gerät:
 
 ```javascript
-sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true }, (res) => {
+sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
