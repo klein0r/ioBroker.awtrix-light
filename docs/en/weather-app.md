@@ -38,10 +38,13 @@ Create a new expert app with the name `weather`.
 ### Script
 
 ```javascript
-// v0.1
+// v0.2
+const displayTemp = true;
+
 const appName = 'weather';
 const objIdIcon = 'openweathermap.0.forecast.current.icon';
 const objIdText = 'openweathermap.0.forecast.current.state';
+const objIdTemp = 'openweathermap.0.forecast.current.temperature';
 
 const iconMapping = {
     '01d': '11201', // clear sky day
@@ -67,23 +70,41 @@ const iconMapping = {
 async function refreshExpertApp() {
     try {
         const iconState = await getStateAsync(objIdIcon);
-        if (iconState && iconState.val) {
+        if (iconState && iconState.ack && iconState.val) {
             const icon = /([0-9]{2}[d|n]{1})/.exec(iconState.val)[0];
             if (iconMapping[icon]) {
                 await setStateAsync(`awtrix-light.0.apps.${appName}.icon`, { val: iconMapping[icon] });
             }
         }
 
+        let temp = 0;
+        const tempState = await getStateAsync(objIdTemp);
+        if (tempState && tempState.ack && tempState.val) {
+            temp = tempState.val;
+        }
+
+        if (temp > 30) {
+            await setStateAsync(`awtrix-light.0.apps.${appName}.textColor`, { val: '#bd2020' });
+        } else if (temp < 0) {
+            await setStateAsync(`awtrix-light.0.apps.${appName}.textColor`, { val: '#236fd9' });
+        } else {
+            await setStateAsync(`awtrix-light.0.apps.${appName}.textColor`, { val: '#ffffff' });
+        }
+
         const textState = await getStateAsync(objIdText);
-        if (textState && textState.val) {
-            await setStateAsync(`awtrix-light.0.apps.${appName}.text`, { val: textState.val });
+        if (textState && textState.ack && textState.val) {
+            if (displayTemp) {
+                await setStateAsync(`awtrix-light.0.apps.${appName}.text`, { val: `${textState.val} - ${formatValue(temp, 2)} °C` });
+            } else {
+                await setStateAsync(`awtrix-light.0.apps.${appName}.text`, { val: textState.val });
+            }
         }
     } catch (err) {
         console.error(err);
     }
 }
 
-on({ id: [objIdIcon, objIdText], change: 'ne' }, refreshExpertApp);
+on({ id: [objIdIcon, objIdText, objIdTemp], change: 'ne' }, refreshExpertApp);
 
 // Init on startup
 refreshExpertApp();
