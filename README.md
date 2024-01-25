@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.13.0 (2024-01-25)
 
 * (klein0r) Added state for text color and background color in expert apps
 * (klein0r) Avoid app refresh when no values have been changed
@@ -65,13 +65,6 @@ Updated recommended firmware version to 0.94
 Updated recommended firmware version to 0.91
 
 * (klein0r) Added uid and ip address states
-
-### 0.10.0 (2023-10-23)
-
-Updated recommended firmware version to 0.90
-
-* (klein0r) Added support for sleep mode
-* (klein0r) Added fading for indicators
 
 ## License
 MIT License

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "news": {
+      "0.13.0": {
+        "en": "Added state for text color and background color in expert apps\nAvoid app refresh when no values have been changed",
+        "de": "Hinzugefügt Zustand für Textfarbe und Hintergrundfarbe in Experten-Apps\nVermeiden Sie App-Erfrischung, wenn keine Werte geändert wurden",
+        "ru": "Добавленное состояние для цвета текста и цвета фона в экспертных приложениях\nИзбегайте обновления приложений, когда нет изменений",
+        "pt": "Estado adicionado para cor de texto e cor de fundo em aplicações especializadas\nEvite atualização do aplicativo quando nenhum valor foi alterado",
+        "nl": "Toegevoegde status voor tekstkleur en achtergrondkleur in expert-apps\nVerversen van app vermijden wanneer geen waarden zijn gewijzigd",
+        "fr": "État ajouté pour la couleur du texte et de l'arrière-plan dans les applications expertes\nÉvitez le rafraîchissement de l'application lorsque aucune valeur n'a été modifiée",
+        "it": "Stato aggiunto per il colore del testo e il colore di sfondo nelle app di esperti\nEvitare di aggiornare l'app quando non sono stati modificati valori",
+        "es": "Estado añadido para color de texto y color de fondo en aplicaciones expertas\nEvite refrescar la aplicación cuando no se han cambiado los valores",
+        "pl": "Dodano stan koloru tekstu i koloru tła w aplikacjach ekspertów\nUnikaj odświeżania aplikacji, gdy wartości nie zostały zmienione",
+        "uk": "Додано стан для текстового кольору та фонового кольору в експертних додатках\nУникайте оновлення програми, коли не змінено значення",
+        "zh-cn": "在专家应用程序中添加文本颜色和背景颜色的状态\n在没有更改值时避免应用刷新"
+      },
       "0.12.0": {
         "en": "Added hold option to blockly\nAdded state to dismiss notifications",
         "de": "Option zum Blockieren hinzugefügt\nZulässige Meldungen hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Strona oficjalna portalu",
         "uk": "Виправлено: Візубний стан експертних додатків",
         "zh-cn": "Ixed: Visisble of Experts"
-      },
-      "0.9.1": {
-        "en": "NodeJS 16.x is required\n\n* Fixed hidden apps\n* Fixed color conversions of settings",
-        "de": "NodeJS 16.x ist erforderlich\n\n* Feste versteckte Apps\n* Feste Farbumwandlungen der Einstellungen",
-        "ru": "NodeJS 16.x требуется\n\n* Исправлены скрытые приложения\n* Исправлены цветовые преобразования настроек",
-        "pt": "NodeJS 16.x é necessário\n\n* Aplicativos ocultos fixos\n* Conversões de cores fixas de configurações",
-        "nl": "NodeJS 16.x is vereist\n\nVerborgen apps\nVertaling:",
-        "fr": "NodeJS 16.x est nécessaire\n\n* Apps cachées fixes\n* Conversions de couleurs fixes des paramètres",
-        "it": "NodeJS 16.x è richiesto\n\n* App nascoste riparate\n* Conversioni di colori fissi di impostazioni",
-        "es": "NodeJS 16.x es necesario\n\n* Aplicaciones ocultas fijas\n* Conversiones de color fijas de la configuración",
-        "pl": "NodeJS 16 (ang.)\n\n* Wszystko ukryte\n* Zwyczajowe przekształcenia kolorów w ustawienia",
-        "uk": "NodeJS 16.x обов'язковий\n\n* Виправлені приховані додатки\n* Виправлені кольорові перетворення параметрів",
-        "zh-cn": "不需要16.JS16x。\n\n* 固定的藏匿物品\n* 固定地点的颜色转换"
       }
     },
     "titleLang": {
