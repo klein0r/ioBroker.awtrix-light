@@ -153,10 +153,12 @@
     },
     "docs": {
       "en": [
-        "docs/en/README.md"
+        "docs/en/README.md",
+        "docs/en/weather-app.md"
       ],
       "de": [
-        "docs/de/README.md"
+        "docs/de/README.md",
+        "docs/de/weather-app.md"
       ]
     },
     "dependencies": [

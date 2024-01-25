@@ -166,6 +166,8 @@ Expert apps are available since apdater version 0.10.0. They allow to set all va
 
 After that, all controllable states for the app name `test` will be created in `awtrix-light.0.apps.test`. Just set values of `icon`, `text` and other states by using your own scripts and logic (e.g. JavaScript or Blockly).
 
+Example: [Weather App](weather-app.md)
+
 ## Hide native apps
 
 If you want to disable/hide a native app (like battery, temperature or humidity): Use the on screen menu on the device! See [documentation](https://blueforcer.github.io/awtrix-light/#/onscreen) for details.
