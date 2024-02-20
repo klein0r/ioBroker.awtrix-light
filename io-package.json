@@ -133,7 +133,12 @@
       "ulanzi",
       "tc001"
     ],
-    "license": "MIT",
+    "tier": 3,
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "automaticUpgrade": "patch",
     "platform": "Javascript/Node.js",
     "main": "build/main.js",
     "icon": "awtrix-light.png",
@@ -180,7 +185,7 @@
     "userPassword"
   ],
   "native": {
-    "awtrixIp": "192.168.0.111",
+    "awtrixIp": "192.168.0.123",
     "userName": "",
     "userPassword": "",
     "downloadScreenContent": false,
