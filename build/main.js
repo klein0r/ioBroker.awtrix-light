@@ -18,6 +18,10 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
@@ -264,6 +268,7 @@ class AwtrixLight extends utils.Adapter {
       }
     }
   }
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   async onObjectChange(id, obj) {
     if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
       await this.importForeignSettings();
@@ -336,8 +341,11 @@ class AwtrixLight extends utils.Adapter {
             draw: [
               {
                 dc: [16, 4, 3, "#164477"],
+                // [x, y, r, cl] Draw a circle with center at (x, y), radius r, and color cl
                 dl: [16, 3, 16, 8, "#3399cc"],
+                // [x0, y0, x1, y1, cl] Draw a line from (x0, y0) to (x1, y1) with color cl
                 dp: [16, 1, "#3399cc"]
+                // [x, y, cl] Draw a pixel at position (x, y) with color cl
               }
             ]
           }).catch((error) => {
@@ -560,6 +568,7 @@ class AwtrixLight extends utils.Adapter {
                     it: "Attivare",
                     es: "Activar",
                     pl: "Aktywuj",
+                    //uk: 'Активувати',
                     "zh-cn": "\u542F\u7528"
                   },
                   type: "boolean",

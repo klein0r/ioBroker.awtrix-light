@@ -1,4 +1,8 @@
 # Older changes
+## 0.10.2 (2023-12-14)
+
+* (klein0r) Removed callbacks in blockly code to prevent timeouts
+
 ## 0.10.1 (2023-12-01)
 
 Updated recommended firmware version to 0.91

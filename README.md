@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.14.0 (2024-02-20)
 
 * (klein0r) Allow to round numbers dynamically (depends on length)
 
@@ -63,10 +63,6 @@ Updated recommended firmware version to 0.94
 
 * (klein0r) Added bar graph to history apps
 * (klein0r) Added aggregation for history apps
-
-### 0.10.2 (2023-12-14)
-
-* (klein0r) Removed callbacks in blockly code to prevent timeouts
 
 ## License
 MIT License

@@ -81,6 +81,7 @@ var AppType;
             it: "Testo",
             es: "Texto",
             pl: "Tekst",
+            //uk: 'Головна',
             "zh-cn": "\u6848\u6587"
           },
           type: "string",
@@ -106,6 +107,7 @@ var AppType;
             it: "Colore del testo",
             es: "Color de texto",
             pl: "Kolor tekstu",
+            //uk: 'Колір тексту',
             "zh-cn": "\u6587\u672C\u989C\u8272"
           },
           type: "string",
@@ -131,6 +133,7 @@ var AppType;
             it: "Colore dello sfondo",
             es: "Color de fondo",
             pl: "Kolor t\u0142a",
+            //uk: 'Колір фону',
             "zh-cn": "\u80CC\u666F\u989C\u8272"
           },
           type: "string",
@@ -156,6 +159,7 @@ var AppType;
             it: "Icona",
             es: "Icono",
             pl: "Ikona",
+            //uk: 'значок',
             "zh-cn": "\u56FE\u6807"
           },
           type: "string",
@@ -181,6 +185,7 @@ var AppType;
             it: "Icona",
             es: "Icono",
             pl: "Ikona",
+            //uk: 'значок',
             "zh-cn": "\u56FE\u6807"
           },
           type: "number",

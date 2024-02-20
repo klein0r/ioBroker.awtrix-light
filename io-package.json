@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.13.1",
+    "version": "0.14.0",
     "news": {
+      "0.14.0": {
+        "en": "Allow to round numbers dynamically (depends on length)",
+        "de": "Erlauben Sie, Zahlen dynamisch zu runden (abhängig von der Länge)",
+        "ru": "Позволить динамически округлять числа (в зависимости от длины)",
+        "pt": "Permite arredondar números dinamicamente (depende do comprimento)",
+        "nl": "Toestaan aan ronde getallen dynamisch (afhankelijk van lengte)",
+        "fr": "Laisser les nombres ronds dynamiquement (selon la longueur)",
+        "it": "Consentire ai numeri rotondi dinamicamente (dipende dalla lunghezza)",
+        "es": "Permitir números redondos dinámicamente (depende de longitud)",
+        "pl": "Pozwala na dynamiczne okrążenie liczb (zależy od długości)",
+        "uk": "Дозвольте округлити номери динамічно (в залежності від довжини)",
+        "zh-cn": "允许动态圆数( 取决于长度)"
+      },
       "0.13.1": {
         "en": "Fixed hold option in blockly",
         "de": "Festhalten Option in blockweise",
@@ -80,19 +93,6 @@
         "pl": "Zalecona wersja oprogramowania do 0.91\n\n* Added uid and ip address states",
         "uk": "Оновлено рекомендовану версію прошивки до 0.91\n\n* Додані і ip адресні стани",
         "zh-cn": "最新建议的警觉版本到0.91\n\n* 增编和参加国"
-      },
-      "0.10.0": {
-        "en": "Updated recommended firmware version to 0.90\n\n* Added support for sleep mode\n* Added fading for indicators",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.90\n\n* Unterstützung für den Schlafmodus hinzugefügt\n* Hinzugefügt Fading für Indikatoren",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.90\n\n* Добавлена поддержка режима сна\n* Добавлена фадинг для индикаторов",
-        "pt": "Versão de firmware recomendada atualizada para 0.90\n\n* Adicionado suporte para o modo de sono\n* Adicionado fading para indicadores",
-        "nl": "Opgewaardeerd aanbevolen firmaware versie naar 0.90\n\n♪ Added support for sleep mode ♪\n♪ Added fading for indicators ♪",
-        "fr": "Version de firmware recommandée à 0.90\n\n* Ajout du support pour le mode sommeil\n* Ajout d ' une baisse des indicateurs",
-        "it": "Versione firmware consigliata aggiornata a 0.90\n\n* Aggiunto supporto per la modalità sonno\n* Aggiunto dissolvenza per indicatori",
-        "es": "Versión actualizada de firmware recomendada a 0.90\n\n* Apoyo añadido para el modo de sueño\n* Aumento de la pérdida de indicadores",
-        "pl": "Zalecona wersja oprogramowania do wersji 0.90\n\n* Wsparcie dla trybu snu\n* Wstępowanie dla wskaźników",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.90\n\n* Додано підтримку режиму сну\n* Додано захоплення для показників",
-        "zh-cn": "最新建议的软件版本到0.90\n\n* 增加对睡觉模式的支持\n* 增加指标"
       }
     },
     "titleLang": {

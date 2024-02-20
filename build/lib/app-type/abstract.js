@@ -68,6 +68,7 @@ var AppType;
             it: "Visibile",
             es: "Visible",
             pl: "Widoczny",
+            //uk: 'Вибрані',
             "zh-cn": "\u4E0D\u53EF\u6297\u8FA9"
           },
           type: "boolean",
@@ -110,11 +111,13 @@ var AppType;
       }
       await this.stateChanged(id, state);
     }
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     async stateChanged(id, state) {
     }
     async onObjectChange(id, obj) {
       await this.objectChanged(id, obj);
     }
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     async objectChanged(id, obj) {
     }
   }

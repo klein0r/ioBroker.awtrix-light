@@ -116,6 +116,7 @@ var AppType;
             autoscale: true,
             icon: this.appDefinition.icon,
             lifetime: this.adapter.config.historyAppsRefreshInterval + 60,
+            // Remove app if there is no update in configured interval (+ buffer)
             pos: this.appDefinition.position,
             ...moreOptions
           }).catch((error) => {
