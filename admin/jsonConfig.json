@@ -265,6 +265,16 @@
                             "help": "Numeric values will be rounded"
                         },
                         {
+                            "type": "checkbox",
+                            "attr": "dynamicRound",
+                            "label": "Round dynamically",
+                            "sm": 12,
+                            "md": 2,
+                            "lg": 2,
+                            "default": false,
+                            "help": "Adjust digits to avoid scrolling"
+                        },
+                        {
                             "newLine": true,
                             "type": "header",
                             "attr": "_textHeader",

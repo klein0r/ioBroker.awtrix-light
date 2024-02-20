@@ -58,5 +58,7 @@
     "Expert Apps": "Aplikacje eksperckie",
     "Username": "Nazwa użytkownika",
     "Password": "Hasło",
-    "Screen": "Ekran"
+    "Screen": "Ekran",
+    "Round dynamically": "Zaokrąglaj dynamicznie",
+    "Adjust digits to avoid scrolling": "Dostosuj cyfry, aby uniknąć przewijania"
 }

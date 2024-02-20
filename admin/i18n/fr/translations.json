@@ -58,5 +58,7 @@
     "Expert Apps": "Applications expertes",
     "Username": "Nom d'utilisateur",
     "Password": "Mot de passe",
-    "Screen": "Écran"
+    "Screen": "Écran",
+    "Round dynamically": "Arrondir dynamiquement",
+    "Adjust digits to avoid scrolling": "Ajustez les chiffres pour éviter le défilement"
 }

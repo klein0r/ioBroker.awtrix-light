@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Allow to round numbers dynamically (depends on length)
+
 ### 0.13.1 (2024-01-25)
 
 * (klein0r) Fixed hold option in blockly

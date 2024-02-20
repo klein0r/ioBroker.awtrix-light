@@ -58,5 +58,7 @@
     "Expert Apps": "专家应用程序",
     "Username": "用户名",
     "Password": "密码",
-    "Screen": "屏幕"
+    "Screen": "屏幕",
+    "Round dynamically": "动态舍入",
+    "Adjust digits to avoid scrolling": "调整数字以避免滚动"
 }

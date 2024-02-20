@@ -58,5 +58,7 @@
     "Expert Apps": "Experten-Apps",
     "Username": "Benutzername",
     "Password": "Passwort",
-    "Screen": "Bildschirm"
+    "Screen": "Bildschirm",
+    "Round dynamically": "Dynamisch runden",
+    "Adjust digits to avoid scrolling": "Passt Dezimalstellen an, um ein Scrollen zu vermeiden"
 }

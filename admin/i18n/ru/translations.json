@@ -58,5 +58,7 @@
     "Expert Apps": "Экспертные приложения",
     "Username": "Имя пользователя",
     "Password": "Пароль",
-    "Screen": "Экран"
+    "Screen": "Экран",
+    "Round dynamically": "Округлять динамически",
+    "Adjust digits to avoid scrolling": "Отрегулируйте цифры, чтобы избежать прокрутки"
 }

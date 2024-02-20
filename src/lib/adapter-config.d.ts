@@ -12,6 +12,7 @@ export type CustomApp = DefaultApp & {
     text: string;
     objId: string;
     decimals: number;
+    dynamicRound: boolean;
     rainbow: boolean;
     textColor: string;
     noScroll: boolean;
@@ -77,4 +78,5 @@ declare global {
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export {};
+export { };
+

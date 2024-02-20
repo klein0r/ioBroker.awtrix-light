@@ -66,7 +66,7 @@ export namespace AppType {
                             await this.adapter.subscribeForeignStatesAsync(objId);
                             await this.adapter.subscribeForeignObjectsAsync(objId);
 
-                            this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with objId "${objId}" - subscribed to changes`);
+                            this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" (${obj.common.type}) with objId "${objId}" - subscribed to changes`);
                         } else {
                             this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
                         }
@@ -199,29 +199,57 @@ export namespace AppType {
                                 let newVal = val;
 
                                 if (this.objCache.type === 'number') {
-                                    const oldVal = typeof val !== 'number' ? parseFloat(val as string) : val;
+                                    const realVal = typeof val !== 'number' ? parseFloat(val as string) : val;
                                     const decimals = typeof this.appDefinition.decimals === 'string' ? parseInt(this.appDefinition.decimals) : this.appDefinition.decimals ?? 3;
 
-                                    if (!isNaN(oldVal) && oldVal % 1 !== 0) {
-                                        let countDecimals = String(val).split('.')[1].length || 2;
+                                    if (!isNaN(realVal) && realVal % 1 !== 0) {
+                                        const valParts = String(realVal).split('.');
+                                        const countDigits = valParts[0].length;
+                                        let countDecimals = valParts[1].length || 3;
+
+                                        this.adapter.log.debug(`[refreshCustomApp] value of objId "${this.appDefinition.objId}" has ${countDigits} digits and ${countDecimals} decimals`);
 
                                         if (countDecimals > decimals) {
                                             countDecimals = decimals; // limit
                                         }
 
                                         const numFormat = this.adapter.config.numberFormat;
+
+                                        // Dynamic round
+                                        if (this.appDefinition.dynamicRound) {
+                                            let maxLength = 7; // without icon
+                                            if (this.appDefinition.icon) {
+                                                maxLength = 5;
+                                            }
+
+                                            // digits
+                                            maxLength -= countDigits; // substract values in front of decimal point
+
+                                            // If thousands seperator
+                                            if (['.,', ',.'].includes(numFormat) && countDigits > 3) {
+                                                maxLength -= 1;
+                                            }
+
+                                            // unit
+                                            maxLength -= this.objCache.unit ? text.trim().replace('%s', '').replace('%u', this.objCache.unit).length : 1;
+
+                                            if (maxLength < countDecimals) {
+                                                countDecimals = maxLength >= 0 ? maxLength : 0;
+                                            }
+                                        }
+
                                         if (numFormat === 'system') {
-                                            newVal = this.adapter.formatValue(oldVal, countDecimals);
+                                            newVal = this.adapter.formatValue(realVal, countDecimals);
                                         } else if (['.,', ',.'].includes(numFormat)) {
-                                            newVal = this.adapter.formatValue(oldVal, countDecimals, numFormat);
+                                            newVal = this.adapter.formatValue(realVal, countDecimals, numFormat);
                                         } else if (numFormat === '.') {
-                                            newVal = oldVal.toFixed(countDecimals);
+                                            newVal = realVal.toFixed(countDecimals);
                                         } else if (numFormat === ',') {
-                                            newVal = oldVal.toFixed(countDecimals).replace('.', ',');
+                                            newVal = realVal.toFixed(countDecimals).replace('.', ',');
                                         }
 
                                         this.adapter.log.debug(
-                                            `[refreshCustomApp] formatted value of objId "${this.appDefinition.objId}" from ${oldVal} to ${newVal} (${countDecimals} decimals) with "${numFormat}"`,
+                                            `[refreshCustomApp] value (formatted) of objId "${this.appDefinition.objId}" from ${realVal} to ${newVal} (${countDecimals} decimals) with "${numFormat}"`,
                                         );
                                     }
                                 }

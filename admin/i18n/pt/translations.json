@@ -58,5 +58,7 @@
     "Expert Apps": "Aplicativos especializados",
     "Username": "Nome de usuário",
     "Password": "Senha",
-    "Screen": "Tela"
+    "Screen": "Tela",
+    "Round dynamically": "Arredondar dinamicamente",
+    "Adjust digits to avoid scrolling": "Ajuste os dígitos para evitar rolagem"
 }
