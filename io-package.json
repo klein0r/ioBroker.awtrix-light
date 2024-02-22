@@ -138,7 +138,6 @@
       "license": "MIT",
       "type": "free"
     },
-    "automaticUpgrade": "patch",
     "platform": "Javascript/Node.js",
     "main": "build/main.js",
     "icon": "awtrix-light.png",
