@@ -65,140 +65,154 @@ export namespace AppType {
         public async createObjects(): Promise<void> {
             const appName = this.getName();
 
-            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.text`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Text',
-                        de: 'Text',
-                        ru: 'Текст',
-                        pt: 'Texto',
-                        nl: 'Text',
-                        fr: 'Texte',
-                        it: 'Testo',
-                        es: 'Texto',
-                        pl: 'Tekst',
-                        //uk: 'Головна',
-                        'zh-cn': '案文',
+            if (this.isMainInstance()) {
+                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.text`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Text',
+                            de: 'Text',
+                            ru: 'Текст',
+                            pt: 'Texto',
+                            nl: 'Text',
+                            fr: 'Texte',
+                            it: 'Testo',
+                            es: 'Texto',
+                            pl: 'Tekst',
+                            //uk: 'Головна',
+                            'zh-cn': '案文',
+                        },
+                        type: 'string',
+                        role: 'text',
+                        read: true,
+                        write: true,
+                        def: '',
                     },
-                    type: 'string',
-                    role: 'text',
-                    read: true,
-                    write: true,
-                    def: '',
-                },
-                native: {
-                    attribute: 'text',
-                },
-            });
+                    native: {
+                        attribute: 'text',
+                    },
+                });
 
-            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.textColor`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Text color',
-                        de: 'Textfarbe',
-                        ru: 'Текстовый цвет',
-                        pt: 'Cor do texto',
-                        nl: 'Tekstkleur',
-                        fr: 'Couleur du texte',
-                        it: 'Colore del testo',
-                        es: 'Color de texto',
-                        pl: 'Kolor tekstu',
-                        //uk: 'Колір тексту',
-                        'zh-cn': '文本颜色',
+                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.textColor`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Text color',
+                            de: 'Textfarbe',
+                            ru: 'Текстовый цвет',
+                            pt: 'Cor do texto',
+                            nl: 'Tekstkleur',
+                            fr: 'Couleur du texte',
+                            it: 'Colore del testo',
+                            es: 'Color de texto',
+                            pl: 'Kolor tekstu',
+                            //uk: 'Колір тексту',
+                            'zh-cn': '文本颜色',
+                        },
+                        type: 'string',
+                        role: 'level.color.rgb',
+                        read: true,
+                        write: true,
+                        def: '#FFFFFF',
                     },
-                    type: 'string',
-                    role: 'level.color.rgb',
-                    read: true,
-                    write: true,
-                    def: '#FFFFFF',
-                },
-                native: {
-                    attribute: 'color',
-                },
-            });
+                    native: {
+                        attribute: 'color',
+                    },
+                });
 
-            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.backgroundColor`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Background color',
-                        de: 'Hintergrundfarbe',
-                        ru: 'Фоновый цвет',
-                        pt: 'Cor de fundo',
-                        nl: 'Achtergrondkleur',
-                        fr: 'Couleur de fond',
-                        it: 'Colore dello sfondo',
-                        es: 'Color de fondo',
-                        pl: 'Kolor tła',
-                        //uk: 'Колір фону',
-                        'zh-cn': '背景颜色',
+                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.backgroundColor`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Background color',
+                            de: 'Hintergrundfarbe',
+                            ru: 'Фоновый цвет',
+                            pt: 'Cor de fundo',
+                            nl: 'Achtergrondkleur',
+                            fr: 'Couleur de fond',
+                            it: 'Colore dello sfondo',
+                            es: 'Color de fondo',
+                            pl: 'Kolor tła',
+                            //uk: 'Колір фону',
+                            'zh-cn': '背景颜色',
+                        },
+                        type: 'string',
+                        role: 'level.color.rgb',
+                        read: true,
+                        write: true,
+                        def: '#000000',
                     },
-                    type: 'string',
-                    role: 'level.color.rgb',
-                    read: true,
-                    write: true,
-                    def: '#000000',
-                },
-                native: {
-                    attribute: 'background',
-                },
-            });
+                    native: {
+                        attribute: 'background',
+                    },
+                });
 
-            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.icon`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Icon',
-                        de: 'Symbol',
-                        ru: 'Имя',
-                        pt: 'Ícone',
-                        nl: 'Icoon',
-                        fr: 'Icône',
-                        it: 'Icona',
-                        es: 'Icono',
-                        pl: 'Ikona',
-                        //uk: 'значок',
-                        'zh-cn': '图标',
+                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.icon`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Icon',
+                            de: 'Symbol',
+                            ru: 'Имя',
+                            pt: 'Ícone',
+                            nl: 'Icoon',
+                            fr: 'Icône',
+                            it: 'Icona',
+                            es: 'Icono',
+                            pl: 'Ikona',
+                            //uk: 'значок',
+                            'zh-cn': '图标',
+                        },
+                        type: 'string',
+                        role: 'text',
+                        read: true,
+                        write: true,
+                        def: '',
                     },
-                    type: 'string',
-                    role: 'text',
-                    read: true,
-                    write: true,
-                    def: '',
-                },
-                native: {
-                    attribute: 'icon',
-                },
-            });
+                    native: {
+                        attribute: 'icon',
+                    },
+                });
 
-            await this.adapter.setObjectNotExistsAsync(`apps.${appName}.duration`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Icon',
-                        de: 'Symbol',
-                        ru: 'Имя',
-                        pt: 'Ícone',
-                        nl: 'Icoon',
-                        fr: 'Icône',
-                        it: 'Icona',
-                        es: 'Icono',
-                        pl: 'Ikona',
-                        //uk: 'значок',
-                        'zh-cn': '图标',
+                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.duration`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Icon',
+                            de: 'Symbol',
+                            ru: 'Имя',
+                            pt: 'Ícone',
+                            nl: 'Icoon',
+                            fr: 'Icône',
+                            it: 'Icona',
+                            es: 'Icono',
+                            pl: 'Ikona',
+                            //uk: 'значок',
+                            'zh-cn': '图标',
+                        },
+                        type: 'number',
+                        role: 'value',
+                        read: true,
+                        write: true,
+                        def: 0,
                     },
-                    type: 'number',
-                    role: 'value',
-                    read: true,
-                    write: true,
-                    def: 0,
-                },
-                native: {
-                    attribute: 'duration',
-                },
-            });
+                    native: {
+                        attribute: 'duration',
+                    },
+                });
+            } else {
+                await this.adapter.delObjectAsync(`apps.${appName}.text`);
+                await this.adapter.delObjectAsync(`apps.${appName}.textColor`);
+                await this.adapter.delObjectAsync(`apps.${appName}.backgroundColor`);
+                await this.adapter.delObjectAsync(`apps.${appName}.icon`);
+                await this.adapter.delObjectAsync(`apps.${appName}.duration`);
+
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.text`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.textColor`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
+            }
 
             return super.createObjects();
         }
@@ -209,8 +223,8 @@ export namespace AppType {
 
             // Handle default states for all apps
             if (id && state && !state.ack) {
-                if (idNoNamespace.startsWith(`apps.${appName}.`)) {
-                    const obj = await this.adapter.getObjectAsync(idNoNamespace);
+                if (id.startsWith(`${this.objPrefix}.apps.${appName}.`)) {
+                    const obj = await this.adapter.getForeignObjectAsync(id);
 
                     if (obj && obj?.native?.attribute) {
                         const attr = obj.native.attribute as string;
@@ -224,14 +238,20 @@ export namespace AppType {
                                     this.refreshTimeout = null;
 
                                     if (await this.refresh()) {
-                                        await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                        if (this.isMainInstance()) {
+                                            await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                        }
                                     }
                                 }, 100);
-                            } else {
+                            } else if (this.isMainInstance()) {
                                 await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
                             }
                         } else {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
+
+                            if (this.isMainInstance()) {
+                                await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
+                            }
                         }
                     }
                 }
