@@ -65,7 +65,7 @@ When sending a notification with `hold: true`, the text will stay on the display
 
 ## Same apps on multiple devices
 
-If you have multiple awtrix-light devices, it is required to create a new instance for each device. But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.
+If you have multiple awtrix-light devices, **it is required to create a new instance for each device.** But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.
 
 Example:
 

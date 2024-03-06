@@ -65,7 +65,7 @@ Wenn eine Benachrichtigung mit der Option `hold: true` gesendet wird, bleibt der
 
 ## Identische Apps auf mehreren Geräten
 
-Falls mehrere awtrix-light Geräte mit den gleichen Apps angesteuert werden sollen, muss eine eigene Instanz für jedes Gerät angelegt werden. Allerdings kann in den Instanzeinstellungen der weiteren Geräte dann festgelegt werden, dass die Apps aus einer anderen Instanz übernommen werden sollen.
+Falls mehrere awtrix-light Geräte mit den gleichen Apps angesteuert werden sollen, **muss eine eigene Instanz für jedes Gerät angelegt werden.** Allerdings kann in den Instanzeinstellungen der weiteren Geräte dann festgelegt werden, dass die Apps aus einer anderen Instanz übernommen werden sollen.
 
 Beispiel
 
