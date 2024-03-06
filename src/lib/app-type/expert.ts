@@ -237,13 +237,11 @@ export namespace AppType {
                                 this.refreshTimeout = this.adapter.setTimeout(async () => {
                                     this.refreshTimeout = null;
 
-                                    if (await this.refresh()) {
-                                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true });
-                                    }
+                                    await this.refresh();
                                 }, 100);
-                            } else {
-                                await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true });
                             }
+
+                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange' });
                         } else {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
 

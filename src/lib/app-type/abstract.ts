@@ -121,6 +121,7 @@ export namespace AppType {
                         this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
 
                         this.isVisible = !!state.val;
+
                         await this.refresh();
                         await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange' });
                     } else {
