@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
-* (klein0r) Fixed roles of calendar body and text (rgb)
+* (klein0r) Fixed roles of calendar header, body and text (rgb)
 
 ### 0.14.0 (2024-02-20)
 

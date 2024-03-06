@@ -581,8 +581,8 @@
           "uk": "Колір головки календаря",
           "zh-cn": "加德·曼"
         },
-        "type": "number",
-        "role": "value",
+        "type": "string",
+        "role": "level.color.rgb",
         "read": true,
         "write": true,
         "def": 1

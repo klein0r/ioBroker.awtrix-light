@@ -127,6 +127,27 @@ export class AwtrixLight extends utils.Adapter {
         this.log.debug(`Upgrading objects from previous version`);
 
         await this.delObjectAsync('apps.eyes', { recursive: true }); // eyes app was removed in firmware 0.71
+
+        await this.extendObjectAsync('settings.calendarHeaderColor', {
+            common: {
+                type: 'string',
+                role: 'level.color.rgb',
+            },
+        });
+
+        await this.extendObjectAsync('settings.calendarBodyColor', {
+            common: {
+                type: 'string',
+                role: 'level.color.rgb',
+            },
+        });
+
+        await this.extendObjectAsync('settings.calendarTextColor', {
+            common: {
+                type: 'string',
+                role: 'level.color.rgb',
+            },
+        });
     }
 
     private async importForeignSettings(): Promise<void> {
