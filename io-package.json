@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.14.0",
+    "version": "0.14.1",
     "news": {
+      "0.14.1": {
+        "en": "Fixed roles of calendar header, body and text (rgb)",
+        "de": "Feste Rollen von Kalender-Header, Körper und Text (rgb)",
+        "ru": "Исправленные роли заголовка календаря, тело и текст (rgb)",
+        "pt": "Funções fixas de cabeçalho do calendário, corpo e texto (rgb)",
+        "nl": "Vaste rollen van agenda header, body en tekst (rgb)",
+        "fr": "Rôles fixes de l'en-tête, du corps et du texte du calendrier (rgb)",
+        "it": "Ruoli fissi di intestazione del calendario, corpo e testo (rgb)",
+        "es": "Funciones fijas del encabezado del calendario, el cuerpo y el texto (rgb)",
+        "pl": "Stałe role nagłówka kalendarza, nadwozia i tekstu (rgb)",
+        "uk": "Виправлені ролі календарного заголовка, тіла та тексту (rgb)",
+        "zh-cn": "日历标题、正文和文本的固定作用( rgb)"
+      },
       "0.14.0": {
         "en": "Allow to round numbers dynamically (depends on length)",
         "de": "Erlauben Sie, Zahlen dynamisch zu runden (abhängig von der Länge)",
@@ -80,19 +93,6 @@
         "pl": "Przewidywania połączeń w trybie blokowania w celu zapobiegania czasu",
         "uk": "Видалення зворотнього зв'язку в блокнотному коді для запобігання часових відходів",
         "zh-cn": "取消阻碍时限的呼吁"
-      },
-      "0.10.1": {
-        "en": "Updated recommended firmware version to 0.91\n\n* Added uid and ip address states",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.91\n\n* Hinzugefügt uid und ip Adresszustände",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.91\n\n* Добавлены страны uid и ip адреса",
-        "pt": "Versão de firmware recomendada atualizada para 0.91\n\n* Adicionado uid e ip address estados",
-        "nl": "Aanbevolen firmaware versie naar 0.91\n\n♪ Added uid and ip adres states",
-        "fr": "Version mise à jour du firmware recommandé à 0.91\n\n* Ajout des états uid et ip",
-        "it": "Versione firmware consigliata aggiornata a 0.91\n\n* Aggiunto uid e ip indirizzi stati",
-        "es": "Versión actualizada de firmware recomendada a 0.91\n\n* estados de dirección uid y ip",
-        "pl": "Zalecona wersja oprogramowania do 0.91\n\n* Added uid and ip address states",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.91\n\n* Додані і ip адресні стани",
-        "zh-cn": "最新建议的警觉版本到0.91\n\n* 增编和参加国"
       }
     },
     "titleLang": {

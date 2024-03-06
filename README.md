@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.14.1 (2024-03-06)
 
 * (klein0r) Fixed roles of calendar header, body and text (rgb)
 
@@ -60,13 +60,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 * (klein0r) Added hold option to blockly
 * (klein0r) Added state to dismiss notifications
-
-### 0.11.0 (2024-01-09)
-
-Updated recommended firmware version to 0.94
-
-* (klein0r) Added bar graph to history apps
-* (klein0r) Added aggregation for history apps
 
 ## License
 MIT License

@@ -123,6 +123,24 @@ class AwtrixLight extends utils.Adapter {
   async upgradeFromPreviousVersion() {
     this.log.debug(`Upgrading objects from previous version`);
     await this.delObjectAsync("apps.eyes", { recursive: true });
+    await this.extendObjectAsync("settings.calendarHeaderColor", {
+      common: {
+        type: "string",
+        role: "level.color.rgb"
+      }
+    });
+    await this.extendObjectAsync("settings.calendarBodyColor", {
+      common: {
+        type: "string",
+        role: "level.color.rgb"
+      }
+    });
+    await this.extendObjectAsync("settings.calendarTextColor", {
+      common: {
+        type: "string",
+        role: "level.color.rgb"
+      }
+    });
   }
   async importForeignSettings() {
     var _a, _b, _c;
@@ -150,7 +168,7 @@ class AwtrixLight extends utils.Adapter {
     }
   }
   async onStateChange(id, state) {
-    var _a, _b, _c;
+    var _a, _b;
     if (id && state && !state.ack) {
       const idNoNamespace = this.removeNamespace(id);
       this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
@@ -159,7 +177,7 @@ class AwtrixLight extends utils.Adapter {
           this.log.debug(`changing setting ${idNoNamespace} power to ${state.val}`);
           const settingsObj = await this.getObjectAsync(idNoNamespace);
           if (settingsObj && ((_a = settingsObj.native) == null ? void 0 : _a.settingsKey)) {
-            (_b = this.apiClient) == null ? void 0 : _b.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val }).then(async (response) => {
+            this.apiClient.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val }).then(async (response) => {
               if (response.status === 200 && response.data === "OK") {
                 await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
               }
@@ -238,7 +256,7 @@ class AwtrixLight extends utils.Adapter {
           if (idNoNamespace.endsWith(".activate")) {
             if (state.val) {
               const sourceObj = await this.getObjectAsync(idNoNamespace);
-              if (sourceObj && ((_c = sourceObj.native) == null ? void 0 : _c.name)) {
+              if (sourceObj && ((_b = sourceObj.native) == null ? void 0 : _b.name)) {
                 this.log.debug(`activating app ${sourceObj.native.name}`);
                 this.apiClient.requestAsync("switch", "POST", { name: sourceObj.native.name }).catch((error) => {
                   this.log.warn(`(switch) Unable to execute action: ${error}`);
