@@ -60,5 +60,18 @@
     "Password": "Passwort",
     "Screen": "Bildschirm",
     "Round dynamically": "Dynamisch runden",
-    "Adjust digits to avoid scrolling": "Passt Dezimalstellen an, um ein Scrollen zu vermeiden"
+    "Adjust digits to avoid scrolling": "Passt Dezimalstellen an, um ein Scrollen zu vermeiden",
+    "Display as": "Darstellen als",
+    "Line": "Linie",
+    "Bar": "Balken",
+    "Mode": "Modus",
+    "Last values": "Letzte Werte",
+    "Aggregated values": "Aggregierte Werte",
+    "Aggregation": "Aggregieren nach",
+    "Average": "Durchschnitt",
+    "Min": "Minimal",
+    "Max": "Maximal",
+    "Count": "Anzahl",
+    "Step size": "Schrittweite",
+    "seconds": "Sekunden"
 }

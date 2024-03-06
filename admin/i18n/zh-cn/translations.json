@@ -60,5 +60,18 @@
     "Password": "密码",
     "Screen": "屏幕",
     "Round dynamically": "动态舍入",
-    "Adjust digits to avoid scrolling": "调整数字以避免滚动"
+    "Adjust digits to avoid scrolling": "调整数字以避免滚动",
+    "Display as": "展示为",
+    "Line": "线",
+    "Bar": "酒吧",
+    "Mode": "模式",
+    "Last values": "最后值",
+    "Aggregated values": "合计值",
+    "Aggregation": "聚合",
+    "Average": "平均的",
+    "Min": "最小",
+    "Max": "最大限度",
+    "Count": "数数",
+    "Step size": "一步的大小",
+    "seconds": "秒"
 }

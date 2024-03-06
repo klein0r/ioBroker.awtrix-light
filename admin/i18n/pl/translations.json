@@ -60,5 +60,18 @@
     "Password": "Hasło",
     "Screen": "Ekran",
     "Round dynamically": "Zaokrąglaj dynamicznie",
-    "Adjust digits to avoid scrolling": "Dostosuj cyfry, aby uniknąć przewijania"
+    "Adjust digits to avoid scrolling": "Dostosuj cyfry, aby uniknąć przewijania",
+    "Display as": "Wyświetl jako",
+    "Line": "Linia",
+    "Bar": "Bar",
+    "Mode": "Tryb",
+    "Last values": "Ostatnie wartości",
+    "Aggregated values": "Zagregowane wartości",
+    "Aggregation": "Zbiór",
+    "Average": "Przeciętny",
+    "Min": "Min",
+    "Max": "Maks",
+    "Count": "Liczyć",
+    "Step size": "Rozmiar kroku",
+    "seconds": "sekundy"
 }

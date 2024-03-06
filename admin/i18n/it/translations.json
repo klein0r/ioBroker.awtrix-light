@@ -60,5 +60,18 @@
     "Password": "Parola d'ordine",
     "Screen": "Schermo",
     "Round dynamically": "Arrotondare dinamicamente",
-    "Adjust digits to avoid scrolling": "Regolare le cifre per evitare lo scorrimento"
+    "Adjust digits to avoid scrolling": "Regolare le cifre per evitare lo scorrimento",
+    "Display as": "Mostra come",
+    "Line": "Linea",
+    "Bar": "Sbarra",
+    "Mode": "Modalità",
+    "Last values": "Ultimi valori",
+    "Aggregated values": "Valori aggregati",
+    "Aggregation": "Aggregazione",
+    "Average": "Media",
+    "Min": "minimo",
+    "Max": "Massimo",
+    "Count": "Contare",
+    "Step size": "Dimensione del passo",
+    "seconds": "secondi"
 }

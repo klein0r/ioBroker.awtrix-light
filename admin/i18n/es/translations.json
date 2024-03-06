@@ -60,5 +60,18 @@
     "Password": "Contraseña",
     "Screen": "Pantalla",
     "Round dynamically": "Redondear dinámicamente",
-    "Adjust digits to avoid scrolling": "Ajusta los dígitos para evitar el desplazamiento"
+    "Adjust digits to avoid scrolling": "Ajusta los dígitos para evitar el desplazamiento",
+    "Display as": "Mostrar como",
+    "Line": "Línea",
+    "Bar": "Bar",
+    "Mode": "Modo",
+    "Last values": "Últimos valores",
+    "Aggregated values": "Valores agregados",
+    "Aggregation": "Agregación",
+    "Average": "Promedio",
+    "Min": "mín.",
+    "Max": "máx.",
+    "Count": "Contar",
+    "Step size": "Numero de pie",
+    "seconds": "segundos"
 }

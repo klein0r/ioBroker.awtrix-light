@@ -60,5 +60,18 @@
     "Password": "Wachtwoord",
     "Screen": "Scherm",
     "Round dynamically": "Dynamisch rond",
-    "Adjust digits to avoid scrolling": "Pas cijfers aan om scrollen te voorkomen"
+    "Adjust digits to avoid scrolling": "Pas cijfers aan om scrollen te voorkomen",
+    "Display as": "Weergeven als",
+    "Line": "Lijn",
+    "Bar": "Bar",
+    "Mode": "Modus",
+    "Last values": "Laatste waarden",
+    "Aggregated values": "Geaggregeerde waarden",
+    "Aggregation": "Aggregatie",
+    "Average": "Gemiddeld",
+    "Min": "Min",
+    "Max": "Max",
+    "Count": "Graaf",
+    "Step size": "Stapgrootte",
+    "seconds": "seconden"
 }

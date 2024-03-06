@@ -60,5 +60,18 @@
     "Password": "Senha",
     "Screen": "Tela",
     "Round dynamically": "Arredondar dinamicamente",
-    "Adjust digits to avoid scrolling": "Ajuste os dígitos para evitar rolagem"
+    "Adjust digits to avoid scrolling": "Ajuste os dígitos para evitar rolagem",
+    "Display as": "Mostrar como",
+    "Line": "Linha",
+    "Bar": "Bar",
+    "Mode": "Modo",
+    "Last values": "Últimos valores",
+    "Aggregated values": "Valores agregados",
+    "Aggregation": "Agregação",
+    "Average": "Média",
+    "Min": "Mínimo",
+    "Max": "Máx.",
+    "Count": "Contar",
+    "Step size": "Tamanho do passo",
+    "seconds": "segundos"
 }

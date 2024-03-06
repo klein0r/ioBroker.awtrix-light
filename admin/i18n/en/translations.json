@@ -60,5 +60,18 @@
     "Password": "Password",
     "Screen": "Screen",
     "Round dynamically": "Round dynamically",
-    "Adjust digits to avoid scrolling": "Adjust digits to avoid scrolling"
+    "Adjust digits to avoid scrolling": "Adjust digits to avoid scrolling",
+    "Display as": "Display as",
+    "Line": "Line",
+    "Bar": "Bar",
+    "Mode": "Mode",
+    "Last values": "Last values",
+    "Aggregated values": "Aggregated values",
+    "Aggregation": "Aggregation",
+    "Average": "Average",
+    "Min": "Min",
+    "Max": "Max",
+    "Count": "Count",
+    "Step size": "Step size",
+    "seconds": "seconds"
 }

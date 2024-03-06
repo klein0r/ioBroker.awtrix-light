@@ -60,5 +60,18 @@
     "Password": "Пароль",
     "Screen": "Екран",
     "Round dynamically": "Округлення динамічно",
-    "Adjust digits to avoid scrolling": "Налаштуйте цифри, щоб уникнути прокручування"
+    "Adjust digits to avoid scrolling": "Налаштуйте цифри, щоб уникнути прокручування",
+    "Display as": "Відображати як",
+    "Line": "лінія",
+    "Bar": "Бар",
+    "Mode": "Режим",
+    "Last values": "Останні значення",
+    "Aggregated values": "Агреговані значення",
+    "Aggregation": "Агрегація",
+    "Average": "Середній",
+    "Min": "Хв",
+    "Max": "Макс",
+    "Count": "Рахувати",
+    "Step size": "Розмір кроку",
+    "seconds": "секунд"
 }

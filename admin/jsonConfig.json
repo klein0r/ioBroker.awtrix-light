@@ -699,19 +699,19 @@
                             "lg": 4,
                             "options": [
                                 {
-                                    "label": "average",
+                                    "label": "Average",
                                     "value": "average"
                                 },
                                 {
-                                    "label": "min",
+                                    "label": "Min",
                                     "value": "min"
                                 },
                                 {
-                                    "label": "max",
+                                    "label": "Max",
                                     "value": "max"
                                 },
                                 {
-                                    "label": "count",
+                                    "label": "Count",
                                     "value": "count"
                                 }
                             ],
@@ -727,7 +727,8 @@
                             "md": 2,
                             "lg": 2,
                             "default": 3600,
-                            "min": 1
+                            "min": 1,
+                            "help": "seconds"
                         },
                         {
                             "hidden": "!globalData.customPositions",
