@@ -35,14 +35,18 @@ var AppType;
       var _a, _b;
       const appName = this.getName();
       const appObjects = await this.adapter.getObjectViewAsync("system", "state", {
-        startkey: `${this.adapter.namespace}.apps.${appName}.`,
-        endkey: `${this.adapter.namespace}.apps.${appName}.\u9999`
+        startkey: `${this.objPrefix}.apps.${appName}.`,
+        endkey: `${this.objPrefix}.apps.${appName}.\u9999`
       });
       for (const appObj of appObjects.rows) {
         if ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute) {
-          const appState = await this.adapter.getStateAsync(appObj.id);
+          const appState = await this.adapter.getForeignStateAsync(appObj.id);
           if (appState) {
             this.appStates[appObj.value.native.attribute] = appState.val;
+            if (!this.isMainInstance()) {
+              const idOwnNamespace = this.adapter.removeNamespace(appObj.id.replace(this.objPrefix, this.adapter.namespace));
+              await this.adapter.setStateAsync(idOwnNamespace, { val: appState.val, ack: true, c: "init" });
+            }
           }
         }
       }
@@ -68,7 +72,7 @@ var AppType;
     }
     async createObjects() {
       const appName = this.getName();
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.text`, {
+      await this.adapter.extendObjectAsync(`apps.${appName}.text`, {
         type: "state",
         common: {
           name: {
@@ -87,14 +91,14 @@ var AppType;
           type: "string",
           role: "text",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: ""
         },
         native: {
           attribute: "text"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.textColor`, {
+      await this.adapter.extendObjectAsync(`apps.${appName}.textColor`, {
         type: "state",
         common: {
           name: {
@@ -113,14 +117,14 @@ var AppType;
           type: "string",
           role: "level.color.rgb",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: "#FFFFFF"
         },
         native: {
           attribute: "color"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.backgroundColor`, {
+      await this.adapter.extendObjectAsync(`apps.${appName}.backgroundColor`, {
         type: "state",
         common: {
           name: {
@@ -139,14 +143,14 @@ var AppType;
           type: "string",
           role: "level.color.rgb",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: "#000000"
         },
         native: {
           attribute: "background"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.icon`, {
+      await this.adapter.extendObjectAsync(`apps.${appName}.icon`, {
         type: "state",
         common: {
           name: {
@@ -165,14 +169,14 @@ var AppType;
           type: "string",
           role: "text",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: ""
         },
         native: {
           attribute: "icon"
         }
       });
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.duration`, {
+      await this.adapter.extendObjectAsync(`apps.${appName}.duration`, {
         type: "state",
         common: {
           name: {
@@ -191,22 +195,29 @@ var AppType;
           type: "number",
           role: "value",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: 0
         },
         native: {
           attribute: "duration"
         }
       });
+      if (!this.isMainInstance()) {
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.text`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.textColor`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
+      }
       return super.createObjects();
     }
     async stateChanged(id, state) {
       var _a, _b, _c;
-      const idNoNamespace = this.adapter.removeNamespace(id);
-      const appName = this.getName();
       if (id && state && !state.ack) {
-        if (idNoNamespace.startsWith(`apps.${appName}.`)) {
-          const obj = await this.adapter.getObjectAsync(idNoNamespace);
+        const appName = this.getName();
+        const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+        if (id.startsWith(`${this.objPrefix}.apps.${appName}.`)) {
+          const obj = await this.adapter.getForeignObjectAsync(id);
           if (obj && ((_a = obj == null ? void 0 : obj.native) == null ? void 0 : _a.attribute)) {
             const attr = obj.native.attribute;
             if (this.appStates[attr] !== state.val) {
@@ -215,15 +226,13 @@ var AppType;
               if (!this.refreshTimeout) {
                 this.refreshTimeout = this.adapter.setTimeout(async () => {
                   this.refreshTimeout = null;
-                  if (await this.refresh()) {
-                    await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
-                  }
+                  await this.refresh();
                 }, 100);
-              } else {
-                await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true });
               }
+              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange" });
             } else {
               this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${(_c = obj == null ? void 0 : obj.native) == null ? void 0 : _c.attribute})`);
+              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
             }
           }
         }

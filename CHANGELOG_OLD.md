@@ -1,4 +1,9 @@
 # Older changes
+## 0.12.0 (2024-01-24)
+
+* (klein0r) Added hold option to blockly
+* (klein0r) Added state to dismiss notifications
+
 ## 0.11.0 (2024-01-09)
 
 Updated recommended firmware version to 0.94

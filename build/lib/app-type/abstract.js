@@ -29,18 +29,26 @@ var AppType;
       this.adapter = adapter;
       this.definition = definition;
       this.isVisible = false;
+      if (!this.adapter.config.foreignSettingsInstance) {
+        this.objPrefix = this.adapter.namespace;
+      } else {
+        this.objPrefix = this.adapter.config.foreignSettingsInstance;
+      }
       adapter.on("stateChange", this.onStateChange.bind(this));
       adapter.on("objectChange", this.onObjectChange.bind(this));
     }
     getName() {
       return this.definition.name;
     }
+    isMainInstance() {
+      return this.objPrefix === this.adapter.namespace;
+    }
     async init() {
       const appName = this.getName();
-      const appVisibleState = await this.adapter.getStateAsync(`apps.${appName}.visible`);
+      const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
       this.isVisible = appVisibleState ? !!appVisibleState.val : true;
       if (appVisibleState && !(appVisibleState == null ? void 0 : appVisibleState.ack)) {
-        await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "initCustomApp" });
+        await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "init" });
       }
       return this.isVisible;
     }
@@ -55,7 +63,8 @@ var AppType;
     }
     async createObjects() {
       const appName = this.getName();
-      await this.adapter.setObjectNotExistsAsync(`apps.${appName}.visible`, {
+      this.adapter.log.debug(`[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? "main" : this.objPrefix})`);
+      await this.adapter.extendObjectAsync(`apps.${appName}.visible`, {
         type: "state",
         common: {
           name: {
@@ -74,11 +83,14 @@ var AppType;
           type: "boolean",
           role: "switch.enable",
           read: true,
-          write: true,
+          write: this.isMainInstance(),
           def: true
         },
         native: {}
       });
+      if (!this.isMainInstance()) {
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.visible`);
+      }
     }
     async unloadAsync() {
       if (this.adapter.config.removeAppsOnStop) {
@@ -93,19 +105,18 @@ var AppType;
       }
     }
     async onStateChange(id, state) {
-      const idNoNamespace = this.adapter.removeNamespace(id);
-      const appName = this.getName();
       if (id && state && !state.ack) {
-        if (idNoNamespace == `apps.${appName}.visible`) {
+        const appName = this.getName();
+        const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+        if (id === `${this.objPrefix}.apps.${appName}.visible`) {
           if (state.val !== this.isVisible) {
-            this.adapter.log.debug(`[onStateChange] changed visibility of app ${appName} to ${state.val}`);
+            this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
             this.isVisible = !!state.val;
-            if (await this.refresh()) {
-              await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange" });
-            }
+            await this.refresh();
+            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange" });
           } else {
-            this.adapter.log.debug(`[onStateChange] visibility of app ${appName} was already ${state.val} - ignoring`);
-            await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
+            this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
+            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
           }
         }
       }

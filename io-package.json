@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.14.1",
+    "version": "0.15.0",
     "news": {
+      "0.15.0": {
+        "en": "Keep apps contents in sync",
+        "de": "Aktualisieren von Apps",
+        "ru": "Хранить содержимое приложений синхронно",
+        "pt": "Mantenha o conteúdo dos aplicativos em sincronia",
+        "nl": "De inhoud van apps synchroniseren",
+        "fr": "Conserver le contenu des applications en synchronisation",
+        "it": "Mantenere i contenuti delle app in sincronizzazione",
+        "es": "Mantener contenidos de aplicaciones en sincronización",
+        "pl": "Zachowaj zawartość aplikacji w synchronizacji",
+        "uk": "Збережіть вміст додатків в синхронізації",
+        "zh-cn": "保持应用程序内容同步"
+      },
       "0.14.1": {
         "en": "Fixed roles of calendar header, body and text (rgb)",
         "de": "Feste Rollen von Kalender-Header, Körper und Text (rgb)",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacja zalecanej wersji firmware do 0.94\n\n* Dodano wykres bar do aplikacji historii\n* Dodano agregację dla aplikacji historii",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0.94\n\n* Додано графік штриху до історичних додатків\n* Додано агрегацію для історичних додатків",
         "zh-cn": "最新推荐的固件版本为0.94\n\n* 添加到历史应用中的条形图\n* 为历史应用程序添加的汇总"
-      },
-      "0.10.2": {
-        "en": "Removed callbacks in blockly code to prevent timeouts",
-        "de": "Entfernen von Callbacks im Block-Code, um Timeouts zu verhindern",
-        "ru": "Удалены обратный звонок в блокнотном коде для предотвращения таймаут",
-        "pt": "Retornos de chamada removidos em código bloqueado para evitar prazos",
-        "nl": "Verwijderde telefoontjes in blokkeer code om time-outs te voorkomen",
-        "fr": "Rappels supprimés en code bloqué pour éviter les timeouts",
-        "it": "Rimozione delle chiamate in codice blockly per evitare timeout",
-        "es": "Retractos eliminados en código bloqueado para evitar los timeouts",
-        "pl": "Przewidywania połączeń w trybie blokowania w celu zapobiegania czasu",
-        "uk": "Видалення зворотнього зв'язку в блокнотному коді для запобігання часових відходів",
-        "zh-cn": "取消阻碍时限的呼吁"
       }
     },
     "titleLang": {

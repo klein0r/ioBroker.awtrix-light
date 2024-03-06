@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.15.0 (2024-03-06)
 
 * (klein0r) Keep apps contents in sync
 
@@ -59,11 +59,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 * (klein0r) Added state for text color and background color in expert apps
 * (klein0r) Avoid app refresh when no values have been changed
-
-### 0.12.0 (2024-01-24)
-
-* (klein0r) Added hold option to blockly
-* (klein0r) Added state to dismiss notifications
 
 ## License
 MIT License
