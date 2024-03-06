@@ -190,8 +190,7 @@ export class AwtrixLight extends utils.Adapter {
 
                     const settingsObj = await this.getObjectAsync(idNoNamespace);
                     if (settingsObj && settingsObj.native?.settingsKey) {
-                        this.apiClient
-                            ?.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val })
+                        this.apiClient!.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val })
                             .then(async (response) => {
                                 if (response.status === 200 && response.data === 'OK') {
                                     await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
