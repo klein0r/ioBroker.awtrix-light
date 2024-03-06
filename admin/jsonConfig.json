@@ -838,6 +838,7 @@
                     "label": "Number format"
                 },
                 "customPositions": {
+                    "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "checkbox",
                     "label": "Own position for each app",

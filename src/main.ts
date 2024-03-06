@@ -165,6 +165,7 @@ export class AwtrixLight extends utils.Adapter {
                     this.config.autoDeleteForeignApps = instanceObj.native.autoDeleteForeignApps;
                     this.config.removeAppsOnStop = instanceObj.native.removeAppsOnStop;
                     this.config.expertApps = instanceObj.native.expertApps;
+                    this.config.customPositions = instanceObj.native.customPositions;
 
                     this.log.debug(`[importForeignSettings] Copied settings from foreign instance "system.adapter.${this.config.foreignSettingsInstance}"`);
                 } else {
