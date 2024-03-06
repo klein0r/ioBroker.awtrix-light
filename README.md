@@ -41,7 +41,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
-* (klein0r) Keep apps in sync
+* (klein0r) Keep apps contents in sync
 
 ### 0.14.1 (2024-03-06)
 

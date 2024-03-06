@@ -43,9 +43,7 @@ export namespace AppType {
 
             // Ack if changed while instance was stopped
             if (appVisibleState && !appVisibleState?.ack) {
-                if (this.isMainInstance()) {
-                    await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'initCustomApp' });
-                }
+                await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'init' });
             }
 
             return this.isVisible;
@@ -68,34 +66,32 @@ export namespace AppType {
 
             this.adapter.log.debug(`[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? 'main' : this.objPrefix})`);
 
-            if (this.isMainInstance()) {
-                await this.adapter.setObjectNotExistsAsync(`apps.${appName}.visible`, {
-                    type: 'state',
-                    common: {
-                        name: {
-                            en: 'Visible',
-                            de: 'Sichtbar',
-                            ru: 'Видимый',
-                            pt: 'Visível',
-                            nl: 'Vertaling',
-                            fr: 'Visible',
-                            it: 'Visibile',
-                            es: 'Visible',
-                            pl: 'Widoczny',
-                            //uk: 'Вибрані',
-                            'zh-cn': '不可抗辩',
-                        },
-                        type: 'boolean',
-                        role: 'switch.enable',
-                        read: true,
-                        write: true,
-                        def: true,
+            await this.adapter.extendObjectAsync(`apps.${appName}.visible`, {
+                type: 'state',
+                common: {
+                    name: {
+                        en: 'Visible',
+                        de: 'Sichtbar',
+                        ru: 'Видимый',
+                        pt: 'Visível',
+                        nl: 'Vertaling',
+                        fr: 'Visible',
+                        it: 'Visibile',
+                        es: 'Visible',
+                        pl: 'Widoczny',
+                        //uk: 'Вибрані',
+                        'zh-cn': '不可抗辩',
                     },
-                    native: {},
-                });
-            } else {
-                await this.adapter.delObjectAsync(`apps.${appName}.visible`);
+                    type: 'boolean',
+                    role: 'switch.enable',
+                    read: true,
+                    write: this.isMainInstance(),
+                    def: true,
+                },
+                native: {},
+            });
 
+            if (!this.isMainInstance()) {
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.visible`);
             }
         }
@@ -115,25 +111,22 @@ export namespace AppType {
         }
 
         private async onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void> {
-            const idNoNamespace = this.adapter.removeNamespace(id);
-            const appName = this.getName();
-
             // Handle default states for all apps
             if (id && state && !state.ack) {
+                const appName = this.getName();
+                const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+
                 if (id === `${this.objPrefix}.apps.${appName}.visible`) {
                     if (state.val !== this.isVisible) {
                         this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
 
                         this.isVisible = !!state.val;
-                        if (await this.refresh()) {
-                            if (this.isMainInstance()) {
-                                await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange' });
-                            }
-                        }
-                    } else if (this.isMainInstance()) {
+                        await this.refresh();
+                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange' });
+                    } else {
                         this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
 
-                        await this.adapter.setStateAsync(idNoNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
+                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
                     }
                 }
             }
