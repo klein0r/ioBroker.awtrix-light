@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed roles of calendar body and text (rgb)
+
 ### 0.14.0 (2024-02-20)
 
 * (klein0r) Allow to round numbers dynamically (depends on length)

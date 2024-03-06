@@ -608,8 +608,8 @@
           "uk": "Колір тіла календаря",
           "zh-cn": "统计院"
         },
-        "type": "number",
-        "role": "value",
+        "type": "string",
+        "role": "level.color.rgb",
         "read": true,
         "write": true,
         "def": 1
@@ -635,8 +635,8 @@
           "uk": "Календар текстового кольору",
           "zh-cn": "订正案文"
         },
-        "type": "number",
-        "role": "value",
+        "type": "string",
+        "role": "level.color.rgb",
         "read": true,
         "write": true,
         "def": 1
