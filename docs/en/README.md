@@ -73,6 +73,8 @@ Example:
 2. Create a new instance for the second device (`awtrix-light.1`)
 3. Choose `awtrix-light.0` in the instance configuration of `awtrix-light.1` to use the same apps on the second device
 
+Since version 0.15.0 (and later) the app visibility and contents of expert apps are also applied to other devices (when app settings are copied). In the example above the apps of `awtrix-light.1` will be hidden automatically if the visibility state of an app in instance `awtrix-light.0` changes.
+
 ## Blockly and JavaScript
 
 `sendTo` / message box can be used to

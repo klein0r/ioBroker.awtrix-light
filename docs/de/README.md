@@ -73,6 +73,8 @@ Beispiel
 2. Lege eine weitere Instanz für das zweite Gerät an (`awtrix-light.1`)
 3. Wähle `awtrix-light.0` in den Instanz-Einstellungen von `awtrix-light.1` um die gleichen Apps auf dem zweiten Gerät darzustellen
 
+Seit Version 0.15.0 (und neuer) wird die Sichtbarkeit von Apps und alle Inhalte der Experten-Apps auch auf andere Geräte übertragen, welche die App-Einstellungen kopieren. Im Beispiel oben werden z.B. die Apps der Instanz `awtrix-light.1` ebenfalls versteckt, sobald die Sichtbarkeit der App in der Hauptinstanz `awtrix-light.0` geändert wird. Das gleiche gilt für alle Inhalte der Experten-Apps.
+
 ## Blockly und JavaScript
 
 `sendTo` / messagebox kann genutzt werden um
