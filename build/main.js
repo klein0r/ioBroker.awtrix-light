@@ -126,19 +126,22 @@ class AwtrixLight extends utils.Adapter {
     await this.extendObjectAsync("settings.calendarHeaderColor", {
       common: {
         type: "string",
-        role: "level.color.rgb"
+        role: "level.color.rgb",
+        def: "#FF0000"
       }
     });
     await this.extendObjectAsync("settings.calendarBodyColor", {
       common: {
         type: "string",
-        role: "level.color.rgb"
+        role: "level.color.rgb",
+        def: "#FFFFFF"
       }
     });
     await this.extendObjectAsync("settings.calendarTextColor", {
       common: {
         type: "string",
-        role: "level.color.rgb"
+        role: "level.color.rgb",
+        def: "#000000"
       }
     });
   }

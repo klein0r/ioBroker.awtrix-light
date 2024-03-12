@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.15.0",
+    "version": "0.15.1",
     "news": {
+      "0.15.1": {
+        "en": "Fixed default values of color states",
+        "de": "Feste Standardwerte von Farbzuständen",
+        "ru": "Исправленные значения по умолчанию",
+        "pt": "Valores padrão fixos de estados de cor",
+        "nl": "Vaste standaardwaarden van kleurtoestanden",
+        "fr": "Valeurs par défaut fixes des états de couleur",
+        "it": "Valori di default fissi degli stati di colore",
+        "es": "Valores predeterminados fijos de los estados de color",
+        "pl": "Naprawiono domyślne wartości stanów kolorów",
+        "uk": "Виправлені значення за замовчуванням кольорових станів",
+        "zh-cn": "颜色状态的固定默认值"
+      },
       "0.15.0": {
         "en": "Keep apps contents in sync",
         "de": "Aktualisieren von Apps",
@@ -80,19 +93,6 @@
         "pl": "Dodano opcję hold do blockly\nDodano państwo, które odrzuciło powiadomienia",
         "uk": "Додано варіант утримання для блокування\nДодано стан для звільнення повідомлень",
         "zh-cn": "添加控件选项以屏蔽\n驳回通知的添加状态"
-      },
-      "0.11.0": {
-        "en": "Updated recommended firmware version to 0.94\n\n* Added bar graph to history apps\n* Added aggregation for history apps",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.94\n\n* Hinzugefügt Balkendiagramm zu Geschichtsapps\n* Hinzugefügt Aggregation für Geschichtsapps",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0.94\n\n* Добавлен штрих-граф в приложения истории\n* Добавлена агрегация для приложений истории",
-        "pt": "Versão de firmware recomendada atualizada para 0.94\n\n* Adicionado gráfico de barras para aplicativos de história\n* Agregação adicionada para aplicativos de história",
-        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.94\n\n* Toegevoegde staaf grafiek aan geschiedenis apps\n* Toegevoegde aggregatie voor geschiedenis-apps",
-        "fr": "Mise à jour de la version firmware recommandée à 0.94\n\n* Ajout d'un graphique à barres aux applications d'historique\n* Ajout de l'agrégation pour les applications d'historique",
-        "it": "Versione firmware consigliata aggiornata a 0.94\n\n* Aggiunto grafico della barra alle app di storia\n* Aggiunto aggregazione per le app di storia",
-        "es": "Versión actualizada de firmware recomendada a 0.94\n\n* Gráfico de barras añadido a aplicaciones de historia\n* Agregado agregación para aplicaciones de historia",
-        "pl": "Aktualizacja zalecanej wersji firmware do 0.94\n\n* Dodano wykres bar do aplikacji historii\n* Dodano agregację dla aplikacji historii",
-        "uk": "Оновлено рекомендовану версію мікропрограми до 0.94\n\n* Додано графік штриху до історичних додатків\n* Додано агрегацію для історичних додатків",
-        "zh-cn": "最新推荐的固件版本为0.94\n\n* 添加到历史应用中的条形图\n* 为历史应用程序添加的汇总"
       }
     },
     "titleLang": {

@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.15.1 (2024-03-12)
 
 * (klein0r) Fixed default values of color states
 
@@ -58,11 +58,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### 0.13.1 (2024-01-25)
 
 * (klein0r) Fixed hold option in blockly
-
-### 0.13.0 (2024-01-25)
-
-* (klein0r) Added state for text color and background color in expert apps
-* (klein0r) Avoid app refresh when no values have been changed
 
 ## License
 MIT License

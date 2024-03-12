@@ -1,4 +1,9 @@
 # Older changes
+## 0.13.0 (2024-01-25)
+
+* (klein0r) Added state for text color and background color in expert apps
+* (klein0r) Avoid app refresh when no values have been changed
+
 ## 0.12.0 (2024-01-24)
 
 * (klein0r) Added hold option to blockly
