@@ -87,7 +87,7 @@ Since version 0.15.0 (and later) the app visibility and contents of expert apps 
 Send a "one time" notification to your device:
 
 ```javascript
-sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
+sendTo('awtrix-light.0', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
@@ -103,7 +103,7 @@ The message object supports all available options of the firmware. See [document
 To play a (previously created) sound file:
 
 ```javascript
-sendTo('awtrix-light', 'sound', { sound: 'example' }, (res) => {
+sendTo('awtrix-light.0', 'sound', { sound: 'example' }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
@@ -117,7 +117,7 @@ The message object supports all available options of the firmware. See [document
 To play a custom ringtone:
 
 ```javascript
-sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
+sendTo('awtrix-light.0', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
     if (res && res.error) {
         console.error(res.error);
     }

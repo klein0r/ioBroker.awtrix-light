@@ -87,7 +87,7 @@ Seit Version 0.15.0 (und neuer) wird die Sichtbarkeit von Apps und alle Inhalte 
 Sende eine einmalige Benachrichtigung an das Gerät:
 
 ```javascript
-sendTo('awtrix-light', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
+sendTo('awtrix-light.0', 'notification', { text: 'haus-automatisierung.com', repeat: 1, stack: true, wakeup: true, hold: false }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
@@ -103,7 +103,7 @@ Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware 
 Um eine (vorher angelegte) Ton-Datei abzuspielen:
 
 ```javascript
-sendTo('awtrix-light', 'sound', { sound: 'beispiel' }, (res) => {
+sendTo('awtrix-light.0', 'sound', { sound: 'beispiel' }, (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
@@ -117,7 +117,7 @@ Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware 
 Um einen eigenen Klingelton abzuspielen:
 
 ```javascript
-sendTo('awtrix-light', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
+sendTo('awtrix-light.0', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
     if (res && res.error) {
         console.error(res.error);
     }
