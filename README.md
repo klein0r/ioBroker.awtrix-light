@@ -43,6 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.95
 
+* (klein0r) Added notification for firmware update
 * (klein0r) Added setting state for volume
 * (klein0r) Rebranding Awtrix Light to Awtrix 3
 

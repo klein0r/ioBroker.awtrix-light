@@ -515,6 +515,9 @@ export class AwtrixLight extends utils.Adapter {
                 await this.setApiConnected(true);
 
                 if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
+                    // @ts-expect-error extend scope
+                    this.registerNotification('awtrix-light', 'deviceUpdate', `Firmware update: ${content.version} -> ${this.supportedVersion}`);
+
                     this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
                     this.displayedVersionWarning = true; // Just show once
                 }
