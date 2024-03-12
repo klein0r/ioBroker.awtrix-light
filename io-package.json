@@ -96,30 +96,30 @@
       }
     },
     "titleLang": {
-      "en": "Awtrix Light",
-      "de": "Awtrix Light",
-      "ru": "Awtrix Light",
-      "pt": "Awtrix Light",
-      "nl": "Awtrix Light",
-      "fr": "Awtrix Light",
-      "it": "Awtrix Light",
-      "es": "Awtrix Light",
-      "pl": "Awtrix Light",
-      "uk": "Awtrix Light",
-      "zh-cn": "Awtrix Light"
+      "en": "Awtrix 3 (Awtrix Light)",
+      "de": "Awtrix 3 (Awtrix Light)",
+      "ru": "Awtrix 3 (Awtrix Light)",
+      "pt": "Awtrix 3 (Awtrix Light)",
+      "nl": "Awtrix 3 (Awtrix Light)",
+      "fr": "Awtrix 3 (Awtrix Light)",
+      "it": "Awtrix 3 (Awtrix Light)",
+      "es": "Awtrix 3 (Awtrix Light)",
+      "pl": "Awtrix 3 (Awtrix Light)",
+      "uk": "Awtrix 3 (Awtrix Light)",
+      "zh-cn": "Awtrix 3 (Awtrix Light)"
     },
     "desc": {
-      "en": "Integrates your Ulanzi TC001 via HTTP",
-      "de": "Integriert Ihr Ulanzi TC001 über HTTP",
-      "ru": "Интегрирует ваш Ulanzi TC001 через HTTP",
-      "pt": "Integra seu Ulanzi TC001 via HTTP",
-      "nl": "Integreert uw Ulanzi TC001 via HTTP",
-      "fr": "Intègre votre Ulanzi TC001 via HTTP",
-      "it": "Integra il tuo Ulanzi TC001 tramite HTTP",
-      "es": "Integra tu Ulanzi TC001 vía HTTP",
-      "pl": "Integruje twój Ulanzi TC001 przez HTTP",
-      "uk": "Інтегрує ваш Ulanzi TC001 через HTTP",
-      "zh-cn": "通过 HTTP 集成您的乌兰子 TC001"
+      "en": "Integrates your Awtrix 3 via HTTP",
+      "de": "Integriert Ihr Awtrix 3 über HTTP",
+      "ru": "Интегрирует ваш Awtrix 3 через HTTP",
+      "pt": "Integra seu Awtrix 3 via HTTP",
+      "nl": "Integreert uw Awtrix 3 via HTTP",
+      "fr": "Intègre votre Awtrix 3 via HTTP",
+      "it": "Integra il tuo Awtrix 3 tramite HTTP",
+      "es": "Integra tu Awtrix 3 vía HTTP",
+      "pl": "Integruje twój Awtrix 3 przez HTTP",
+      "uk": "Інтегрує ваш Awtrix 3 через HTTP",
+      "zh-cn": "通过 HTTP 集成您的乌兰子 Awtrix 3"
     },
     "authors": [
       "Matthias Kleine <info@haus-automatisierung.com>"

@@ -20,7 +20,7 @@
 ![Stable](http://iobroker.live/badges/awtrix-light-stable.svg)
 ![Installed](http://iobroker.live/badges/awtrix-light-installed.svg)
 
-Integrate your [Awtrix Light](https://github.com/Blueforcer/awtrix-light) device (e.g. Ulanzi TC001) via HTTP
+Integrate your [Awtrix 3](https://github.com/Blueforcer/awtrix3) device (e.g. Ulanzi TC001) via HTTP
 
 Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
