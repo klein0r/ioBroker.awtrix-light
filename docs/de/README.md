@@ -13,7 +13,7 @@ Hier kaufen: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) oder hier
 
 ## Erste Schritte
 
-1. Flashe die Firmware auf das Gerät und füge es zu deinem lokalen Netzwerk per WLAN hinzu - siehe [Dokumentation](https://blueforcer.github.io/awtrix-light/#/quickstart)
+1. Flashe die Firmware auf das Gerät und füge es zu deinem lokalen Netzwerk per WLAN hinzu - siehe [Dokumentation](https://blueforcer.github.io/awtrix3/#/quickstart)
 2. Installiere den awtrix-light Adapter im ioBroker (und erstelle eine neue Instanz)
 3. Öffne die Instanz-Konfiguration und hinterlege die IP-Adresse des Gerätes im lokalen Netzwerk
 
@@ -29,7 +29,7 @@ Erstelle dafür einfach einen Alias in `alias.0` vom Typ `string` (Zeichenkette)
 
 **Wie kann ich zur aktuellsten Firmware-Version wechseln?**
 
-Nutze einfach das [Menu auf dem Gerät](https://blueforcer.github.io/awtrix-light/#/onscreen) um zum Punkt `update` zu navigieren. Den Rest erledigt die Uhr dann selbst. Es ist nicht nötig, den Web-Flasher erneut zu verwenden (außer, ein Firware-Update erfordert dies explizit).
+Nutze einfach das [Menu auf dem Gerät](https://blueforcer.github.io/awtrix3/#/onscreen) um zum Punkt `update` zu navigieren. Den Rest erledigt die Uhr dann selbst. Es ist nicht nötig, den Web-Flasher erneut zu verwenden (außer, ein Firware-Update erfordert dies explizit).
 
 **Das Gerät wird heiß während es geladen wird.**
 
@@ -37,7 +37,7 @@ Das Hardware-Design ist leider nicht optimal. Es wird empfohlen, ein möglichst 
 
 **Kann man den Akku aus dem Gerät entfernen?**
 
-Ja, es gibt diese Möglichkeit. Allerdings muss das Gerät dazu mit einem Heißluftföhn geöffnet werden, da die Frontscheibe verklebt ist. Außerdem ist es nötig einen [Step-Down-Converter zu verlöten](https://github.com/Blueforcer/awtrix-light/issues/67#issuecomment-1595418765), damit alles funktioniert.
+Ja, es gibt diese Möglichkeit. Allerdings muss das Gerät dazu mit einem Heißluftföhn geöffnet werden, da die Frontscheibe verklebt ist. Außerdem ist es nötig einen [Step-Down-Converter zu verlöten](https://github.com/Blueforcer/awtrix3/issues/67#issuecomment-1595418765), damit alles funktioniert.
 
 **Kann man die Apps auf dem Gerät anders sortieren?**
 
@@ -94,7 +94,7 @@ sendTo('awtrix-light.0', 'notification', { text: 'haus-automatisierung.com', rep
 });
 ```
 
-Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware verfügbar sind. Siehe [Dokumentation](https://blueforcer.github.io/awtrix-light/#/api?id=json-properties) für Details.
+Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware verfügbar sind. Siehe [Dokumentation](https://blueforcer.github.io/awtrix3/#/api?id=json-properties) für Details.
 
 *Außerdem kann ein Blockly-Block verwendet werden um die Benachrichtigung zu erstellen (dort werden nicht alle verfügbaren Optionen angeboten).*
 
@@ -110,7 +110,7 @@ sendTo('awtrix-light.0', 'sound', { sound: 'beispiel' }, (res) => {
 });
 ```
 
-Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware verfügbar sind. Siehe [Dokumentation](https://blueforcer.github.io/awtrix-light/#/api?id=sound-playback) für Details.
+Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware verfügbar sind. Siehe [Dokumentation](https://blueforcer.github.io/awtrix3/#/api?id=sound-playback) für Details.
 
 *Es kann ein Blockly-Block verwendet werden, um diesen Aufruf noch einfacher zu verwenden.*
 
@@ -172,4 +172,4 @@ Beispiel: [Wetter-App](weather-app.md)
 
 ## Native Apps verstecken
 
-Um die Standard-Apps auf dem Gerät zu verstecken (wie die Temperatur oder die Luftfeuchtigkeit): Nutze das Menu auf dem Gerät selbst! Siehe [Dokumentation](https://blueforcer.github.io/awtrix-light/#/onscreen) für Details.
+Um die Standard-Apps auf dem Gerät zu verstecken (wie die Temperatur oder die Luftfeuchtigkeit): Nutze das Menu auf dem Gerät selbst! Siehe [Dokumentation](https://blueforcer.github.io/awtrix3/#/onscreen) für Details.

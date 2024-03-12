@@ -205,7 +205,7 @@
                             "lg": 4,
                             "default": "",
                             "help": "Must be uploaded manually",
-                            "helpLink": "https://blueforcer.github.io/awtrix-light/#/icons"
+                            "helpLink": "https://blueforcer.github.io/awtrix3/#/icons"
                         },
                         {
                             "type": "number",
@@ -368,7 +368,7 @@
                             "default": "BrickBreaker",
                             "label": "Background effect",
                             "help": "See all effects",
-                            "helpLink": "https://blueforcer.github.io/awtrix-light/#/effects"
+                            "helpLink": "https://blueforcer.github.io/awtrix3/#/effects"
                         },
                         {
                             "hidden": "data.objId.length == 0",
@@ -584,7 +584,7 @@
                             "lg": 4,
                             "default": "",
                             "help": "Must be uploaded manually",
-                            "helpLink": "https://blueforcer.github.io/awtrix-light/#/icons"
+                            "helpLink": "https://blueforcer.github.io/awtrix3/#/icons"
                         },
                         {
                             "type": "number",

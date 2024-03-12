@@ -13,7 +13,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 ## Getting started
 
-1. Flash the firmware on your device and add it to your WiFi network - see [documentation](https://blueforcer.github.io/awtrix-light/#/quickstart)
+1. Flash the firmware on your device and add it to your WiFi network - see [documentation](https://blueforcer.github.io/awtrix3/#/quickstart)
 2. Install the awtrix-light adapter in ioBroker (and add a new instance)
 3. Open the instance configuration and enter the IP address of the device in your local network
 
@@ -29,7 +29,7 @@ Just create an alias in `alias.0` of type `string` and convert your `boolean` va
 
 **How can I update to the latest firmware version?**
 
-Just use the [onscreen menu](https://blueforcer.github.io/awtrix-light/#/onscreen) and navigate to `update`. No need to use the web flasher again.
+Just use the [onscreen menu](https://blueforcer.github.io/awtrix3/#/onscreen) and navigate to `update`. No need to use the web flasher again.
 
 **The device is getting hot while charging.**
 
@@ -37,7 +37,7 @@ The hardware design is not the best. Please use a power supply which deliveres m
 
 **Is it possible to remove the battery from the device?**
 
-Yes, but you have to open the case with a heat gun (since the front glued to the case) and [modify the PCB with a step down converter](https://github.com/Blueforcer/awtrix-light/issues/67#issuecomment-1595418765).
+Yes, but you have to open the case with a heat gun (since the front glued to the case) and [modify the PCB with a step down converter](https://github.com/Blueforcer/awtrix3/issues/67#issuecomment-1595418765).
 
 **Is it possible to re-order apps?**
 
@@ -94,7 +94,7 @@ sendTo('awtrix-light.0', 'notification', { text: 'haus-automatisierung.com', rep
 });
 ```
 
-The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=json-properties) for details.
+The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix3/#/api?id=json-properties) for details.
 
 *You can also use a Blockly block to send a notification (doesn't provide all available options).*
 
@@ -110,7 +110,7 @@ sendTo('awtrix-light.0', 'sound', { sound: 'example' }, (res) => {
 });
 ```
 
-The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix-light/#/api?id=sound-playback) for details.
+The message object supports all available options of the firmware. See [documentation](https://blueforcer.github.io/awtrix3/#/api?id=sound-playback) for details.
 
 *You can also use a Blockly block to play a sound.*
 
@@ -172,4 +172,4 @@ Example: [Weather App](weather-app.md)
 
 ## Hide native apps
 
-If you want to disable/hide a native app (like battery, temperature or humidity): Use the on screen menu on the device! See [documentation](https://blueforcer.github.io/awtrix-light/#/onscreen) for details.
+If you want to disable/hide a native app (like battery, temperature or humidity): Use the on screen menu on the device! See [documentation](https://blueforcer.github.io/awtrix3/#/onscreen) for details.
