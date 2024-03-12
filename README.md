@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.16.0 (2024-03-12)
 
 Updated recommended firmware version to 0.95
 
@@ -62,10 +62,6 @@ Updated recommended firmware version to 0.95
 ### 0.14.0 (2024-02-20)
 
 * (klein0r) Allow to round numbers dynamically (depends on length)
-
-### 0.13.1 (2024-01-25)
-
-* (klein0r) Fixed hold option in blockly
 
 ## License
 MIT License

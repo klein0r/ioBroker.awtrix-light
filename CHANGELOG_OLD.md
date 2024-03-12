@@ -1,4 +1,8 @@
 # Older changes
+## 0.13.1 (2024-01-25)
+
+* (klein0r) Fixed hold option in blockly
+
 ## 0.13.0 (2024-01-25)
 
 * (klein0r) Added state for text color and background color in expert apps

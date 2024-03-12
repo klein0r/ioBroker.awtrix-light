@@ -45,7 +45,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.94";
+    this.supportedVersion = "0.95";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
@@ -434,6 +434,7 @@ class AwtrixLight extends utils.Adapter {
     this.apiClient.getStatsAsync().then(async (content) => {
       await this.setApiConnected(true);
       if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
+        this.registerNotification("awtrix-light", "deviceUpdate", `Firmware update: ${content.version} -> ${this.supportedVersion}`);
         this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
         this.displayedVersionWarning = true;
       }
@@ -477,6 +478,7 @@ class AwtrixLight extends utils.Adapter {
               };
             }
           }
+          const unknownSettings = [];
           for (const [settingsKey, val] of Object.entries(content)) {
             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
               if (knownSettings[settingsKey].role === "level.color.rgb") {
@@ -487,8 +489,11 @@ class AwtrixLight extends utils.Adapter {
                 this.log.debug(`[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${val}`);
                 await this.setStateChangedAsync(knownSettings[settingsKey].id, { val, ack: true, c: "Updated from API" });
               }
+            } else {
+              unknownSettings.push(settingsKey);
             }
           }
+          this.log.debug(`[refreshSettings] Missing setting objects for keys: ${JSON.stringify(unknownSettings)}`);
         }
         resolve(response.status);
       }).catch((error) => {
