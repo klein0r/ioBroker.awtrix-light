@@ -132,6 +132,7 @@ export class AwtrixLight extends utils.Adapter {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
+                def: '#FF0000',
             },
         });
 
@@ -139,6 +140,7 @@ export class AwtrixLight extends utils.Adapter {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
+                def: '#FFFFFF',
             },
         });
 
@@ -146,6 +148,7 @@ export class AwtrixLight extends utils.Adapter {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
+                def: '#000000',
             },
         });
     }

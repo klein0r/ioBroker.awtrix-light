@@ -585,7 +585,7 @@
         "role": "level.color.rgb",
         "read": true,
         "write": true,
-        "def": 1
+        "def": "#FF0000"
       },
       "native": {
         "settingsKey": "CHCOL"
@@ -612,7 +612,7 @@
         "role": "level.color.rgb",
         "read": true,
         "write": true,
-        "def": 1
+        "def": "#FFFFFF"
       },
       "native": {
         "settingsKey": "CBCOL"
@@ -639,7 +639,7 @@
         "role": "level.color.rgb",
         "read": true,
         "write": true,
-        "def": 1
+        "def": "#000000"
       },
       "native": {
         "settingsKey": "CTCOL"
