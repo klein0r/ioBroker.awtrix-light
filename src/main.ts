@@ -571,6 +571,8 @@ export class AwtrixLight extends utils.Adapter {
                             }
                         }
 
+                        const unknownSettings = [];
+
                         for (const [settingsKey, val] of Object.entries(content)) {
                             if (Object.prototype.hasOwnProperty.call(knownSettings, settingsKey)) {
                                 if (knownSettings[settingsKey].role === 'level.color.rgb') {
@@ -583,8 +585,12 @@ export class AwtrixLight extends utils.Adapter {
 
                                     await this.setStateChangedAsync(knownSettings[settingsKey].id, { val: val as string | number, ack: true, c: 'Updated from API' });
                                 }
+                            } else {
+                                unknownSettings.push(settingsKey);
                             }
                         }
+
+                        this.log.debug(`[refreshSettings] Missing setting objects for keys: ${JSON.stringify(unknownSettings)}`);
                     }
 
                     resolve(response.status);

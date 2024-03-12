@@ -937,6 +937,34 @@
       }
     },
     {
+      "_id": "settings.volume",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Volume of sounds",
+          "de": "Lautstärke",
+          "ru": "Объем звуков",
+          "pt": "Volume de sons",
+          "nl": "Geluidsvolume",
+          "fr": "Volume des sons",
+          "it": "Volume di suoni",
+          "es": "Volumen de sonidos",
+          "pl": "Objętość dźwięku",
+          "uk": "Об'єм звуків",
+          "zh-cn": "声音的音量"
+        },
+        "type": "number",
+        "role": "value",
+        "read": true,
+        "write": true,
+        "min": 0,
+        "max": 30
+      },
+      "native": {
+        "settingsKey": "VOL"
+      }
+    },
+    {
       "_id": "meta",
       "type": "channel",
       "common": {
