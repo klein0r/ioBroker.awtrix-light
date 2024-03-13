@@ -331,7 +331,7 @@ export namespace AppType {
                         if (state.val !== this.objCache.val) {
                             this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`);
 
-                            if (this.objCache.ts + this.adapter.config.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
+                            if (this.objCache.ts + this.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                                 this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
                                 this.objCache.ts = state.ts;
 
@@ -340,7 +340,7 @@ export namespace AppType {
                             } else {
                                 this.adapter.log.debug(
                                     `[onStateChange] "${this.appDefinition.name}" ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
-                                        this.adapter.config.ignoreNewValueForAppInTimeRange
+                                        this.ignoreNewValueForAppInTimeRange
                                     } seconds) - Last update: ${this.adapter.formatDate(this.objCache.ts, 'YYYY-MM-DD hh:mm:ss.sss')}`,
                                 );
 
@@ -357,7 +357,7 @@ export namespace AppType {
                                             this.refresh();
                                         }
                                     },
-                                    (this.adapter.config.ignoreNewValueForAppInTimeRange + 5) * 1000, // +5 seconds
+                                    (this.ignoreNewValueForAppInTimeRange + 1) * 1000, // +1 seconds
                                 );
                             }
                         }

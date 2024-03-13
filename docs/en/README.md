@@ -63,6 +63,10 @@ Yes, since firware version 0.82 it is possible to configure a user name and a pa
 
 When sending a notification with `hold: true`, the text will stay on the display until the notification will be confirmed. This can either happen with a press on the middle button of the device, or by setting the state `notification.dismiss` to `true`.
 
+**Some state changes are not displayed immediately.**
+
+If your states changes very often (like every second), some changes will be ignored to prevent frequent requests to the device. Each app has a global "block time" which is configurable in the instance configuration. The default block time is 3 seconds. It is not recommended to set a lower value than 3.
+
 ## Same apps on multiple devices
 
 If you have multiple awtrix-light devices, **it is required to create a new instance for each device.** But it is possible to copy all app settings of another instance if you want to display the same information on all devices. Just select the other instance in the app configuration tab.

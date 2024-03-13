@@ -5,6 +5,7 @@ import { AwtrixApi } from '../api';
 export namespace AppType {
     export abstract class AbstractApp {
         private definition: DefaultApp;
+        protected ignoreNewValueForAppInTimeRange: number;
 
         protected apiClient: AwtrixApi.Client;
         protected adapter: AwtrixLight;
@@ -13,9 +14,11 @@ export namespace AppType {
         protected objPrefix: string;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: DefaultApp) {
+            this.definition = definition;
+            this.ignoreNewValueForAppInTimeRange = adapter.config.ignoreNewValueForAppInTimeRange;
+
             this.apiClient = apiClient;
             this.adapter = adapter;
-            this.definition = definition;
             this.isVisible = false;
 
             if (!this.adapter.config.foreignSettingsInstance) {
