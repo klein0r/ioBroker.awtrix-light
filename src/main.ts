@@ -34,7 +34,7 @@ export class AwtrixLight extends utils.Adapter {
             useFormatDate: true,
         });
 
-        this.supportedVersion = '0.95';
+        this.supportedVersion = '0.96';
         this.displayedVersionWarning = false;
 
         this.apiClient = null;
