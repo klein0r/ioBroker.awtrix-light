@@ -4,8 +4,8 @@
 
 ## Anforderungen
 
-- nodejs 14.5 (oder neuer)
-- js-controller 4.0.15 (oder neuer)
+- nodejs 18 (oder neuer)
+- js-controller 5.0.0 (oder neuer)
 - Admin Adapter 6.6.0 (oder neuer)
 - _Awtrix 3_ Gerät mit Firmware-Version _0.96_ (oder neuer) - z.B. Ulanzi TC001
 
