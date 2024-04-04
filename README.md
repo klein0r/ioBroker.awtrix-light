@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0 (2024-04-04)
 
 NodeJS >= 18.x and js-controller >= 5 is required
 Updated recommended firmware version to 0.96
@@ -63,10 +63,6 @@ Updated recommended firmware version to 0.95
 ### 0.14.1 (2024-03-06)
 
 * (klein0r) Fixed roles of calendar header, body and text (rgb)
-
-### 0.14.0 (2024-02-20)
-
-* (klein0r) Allow to round numbers dynamically (depends on length)
 
 ## License
 MIT License

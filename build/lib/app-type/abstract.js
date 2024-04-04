@@ -25,9 +25,10 @@ var AppType;
 ((AppType2) => {
   class AbstractApp {
     constructor(apiClient, adapter, definition) {
+      this.definition = definition;
+      this.ignoreNewValueForAppInTimeRange = adapter.config.ignoreNewValueForAppInTimeRange;
       this.apiClient = apiClient;
       this.adapter = adapter;
-      this.definition = definition;
       this.isVisible = false;
       if (!this.adapter.config.foreignSettingsInstance) {
         this.objPrefix = this.adapter.namespace;

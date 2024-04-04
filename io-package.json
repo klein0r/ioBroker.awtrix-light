@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "0.16.0",
+    "version": "1.0.0",
     "news": {
+      "1.0.0": {
+        "en": "NodeJS >= 18.x and js-controller >= 5 is required\nUpdated recommended firmware version to 0.96",
+        "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\nAktualisierte empfohlene Firmwareversion auf 0.96",
+        "ru": "NodeJS >= 18.x и js-контроллер >= 5 требуется\nОбновленная рекомендуемая версия прошивки до 0,96",
+        "pt": "NodeJS >= 18.x e js-controller >= 5 é necessário\nVersão de firmware recomendada atualizada para 0.96",
+        "nl": "Voor de toepassing van de onderverdelingen 870190 tot en met 870290 wordt onder post 8702 verstaan: 5 is vereist\nBijgewerkt aanbevolen firmware versie naar 0.96",
+        "fr": "NodeJS >= 18.x et js-controller >= 5 est nécessaire\nMise à jour de la version firmware recommandée à 0.96",
+        "it": "NodeJS >= 18.x e js-controller 5 è richiesto\nVersione firmware consigliata aggiornata a 0.96",
+        "es": "NodeJS >= 18.x y js-controller Se requiere 5\nVersión actualizada de firmware recomendada a 0.96",
+        "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\nAktualizacja zalecanej wersji firmware do 0.96",
+        "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\nОновлено рекомендовану версію мікропрограми до 0.96",
+        "zh-cn": "节点JS18x和js控制器QQ 需要5个\n最新推荐的固件版本为0.96"
+      },
       "0.16.0": {
         "en": "Updated recommended firmware version to 0.95\n\n* Added notification for firmware update\n* Added setting state for volume\n* Rebranding Awtrix Light to Awtrix 3",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.95\n\n* Hinzugefügt Benachrichtigung für Firmware-Update\n* Hinzugefügt Einstellzustand für Volumen\n* Rebranding Awtrix Light zu Awtrix 3",
@@ -80,19 +93,6 @@
         "pl": "Poprawiona opcja przytrzymaj w blockly",
         "uk": "Виправлений варіант утримання в блоклі",
         "zh-cn": "固定控件选项以区块方式"
-      },
-      "0.13.0": {
-        "en": "Added state for text color and background color in expert apps\nAvoid app refresh when no values have been changed",
-        "de": "Hinzugefügt Zustand für Textfarbe und Hintergrundfarbe in Experten-Apps\nVermeiden Sie App-Erfrischung, wenn keine Werte geändert wurden",
-        "ru": "Добавленное состояние для цвета текста и цвета фона в экспертных приложениях\nИзбегайте обновления приложений, когда нет изменений",
-        "pt": "Estado adicionado para cor de texto e cor de fundo em aplicações especializadas\nEvite atualização do aplicativo quando nenhum valor foi alterado",
-        "nl": "Toegevoegde status voor tekstkleur en achtergrondkleur in expert-apps\nVerversen van app vermijden wanneer geen waarden zijn gewijzigd",
-        "fr": "État ajouté pour la couleur du texte et de l'arrière-plan dans les applications expertes\nÉvitez le rafraîchissement de l'application lorsque aucune valeur n'a été modifiée",
-        "it": "Stato aggiunto per il colore del testo e il colore di sfondo nelle app di esperti\nEvitare di aggiornare l'app quando non sono stati modificati valori",
-        "es": "Estado añadido para color de texto y color de fondo en aplicaciones expertas\nEvite refrescar la aplicación cuando no se han cambiado los valores",
-        "pl": "Dodano stan koloru tekstu i koloru tła w aplikacjach ekspertów\nUnikaj odświeżania aplikacji, gdy wartości nie zostały zmienione",
-        "uk": "Додано стан для текстового кольору та фонового кольору в експертних додатках\nУникайте оновлення програми, коли не змінено значення",
-        "zh-cn": "在专家应用程序中添加文本颜色和背景颜色的状态\n在没有更改值时避免应用刷新"
       }
     },
     "titleLang": {

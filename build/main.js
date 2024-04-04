@@ -45,7 +45,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
-    this.supportedVersion = "0.95";
+    this.supportedVersion = "0.96";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;

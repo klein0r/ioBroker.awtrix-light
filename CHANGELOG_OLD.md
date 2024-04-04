@@ -1,4 +1,8 @@
 # Older changes
+## 0.14.0 (2024-02-20)
+
+* (klein0r) Allow to round numbers dynamically (depends on length)
+
 ## 0.13.1 (2024-01-25)
 
 * (klein0r) Fixed hold option in blockly
