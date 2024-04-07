@@ -723,7 +723,7 @@ export class AwtrixLight extends utils.Adapter {
                                             it: 'Attivare',
                                             es: 'Activar',
                                             pl: 'Aktywuj',
-                                            //uk: 'Активувати',
+                                            uk: 'Активувати',
                                             'zh-cn': '启用',
                                         },
                                         type: 'boolean',

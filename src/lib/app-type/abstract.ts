@@ -82,7 +82,7 @@ export namespace AppType {
                         it: 'Visibile',
                         es: 'Visible',
                         pl: 'Widoczny',
-                        //uk: 'Вибрані',
+                        uk: 'Вибрані',
                         'zh-cn': '不可抗辩',
                     },
                     type: 'boolean',
