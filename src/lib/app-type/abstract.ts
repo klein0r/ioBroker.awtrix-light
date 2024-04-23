@@ -114,6 +114,10 @@ export namespace AppType {
         }
 
         private async onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void> {
+            if (id) {
+                this.adapter.log.debug(`[onStateChange] State change "${id}": ${JSON.stringify(state)}`);
+            }
+
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 const appName = this.getName();
