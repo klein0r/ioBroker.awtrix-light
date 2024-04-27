@@ -134,11 +134,11 @@ export namespace AppType {
                         this.isVisible = !!state.val;
 
                         await this.refresh();
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange' });
+                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
                     } else {
                         this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
 
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
+                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
                     }
                 }
             }

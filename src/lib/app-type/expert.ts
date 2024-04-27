@@ -242,11 +242,11 @@ export namespace AppType {
                                 }, 100);
                             }
 
-                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange' });
+                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
                         } else {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
 
-                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: 'onStateChange (unchanged)' });
+                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
                         }
                     }
                 }
