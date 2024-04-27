@@ -34,7 +34,7 @@ export namespace AppType {
 
                         // Copy values of main instance
                         if (!this.isMainInstance()) {
-                            const idOwnNamespace = this.adapter.removeNamespace(appObj.id.replace(this.objPrefix, this.adapter.namespace));
+                            const idOwnNamespace = this.getObjIdOwnNamespace(appObj.id);
                             await this.adapter.setStateAsync(idOwnNamespace, { val: appState.val, ack: true, c: 'init' });
                         }
                     }
@@ -221,13 +221,14 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 const appName = this.getName();
-                const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+                const idOwnNamespace = this.getObjIdOwnNamespace(id);
 
                 if (id.startsWith(`${this.objPrefix}.apps.${appName}.`)) {
                     const obj = await this.adapter.getForeignObjectAsync(id);
 
                     if (obj && obj?.native?.attribute) {
                         const attr = obj.native.attribute as string;
+
                         if (this.appStates[attr] !== state.val) {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}" (${obj?.native?.attribute})`);
 

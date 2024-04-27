@@ -39,6 +39,10 @@ export namespace AppType {
             return this.objPrefix === this.adapter.namespace;
         }
 
+        protected getObjIdOwnNamespace(id: string): string {
+            return this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+        }
+
         public async init(): Promise<boolean> {
             const appName = this.getName();
             const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
@@ -121,7 +125,7 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 const appName = this.getName();
-                const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+                const idOwnNamespace = this.getObjIdOwnNamespace(id);
 
                 if (id === `${this.objPrefix}.apps.${appName}.visible`) {
                     if (state.val !== this.isVisible) {
