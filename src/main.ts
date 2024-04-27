@@ -21,8 +21,8 @@ export class AwtrixLight extends utils.Adapter {
 
     private apiClient: AwtrixApi.Client | null;
     private apiConnected: boolean;
-    private refreshStateTimeout: void | NodeJS.Timeout | null;
-    private downloadScreenContentInterval: void | NodeJS.Timeout | null;
+    private refreshStateTimeout: ioBroker.Timeout | undefined;
+    private downloadScreenContentInterval: ioBroker.Interval | undefined;
 
     private apps: Array<AppTypeAbstract.AbstractApp>;
     private backgroundEffects: Array<string>;
@@ -40,8 +40,8 @@ export class AwtrixLight extends utils.Adapter {
         this.apiClient = null;
         this.apiConnected = false;
 
-        this.refreshStateTimeout = null;
-        this.downloadScreenContentInterval = null;
+        this.refreshStateTimeout = undefined;
+        this.downloadScreenContentInterval = undefined;
 
         this.apps = [];
         this.backgroundEffects = [
@@ -499,7 +499,7 @@ export class AwtrixLight extends utils.Adapter {
             } else {
                 if (this.downloadScreenContentInterval) {
                     this.clearInterval(this.downloadScreenContentInterval);
-                    this.downloadScreenContentInterval = null;
+                    this.downloadScreenContentInterval = undefined;
                 }
 
                 this.log.debug('API is offline');
@@ -546,7 +546,7 @@ export class AwtrixLight extends utils.Adapter {
         this.refreshStateTimeout =
             this.refreshStateTimeout ||
             this.setTimeout(() => {
-                this.refreshStateTimeout = null;
+                this.refreshStateTimeout = undefined;
                 this.refreshState();
             }, 60 * 1000);
     }
@@ -852,7 +852,7 @@ export class AwtrixLight extends utils.Adapter {
 
             if (this.downloadScreenContentInterval) {
                 this.clearInterval(this.downloadScreenContentInterval);
-                this.downloadScreenContentInterval = null;
+                this.downloadScreenContentInterval = undefined;
             }
 
             callback();

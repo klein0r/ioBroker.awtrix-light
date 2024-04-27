@@ -7,14 +7,14 @@ export namespace AppType {
     export class Expert extends AbstractAppType.AbstractApp {
         private appDefinition: ExpertApp;
         private appStates: { [key: string]: ioBroker.StateValue };
-        private refreshTimeout: void | NodeJS.Timeout | null;
+        private refreshTimeout: ioBroker.Timeout | undefined;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: ExpertApp) {
             super(apiClient, adapter, definition);
 
             this.appDefinition = definition;
             this.appStates = {};
-            this.refreshTimeout = null;
+            this.refreshTimeout = undefined;
         }
 
         public override async init(): Promise<boolean> {
@@ -235,7 +235,7 @@ export namespace AppType {
 
                             if (!this.refreshTimeout) {
                                 this.refreshTimeout = this.adapter.setTimeout(async () => {
-                                    this.refreshTimeout = null;
+                                    this.refreshTimeout = undefined;
 
                                     await this.refresh();
                                 }, 100);

@@ -16,7 +16,7 @@ export namespace AppType {
         private objCache: ObjCache | undefined;
         private isStaticText: boolean;
         private isBackgroundOny: boolean;
-        private cooldownTimeout: void | NodeJS.Timeout | null;
+        private cooldownTimeout: ioBroker.Timeout | undefined;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: CustomApp) {
             super(apiClient, adapter, definition);
@@ -25,7 +25,7 @@ export namespace AppType {
             this.objCache = undefined;
             this.isStaticText = false;
             this.isBackgroundOny = true;
-            this.cooldownTimeout = null;
+            this.cooldownTimeout = undefined;
         }
 
         public override async init(): Promise<boolean> {
@@ -348,7 +348,7 @@ export namespace AppType {
                                 this.clearCooldownTimeout();
                                 this.cooldownTimeout = this.adapter.setTimeout(
                                     () => {
-                                        this.cooldownTimeout = null;
+                                        this.cooldownTimeout = undefined;
 
                                         if (this.objCache) {
                                             this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
@@ -386,7 +386,7 @@ export namespace AppType {
         private clearCooldownTimeout(): void {
             if (this.cooldownTimeout) {
                 this.adapter.clearTimeout(this.cooldownTimeout);
-                this.cooldownTimeout = null;
+                this.cooldownTimeout = undefined;
             }
         }
 
