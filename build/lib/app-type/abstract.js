@@ -44,6 +44,9 @@ var AppType;
     isMainInstance() {
       return this.objPrefix === this.adapter.namespace;
     }
+    getObjIdOwnNamespace(id) {
+      return this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+    }
     async init() {
       const appName = this.getName();
       const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
@@ -78,7 +81,7 @@ var AppType;
             it: "Visibile",
             es: "Visible",
             pl: "Widoczny",
-            //uk: 'Вибрані',
+            uk: "\u0412\u0438\u0431\u0440\u0430\u043D\u0456",
             "zh-cn": "\u4E0D\u53EF\u6297\u8FA9"
           },
           type: "boolean",
@@ -106,18 +109,21 @@ var AppType;
       }
     }
     async onStateChange(id, state) {
+      if (id) {
+        this.adapter.log.debug(`[onStateChange] State change "${id}": ${JSON.stringify(state)}`);
+      }
       if (id && state && !state.ack) {
         const appName = this.getName();
-        const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+        const idOwnNamespace = this.getObjIdOwnNamespace(id);
         if (id === `${this.objPrefix}.apps.${appName}.visible`) {
           if (state.val !== this.isVisible) {
             this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
             this.isVisible = !!state.val;
             await this.refresh();
-            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange" });
+            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
           } else {
             this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
-            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
+            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
           }
         }
       }

@@ -1,4 +1,8 @@
 # Older changes
+## 0.14.1 (2024-03-06)
+
+* (klein0r) Fixed roles of calendar header, body and text (rgb)
+
 ## 0.14.0 (2024-02-20)
 
 * (klein0r) Allow to round numbers dynamically (depends on length)

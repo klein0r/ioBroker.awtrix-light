@@ -29,7 +29,7 @@ var AppType;
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
       this.appStates = {};
-      this.refreshTimeout = null;
+      this.refreshTimeout = void 0;
     }
     async init() {
       var _a, _b;
@@ -44,7 +44,7 @@ var AppType;
           if (appState) {
             this.appStates[appObj.value.native.attribute] = appState.val;
             if (!this.isMainInstance()) {
-              const idOwnNamespace = this.adapter.removeNamespace(appObj.id.replace(this.objPrefix, this.adapter.namespace));
+              const idOwnNamespace = this.getObjIdOwnNamespace(appObj.id);
               await this.adapter.setStateAsync(idOwnNamespace, { val: appState.val, ack: true, c: "init" });
             }
           }
@@ -59,6 +59,8 @@ var AppType;
         this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
         await this.apiClient.appRequestAsync(this.appDefinition.name, {
           text: typeof this.appStates.text === "string" ? this.appStates.text : "",
+          textCase: 2,
+          // show as sent
           color: typeof this.appStates.color === "string" ? this.appStates.color : "#FFFFFF",
           background: typeof this.appStates.background === "string" ? this.appStates.background : "#000000",
           icon: typeof this.appStates.icon === "string" ? this.appStates.icon : "",
@@ -85,7 +87,7 @@ var AppType;
             it: "Testo",
             es: "Texto",
             pl: "Tekst",
-            //uk: 'Головна',
+            uk: "\u0413\u043E\u043B\u043E\u0432\u043D\u0430",
             "zh-cn": "\u6848\u6587"
           },
           type: "string",
@@ -111,7 +113,7 @@ var AppType;
             it: "Colore del testo",
             es: "Color de texto",
             pl: "Kolor tekstu",
-            //uk: 'Колір тексту',
+            uk: "\u041A\u043E\u043B\u0456\u0440 \u0442\u0435\u043A\u0441\u0442\u0443",
             "zh-cn": "\u6587\u672C\u989C\u8272"
           },
           type: "string",
@@ -137,7 +139,7 @@ var AppType;
             it: "Colore dello sfondo",
             es: "Color de fondo",
             pl: "Kolor t\u0142a",
-            //uk: 'Колір фону',
+            uk: "\u041A\u043E\u043B\u0456\u0440 \u0444\u043E\u043D\u0443",
             "zh-cn": "\u80CC\u666F\u989C\u8272"
           },
           type: "string",
@@ -163,7 +165,7 @@ var AppType;
             it: "Icona",
             es: "Icono",
             pl: "Ikona",
-            //uk: 'значок',
+            uk: "\u0437\u043D\u0430\u0447\u043E\u043A",
             "zh-cn": "\u56FE\u6807"
           },
           type: "string",
@@ -189,7 +191,7 @@ var AppType;
             it: "Icona",
             es: "Icono",
             pl: "Ikona",
-            //uk: 'значок',
+            uk: "\u0437\u043D\u0430\u0447\u043E\u043A",
             "zh-cn": "\u56FE\u6807"
           },
           type: "number",
@@ -215,7 +217,7 @@ var AppType;
       var _a, _b, _c;
       if (id && state && !state.ack) {
         const appName = this.getName();
-        const idOwnNamespace = this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+        const idOwnNamespace = this.getObjIdOwnNamespace(id);
         if (id.startsWith(`${this.objPrefix}.apps.${appName}.`)) {
           const obj = await this.adapter.getForeignObjectAsync(id);
           if (obj && ((_a = obj == null ? void 0 : obj.native) == null ? void 0 : _a.attribute)) {
@@ -225,14 +227,14 @@ var AppType;
               this.appStates[attr] = state.val;
               if (!this.refreshTimeout) {
                 this.refreshTimeout = this.adapter.setTimeout(async () => {
-                  this.refreshTimeout = null;
+                  this.refreshTimeout = void 0;
                   await this.refresh();
                 }, 100);
               }
-              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange" });
+              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
             } else {
               this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${(_c = obj == null ? void 0 : obj.native) == null ? void 0 : _c.attribute})`);
-              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: "onStateChange (unchanged)" });
+              await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
             }
           }
         }

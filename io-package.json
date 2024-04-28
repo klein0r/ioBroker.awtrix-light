@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "news": {
+      "1.0.1": {
+        "en": "Keep text case of expert apps (ignore system settings)",
+        "de": "Behalten Sie den Textfall von Experten-Apps (ignore Systemeinstellungen)",
+        "ru": "Сохранить текстовый случай экспертных приложений (настройки системы воспламенения)",
+        "pt": "Mantenha o caso de texto de aplicativos especializados (configurações do sistema de ignição)",
+        "nl": "Tekst geval van deskundige apps houden (systeeminstellingen negeren)",
+        "fr": "Garder le cas texte des applications expertes (ignorer les paramètres du système)",
+        "it": "Mantenere il caso di testo di app di esperti (ignorare le impostazioni del sistema)",
+        "es": "Mantenga el caso de texto de aplicaciones expertas (configuración del sistema ignorante)",
+        "pl": "Zachowaj tekst aplikacji ekspertów (ignoruj ustawienia systemu)",
+        "uk": "Зберігати текстовий випадок експертних додатків (інтеграційні налаштування системи)",
+        "zh-cn": "保留专家应用程序的文本大小写( 信息系统设置)"
+      },
       "1.0.0": {
         "en": "NodeJS >= 18.x and js-controller >= 5 is required\nUpdated recommended firmware version to 0.96",
         "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\nAktualisierte empfohlene Firmwareversion auf 0.96",
@@ -80,19 +93,6 @@
         "pl": "Pozwala na dynamiczne okrążenie liczb (zależy od długości)",
         "uk": "Дозвольте округлити номери динамічно (в залежності від довжини)",
         "zh-cn": "允许动态圆数( 取决于长度)"
-      },
-      "0.13.1": {
-        "en": "Fixed hold option in blockly",
-        "de": "Festhalten Option in blockweise",
-        "ru": "Фиксированный вариант удержания в блоке",
-        "pt": "Opção de retenção fixa em bloco",
-        "nl": "Vaste bewaaroptie in blokvorm",
-        "fr": "Option de maintien fixe en bloc",
-        "it": "Opzione di attesa fissa in blocco",
-        "es": "Opción de sujeción fija en bloque",
-        "pl": "Poprawiona opcja przytrzymaj w blockly",
-        "uk": "Виправлений варіант утримання в блоклі",
-        "zh-cn": "固定控件选项以区块方式"
       }
     },
     "titleLang": {

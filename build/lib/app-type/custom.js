@@ -31,7 +31,7 @@ var AppType;
       this.objCache = void 0;
       this.isStaticText = false;
       this.isBackgroundOny = true;
-      this.cooldownTimeout = null;
+      this.cooldownTimeout = void 0;
     }
     async init() {
       var _a, _b;
@@ -278,7 +278,7 @@ var AppType;
                 this.clearCooldownTimeout();
                 this.cooldownTimeout = this.adapter.setTimeout(
                   () => {
-                    this.cooldownTimeout = null;
+                    this.cooldownTimeout = void 0;
                     if (this.objCache) {
                       this.objCache.val = this.objCache.type === "mixed" ? String(state.val) : state.val;
                       this.objCache.ts = state.ts;
@@ -313,7 +313,7 @@ var AppType;
     clearCooldownTimeout() {
       if (this.cooldownTimeout) {
         this.adapter.clearTimeout(this.cooldownTimeout);
-        this.cooldownTimeout = null;
+        this.cooldownTimeout = void 0;
       }
     }
     async unloadAsync() {

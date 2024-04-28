@@ -49,8 +49,8 @@ class AwtrixLight extends utils.Adapter {
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
-    this.refreshStateTimeout = null;
-    this.downloadScreenContentInterval = null;
+    this.refreshStateTimeout = void 0;
+    this.downloadScreenContentInterval = void 0;
     this.apps = [];
     this.backgroundEffects = [
       "Fade",
@@ -423,7 +423,7 @@ class AwtrixLight extends utils.Adapter {
       } else {
         if (this.downloadScreenContentInterval) {
           this.clearInterval(this.downloadScreenContentInterval);
-          this.downloadScreenContentInterval = null;
+          this.downloadScreenContentInterval = void 0;
         }
         this.log.debug("API is offline");
       }
@@ -455,7 +455,7 @@ class AwtrixLight extends utils.Adapter {
     });
     this.log.debug("re-creating refresh state timeout");
     this.refreshStateTimeout = this.refreshStateTimeout || this.setTimeout(() => {
-      this.refreshStateTimeout = null;
+      this.refreshStateTimeout = void 0;
       this.refreshState();
     }, 60 * 1e3);
   }
@@ -595,7 +595,7 @@ class AwtrixLight extends utils.Adapter {
                     it: "Attivare",
                     es: "Activar",
                     pl: "Aktywuj",
-                    //uk: 'Активувати',
+                    uk: "\u0410\u043A\u0442\u0438\u0432\u0443\u0432\u0430\u0442\u0438",
                     "zh-cn": "\u542F\u7528"
                   },
                   type: "boolean",
@@ -700,7 +700,7 @@ class AwtrixLight extends utils.Adapter {
       }
       if (this.downloadScreenContentInterval) {
         this.clearInterval(this.downloadScreenContentInterval);
-        this.downloadScreenContentInterval = null;
+        this.downloadScreenContentInterval = void 0;
       }
       callback();
     } catch (e) {

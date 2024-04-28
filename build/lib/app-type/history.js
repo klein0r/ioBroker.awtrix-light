@@ -30,7 +30,7 @@ var AppType;
       this.appDefinition = definition;
       this.isValidSourceInstance = false;
       this.isValidObjId = false;
-      this.refreshTimeout = null;
+      this.refreshTimeout = void 0;
     }
     async init() {
       var _a, _b, _c;
@@ -133,7 +133,7 @@ var AppType;
       this.adapter.log.debug(`re-creating history apps timeout (${(_a = this.adapter.config.historyAppsRefreshInterval) != null ? _a : 300} seconds)`);
       this.refreshTimeout = this.refreshTimeout || this.adapter.setTimeout(
         () => {
-          this.refreshTimeout = null;
+          this.refreshTimeout = void 0;
           this.refresh();
         },
         this.adapter.config.historyAppsRefreshInterval * 1e3 || 5 * 60 * 1e3
