@@ -54,6 +54,7 @@ export namespace AppType {
 
                 await this.apiClient!.appRequestAsync(this.appDefinition.name, {
                     text: typeof this.appStates.text === 'string' ? this.appStates.text : '',
+                    textCase: 2, // show as sent
                     color: typeof this.appStates.color === 'string' ? this.appStates.color : '#FFFFFF',
                     background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
                     icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
