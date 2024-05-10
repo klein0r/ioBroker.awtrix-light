@@ -73,5 +73,6 @@
     "Max": "最大限度",
     "Count": "数数",
     "Step size": "一步的大小",
-    "seconds": "秒"
+    "seconds": "秒",
+    "Activate same apps as in main instance": "激活与主实例中相同的应用程序"
 }

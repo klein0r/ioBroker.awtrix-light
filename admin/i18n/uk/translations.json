@@ -73,5 +73,6 @@
     "Max": "Макс",
     "Count": "Рахувати",
     "Step size": "Розмір кроку",
-    "seconds": "секунд"
+    "seconds": "секунд",
+    "Activate same apps as in main instance": "Активуйте ті самі програми, що й у головному екземплярі"
 }

@@ -73,5 +73,6 @@
     "Max": "Макс",
     "Count": "Считать",
     "Step size": "Размер шага",
-    "seconds": "секунды"
+    "seconds": "секунды",
+    "Activate same apps as in main instance": "Активируйте те же приложения, что и в основном экземпляре."
 }
