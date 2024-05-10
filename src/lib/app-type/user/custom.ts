@@ -1,7 +1,7 @@
-import { AwtrixLight } from '../../main';
-import { CustomApp } from '../adapter-config';
-import { AwtrixApi } from '../api';
-import { AppType as UserAppType } from './user';
+import { AwtrixLight } from '../../../main';
+import { CustomApp } from '../../adapter-config';
+import { AwtrixApi } from '../../api';
+import { AppType as UserAppType } from '../user';
 
 export namespace AppType {
     type ObjCache = {

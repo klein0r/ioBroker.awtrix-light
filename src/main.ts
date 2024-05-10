@@ -9,11 +9,11 @@ import { rgb565to888Str } from './lib/color-convert';
 
 import { AwtrixApi } from './lib/api';
 import { AppType as AppTypeAbstract } from './lib/app-type/abstract';
-import { AppType as AppTypeCustom } from './lib/app-type/custom';
-import { AppType as AppTypeExpert } from './lib/app-type/expert';
-import { AppType as AppTypeHistory } from './lib/app-type/history';
 import { AppType as AppTypeNative } from './lib/app-type/native';
 import { AppType as AppTypeUser } from './lib/app-type/user';
+import { AppType as AppTypeCustom } from './lib/app-type/user/custom';
+import { AppType as AppTypeExpert } from './lib/app-type/user/expert';
+import { AppType as AppTypeHistory } from './lib/app-type/user/history';
 
 const NATIVE_APPS = ['Time', 'Date', 'Temperature', 'Humidity', 'Battery'];
 

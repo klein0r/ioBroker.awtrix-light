@@ -1,7 +1,7 @@
-import { AwtrixLight } from '../../main';
-import { HistoryApp } from '../adapter-config';
-import { AwtrixApi } from '../api';
-import { AppType as UserAppType } from './user';
+import { AwtrixLight } from '../../../main';
+import { HistoryApp } from '../../adapter-config';
+import { AwtrixApi } from '../../api';
+import { AppType as UserAppType } from '../user';
 
 export namespace AppType {
     export type HistoryOptions = {
