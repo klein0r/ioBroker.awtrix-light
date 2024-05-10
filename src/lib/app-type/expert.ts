@@ -59,6 +59,7 @@ export namespace AppType {
                     background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
                     icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
                     duration: typeof this.appStates.duration === 'number' ? this.appStates.duration : 0,
+                    pos: this.appDefinition.position,
                 }).catch((error) => {
                     this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
                 });
