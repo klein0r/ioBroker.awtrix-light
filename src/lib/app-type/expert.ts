@@ -1,10 +1,10 @@
 import { AwtrixLight } from '../../main';
 import { ExpertApp } from '../adapter-config';
 import { AwtrixApi } from '../api';
-import { AppType as AbstractAppType } from './abstract';
+import { AppType as UserAppType } from './user';
 
 export namespace AppType {
-    export class Expert extends AbstractAppType.AbstractApp {
+    export class Expert extends UserAppType.UserApp {
         private appDefinition: ExpertApp;
         private appStates: { [key: string]: ioBroker.StateValue };
         private refreshTimeout: ioBroker.Timeout | undefined;
@@ -15,6 +15,10 @@ export namespace AppType {
             this.appDefinition = definition;
             this.appStates = {};
             this.refreshTimeout = undefined;
+        }
+
+        public override getDescription(): string {
+            return 'expert';
         }
 
         public override async init(): Promise<boolean> {
@@ -71,6 +75,8 @@ export namespace AppType {
         }
 
         public async createObjects(): Promise<void> {
+            await super.createObjects();
+
             const appName = this.getName();
 
             await this.adapter.extendObjectAsync(`apps.${appName}.text`, {
@@ -215,11 +221,11 @@ export namespace AppType {
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
             }
-
-            return super.createObjects();
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
+            super.stateChanged(id, state);
+
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 const appName = this.getName();

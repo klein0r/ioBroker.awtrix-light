@@ -1,27 +1,22 @@
 import { AwtrixLight } from '../../main';
-import { DefaultApp } from '../adapter-config';
 import { AwtrixApi } from '../api';
 
 export namespace AppType {
     export abstract class AbstractApp {
-        private definition: DefaultApp;
-        protected ignoreNewValueForAppInTimeRange: number;
+        private name: string;
 
         protected apiClient: AwtrixApi.Client;
         protected adapter: AwtrixLight;
-        protected isVisible: boolean;
 
         protected objPrefix: string;
 
-        public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: DefaultApp) {
-            this.definition = definition;
-            this.ignoreNewValueForAppInTimeRange = adapter.config.ignoreNewValueForAppInTimeRange;
+        public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, name: string) {
+            this.name = name;
 
             this.apiClient = apiClient;
             this.adapter = adapter;
-            this.isVisible = false;
 
-            if (!this.adapter.config.foreignSettingsInstance) {
+            if (this.adapter.isMainInstance()) {
                 this.objPrefix = this.adapter.namespace;
             } else {
                 this.objPrefix = this.adapter.config.foreignSettingsInstance;
@@ -31,41 +26,22 @@ export namespace AppType {
             adapter.on('objectChange', this.onObjectChange.bind(this));
         }
 
+        public abstract getDescription(): string;
+
         public getName(): string {
-            return this.definition.name;
+            return this.name;
         }
 
         public isMainInstance(): boolean {
-            return this.objPrefix === this.adapter.namespace;
+            return this.adapter.isMainInstance();
         }
 
         protected getObjIdOwnNamespace(id: string): string {
-            return this.adapter.removeNamespace(id.replace(this.objPrefix, this.adapter.namespace));
+            return this.adapter.removeNamespace(this.isMainInstance() ? id : id.replace(this.objPrefix, this.adapter.namespace));
         }
 
-        public async init(): Promise<boolean> {
-            const appName = this.getName();
-            const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
-            this.isVisible = appVisibleState ? !!appVisibleState.val : true;
-
-            // Ack if changed while instance was stopped
-            if (appVisibleState && !appVisibleState?.ack) {
-                await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'init' });
-            }
-
-            return this.isVisible;
-        }
-
-        public async refresh(): Promise<boolean> {
-            if (!this.isVisible && this.apiClient.isConnected()) {
-                // Hide app automatically
-                const appName = this.getName();
-                this.apiClient.removeAppAsync(appName).catch((error) => {
-                    this.adapter.log.warn(`[refreshApp] Unable to remove hidden app "${appName}": ${error}`);
-                });
-            }
-
-            return this.isVisible && this.apiClient.isConnected();
+        private hasOwnActivateState(): boolean {
+            return this.isMainInstance() || !this.adapter.config.foreignSettingsInstanceActivateApps;
         }
 
         public async createObjects(): Promise<void> {
@@ -73,47 +49,33 @@ export namespace AppType {
 
             this.adapter.log.debug(`[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? 'main' : this.objPrefix})`);
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.visible`, {
-                type: 'state',
-                common: {
-                    name: {
-                        en: 'Visible',
-                        de: 'Sichtbar',
-                        ru: 'Видимый',
-                        pt: 'Visível',
-                        nl: 'Vertaling',
-                        fr: 'Visible',
-                        it: 'Visibile',
-                        es: 'Visible',
-                        pl: 'Widoczny',
-                        uk: 'Вибрані',
-                        'zh-cn': '不可抗辩',
+            if (this.hasOwnActivateState()) {
+                await this.adapter.extendObjectAsync(`apps.${appName}.activate`, {
+                    type: 'state',
+                    common: {
+                        name: {
+                            en: 'Activate',
+                            de: 'Aktivieren',
+                            ru: 'Активировать',
+                            pt: 'Ativar',
+                            nl: 'Activeren',
+                            fr: 'Activer',
+                            it: 'Attivare',
+                            es: 'Activar',
+                            pl: 'Aktywuj',
+                            uk: 'Активувати',
+                            'zh-cn': '启用',
+                        },
+                        type: 'boolean',
+                        role: 'button',
+                        read: false,
+                        write: true,
                     },
-                    type: 'boolean',
-                    role: 'switch.enable',
-                    read: true,
-                    write: this.isMainInstance(),
-                    def: true,
-                },
-                native: {},
-            });
-
-            if (!this.isMainInstance()) {
-                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.visible`);
-            }
-        }
-
-        public async unloadAsync(): Promise<void> {
-            if (this.adapter.config.removeAppsOnStop) {
-                this.adapter.log.info(`[onUnload] Deleting app on awtrix light with name "${this.definition.name}"`);
-
-                try {
-                    await this.apiClient.removeAppAsync(this.definition.name).catch((error) => {
-                        this.adapter.log.warn(`Unable to remove unknown app "${this.definition.name}": ${error}`);
-                    });
-                } catch (error) {
-                    this.adapter.log.error(`[onUnload] Unable to delete app ${this.definition.name}: ${error}`);
-                }
+                    native: {},
+                });
+            } else {
+                await this.adapter.delObjectAsync(`apps.${appName}.activate`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.activate`);
             }
         }
 
@@ -125,20 +87,15 @@ export namespace AppType {
             // Handle default states for all apps
             if (id && state && !state.ack) {
                 const appName = this.getName();
-                const idOwnNamespace = this.getObjIdOwnNamespace(id);
 
-                if (id === `${this.objPrefix}.apps.${appName}.visible`) {
-                    if (state.val !== this.isVisible) {
-                        this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
-
-                        this.isVisible = !!state.val;
-
-                        await this.refresh();
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                // activate app
+                if (id === `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`) {
+                    if (state.val) {
+                        this.apiClient!.requestAsync('switch', 'POST', { name: appName }).catch((error) => {
+                            this.adapter.log.warn(`[onStateChange] (switch) Unable to execute action: ${error}`);
+                        });
                     } else {
-                        this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
-
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                        this.adapter.log.warn(`[onStateChange] Received invalid value for state ${id}`);
                     }
                 }
             }

@@ -158,11 +158,19 @@
                     "adapter": "awtrix-light",
                     "allowDeactivate": true,
                     "sm": 12,
-                    "md": 4,
-                    "lg": 4,
+                    "md": 6,
+                    "lg": 6,
                     "validator": "data.foreignSettingsInstance === '' || data.foreignSettingsInstance !== `awtrix-light.${_instance}`",
                     "validatorErrorText": "Select another instance",
                     "validatorNoSaveOnError": true
+                },
+                "foreignSettingsInstanceActivateApps": {
+                    "hidden": "data.foreignSettingsInstance === '' || data.foreignSettingsInstance === `awtrix-light.${_instance}`",
+                    "type": "checkbox",
+                    "label": "Activate same apps as in main instance",
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 6
                 },
                 "_headerCustomApps": {
                     "hidden": "!!data.foreignSettingsInstance",

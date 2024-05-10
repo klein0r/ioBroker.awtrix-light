@@ -62,6 +62,7 @@ declare global {
             downloadScreenContent: boolean;
             downloadScreenContentInterval: number;
             foreignSettingsInstance: string;
+            foreignSettingsInstanceActivateApps: boolean;
             customApps: Array<CustomApp>;
             ignoreNewValueForAppInTimeRange: number;
             historyApps: Array<HistoryApp>;
@@ -78,4 +79,5 @@ declare global {
 }
 
 // this is required so the above AdapterConfig is found by TypeScript / type checking
-export {};
+export { };
+

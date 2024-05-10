@@ -1,7 +1,7 @@
 import { AwtrixLight } from '../../main';
 import { CustomApp } from '../adapter-config';
 import { AwtrixApi } from '../api';
-import { AppType as AbstractAppType } from './abstract';
+import { AppType as UserAppType } from './user';
 
 export namespace AppType {
     type ObjCache = {
@@ -11,7 +11,7 @@ export namespace AppType {
         ts: number;
     };
 
-    export class Custom extends AbstractAppType.AbstractApp {
+    export class Custom extends UserAppType.UserApp {
         private appDefinition: CustomApp;
         private objCache: ObjCache | undefined;
         private isStaticText: boolean;
@@ -26,6 +26,10 @@ export namespace AppType {
             this.isStaticText = false;
             this.isBackgroundOny = true;
             this.cooldownTimeout = undefined;
+        }
+
+        public override getDescription(): string {
+            return 'custom';
         }
 
         public override async init(): Promise<boolean> {
@@ -324,6 +328,8 @@ export namespace AppType {
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
+            super.stateChanged(id, state);
+
             if (this.objCache && !this.isStaticText) {
                 if (id && state && id === this.appDefinition.objId) {
                     if (state.ack) {

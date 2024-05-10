@@ -255,6 +255,7 @@
     "downloadScreenContent": false,
     "downloadScreenContentInterval": 10,
     "foreignSettingsInstance": "",
+    "foreignSettingsInstanceActivateApps": false,
     "customApps": [],
     "ignoreNewValueForAppInTimeRange": 3,
     "historyApps": [],

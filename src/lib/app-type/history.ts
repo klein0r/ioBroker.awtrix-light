@@ -1,7 +1,7 @@
 import { AwtrixLight } from '../../main';
 import { HistoryApp } from '../adapter-config';
 import { AwtrixApi } from '../api';
-import { AppType as AbstractAppType } from './abstract';
+import { AppType as UserAppType } from './user';
 
 export namespace AppType {
     export type HistoryOptions = {
@@ -16,7 +16,7 @@ export namespace AppType {
         ack: boolean;
     };
 
-    export class History extends AbstractAppType.AbstractApp {
+    export class History extends UserAppType.UserApp {
         private appDefinition: HistoryApp;
         private isValidSourceInstance: boolean;
         private isValidObjId: boolean;
@@ -29,6 +29,10 @@ export namespace AppType {
             this.isValidSourceInstance = false;
             this.isValidObjId = false;
             this.refreshTimeout = undefined;
+        }
+
+        public override getDescription(): string {
+            return 'history';
         }
 
         public override async init(): Promise<boolean> {
