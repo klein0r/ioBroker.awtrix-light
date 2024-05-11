@@ -21,10 +21,10 @@ __export(custom_exports, {
   AppType: () => AppType
 });
 module.exports = __toCommonJS(custom_exports);
-var import_abstract = require("./abstract");
+var import_user = require("../user");
 var AppType;
 ((AppType2) => {
-  class Custom extends import_abstract.AppType.AbstractApp {
+  class Custom extends import_user.AppType.UserApp {
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
@@ -32,6 +32,9 @@ var AppType;
       this.isStaticText = false;
       this.isBackgroundOny = true;
       this.cooldownTimeout = void 0;
+    }
+    getDescription() {
+      return "custom";
     }
     async init() {
       var _a, _b;
@@ -261,6 +264,7 @@ var AppType;
       return refreshed;
     }
     async stateChanged(id, state) {
+      await super.stateChanged(id, state);
       if (this.objCache && !this.isStaticText) {
         if (id && state && id === this.appDefinition.objId) {
           if (state.ack) {

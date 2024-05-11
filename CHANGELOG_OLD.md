@@ -1,4 +1,8 @@
 # Older changes
+## 0.15.0 (2024-03-06)
+
+* (klein0r) Keep apps contents in sync
+
 ## 0.14.1 (2024-03-06)
 
 * (klein0r) Fixed roles of calendar header, body and text (rgb)

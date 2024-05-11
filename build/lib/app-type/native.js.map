@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/app-type/native.ts"],
+  "sourcesContent": ["import { AwtrixLight } from '../../main';\nimport { AwtrixApi } from '../api';\nimport { AppType as AbstractAppType } from './abstract';\n\nexport namespace AppType {\n    export class Native extends AbstractAppType.AbstractApp {\n        public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, name: string) {\n            super(apiClient, adapter, name);\n        }\n\n        public override getDescription(): string {\n            return 'native';\n        }\n    }\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAEA,sBAA2C;AAEpC,IAAU;AAAA,CAAV,CAAUA,aAAV;AAAA,EACI,MAAM,eAAe,gBAAAC,QAAgB,YAAY;AAAA,IAC7C,YAAY,WAA6B,SAAsB,MAAc;AAChF,YAAM,WAAW,SAAS,IAAI;AAAA,IAClC;AAAA,IAEgB,iBAAyB;AACrC,aAAO;AAAA,IACX;AAAA,EACJ;AARO,EAAAD,SAAM;AAAA,GADA;",
+  "names": ["AppType", "AbstractAppType"]
+}

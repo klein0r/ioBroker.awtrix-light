@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Sync app activations (if enabled)",
+        "de": "Sync app Aktivierungen (falls aktiviert)",
+        "ru": "Активация приложений Sync (если включена)",
+        "pt": "Ativações de aplicativos de sincronização (se ativado)",
+        "nl": "App-activeringen synchroniseren (indien ingeschakeld)",
+        "fr": "Synchronisation des activations de l'application (si activé)",
+        "it": "Attivazioni di app Sync (se abilitate)",
+        "es": "Activaciones de aplicaciones de sincronización (si está habilitado)",
+        "pl": "Synchronizacja aktywacji aplikacji (jeśli włączona)",
+        "uk": "Sync активації програми (включено)",
+        "zh-cn": "同步应用程序激活( 如果启用)"
+      },
       "1.0.1": {
         "en": "Keep text case of expert apps (ignore system settings)",
         "de": "Behalten Sie den Textfall von Experten-Apps (ignore Systemeinstellungen)",
@@ -80,19 +93,6 @@
         "pl": "Stałe role nagłówka kalendarza, nadwozia i tekstu (rgb)",
         "uk": "Виправлені ролі календарного заголовка, тіла та тексту (rgb)",
         "zh-cn": "日历标题、正文和文本的固定作用( rgb)"
-      },
-      "0.14.0": {
-        "en": "Allow to round numbers dynamically (depends on length)",
-        "de": "Erlauben Sie, Zahlen dynamisch zu runden (abhängig von der Länge)",
-        "ru": "Позволить динамически округлять числа (в зависимости от длины)",
-        "pt": "Permite arredondar números dinamicamente (depende do comprimento)",
-        "nl": "Toestaan aan ronde getallen dynamisch (afhankelijk van lengte)",
-        "fr": "Laisser les nombres ronds dynamiquement (selon la longueur)",
-        "it": "Consentire ai numeri rotondi dinamicamente (dipende dalla lunghezza)",
-        "es": "Permitir números redondos dinámicamente (depende de longitud)",
-        "pl": "Pozwala na dynamiczne okrążenie liczb (zależy od długości)",
-        "uk": "Дозвольте округлити номери динамічно (в залежності від довжини)",
-        "zh-cn": "允许动态圆数( 取决于长度)"
       }
     },
     "titleLang": {

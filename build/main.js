@@ -34,9 +34,11 @@ module.exports = __toCommonJS(main_exports);
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_color_convert = require("./lib/color-convert");
 var import_api = require("./lib/api");
-var import_custom = require("./lib/app-type/custom");
-var import_expert = require("./lib/app-type/expert");
-var import_history = require("./lib/app-type/history");
+var import_native = require("./lib/app-type/native");
+var import_user = require("./lib/app-type/user");
+var import_custom = require("./lib/app-type/user/custom");
+var import_expert = require("./lib/app-type/user/expert");
+var import_history = require("./lib/app-type/user/history");
 const NATIVE_APPS = ["Time", "Date", "Temperature", "Humidity", "Battery"];
 class AwtrixLight extends utils.Adapter {
   constructor(options = {}) {
@@ -45,6 +47,7 @@ class AwtrixLight extends utils.Adapter {
       name: "awtrix-light",
       useFormatDate: true
     });
+    this._isMainInstance = true;
     this.supportedVersion = "0.96";
     this.displayedVersionWarning = false;
     this.apiClient = null;
@@ -89,9 +92,15 @@ class AwtrixLight extends utils.Adapter {
     } else {
       this.apiClient = new import_api.AwtrixApi.Client(this, this.config.awtrixIp, 80, this.config.httpTimeout, this.config.userName, this.config.userPassword);
     }
-    if (this.config.foreignSettingsInstance && this.config.foreignSettingsInstance !== this.namespace) {
+    if (this.config.foreignSettingsInstance !== "" && this.config.foreignSettingsInstance !== this.namespace) {
+      this._isMainInstance = false;
       await this.subscribeForeignObjectsAsync(`system.adapter.${this.config.foreignSettingsInstance}`);
       await this.importForeignSettings();
+    }
+    for (const nativeAppName of NATIVE_APPS) {
+      if (!this.findAppWithName(nativeAppName)) {
+        this.apps.push(new import_native.AppType.Native(this.apiClient, this, nativeAppName));
+      }
     }
     let pos = 0;
     for (const customApp of this.config.customApps) {
@@ -171,8 +180,11 @@ class AwtrixLight extends utils.Adapter {
       this.log.error(`Unable to import settings of other instance: ${err}`);
     }
   }
+  isMainInstance() {
+    return this._isMainInstance;
+  }
   async onStateChange(id, state) {
-    var _a, _b;
+    var _a;
     if (id && state && !state.ack) {
       const idNoNamespace = this.removeNamespace(id);
       this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
@@ -256,20 +268,6 @@ class AwtrixLight extends utils.Adapter {
           this.apiClient.requestAsync("previousapp", "POST").catch((error) => {
             this.log.warn(`(previousapp) Unable to execute action: ${error}`);
           });
-        } else if (idNoNamespace.startsWith("apps.")) {
-          if (idNoNamespace.endsWith(".activate")) {
-            if (state.val) {
-              const sourceObj = await this.getObjectAsync(idNoNamespace);
-              if (sourceObj && ((_b = sourceObj.native) == null ? void 0 : _b.name)) {
-                this.log.debug(`activating app ${sourceObj.native.name}`);
-                this.apiClient.requestAsync("switch", "POST", { name: sourceObj.native.name }).catch((error) => {
-                  this.log.warn(`(switch) Unable to execute action: ${error}`);
-                });
-              }
-            } else {
-              this.log.warn(`Received invalid value for state ${idNoNamespace}`);
-            }
-          }
         } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
           const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
           const indicatorNo = matches ? parseInt(matches[1]) : void 0;
@@ -292,7 +290,7 @@ class AwtrixLight extends utils.Adapter {
   }
   /* eslint-disable @typescript-eslint/no-unused-vars */
   async onObjectChange(id, obj) {
-    if (id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
+    if (!this.isMainInstance() && id && id == `system.adapter.${this.config.foreignSettingsInstance}`) {
       await this.importForeignSettings();
       this.restart();
     }
@@ -378,8 +376,10 @@ class AwtrixLight extends utils.Adapter {
           await this.refreshTransitions();
           await this.createAppObjects();
           for (const app of this.apps) {
-            if (await app.init()) {
-              await app.refresh();
+            if (app instanceof import_user.AppType.UserApp) {
+              if (await app.init()) {
+                await app.refresh();
+              }
             }
           }
           for (let i = 1; i <= 3; i++) {
@@ -566,49 +566,25 @@ class AwtrixLight extends utils.Adapter {
             for (const name of allApps) {
               appsKeep.push(`apps.${name}`);
               this.log.debug(`[createAppObjects] found (keep): apps.${name}`);
+              const isNativeApp = NATIVE_APPS.includes(name);
               const isCustomApp = customApps.includes(name);
               const isHistoryApp = historyApps.includes(name);
               const isExpertApp = expertApps.includes(name);
-              await this.extendObjectAsync(`apps.${name}`, {
-                type: "channel",
-                common: {
-                  name: `App ${name}`,
-                  desc: `${isCustomApp ? "custom app" : ""}${isHistoryApp ? "history app" : ""}${isExpertApp ? "expert app" : ""}`
-                },
-                native: {
-                  isNativeApp: NATIVE_APPS.includes(name),
-                  isCustomApp,
-                  isHistoryApp,
-                  isExpertApp
-                }
-              });
-              await this.setObjectNotExistsAsync(`apps.${name}.activate`, {
-                type: "state",
-                common: {
-                  name: {
-                    en: "Activate",
-                    de: "Aktivieren",
-                    ru: "\u0410\u043A\u0442\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u0442\u044C",
-                    pt: "Ativar",
-                    nl: "Activeren",
-                    fr: "Activer",
-                    it: "Attivare",
-                    es: "Activar",
-                    pl: "Aktywuj",
-                    uk: "\u0410\u043A\u0442\u0438\u0432\u0443\u0432\u0430\u0442\u0438",
-                    "zh-cn": "\u542F\u7528"
-                  },
-                  type: "boolean",
-                  role: "button",
-                  read: false,
-                  write: true
-                },
-                native: {
-                  name
-                }
-              });
               const app = this.findAppWithName(name);
               if (app) {
+                await this.extendObjectAsync(`apps.${name}`, {
+                  type: "channel",
+                  common: {
+                    name: `App ${name}`,
+                    desc: `${app.getDescription()} app`
+                  },
+                  native: {
+                    isNativeApp,
+                    isCustomApp,
+                    isHistoryApp,
+                    isExpertApp
+                  }
+                });
                 await app.createObjects();
               }
             }
@@ -691,7 +667,9 @@ class AwtrixLight extends utils.Adapter {
   async onUnload(callback) {
     try {
       for (const app of this.apps) {
-        await app.unloadAsync();
+        if (app instanceof import_user.AppType.UserApp) {
+          await app.unloadAsync();
+        }
       }
       await this.setApiConnected(false);
       if (this.refreshStateTimeout) {

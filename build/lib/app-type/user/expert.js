@@ -21,15 +21,18 @@ __export(expert_exports, {
   AppType: () => AppType
 });
 module.exports = __toCommonJS(expert_exports);
-var import_abstract = require("./abstract");
+var import_user = require("../user");
 var AppType;
 ((AppType2) => {
-  class Expert extends import_abstract.AppType.AbstractApp {
+  class Expert extends import_user.AppType.UserApp {
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
       this.appStates = {};
       this.refreshTimeout = void 0;
+    }
+    getDescription() {
+      return "expert";
     }
     async init() {
       var _a, _b;
@@ -64,7 +67,8 @@ var AppType;
           color: typeof this.appStates.color === "string" ? this.appStates.color : "#FFFFFF",
           background: typeof this.appStates.background === "string" ? this.appStates.background : "#000000",
           icon: typeof this.appStates.icon === "string" ? this.appStates.icon : "",
-          duration: typeof this.appStates.duration === "number" ? this.appStates.duration : 0
+          duration: typeof this.appStates.duration === "number" ? this.appStates.duration : 0,
+          pos: this.appDefinition.position
         }).catch((error) => {
           this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
         });
@@ -73,6 +77,7 @@ var AppType;
       return refreshed;
     }
     async createObjects() {
+      await super.createObjects();
       const appName = this.getName();
       await this.adapter.extendObjectAsync(`apps.${appName}.text`, {
         type: "state",
@@ -211,10 +216,10 @@ var AppType;
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
       }
-      return super.createObjects();
     }
     async stateChanged(id, state) {
       var _a, _b, _c;
+      await super.stateChanged(id, state);
       if (id && state && !state.ack) {
         const appName = this.getName();
         const idOwnNamespace = this.getObjIdOwnNamespace(id);

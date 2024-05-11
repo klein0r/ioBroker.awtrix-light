@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.1.0 (2024-05-11)
 
 * (klein0r) Sync app activations (if enabled)
 
@@ -64,10 +64,6 @@ Updated recommended firmware version to 0.95
 ### 0.15.1 (2024-03-12)
 
 * (klein0r) Fixed default values of color states
-
-### 0.15.0 (2024-03-06)
-
-* (klein0r) Keep apps contents in sync
 
 ## License
 MIT License

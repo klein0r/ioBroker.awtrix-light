@@ -21,16 +21,19 @@ __export(history_exports, {
   AppType: () => AppType
 });
 module.exports = __toCommonJS(history_exports);
-var import_abstract = require("./abstract");
+var import_user = require("../user");
 var AppType;
 ((AppType2) => {
-  class History extends import_abstract.AppType.AbstractApp {
+  class History extends import_user.AppType.UserApp {
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
       this.isValidSourceInstance = false;
       this.isValidObjId = false;
       this.refreshTimeout = void 0;
+    }
+    getDescription() {
+      return "history";
     }
     async init() {
       var _a, _b, _c;
