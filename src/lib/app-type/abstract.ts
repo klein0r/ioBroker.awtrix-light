@@ -80,22 +80,22 @@ export namespace AppType {
         }
 
         private async onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void> {
+            const appName = this.getName();
+
             if (id) {
-                this.adapter.log.debug(`[onStateChange] State change "${id}": ${JSON.stringify(state)}`);
-            }
+                this.adapter.log.debug(`[onStateChange] ${appName}: State change "${id}": ${JSON.stringify(state)}`);
 
-            // Handle default states for all apps
-            if (id && state && !state.ack) {
-                const appName = this.getName();
-
-                // activate app
-                if (id === `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`) {
-                    if (state.val) {
-                        this.apiClient!.requestAsync('switch', 'POST', { name: appName }).catch((error) => {
-                            this.adapter.log.warn(`[onStateChange] (switch) Unable to execute action: ${error}`);
-                        });
-                    } else {
-                        this.adapter.log.warn(`[onStateChange] Received invalid value for state ${id}`);
+                // Handle default states for all apps
+                if (state && !state.ack) {
+                    // activate app
+                    if (id === `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`) {
+                        if (state.val) {
+                            this.apiClient!.requestAsync('switch', 'POST', { name: appName }).catch((error) => {
+                                this.adapter.log.warn(`[onStateChange] ${appName}: (switch) Unable to execute action: ${error}`);
+                            });
+                        } else {
+                            this.adapter.log.warn(`[onStateChange] ${appName}: Received invalid value for state ${id}`);
+                        }
                     }
                 }
             }

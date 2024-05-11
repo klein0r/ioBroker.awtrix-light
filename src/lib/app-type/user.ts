@@ -100,14 +100,14 @@ export namespace AppType {
 
                 if (id === `${this.objPrefix}.apps.${appName}.visible`) {
                     if (state.val !== this.isVisible) {
-                        this.adapter.log.debug(`[onStateChange] Visibility of app ${appName} changed to ${state.val}`);
+                        this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`);
 
                         this.isVisible = !!state.val;
 
                         await this.refresh();
                         await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
                     } else {
-                        this.adapter.log.debug(`[onStateChange] Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
+                        this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
 
                         await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
                     }

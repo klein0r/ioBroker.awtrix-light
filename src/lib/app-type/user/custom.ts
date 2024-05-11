@@ -328,7 +328,7 @@ export namespace AppType {
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
-            super.stateChanged(id, state);
+            await super.stateChanged(id, state);
 
             if (this.objCache && !this.isStaticText) {
                 if (id && state && id === this.appDefinition.objId) {

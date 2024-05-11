@@ -224,7 +224,7 @@ export namespace AppType {
         }
 
         protected override async stateChanged(id: string, state: ioBroker.State | null | undefined): Promise<void> {
-            super.stateChanged(id, state);
+            await super.stateChanged(id, state);
 
             // Handle default states for all apps
             if (id && state && !state.ack) {

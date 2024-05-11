@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Sync app activations (if enabled)
+
 ### 1.0.1 (2024-04-28)
 
 * (klein0r) Keep text case of expert apps (ignore system settings)
