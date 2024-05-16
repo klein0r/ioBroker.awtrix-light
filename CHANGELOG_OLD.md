@@ -1,4 +1,8 @@
 # Older changes
+## 0.15.1 (2024-03-12)
+
+* (klein0r) Fixed default values of color states
+
 ## 0.15.0 (2024-03-06)
 
 * (klein0r) Keep apps contents in sync

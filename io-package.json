@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "news": {
+      "1.2.0": {
+        "en": "Fixed wrong translations ins expert apps (duration)\nAdded progress bar for expert apps",
+        "de": "Behobene falsche Übersetzungen in Experten-Apps (Dauer)\nFortschrittsleiste für Experten-Apps hinzugefügt",
+        "ru": "Исправленные неправильные переводы в экспертных приложениях (продление)\nДобавить панель прогресса для экспертных приложений",
+        "pt": "Traduções erradas corrigidas em aplicações especializadas (duração)\nBarra de progresso adicionada para aplicações especializadas",
+        "nl": "Onjuiste vertalingen ins expert apps (duur)\nVoortgangsbalk toegevoegd voor expert-apps",
+        "fr": "Correction de traductions incorrectes dans des applications expertes (durée)\nAjout d'une barre de progression pour les applications expertes",
+        "it": "Risolto traduzioni sbagliate ins app di esperti (durata)\nBarra di avanzamento aggiuntiva per applicazioni di esperti",
+        "es": "Traducción incorrecta fija en aplicaciones expertas (duración)\nAñadido barra de progreso para aplicaciones expertas",
+        "pl": "Naprawiono niewłaściwe tłumaczenia w aplikacji ekspertów (czas trwania)\nDodano pasek postępu dla aplikacji eksperckich",
+        "uk": "Виправлено неправильні переклади в експертних додатках (визначення)\nДодана панель прогресу для експертних додатків",
+        "zh-cn": "固定错误的翻译 专家应用程序( 期限)\n为专家应用程序添加进度栏"
+      },
       "1.1.0": {
         "en": "Sync app activations (if enabled)",
         "de": "Sync app Aktivierungen (falls aktiviert)",
@@ -80,19 +93,6 @@
         "pl": "Zachowaj zawartość aplikacji w synchronizacji",
         "uk": "Збережіть вміст додатків в синхронізації",
         "zh-cn": "保持应用程序内容同步"
-      },
-      "0.14.1": {
-        "en": "Fixed roles of calendar header, body and text (rgb)",
-        "de": "Feste Rollen von Kalender-Header, Körper und Text (rgb)",
-        "ru": "Исправленные роли заголовка календаря, тело и текст (rgb)",
-        "pt": "Funções fixas de cabeçalho do calendário, corpo e texto (rgb)",
-        "nl": "Vaste rollen van agenda header, body en tekst (rgb)",
-        "fr": "Rôles fixes de l'en-tête, du corps et du texte du calendrier (rgb)",
-        "it": "Ruoli fissi di intestazione del calendario, corpo e testo (rgb)",
-        "es": "Funciones fijas del encabezado del calendario, el cuerpo y el texto (rgb)",
-        "pl": "Stałe role nagłówka kalendarza, nadwozia i tekstu (rgb)",
-        "uk": "Виправлені ролі календарного заголовка, тіла та тексту (rgb)",
-        "zh-cn": "日历标题、正文和文本的固定作用( rgb)"
       }
     },
     "titleLang": {

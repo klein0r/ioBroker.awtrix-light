@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.0 (2024-05-16)
 
 * (klein0r) Fixed wrong translations ins expert apps (duration)
 * (klein0r) Added progress bar for expert apps
@@ -65,10 +65,6 @@ Updated recommended firmware version to 0.95
 * (klein0r) Added notification for firmware update
 * (klein0r) Added setting state for volume
 * (klein0r) Rebranding Awtrix Light to Awtrix 3
-
-### 0.15.1 (2024-03-12)
-
-* (klein0r) Fixed default values of color states
 
 ## License
 MIT License

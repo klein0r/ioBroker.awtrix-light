@@ -42,7 +42,7 @@ var AppType;
         endkey: `${this.objPrefix}.apps.${appName}.\u9999`
       });
       for (const appObj of appObjects.rows) {
-        if ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute) {
+        if (appObj.value.type === "state" && ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute)) {
           const appState = await this.adapter.getForeignStateAsync(appObj.id);
           if (appState) {
             this.appStates[appObj.value.native.attribute] = appState.val;
@@ -60,7 +60,7 @@ var AppType;
       let refreshed = false;
       if (await super.refresh()) {
         this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
-        await this.apiClient.appRequestAsync(this.appDefinition.name, {
+        const app = {
           text: typeof this.appStates.text === "string" ? this.appStates.text : "",
           textCase: 2,
           // show as sent
@@ -69,7 +69,15 @@ var AppType;
           icon: typeof this.appStates.icon === "string" ? this.appStates.icon : "",
           duration: typeof this.appStates.duration === "number" ? this.appStates.duration : 0,
           pos: this.appDefinition.position
-        }).catch((error) => {
+        };
+        if (this.appStates.progress && typeof this.appStates.progress === "number") {
+          if (this.appStates.progress >= 0 && this.appStates.progress <= 100) {
+            app.progress = this.appStates.progress;
+            app.progressC = typeof this.appStates.progressC === "string" ? this.appStates.progressC : "#00FF00";
+            app.progressBC = typeof this.appStates.progressBC === "string" ? this.appStates.progressBC : "#FFFFFF";
+          }
+        }
+        await this.apiClient.appRequestAsync(this.appDefinition.name, app).catch((error) => {
           this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
         });
         refreshed = true;
@@ -187,26 +195,126 @@ var AppType;
         type: "state",
         common: {
           name: {
-            en: "Icon",
-            de: "Symbol",
-            ru: "\u0418\u043C\u044F",
-            pt: "\xCDcone",
-            nl: "Icoon",
-            fr: "Ic\xF4ne",
-            it: "Icona",
-            es: "Icono",
-            pl: "Ikona",
-            uk: "\u0437\u043D\u0430\u0447\u043E\u043A",
-            "zh-cn": "\u56FE\u6807"
+            en: "Duration",
+            de: "Dauer",
+            ru: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C",
+            pt: "Dura\xE7\xE3o",
+            nl: "Duur",
+            fr: "Dur\xE9e",
+            it: "Durata",
+            es: "Duraci\xF3n",
+            pl: "Czas trwania",
+            uk: "\u0422\u0440\u0438\u0432\u0430\u043B\u0456\u0441\u0442\u044C",
+            "zh-cn": "\u4F1A\u671F"
           },
           type: "number",
           role: "value",
           read: true,
           write: this.isMainInstance(),
-          def: 0
+          def: 0,
+          unit: "sec"
         },
         native: {
           attribute: "duration"
+        }
+      });
+      await this.adapter.extendObjectAsync(`apps.${appName}.progress`, {
+        type: "folder",
+        common: {
+          name: {
+            en: "Progress bar",
+            de: "Fortschrittsleiste",
+            ru: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441\u0441",
+            pt: "Barra de progresso",
+            nl: "Voortgangsbalk",
+            fr: "Barre de progression",
+            it: "Barra di avanzamento",
+            es: "Progresos",
+            pl: "Pasek post\u0119pu",
+            uk: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441 \u0431\u0430\u0440",
+            "zh-cn": "\u8FDB\u5EA6\u680F"
+          }
+        }
+      });
+      await this.adapter.extendObjectAsync(`apps.${appName}.progress.percent`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Progress",
+            de: "Fortschritt",
+            ru: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441\u0441",
+            pt: "Progressos",
+            nl: "Voortgang",
+            fr: "Progr\xE8s accomplis",
+            it: "Progressi",
+            es: "Progresos",
+            pl: "Post\u0119py",
+            uk: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441",
+            "zh-cn": "\u8FDB\u5C55"
+          },
+          type: "number",
+          role: "value",
+          read: true,
+          write: this.isMainInstance(),
+          def: 0,
+          unit: "%",
+          min: 0,
+          max: 100
+        },
+        native: {
+          attribute: "progress"
+        }
+      });
+      await this.adapter.extendObjectAsync(`apps.${appName}.progress.color`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Color",
+            de: "Farbe",
+            ru: "\u0426\u0432\u0435\u0442",
+            pt: "Cor",
+            nl: "Kleur",
+            fr: "Couleur",
+            it: "Colore",
+            es: "Color",
+            pl: "Kolor",
+            uk: "\u041A\u043E\u043B\u0456\u0440",
+            "zh-cn": "\u989C\u8272"
+          },
+          type: "string",
+          role: "level.color.rgb",
+          read: true,
+          write: this.isMainInstance(),
+          def: "#00FF00"
+        },
+        native: {
+          attribute: "progressC"
+        }
+      });
+      await this.adapter.extendObjectAsync(`apps.${appName}.progress.backgroundColor`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Background color",
+            de: "Hintergrundfarbe",
+            ru: "\u0424\u043E\u043D\u043E\u0432\u044B\u0439 \u0446\u0432\u0435\u0442",
+            pt: "Cor de fundo",
+            nl: "Achtergrondkleur",
+            fr: "Couleur de fond",
+            it: "Colore dello sfondo",
+            es: "Color de fondo",
+            pl: "Kolor t\u0142a",
+            uk: "\u041A\u043E\u043B\u0456\u0440 \u0444\u043E\u043D\u0443",
+            "zh-cn": "\u80CC\u666F\u989C\u8272"
+          },
+          type: "string",
+          role: "level.color.rgb",
+          read: true,
+          write: this.isMainInstance(),
+          def: "#FFFFFF"
+        },
+        native: {
+          attribute: "progressBC"
         }
       });
       if (!this.isMainInstance()) {
@@ -215,6 +323,9 @@ var AppType;
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.percent`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.color`);
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.backgroundColor`);
       }
     }
     async stateChanged(id, state) {
