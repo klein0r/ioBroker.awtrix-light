@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed wrong translations ins expert apps (duration)
+
 ### 1.1.0 (2024-05-11)
 
 * (klein0r) Sync app activations (if enabled)
