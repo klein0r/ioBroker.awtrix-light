@@ -42,6 +42,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Fixed wrong translations ins expert apps (duration)
+* (klein0r) Added progress bar for expert apps
 
 ### 1.1.0 (2024-05-11)
 
