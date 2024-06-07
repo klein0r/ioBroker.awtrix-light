@@ -42,6 +42,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### **WORK IN PROGRESS**
 
 * (klein0r) Fixed Blockly definitions (removed warnings)
+* (klein0r) Updated dependencies
 
 ### 1.2.0 (2024-05-16)
 
