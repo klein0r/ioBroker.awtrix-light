@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Fixed Blockly definitions (removed warnings)\nUpdated dependencies",
+        "de": "Feste blockweise Definitionen (entfernte Warnungen)\nAktualisierte Abhängigkeiten",
+        "ru": "Fixed Blockly definitions (removed warnings)\nОбновленные зависимости",
+        "pt": "Definições bloqueadas fixas (avisões remotas)\nDependências atualizadas",
+        "nl": "Vaste blokdefinities (verwijderde waarschuwingen)\nBijgewerkte afhankelijkheden",
+        "fr": "Définition fixe par blocs (avertissements supprimés)\nDépendances actualisées",
+        "it": "Definizioni Bloccate Fisse (avviso rimosso)\nDipendenze aggiornate",
+        "es": "Definiciones limitadas (removidas advertencias)\nDependencias actualizadas",
+        "pl": "Poprawione definicje blokady (usunięte ostrzeżenia)\nAktualizacja zależności",
+        "uk": "Виправлені помилкові визначення (видалення попередження)\nОновлені залежності",
+        "zh-cn": "固定块定义(撤消警告)\n更新的依赖关系"
+      },
       "1.2.0": {
         "en": "Fixed wrong translations ins expert apps (duration)\nAdded progress bar for expert apps",
         "de": "Behobene falsche Übersetzungen in Experten-Apps (Dauer)\nFortschrittsleiste für Experten-Apps hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono domyślne wartości stanów kolorów",
         "uk": "Виправлені значення за замовчуванням кольорових станів",
         "zh-cn": "颜色状态的固定默认值"
-      },
-      "0.15.0": {
-        "en": "Keep apps contents in sync",
-        "de": "Aktualisieren von Apps",
-        "ru": "Хранить содержимое приложений синхронно",
-        "pt": "Mantenha o conteúdo dos aplicativos em sincronia",
-        "nl": "De inhoud van apps synchroniseren",
-        "fr": "Conserver le contenu des applications en synchronisation",
-        "it": "Mantenere i contenuti delle app in sincronizzazione",
-        "es": "Mantener contenidos de aplicaciones en sincronización",
-        "pl": "Zachowaj zawartość aplikacji w synchronizacji",
-        "uk": "Збережіть вміст додатків в синхронізації",
-        "zh-cn": "保持应用程序内容同步"
       }
     },
     "titleLang": {

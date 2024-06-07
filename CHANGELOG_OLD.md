@@ -1,4 +1,12 @@
 # Older changes
+## 0.16.0 (2024-03-12)
+
+Updated recommended firmware version to 0.95
+
+* (klein0r) Added notification for firmware update
+* (klein0r) Added setting state for volume
+* (klein0r) Rebranding Awtrix Light to Awtrix 3
+
 ## 0.15.1 (2024-03-12)
 
 * (klein0r) Fixed default values of color states

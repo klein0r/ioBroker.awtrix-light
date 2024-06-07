@@ -39,7 +39,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.1 (2024-06-07)
 
 * (klein0r) Fixed Blockly definitions (removed warnings)
 * (klein0r) Updated dependencies
@@ -62,14 +62,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 NodeJS >= 18.x and js-controller >= 5 is required
 
 Updated recommended firmware version to 0.96
-
-### 0.16.0 (2024-03-12)
-
-Updated recommended firmware version to 0.95
-
-* (klein0r) Added notification for firmware update
-* (klein0r) Added setting state for volume
-* (klein0r) Rebranding Awtrix Light to Awtrix 3
 
 ## License
 MIT License
