@@ -203,42 +203,37 @@ Blockly.Words['awtrix-light_help'] = { en: 'https://github.com/klein0r/ioBroker.
 
 Blockly.Sendto.blocks['awtrix-light'] =
     '<block type="awtrix-light">' +
-    '     <value name="INSTANCE">' +
-    '     </value>' +
-    '     <value name="MESSAGE">' +
-    '         <shadow type="text">' +
-    '             <field name="TEXT">haus-automatisierung.com</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="COLOR">' +
-    '         <shadow type="colour_picker">' +
-    '             <field name="COLOUR">#ffffff</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="SOUND">' +
-    '         <shadow type="logic_null"></shadow>' +
-    '     </value>' +
-    '     <value name="ICON">' +
-    '         <shadow type="logic_null"></shadow>' +
-    '     </value>' +
-    '     <value name="REPEAT">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">1</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="DURATION">' +
-    '         <shadow type="math_number">' +
-    '             <field name="NUM">0</field>' +
-    '         </shadow>' +
-    '     </value>' +
-    '     <value name="RAINBOW">' +
-    '     </value>' +
-    '     <value name="STACK">' +
-    '     </value>' +
-    '     <value name="WAKEUP">' +
-    '     </value>' +
-    '     <value name="HOLD">' +
-    '     </value>' +
+    '  <field name="INSTANCE"></field>' +
+    '  <field name="RAINBOW">FALSE</field>' +
+    '  <field name="STACK">TRUE</field>' +
+    '  <field name="WAKEUP">TRUE</field>' +
+    '  <field name="HOLD">FALSE</field>' +
+    '  <value name="MESSAGE">' +
+    '    <shadow type="text">' +
+    '      <field name="TEXT">haus-automatisierung.com</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="COLOR">' +
+    '    <shadow type="colour_picker">' +
+    '      <field name="COLOUR">#ffffff</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="SOUND">' +
+    '    <shadow type="logic_null"></shadow>' +
+    '  </value>' +
+    '  <value name="ICON">' +
+    '    <shadow type="logic_null"></shadow>' +
+    '  </value>' +
+    '  <value name="REPEAT">' +
+    '    <shadow type="math_number">' +
+    '      <field name="NUM">1</field>' +
+    '    </shadow>' +
+    '  </value>' +
+    '  <value name="DURATION">' +
+    '    <shadow type="math_number">' +
+    '      <field name="NUM">0</field>' +
+    '    </shadow>' +
+    '  </value>' +
     '</block>';
 
 Blockly.Blocks['awtrix-light'] = {
@@ -322,13 +317,12 @@ Blockly.JavaScript['awtrix-light'] = function (block) {
 
 Blockly.Sendto.blocks['awtrix-light_playsound'] =
     '<block type="awtrix-light_playsound">' +
-    '     <value name="INSTANCE">' +
-    '     </value>' +
-    '     <value name="SOUND">' +
-    '         <shadow type="text">' +
-    '             <field name="TEXT">...</field>' +
-    '         </shadow>' +
-    '     </value>' +
+    '  <field name="INSTANCE"></field>' +
+    '  <value name="SOUND">' +
+    '    <shadow type="text">' +
+    '      <field name="TEXT">...</field>' +
+    '    </shadow>' +
+    '  </value>' +
     '</block>';
 
 Blockly.Blocks['awtrix-light_playsound'] = {

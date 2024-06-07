@@ -39,6 +39,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (klein0r) Fixed Blockly definitions (removed warnings)
+
 ### 1.2.0 (2024-05-16)
 
 * (klein0r) Fixed wrong translations ins expert apps (duration)
