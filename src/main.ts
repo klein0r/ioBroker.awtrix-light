@@ -356,7 +356,7 @@ export class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
                 if (this.apiClient!.isConnected()) {
-                    const msgFiltered: AwtrixApi.App = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
+                    const msgFiltered: AwtrixApi.App = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
 
                     // Remove repeat if <= 0
                     if (msgFiltered.repeat !== undefined && msgFiltered.repeat <= 0) {
@@ -381,7 +381,7 @@ export class AwtrixLight extends utils.Adapter {
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
                 if (this.apiClient!.isConnected()) {
-                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null)); // eslint-disable-line no-unused-vars
+                    const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
 
                     this.apiClient!.requestAsync('sound', 'POST', msgFiltered)
                         .then((response) => {
