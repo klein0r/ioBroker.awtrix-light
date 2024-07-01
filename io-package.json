@@ -152,6 +152,11 @@
     "dataSource": "poll",
     "blockly": true,
     "messagebox": true,
+    "plugins": {
+      "sentry": {
+        "dsn": "https://1fbc6c8a4c8b4849b62cea038c1b631b@sentry.iobroker.net/247"
+      }
+    },
     "adminUI": {
       "config": "json"
     },
