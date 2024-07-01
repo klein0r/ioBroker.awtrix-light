@@ -46,7 +46,7 @@
     "@types/sinon": "^17.0.3",
     "@types/sinon-chai": "^3.2.12",
     "@typescript-eslint/eslint-plugin": "^8.0.0-alpha.34",
-    "@typescript-eslint/parser": "^8.0.0-alpha.34",
+    "@typescript-eslint/parser": "^8.0.0-alpha.37",
     "chai": "^4.4.1",
     "chai-as-promised": "^7.1.2",
     "eslint": "^9.5.0",
