@@ -48,7 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0-alpha.34",
     "@typescript-eslint/parser": "^8.0.0-alpha.37",
     "chai": "^4.4.1",
-    "chai-as-promised": "^7.1.2",
+    "chai-as-promised": "^8.0.0",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
