@@ -20,6 +20,7 @@ const NATIVE_APPS = ['Time', 'Date', 'Temperature', 'Humidity', 'Battery'];
 export class AwtrixLight extends utils.Adapter {
     private _isMainInstance: boolean;
 
+    private currentVersion: string | undefined;
     private supportedVersion: string;
     private displayedVersionWarning: boolean;
 
@@ -40,6 +41,7 @@ export class AwtrixLight extends utils.Adapter {
 
         this._isMainInstance = true;
 
+        this.currentVersion = undefined;
         this.supportedVersion = '0.96';
         this.displayedVersionWarning = false;
 
@@ -114,6 +116,8 @@ export class AwtrixLight extends utils.Adapter {
                     customApp.position = pos++;
                 }
                 this.apps.push(new AppTypeCustom.Custom(this.apiClient, this, customApp));
+            } else {
+                this.log.warn(`App with name ${customApp.name} already exists. Skipping custom app!`);
             }
         }
 
@@ -123,6 +127,8 @@ export class AwtrixLight extends utils.Adapter {
                     historyApp.position = pos++;
                 }
                 this.apps.push(new AppTypeHistory.History(this.apiClient, this, historyApp));
+            } else {
+                this.log.warn(`App with name ${historyApp.name} already exists. Skipping history app!`);
             }
         }
 
@@ -132,6 +138,8 @@ export class AwtrixLight extends utils.Adapter {
                     expertApp.position = pos++;
                 }
                 this.apps.push(new AppTypeExpert.Expert(this.apiClient, this, expertApp));
+            } else {
+                this.log.warn(`App with name ${expertApp.name} already exists. Skipping expert app!`);
             }
         }
 
@@ -520,10 +528,12 @@ export class AwtrixLight extends utils.Adapter {
             .then(async (content) => {
                 await this.setApiConnected(true);
 
-                if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
-                    this.registerNotification('awtrix-light', 'deviceUpdate', `Firmware update: ${content.version} -> ${this.supportedVersion}`);
+                this.currentVersion = String(content.version);
 
-                    this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
+                if (this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
+                    this.registerNotification('awtrix-light', 'deviceUpdate', `Firmware update: ${this.currentVersion} -> ${this.supportedVersion}`);
+
+                    this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`);
                     this.displayedVersionWarning = true; // Just show once
                 }
 
@@ -543,6 +553,8 @@ export class AwtrixLight extends utils.Adapter {
                 await this.setStateChangedAsync('device.uptime', { val: parseInt(content.uptime), ack: true });
             })
             .catch((error) => {
+                this.currentVersion = undefined;
+
                 this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
                 this.setApiConnected(false);
             });
@@ -853,6 +865,31 @@ export class AwtrixLight extends utils.Adapter {
             if (a < b) return false;
         }
         return false;
+    }
+
+    private getSentryObject(): any {
+        if (this.supportsFeature && this.supportsFeature('PLUGINS')) {
+            const sentryInstance = this.getPluginInstance('sentry');
+            if (sentryInstance) {
+                return sentryInstance.getSentryObject();
+            }
+        }
+
+        return undefined;
+    }
+
+    public addSentryMessage(msg: string): void {
+        const sentryObj = this.getSentryObject();
+
+        if (sentryObj) {
+            sentryObj.withScope((scope: any) => {
+                if (this.currentVersion) {
+                    scope.setTag('firmwareVersion', this.currentVersion || 'unknown');
+                }
+
+                sentryObj.captureMessage(msg, 'info');
+            });
+        }
     }
 }
 

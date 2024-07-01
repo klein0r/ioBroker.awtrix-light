@@ -78,14 +78,10 @@ jobs:
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-          # When using Sentry for error reporting, Sentry can be informed about new releases
-          # To enable create a API-Token in Sentry (User settings, API keys)
-          # Enter this token as a GitHub secret (with name SENTRY_AUTH_TOKEN) in the repository options
-          # Then uncomment and customize the following block:
-          # sentry: true
-          # sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          # sentry-project: "iobroker-awtrix-light"
-          # sentry-version-prefix: "iobroker.awtrix-light"
-          # sentry-sourcemap-paths: "build/"
+          sentry: true
+          sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          sentry-project: "iobroker-awtrix-light"
+          sentry-version-prefix: "iobroker.awtrix-light"
+          sentry-sourcemap-paths: "build/"
           # If your sentry project is linked to a GitHub repository, you can enable the following option
           # sentry-github-integration: true
