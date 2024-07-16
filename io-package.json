@@ -139,7 +139,6 @@
       "type": "free"
     },
     "platform": "Javascript/Node.js",
-    "main": "build/main.js",
     "icon": "awtrix-light.png",
     "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/klein0r/ioBroker.awtrix-light/master/admin/awtrix-light.png",
