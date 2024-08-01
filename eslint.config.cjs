@@ -19,6 +19,8 @@ module.exports = [{
         "**/.eslintrc.js",
         "admin/blockly.js",
         "admin/words.js",
+        "test/**",
+        "eslint.config.cjs"
     ],
 }, ...compat.extends("plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"), {
     plugins: {},

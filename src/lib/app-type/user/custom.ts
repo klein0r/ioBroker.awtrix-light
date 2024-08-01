@@ -204,7 +204,7 @@ export namespace AppType {
 
                                 if (this.objCache.type === 'number') {
                                     const realVal = typeof val !== 'number' ? parseFloat(val as string) : val;
-                                    const decimals = typeof this.appDefinition.decimals === 'string' ? parseInt(this.appDefinition.decimals) : this.appDefinition.decimals ?? 3;
+                                    const decimals = typeof this.appDefinition.decimals === 'string' ? parseInt(this.appDefinition.decimals) : (this.appDefinition.decimals ?? 3);
 
                                     if (!isNaN(realVal) && realVal % 1 !== 0) {
                                         const valParts = String(realVal).split('.');
