@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.3.0 (2024-08-01)
 
 * (@klein0r) Added sentry plugin for error reporting
 
@@ -64,12 +64,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### 1.0.1 (2024-04-28)
 
 * (klein0r) Keep text case of expert apps (ignore system settings)
-
-### 1.0.0 (2024-04-04)
-
-NodeJS >= 18.x and js-controller >= 5 is required
-
-Updated recommended firmware version to 0.96
 
 ## License
 MIT License

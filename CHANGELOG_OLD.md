@@ -1,4 +1,10 @@
 # Older changes
+## 1.0.0 (2024-04-04)
+
+NodeJS >= 18.x and js-controller >= 5 is required
+
+Updated recommended firmware version to 0.96
+
 ## 0.16.0 (2024-03-12)
 
 Updated recommended firmware version to 0.95

@@ -48,6 +48,7 @@ class AwtrixLight extends utils.Adapter {
       useFormatDate: true
     });
     this._isMainInstance = true;
+    this.currentVersion = void 0;
     this.supportedVersion = "0.96";
     this.displayedVersionWarning = false;
     this.apiClient = null;
@@ -109,6 +110,8 @@ class AwtrixLight extends utils.Adapter {
           customApp.position = pos++;
         }
         this.apps.push(new import_custom.AppType.Custom(this.apiClient, this, customApp));
+      } else {
+        this.log.warn(`App with name ${customApp.name} already exists. Skipping custom app!`);
       }
     }
     for (const historyApp of this.config.historyApps) {
@@ -117,6 +120,8 @@ class AwtrixLight extends utils.Adapter {
           historyApp.position = pos++;
         }
         this.apps.push(new import_history.AppType.History(this.apiClient, this, historyApp));
+      } else {
+        this.log.warn(`App with name ${historyApp.name} already exists. Skipping history app!`);
       }
     }
     for (const expertApp of this.config.expertApps) {
@@ -125,6 +130,8 @@ class AwtrixLight extends utils.Adapter {
           expertApp.position = pos++;
         }
         this.apps.push(new import_expert.AppType.Expert(this.apiClient, this, expertApp));
+      } else {
+        this.log.warn(`App with name ${expertApp.name} already exists. Skipping expert app!`);
       }
     }
     this.refreshState();
@@ -433,9 +440,10 @@ class AwtrixLight extends utils.Adapter {
     this.log.debug("refreshing device state");
     this.apiClient.getStatsAsync().then(async (content) => {
       await this.setApiConnected(true);
-      if (this.isNewerVersion(content.version, this.supportedVersion) && !this.displayedVersionWarning) {
-        this.registerNotification("awtrix-light", "deviceUpdate", `Firmware update: ${content.version} -> ${this.supportedVersion}`);
-        this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${content.version}`);
+      this.currentVersion = String(content.version);
+      if (this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
+        this.registerNotification("awtrix-light", "deviceUpdate", `Firmware update: ${this.currentVersion} -> ${this.supportedVersion}`);
+        this.log.warn(`You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`);
         this.displayedVersionWarning = true;
       }
       await this.setStateChangedAsync("meta.uid", { val: content.uid, ack: true });
@@ -450,6 +458,7 @@ class AwtrixLight extends utils.Adapter {
       await this.setStateChangedAsync("device.freeRAM", { val: content.ram, ack: true });
       await this.setStateChangedAsync("device.uptime", { val: parseInt(content.uptime), ack: true });
     }).catch((error) => {
+      this.currentVersion = void 0;
       this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
       this.setApiConnected(false);
     });
@@ -697,6 +706,26 @@ class AwtrixLight extends utils.Adapter {
         return false;
     }
     return false;
+  }
+  getSentryObject() {
+    if (this.supportsFeature && this.supportsFeature("PLUGINS")) {
+      const sentryInstance = this.getPluginInstance("sentry");
+      if (sentryInstance) {
+        return sentryInstance.getSentryObject();
+      }
+    }
+    return void 0;
+  }
+  addSentryMessage(msg) {
+    const sentryObj = this.getSentryObject();
+    if (sentryObj) {
+      sentryObj.withScope((scope) => {
+        if (this.currentVersion) {
+          scope.setTag("firmwareVersion", this.currentVersion || "unknown");
+        }
+        sentryObj.captureMessage(msg, "info");
+      });
+    }
   }
 }
 if (require.main !== module) {

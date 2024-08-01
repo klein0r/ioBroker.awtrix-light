@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.2.1",
+    "version": "1.3.0",
     "news": {
+      "1.3.0": {
+        "en": "Added sentry plugin for error reporting",
+        "de": "Das Plugin für die Fehlermeldung hinzugefügt",
+        "ru": "Добавлен плагин для отчетов об ошибках",
+        "pt": "Adicionado plugin sentinela para relatórios de erro",
+        "nl": "Toegevoegd wachtwoord plugin voor foutmelding",
+        "fr": "Ajout du plugin sentiry pour rapport d'erreur",
+        "it": "Aggiunto plugin per la segnalazione di errore",
+        "es": "Añadido plugin de centry para reportar errores",
+        "pl": "Dodano wtyczkę do zgłaszania błędów",
+        "uk": "Додано плагін відправки для повідомлення про помилку",
+        "zh-cn": "为错误报告添加了哨兵插件"
+      },
       "1.2.1": {
         "en": "Fixed Blockly definitions (removed warnings)\nUpdated dependencies",
         "de": "Feste blockweise Definitionen (entfernte Warnungen)\nAktualisierte Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacja zalecanej wersji firmware do 0.95\n\n* Dodano powiadomienie o aktualizacji oprogramowania firmowego\n* Dodano stan ustawienia głośności\n* Rebranding Awtrix Light to Awtrix 3",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0.95\n\n* Додано сповіщення про оновлення прошивки\n* Додано встановлення стану для об'єму\n* Ребрендинг Awtrix Light до Awtrix 3",
         "zh-cn": "最新推荐的固件版本为0.95\n\n* 为固件更新而添加的通知\n* 音量添加设置状态\n* 将 Awtrix 光标为 Awtrix 3"
-      },
-      "0.15.1": {
-        "en": "Fixed default values of color states",
-        "de": "Feste Standardwerte von Farbzuständen",
-        "ru": "Исправленные значения по умолчанию",
-        "pt": "Valores padrão fixos de estados de cor",
-        "nl": "Vaste standaardwaarden van kleurtoestanden",
-        "fr": "Valeurs par défaut fixes des états de couleur",
-        "it": "Valori di default fissi degli stati di colore",
-        "es": "Valores predeterminados fijos de los estados de color",
-        "pl": "Naprawiono domyślne wartości stanów kolorów",
-        "uk": "Виправлені значення за замовчуванням кольорових станів",
-        "zh-cn": "颜色状态的固定默认值"
       }
     },
     "titleLang": {
