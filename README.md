@@ -43,6 +43,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Added support for notification manager
+
 ### 1.3.0 (2024-08-01)
 
 * (@klein0r) Added sentry plugin for error reporting

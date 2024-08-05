@@ -17,6 +17,59 @@ import { AppType as AppTypeHistory } from './lib/app-type/user/history';
 
 const NATIVE_APPS = ['Time', 'Date', 'Temperature', 'Humidity', 'Battery'];
 
+namespace NotificationManager {
+    type Severity = 'alert' | 'info' | 'notify';
+
+    interface NotificationCategory {
+        instances: {
+            [adapterInstance: string]: {
+                messages: NotificationInstanceMessage[];
+            };
+        };
+        /** i18n description of category */
+        description: Record<string, string>;
+        /** i18n name of category */
+        name: Record<string, string>;
+        severity: Severity;
+    }
+
+    /** Notifications category where i18n objects are already translated */
+    interface LocalizedNotificationCategory extends Omit<NotificationCategory, 'description' | 'name'> {
+        description: string;
+        name: string;
+    }
+
+    interface NotificationScope {
+        /** i18n description of scope */
+        description: Record<string, string>;
+        /** i18n name of scope */
+        name: Record<string, string>;
+        categories: {
+            [category: string]: NotificationCategory;
+        };
+    }
+
+    /** Notifications scope where i18n objects are already translated */
+    interface LocalizedNotificationScope extends Omit<NotificationScope, 'description' | 'name'> {
+        description: string;
+        name: string;
+    }
+
+    interface NotificationInstanceMessage {
+        message: string;
+        ts: number;
+    }
+
+    export interface LocalizedNotification {
+        /** host where the notification belongs too */
+        host: string;
+        /** The localized scope of the notification */
+        scope: Omit<LocalizedNotificationScope, 'categories'>;
+        /** The localized category of the notification */
+        category: LocalizedNotificationCategory;
+    }
+}
+
 export class AwtrixLight extends utils.Adapter {
     private _isMainInstance: boolean;
 
@@ -410,6 +463,30 @@ export class AwtrixLight extends utils.Adapter {
                     .catch((error) => {
                         this.sendTo(obj.from, obj.command, { error }, obj.callback);
                     });
+            } else if (obj.command === 'sendNotification' && typeof obj.message === 'object') {
+                if (this.apiClient!.isConnected()) {
+                    const notification: NotificationManager.LocalizedNotification = obj.message;
+
+                    const { instances } = notification.category;
+
+                    const messages = Object.entries(instances)
+                        .map(([, entry]) => entry.messages.map((m) => m.message))
+                        .join(', ');
+
+                    const notificationApp: AwtrixApi.App = {
+                        text: messages,
+                    };
+
+                    this.apiClient!.requestAsync('notify', 'POST', notificationApp)
+                        .then((response) => {
+                            this.sendTo(obj.from, obj.command, { error: null, sent: true }, obj.callback);
+                        })
+                        .catch((error) => {
+                            this.sendTo(obj.from, obj.command, { error, sent: false }, obj.callback);
+                        });
+                } else {
+                    this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)', sent: false }, obj.callback);
+                }
             } else {
                 this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
 
