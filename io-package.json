@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "news": {
+      "1.4.1": {
+        "en": "NodeJS >= 20.x and js-controller >= 6 is required",
+        "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich",
+        "ru": "NodeJS >= 20.x и js-controller >= 6 требуется",
+        "pt": "NodeJS >= 20.x e js-controller >= 6 é necessário",
+        "nl": "Van niet-gelegeerd staal 6 is vereist",
+        "fr": "NodeJS >= 20.x et js-controller >= 6 est nécessaire",
+        "it": "NodeJS >= 20.x e js-controller >= 6 è richiesto",
+        "es": "NodeJS ю= 20.x y js-controller Se requiere 6",
+        "pl": "NodeJS > = 20 x i kontroler js- > = 6 jest wymagane",
+        "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий",
+        "zh-cn": "节点JS20x和js控制器QQ 需要6个"
+      },
       "1.4.0": {
         "en": "Added support for notification manager",
         "de": "Unterstützung für Benachrichtigungsmanager hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Zachowaj tekst aplikacji ekspertów (ignoruj ustawienia systemu)",
         "uk": "Зберігати текстовий випадок експертних додатків (інтеграційні налаштування системи)",
         "zh-cn": "保留专家应用程序的文本大小写( 信息系统设置)"
-      },
-      "1.0.0": {
-        "en": "NodeJS >= 18.x and js-controller >= 5 is required\nUpdated recommended firmware version to 0.96",
-        "de": "NodeJS >= 18.x und js-Controller >= 5 ist erforderlich\nAktualisierte empfohlene Firmwareversion auf 0.96",
-        "ru": "NodeJS >= 18.x и js-контроллер >= 5 требуется\nОбновленная рекомендуемая версия прошивки до 0,96",
-        "pt": "NodeJS >= 18.x e js-controller >= 5 é necessário\nVersão de firmware recomendada atualizada para 0.96",
-        "nl": "Voor de toepassing van de onderverdelingen 870190 tot en met 870290 wordt onder post 8702 verstaan: 5 is vereist\nBijgewerkt aanbevolen firmware versie naar 0.96",
-        "fr": "NodeJS >= 18.x et js-controller >= 5 est nécessaire\nMise à jour de la version firmware recommandée à 0.96",
-        "it": "NodeJS >= 18.x e js-controller 5 è richiesto\nVersione firmware consigliata aggiornata a 0.96",
-        "es": "NodeJS >= 18.x y js-controller Se requiere 5\nVersión actualizada de firmware recomendada a 0.96",
-        "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\nAktualizacja zalecanej wersji firmware do 0.96",
-        "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\nОновлено рекомендовану версію мікропрограми до 0.96",
-        "zh-cn": "节点JS18x和js控制器QQ 需要5个\n最新推荐的固件版本为0.96"
       }
     },
     "titleLang": {
