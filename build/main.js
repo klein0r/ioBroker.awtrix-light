@@ -41,6 +41,16 @@ var import_expert = require("./lib/app-type/user/expert");
 var import_history = require("./lib/app-type/user/history");
 const NATIVE_APPS = ["Time", "Date", "Temperature", "Humidity", "Battery"];
 class AwtrixLight extends utils.Adapter {
+  _isMainInstance;
+  currentVersion;
+  supportedVersion;
+  displayedVersionWarning;
+  apiClient;
+  apiConnected;
+  refreshStateTimeout;
+  downloadScreenContentInterval;
+  apps;
+  backgroundEffects;
   constructor(options = {}) {
     super({
       ...options,
@@ -346,6 +356,22 @@ class AwtrixLight extends utils.Adapter {
         }).catch((error) => {
           this.sendTo(obj.from, obj.command, { error }, obj.callback);
         });
+      } else if (obj.command === "sendNotification" && typeof obj.message === "object") {
+        if (this.apiClient.isConnected()) {
+          const notification = obj.message;
+          const { instances } = notification.category;
+          const messages = Object.entries(instances).map(([, entry]) => entry.messages.map((m) => m.message)).join(", ");
+          const notificationApp = {
+            text: messages
+          };
+          this.apiClient.requestAsync("notify", "POST", notificationApp).then((response) => {
+            this.sendTo(obj.from, obj.command, { error: null, sent: true }, obj.callback);
+          }).catch((error) => {
+            this.sendTo(obj.from, obj.command, { error, sent: false }, obj.callback);
+          });
+        } else {
+          this.sendTo(obj.from, obj.command, { error: "API is not connected (device offline ?)", sent: false }, obj.callback);
+        }
       } else {
         this.log.error(`[onMessage] Received incomplete message via "sendTo"`);
         if (obj.callback) {

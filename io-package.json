@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "news": {
+      "1.4.0": {
+        "en": "Added support for notification manager",
+        "de": "Unterstützung für Benachrichtigungsmanager hinzugefügt",
+        "ru": "Дополнительная поддержка администратора уведомлений",
+        "pt": "Adicionado suporte para o gerenciador de notificações",
+        "nl": "Ondersteuning voor notificatiebeheer toegevoegd",
+        "fr": "Soutien supplémentaire au gestionnaire de notification",
+        "it": "Aggiunto supporto per il gestore di notifica",
+        "es": "Apoyo adicional para el administrador de notificación",
+        "pl": "Dodano wsparcie dla menedżera powiadomień",
+        "uk": "Додано підтримку менеджера повідомлень",
+        "zh-cn": "添加对通知管理器的支持"
+      },
       "1.3.0": {
         "en": "Added sentry plugin for error reporting",
         "de": "Das Plugin für die Fehlermeldung hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "NodeJS > = 18.x i kontroler js- > = 5 jest wymagane\nAktualizacja zalecanej wersji firmware do 0.96",
         "uk": "NodeJS >= 18.x та js-controller >= 5 обов'язково\nОновлено рекомендовану версію мікропрограми до 0.96",
         "zh-cn": "节点JS18x和js控制器QQ 需要5个\n最新推荐的固件版本为0.96"
-      },
-      "0.16.0": {
-        "en": "Updated recommended firmware version to 0.95\n\n* Added notification for firmware update\n* Added setting state for volume\n* Rebranding Awtrix Light to Awtrix 3",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.95\n\n* Hinzugefügt Benachrichtigung für Firmware-Update\n* Hinzugefügt Einstellzustand für Volumen\n* Rebranding Awtrix Light zu Awtrix 3",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0,95\n\n* Добавлено уведомление для обновления прошивки\n* Добавленное состояние установки для объема\n* Ребрендинг Пробуждение света к Awtrix 3",
-        "pt": "Versão de firmware recomendada atualizada para 0.95\n\n* Notificação adicionada para atualização de firmware\n* Estado de configuração adicionado para o volume\n* Rebranding Awtrix Light to Awtrix 3",
-        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.95\n\n* Toegevoegd notificatie voor firmware update\n* Toegevoegd instellingstoestand voor volume\n* Rebranding Awtrix Light to Awtrix 3",
-        "fr": "Mise à jour de la version firmware recommandée à 0.95\n\n* Ajout d'une notification pour la mise à jour du firmware\n* Ajout de l'état de réglage pour le volume\n* Rebaptiser Awtrix Light pour Awtrix 3",
-        "it": "Versione firmware consigliata aggiornata a 0.95\n\n* Aggiunto la notifica per l'aggiornamento firmware\n* Aggiunto stato di impostazione per il volume\n* Rebranding Awtrix Light to Awtrix 3",
-        "es": "Versión actualizada de firmware recomendada a 0.95\n\n* notificación adicional para actualización de firmware\n* Estado de ajuste añadido para el volumen\n* Rebranding Awtrix Light to Awtrix 3",
-        "pl": "Aktualizacja zalecanej wersji firmware do 0.95\n\n* Dodano powiadomienie o aktualizacji oprogramowania firmowego\n* Dodano stan ustawienia głośności\n* Rebranding Awtrix Light to Awtrix 3",
-        "uk": "Оновлено рекомендовану версію мікропрограми до 0.95\n\n* Додано сповіщення про оновлення прошивки\n* Додано встановлення стану для об'єму\n* Ребрендинг Awtrix Light до Awtrix 3",
-        "zh-cn": "最新推荐的固件版本为0.95\n\n* 为固件更新而添加的通知\n* 音量添加设置状态\n* 将 Awtrix 光标为 Awtrix 3"
       }
     },
     "titleLang": {

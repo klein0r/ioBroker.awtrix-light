@@ -25,6 +25,10 @@ var import_user = require("../user");
 var AppType;
 ((AppType2) => {
   class History extends import_user.AppType.UserApp {
+    appDefinition;
+    isValidSourceInstance;
+    isValidObjId;
+    refreshTimeout;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;

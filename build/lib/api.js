@@ -35,10 +35,11 @@ var import_axios = __toESM(require("axios"));
 var AwtrixApi;
 ((AwtrixApi2) => {
   class Client {
+    adapter;
+    axiosInstance = void 0;
+    apiConnected = false;
+    lastErrorCode = -1;
     constructor(adapter, ipAddress, port, httpTimeout, userName, userPassword) {
-      this.axiosInstance = void 0;
-      this.apiConnected = false;
-      this.lastErrorCode = -1;
       this.adapter = adapter;
       this.adapter.log.info(`Starting - connecting to http://${ipAddress}:${port}/`);
       let httpAuth = void 0;

@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.4.0 (2024-11-20)
 
 * (@klein0r) Added support for notification manager
 
@@ -64,10 +64,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 ### 1.1.0 (2024-05-11)
 
 * (klein0r) Sync app activations (if enabled)
-
-### 1.0.1 (2024-04-28)
-
-* (klein0r) Keep text case of expert apps (ignore system settings)
 
 ## License
 MIT License

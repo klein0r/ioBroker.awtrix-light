@@ -25,6 +25,9 @@ var import_user = require("../user");
 var AppType;
 ((AppType2) => {
   class Expert extends import_user.AppType.UserApp {
+    appDefinition;
+    appStates;
+    refreshTimeout;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;

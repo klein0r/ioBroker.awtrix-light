@@ -25,6 +25,9 @@ var import_abstract = require("./abstract");
 var AppType;
 ((AppType2) => {
   class UserApp extends import_abstract.AppType.AbstractApp {
+    definition;
+    ignoreNewValueForAppInTimeRange;
+    isVisible;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition.name);
       this.definition = definition;

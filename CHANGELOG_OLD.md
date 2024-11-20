@@ -1,4 +1,8 @@
 # Older changes
+## 1.0.1 (2024-04-28)
+
+* (klein0r) Keep text case of expert apps (ignore system settings)
+
 ## 1.0.0 (2024-04-04)
 
 NodeJS >= 18.x and js-controller >= 5 is required

@@ -25,6 +25,11 @@ var import_user = require("../user");
 var AppType;
 ((AppType2) => {
   class Custom extends import_user.AppType.UserApp {
+    appDefinition;
+    objCache;
+    isStaticText;
+    isBackgroundOny;
+    cooldownTimeout;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;

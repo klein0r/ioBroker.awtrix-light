@@ -24,6 +24,10 @@ module.exports = __toCommonJS(abstract_exports);
 var AppType;
 ((AppType2) => {
   class AbstractApp {
+    name;
+    apiClient;
+    adapter;
+    objPrefix;
     constructor(apiClient, adapter, name) {
       this.name = name;
       this.apiClient = apiClient;
