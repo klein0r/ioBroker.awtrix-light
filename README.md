@@ -43,6 +43,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+NodeJS >= 20.x and js-controller >= 6 is required
+
 ### 1.4.0 (2024-11-20)
 
 * (@klein0r) Added support for notification manager
