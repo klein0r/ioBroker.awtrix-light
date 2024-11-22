@@ -16,19 +16,6 @@
         "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий",
         "zh-cn": "节点JS20x和js控制器QQ 需要6个"
       },
-      "1.4.0": {
-        "en": "Added support for notification manager",
-        "de": "Unterstützung für Benachrichtigungsmanager hinzugefügt",
-        "ru": "Дополнительная поддержка администратора уведомлений",
-        "pt": "Adicionado suporte para o gerenciador de notificações",
-        "nl": "Ondersteuning voor notificatiebeheer toegevoegd",
-        "fr": "Soutien supplémentaire au gestionnaire de notification",
-        "it": "Aggiunto supporto per il gestore di notifica",
-        "es": "Apoyo adicional para el administrador de notificación",
-        "pl": "Dodano wsparcie dla menedżera powiadomień",
-        "uk": "Додано підтримку менеджера повідомлень",
-        "zh-cn": "添加对通知管理器的支持"
-      },
       "1.3.0": {
         "en": "Added sentry plugin for error reporting",
         "de": "Das Plugin für die Fehlermeldung hinzugefügt",
