@@ -45,6 +45,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+Updated recommended firmware version to 0.97
+
 * (@klein0r) Updated dependencies
 
 ### 1.4.1 (2024-11-20)
@@ -70,6 +72,7 @@ NodeJS >= 20.x and js-controller >= 6 is required
 * (klein0r) Added progress bar for expert apps
 
 ## License
+
 MIT License
 
 Copyright (c) 2024 Matthias Kleine <info@haus-automatisierung.com>

@@ -95,7 +95,7 @@ export class AwtrixLight extends utils.Adapter {
         this._isMainInstance = true;
 
         this.currentVersion = undefined;
-        this.supportedVersion = '0.96';
+        this.supportedVersion = '0.97';
         this.displayedVersionWarning = false;
 
         this.apiClient = null;

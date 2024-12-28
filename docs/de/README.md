@@ -7,7 +7,7 @@
 - nodejs 18 (oder neuer)
 - js-controller 5.0.0 (oder neuer)
 - Admin Adapter 6.6.0 (oder neuer)
-- _Awtrix 3_ Gerät mit Firmware-Version _0.96_ (oder neuer) - z.B. Ulanzi TC001
+- _Awtrix 3_ Gerät mit Firmware-Version _0.97_ (oder neuer) - z.B. Ulanzi TC001
 
 Hier kaufen: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) oder hier: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
