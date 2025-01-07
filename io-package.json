@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.4.1",
+    "version": "1.5.0",
     "news": {
+      "1.5.0": {
+        "en": "Updated recommended firmware version to 0.97\n\n* Updated dependencies",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.97\n\n* Aktualisierte Abhängigkeiten",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0,97\n\n* Обновленные зависимости",
+        "pt": "Versão de firmware recomendada atualizada para 0.97\n\n* Dependências atualizadas",
+        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.97\n\n* Bijgewerkte afhankelijkheden",
+        "fr": "Mise à jour de la version firmware recommandée à 0.97\n\n* Dépendances actualisées",
+        "it": "Versione firmware consigliata aggiornata a 0.97\n\n# Dipendenze aggiornate",
+        "es": "Versión actualizada de firmware recomendada a 0.97\n\n* Dependencias actualizadas",
+        "pl": "Aktualizacja zalecanej wersji firmware do 0.97\n\n* Aktualizacja zależności",
+        "uk": "Оновлено рекомендовану версію прошивки до 0.97\n\nІм'я * Оновлені залежності",
+        "zh-cn": "最新推荐的固件版本为0.97\n\n* 《大会正式记录,第五十八届会议,补编第5号》(A/C.6/61/Rev.1)。 更新的依赖关系"
+      },
       "1.4.1": {
         "en": "NodeJS >= 20.x and js-controller >= 6 is required",
         "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich",

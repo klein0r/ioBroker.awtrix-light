@@ -1,4 +1,9 @@
 # Older changes
+## 1.2.0 (2024-05-16)
+
+* (klein0r) Fixed wrong translations ins expert apps (duration)
+* (klein0r) Added progress bar for expert apps
+
 ## 1.1.0 (2024-05-11)
 
 * (klein0r) Sync app activations (if enabled)

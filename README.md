@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.5.0 (2025-01-07)
 
 Updated recommended firmware version to 0.97
 
@@ -65,11 +65,6 @@ NodeJS >= 20.x and js-controller >= 6 is required
 
 * (klein0r) Fixed Blockly definitions (removed warnings)
 * (klein0r) Updated dependencies
-
-### 1.2.0 (2024-05-16)
-
-* (klein0r) Fixed wrong translations ins expert apps (duration)
-* (klein0r) Added progress bar for expert apps
 
 ## License
 
