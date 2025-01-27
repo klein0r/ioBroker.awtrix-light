@@ -416,7 +416,7 @@ export class AwtrixLight extends utils.Adapter {
                 );
             } else if (obj.command === 'notification' && typeof obj.message === 'object') {
                 // Notification
-                if (this.apiClient!.isConnected()) {
+                if (this.apiClient && this.apiClient.isConnected()) {
                     const msgFiltered: AwtrixApi.App = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
 
                     // Remove repeat if <= 0
@@ -429,7 +429,8 @@ export class AwtrixLight extends utils.Adapter {
                         delete msgFiltered.duration;
                     }
 
-                    this.apiClient!.requestAsync('notify', 'POST', msgFiltered)
+                    this.apiClient
+                        .requestAsync('notify', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })
@@ -441,10 +442,11 @@ export class AwtrixLight extends utils.Adapter {
                 }
             } else if (obj.command === 'sound' && typeof obj.message === 'object') {
                 // Sound
-                if (this.apiClient!.isConnected()) {
+                if (this.apiClient && this.apiClient.isConnected()) {
                     const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
 
-                    this.apiClient!.requestAsync('sound', 'POST', msgFiltered)
+                    this.apiClient
+                        .requestAsync('sound', 'POST', msgFiltered)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
                         })
@@ -456,15 +458,20 @@ export class AwtrixLight extends utils.Adapter {
                 }
             } else if (obj.command === 'rtttl' && typeof obj.message === 'string') {
                 // RTTTL sounds
-                this.apiClient!.requestAsync('rtttl', 'POST', obj.message)
-                    .then((response) => {
-                        this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
-                    })
-                    .catch((error) => {
-                        this.sendTo(obj.from, obj.command, { error }, obj.callback);
-                    });
+                if (this.apiClient && this.apiClient.isConnected()) {
+                    this.apiClient
+                        .requestAsync('rtttl', 'POST', obj.message)
+                        .then((response) => {
+                            this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
+                        })
+                        .catch((error) => {
+                            this.sendTo(obj.from, obj.command, { error }, obj.callback);
+                        });
+                } else {
+                    this.sendTo(obj.from, obj.command, { error: 'API is not connected (device offline ?)' }, obj.callback);
+                }
             } else if (obj.command === 'sendNotification' && typeof obj.message === 'object') {
-                if (this.apiClient!.isConnected()) {
+                if (this.apiClient && this.apiClient.isConnected()) {
                     const notification: NotificationManager.LocalizedNotification = obj.message;
 
                     const { instances } = notification.category;
@@ -477,7 +484,8 @@ export class AwtrixLight extends utils.Adapter {
                         text: messages,
                     };
 
-                    this.apiClient!.requestAsync('notify', 'POST', notificationApp)
+                    this.apiClient
+                        .requestAsync('notify', 'POST', notificationApp)
                         .then((response) => {
                             this.sendTo(obj.from, obj.command, { error: null, sent: true }, obj.callback);
                         })
