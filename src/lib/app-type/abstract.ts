@@ -50,7 +50,7 @@ export namespace AppType {
             this.adapter.log.debug(`[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? 'main' : this.objPrefix})`);
 
             if (this.hasOwnActivateState()) {
-                await this.adapter.extendObjectAsync(`apps.${appName}.activate`, {
+                await this.adapter.extendObject(`apps.${appName}.activate`, {
                     type: 'state',
                     common: {
                         name: {

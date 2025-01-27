@@ -25,7 +25,7 @@ export namespace AppType {
 
             // Ack if changed while instance was stopped
             if (appVisibleState && !appVisibleState?.ack) {
-                await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'init' });
+                await this.adapter.setState(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: 'init' });
             }
 
             return this.isVisible;
@@ -48,7 +48,7 @@ export namespace AppType {
 
             const appName = this.getName();
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.visible`, {
+            await this.adapter.extendObject(`apps.${appName}.visible`, {
                 type: 'state',
                 common: {
                     name: {
@@ -105,11 +105,11 @@ export namespace AppType {
                         this.isVisible = !!state.val;
 
                         await this.refresh();
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                        await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
                     } else {
                         this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
 
-                        await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                        await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
                     }
                 }
             }

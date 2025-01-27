@@ -204,7 +204,7 @@ export class AwtrixLight extends utils.Adapter {
 
         await this.delObjectAsync('apps.eyes', { recursive: true }); // eyes app was removed in firmware 0.71
 
-        await this.extendObjectAsync('settings.calendarHeaderColor', {
+        await this.extendObject('settings.calendarHeaderColor', {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
@@ -212,7 +212,7 @@ export class AwtrixLight extends utils.Adapter {
             },
         });
 
-        await this.extendObjectAsync('settings.calendarBodyColor', {
+        await this.extendObject('settings.calendarBodyColor', {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
@@ -220,7 +220,7 @@ export class AwtrixLight extends utils.Adapter {
             },
         });
 
-        await this.extendObjectAsync('settings.calendarTextColor', {
+        await this.extendObject('settings.calendarTextColor', {
             common: {
                 type: 'string',
                 role: 'level.color.rgb',
@@ -277,7 +277,7 @@ export class AwtrixLight extends utils.Adapter {
                         this.apiClient!.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val })
                             .then(async (response) => {
                                 if (response.status === 200 && response.data === 'OK') {
-                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                    await this.setState(idNoNamespace, { val: state.val, ack: true });
                                 }
 
                                 await this.refreshSettings();
@@ -294,7 +294,7 @@ export class AwtrixLight extends utils.Adapter {
                     this.apiClient!.requestAsync('power', 'POST', { power: state.val })
                         .then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
-                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
                             }
                         })
                         .catch((error) => {
@@ -306,7 +306,7 @@ export class AwtrixLight extends utils.Adapter {
                     this.apiClient!.requestAsync('sleep', 'POST', { sleep: state.val })
                         .then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
-                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
                                 this.setApiConnected(false);
                             }
                         })
@@ -317,7 +317,7 @@ export class AwtrixLight extends utils.Adapter {
                     this.updateMoodlightByStates()
                         .then(async (response) => {
                             if (response.status === 200 && response.data === 'OK') {
-                                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
                             }
                         })
                         .catch((error) => {
@@ -380,7 +380,7 @@ export class AwtrixLight extends utils.Adapter {
                         this.updateIndicatorByStates(indicatorNo)
                             .then(async (response) => {
                                 if (response.status === 200 && response.data === 'OK') {
-                                    await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                                    await this.setState(idNoNamespace, { val: state.val, ack: true });
                                 }
                             })
                             .catch((error) => {
@@ -573,7 +573,7 @@ export class AwtrixLight extends utils.Adapter {
 
                                             svg += '\n</svg>';
 
-                                            await this.setStateAsync('display.content', { val: svg, ack: true });
+                                            await this.setState('display.content', { val: svg, ack: true });
                                         }
                                     })
                                     .catch((error) => {
@@ -582,7 +582,7 @@ export class AwtrixLight extends utils.Adapter {
                             }
                         }, this.config.downloadScreenContentInterval * 1000);
                     } else {
-                        await this.setStateAsync('display.content', { val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`, ack: true, c: 'Feature disabled', q: 0x01 });
+                        await this.setState('display.content', { val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`, ack: true, c: 'Feature disabled', q: 0x01 });
                     }
                 } catch (error) {
                     this.log.error(`[setApiConnected] Unable to refresh settings, apps or indicators: ${error}`);
@@ -730,7 +730,7 @@ export class AwtrixLight extends utils.Adapter {
                             states[i] = response.data[i];
                         }
 
-                        this.extendObjectAsync('settings.appTransitionEffect', {
+                        this.extendObject('settings.appTransitionEffect', {
                             common: {
                                 states,
                             },
@@ -793,7 +793,7 @@ export class AwtrixLight extends utils.Adapter {
 
                                 const app = this.findAppWithName(name);
                                 if (app) {
-                                    await this.extendObjectAsync(`apps.${name}`, {
+                                    await this.extendObject(`apps.${name}`, {
                                         type: 'channel',
                                         common: {
                                             name: `App ${name}`,

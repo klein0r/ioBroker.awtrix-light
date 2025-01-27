@@ -39,7 +39,7 @@ export namespace AppType {
                         // Copy values of main instance
                         if (!this.isMainInstance()) {
                             const idOwnNamespace = this.getObjIdOwnNamespace(appObj.id);
-                            await this.adapter.setStateAsync(idOwnNamespace, { val: appState.val, ack: true, c: 'init' });
+                            await this.adapter.setState(idOwnNamespace, { val: appState.val, ack: true, c: 'init' });
                         }
                     }
                 }
@@ -91,7 +91,7 @@ export namespace AppType {
 
             const appName = this.getName();
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.text`, {
+            await this.adapter.extendObject(`apps.${appName}.text`, {
                 type: 'state',
                 common: {
                     name: {
@@ -118,7 +118,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.textColor`, {
+            await this.adapter.extendObject(`apps.${appName}.textColor`, {
                 type: 'state',
                 common: {
                     name: {
@@ -145,7 +145,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.backgroundColor`, {
+            await this.adapter.extendObject(`apps.${appName}.backgroundColor`, {
                 type: 'state',
                 common: {
                     name: {
@@ -172,7 +172,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.icon`, {
+            await this.adapter.extendObject(`apps.${appName}.icon`, {
                 type: 'state',
                 common: {
                     name: {
@@ -199,7 +199,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.duration`, {
+            await this.adapter.extendObject(`apps.${appName}.duration`, {
                 type: 'state',
                 common: {
                     name: {
@@ -227,7 +227,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.progress`, {
+            await this.adapter.extendObject(`apps.${appName}.progress`, {
                 type: 'folder',
                 common: {
                     name: {
@@ -246,7 +246,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.progress.percent`, {
+            await this.adapter.extendObject(`apps.${appName}.progress.percent`, {
                 type: 'state',
                 common: {
                     name: {
@@ -276,7 +276,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.progress.color`, {
+            await this.adapter.extendObject(`apps.${appName}.progress.color`, {
                 type: 'state',
                 common: {
                     name: {
@@ -303,7 +303,7 @@ export namespace AppType {
                 },
             });
 
-            await this.adapter.extendObjectAsync(`apps.${appName}.progress.backgroundColor`, {
+            await this.adapter.extendObject(`apps.${appName}.progress.backgroundColor`, {
                 type: 'state',
                 common: {
                     name: {
@@ -369,11 +369,11 @@ export namespace AppType {
                                 }, 100);
                             }
 
-                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
                         } else {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
 
-                            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
                         }
                     }
                 }
