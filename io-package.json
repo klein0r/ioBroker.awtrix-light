@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "news": {
+      "1.6.0": {
+        "en": "Updated recommended firmware version to 0.98\n\n* Updated dependencies",
+        "de": "Aktualisierte empfohlene Firmwareversion auf 0.98\n\n* Aktualisierte Abhängigkeiten",
+        "ru": "Обновленная рекомендуемая версия прошивки до 0,98\n\n* Обновленные зависимости",
+        "pt": "Versão de firmware recomendada atualizada para 0.98\n\n* Dependências atualizadas",
+        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.98\n\n* Bijgewerkte afhankelijkheden",
+        "fr": "Mise à jour de la version firmware recommandée à 0.98\n\n* Dépendances actualisées",
+        "it": "Versione firmware consigliata aggiornata a 0.98\n\n# Dipendenze aggiornate",
+        "es": "Versión actualizada de firmware recomendada a 0.98\n\n* Dependencias actualizadas",
+        "pl": "Aktualizacja zalecanej wersji firmware do 0.98\n\n* Aktualizacja zależności",
+        "uk": "Оновлено рекомендовану версію мікропрограми до 0.98\n\nІм'я * Оновлені залежності",
+        "zh-cn": "最新推荐的固件版本为0.98\n\n* 《大会正式记录,第五十八届会议,补编第5号》(A/C.6/61/Rev.1)。 更新的依赖关系"
+      },
       "1.5.0": {
         "en": "Updated recommended firmware version to 0.97\n\n* Updated dependencies",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.97\n\n* Aktualisierte Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "Synchronizacja aktywacji aplikacji (jeśli włączona)",
         "uk": "Sync активації програми (включено)",
         "zh-cn": "同步应用程序激活( 如果启用)"
-      },
-      "1.0.1": {
-        "en": "Keep text case of expert apps (ignore system settings)",
-        "de": "Behalten Sie den Textfall von Experten-Apps (ignore Systemeinstellungen)",
-        "ru": "Сохранить текстовый случай экспертных приложений (настройки системы воспламенения)",
-        "pt": "Mantenha o caso de texto de aplicativos especializados (configurações do sistema de ignição)",
-        "nl": "Tekst geval van deskundige apps houden (systeeminstellingen negeren)",
-        "fr": "Garder le cas texte des applications expertes (ignorer les paramètres du système)",
-        "it": "Mantenere il caso di testo di app di esperti (ignorare le impostazioni del sistema)",
-        "es": "Mantenga el caso de texto de aplicaciones expertas (configuración del sistema ignorante)",
-        "pl": "Zachowaj tekst aplikacji ekspertów (ignoruj ustawienia systemu)",
-        "uk": "Зберігати текстовий випадок експертних додатків (інтеграційні налаштування системи)",
-        "zh-cn": "保留专家应用程序的文本大小写( 信息系统设置)"
       }
     },
     "titleLang": {

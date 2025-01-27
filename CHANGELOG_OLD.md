@@ -1,4 +1,9 @@
 # Older changes
+## 1.2.1 (2024-06-07)
+
+* (klein0r) Fixed Blockly definitions (removed warnings)
+* (klein0r) Updated dependencies
+
 ## 1.2.0 (2024-05-16)
 
 * (klein0r) Fixed wrong translations ins expert apps (duration)

@@ -59,7 +59,7 @@ class AwtrixLight extends utils.Adapter {
     });
     this._isMainInstance = true;
     this.currentVersion = void 0;
-    this.supportedVersion = "0.97";
+    this.supportedVersion = "0.98";
     this.displayedVersionWarning = false;
     this.apiClient = null;
     this.apiConnected = false;
