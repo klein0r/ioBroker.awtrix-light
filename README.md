@@ -47,6 +47,8 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 Updated recommended firmware version to 0.98
 
+* (@klein0r) Updated dependencies
+
 ### 1.5.0 (2025-01-07)
 
 Updated recommended firmware version to 0.97
