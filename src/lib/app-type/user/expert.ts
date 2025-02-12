@@ -63,6 +63,7 @@ export namespace AppType {
                     background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
                     icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
                     duration: typeof this.appStates.duration === 'number' ? this.appStates.duration : 0,
+                    scrollSpeed: typeof this.appStates.scrollSpeed === 'number' ? this.appStates.scrollSpeed : 100,
                     pos: this.appDefinition.position,
                 };
 
@@ -227,6 +228,36 @@ export namespace AppType {
                 },
             });
 
+            await this.adapter.extendObject(`apps.${appName}.scrollSpeed`, {
+                type: 'state',
+                common: {
+                    name: {
+                        en: 'Scroll speed',
+                        de: 'Scrollgeschwindigkeit',
+                        ru: 'Скорость свитка',
+                        pt: 'Velocidade de rolagem',
+                        nl: 'Schuifsnelheid',
+                        fr: 'Vitesse de défilement',
+                        it: 'Velocità di scorrimento',
+                        es: 'Velocidad de desplazamiento',
+                        pl: 'Przewiń prędkość',
+                        uk: 'Швидкість прокрутки',
+                        'zh-cn': '滚动速度',
+                    },
+                    type: 'number',
+                    role: 'value',
+                    read: true,
+                    write: this.isMainInstance(),
+                    def: 100,
+                    unit: '%',
+                    min: 0,
+                    max: 100,
+                },
+                native: {
+                    attribute: 'scrollSpeed',
+                },
+            });
+
             await this.adapter.extendObject(`apps.${appName}.progress`, {
                 type: 'folder',
                 common: {
@@ -336,6 +367,7 @@ export namespace AppType {
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.icon`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.duration`);
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.scrollSpeed`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.percent`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.color`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.backgroundColor`);
