@@ -149,21 +149,21 @@ class AwtrixLight extends utils.Adapter {
   async upgradeFromPreviousVersion() {
     this.log.debug(`Upgrading objects from previous version`);
     await this.delObjectAsync("apps.eyes", { recursive: true });
-    await this.extendObjectAsync("settings.calendarHeaderColor", {
+    await this.extendObject("settings.calendarHeaderColor", {
       common: {
         type: "string",
         role: "level.color.rgb",
         def: "#FF0000"
       }
     });
-    await this.extendObjectAsync("settings.calendarBodyColor", {
+    await this.extendObject("settings.calendarBodyColor", {
       common: {
         type: "string",
         role: "level.color.rgb",
         def: "#FFFFFF"
       }
     });
-    await this.extendObjectAsync("settings.calendarTextColor", {
+    await this.extendObject("settings.calendarTextColor", {
       common: {
         type: "string",
         role: "level.color.rgb",
@@ -212,7 +212,7 @@ class AwtrixLight extends utils.Adapter {
           if (settingsObj && ((_a = settingsObj.native) == null ? void 0 : _a.settingsKey)) {
             this.apiClient.settingsRequestAsync({ key: settingsObj.native.settingsKey, value: state.val }).then(async (response) => {
               if (response.status === 200 && response.data === "OK") {
-                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                await this.setState(idNoNamespace, { val: state.val, ack: true });
               }
               await this.refreshSettings();
             }).catch((error) => {
@@ -225,7 +225,7 @@ class AwtrixLight extends utils.Adapter {
           this.log.debug(`changing display power to ${state.val}`);
           this.apiClient.requestAsync("power", "POST", { power: state.val }).then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
-              await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+              await this.setState(idNoNamespace, { val: state.val, ack: true });
             }
           }).catch((error) => {
             this.log.warn(`(power) Unable to execute action: ${error}`);
@@ -234,7 +234,7 @@ class AwtrixLight extends utils.Adapter {
           this.log.debug(`enable sleep mode of device for ${state.val} seconds`);
           this.apiClient.requestAsync("sleep", "POST", { sleep: state.val }).then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
-              await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+              await this.setState(idNoNamespace, { val: state.val, ack: true });
               this.setApiConnected(false);
             }
           }).catch((error) => {
@@ -243,7 +243,7 @@ class AwtrixLight extends utils.Adapter {
         } else if (idNoNamespace.startsWith("display.moodlight.")) {
           this.updateMoodlightByStates().then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
-              await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+              await this.setState(idNoNamespace, { val: state.val, ack: true });
             }
           }).catch((error) => {
             this.log.warn(`(moodlight) Unable to execute action: ${error}`);
@@ -293,7 +293,7 @@ class AwtrixLight extends utils.Adapter {
           if (indicatorNo && indicatorNo >= 1) {
             this.updateIndicatorByStates(indicatorNo).then(async (response) => {
               if (response.status === 200 && response.data === "OK") {
-                await this.setStateAsync(idNoNamespace, { val: state.val, ack: true });
+                await this.setState(idNoNamespace, { val: state.val, ack: true });
               }
             }).catch((error) => {
               this.log.warn(`(indicator) Unable to perform action: ${error}`);
@@ -323,7 +323,7 @@ class AwtrixLight extends utils.Adapter {
           obj.callback
         );
       } else if (obj.command === "notification" && typeof obj.message === "object") {
-        if (this.apiClient.isConnected()) {
+        if (this.apiClient && this.apiClient.isConnected()) {
           const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
           if (msgFiltered.repeat !== void 0 && msgFiltered.repeat <= 0) {
             delete msgFiltered.repeat;
@@ -340,7 +340,7 @@ class AwtrixLight extends utils.Adapter {
           this.sendTo(obj.from, obj.command, { error: "API is not connected (device offline ?)" }, obj.callback);
         }
       } else if (obj.command === "sound" && typeof obj.message === "object") {
-        if (this.apiClient.isConnected()) {
+        if (this.apiClient && this.apiClient.isConnected()) {
           const msgFiltered = Object.fromEntries(Object.entries(obj.message).filter(([_, v]) => v !== null));
           this.apiClient.requestAsync("sound", "POST", msgFiltered).then((response) => {
             this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
@@ -351,13 +351,17 @@ class AwtrixLight extends utils.Adapter {
           this.sendTo(obj.from, obj.command, { error: "API is not connected (device offline ?)" }, obj.callback);
         }
       } else if (obj.command === "rtttl" && typeof obj.message === "string") {
-        this.apiClient.requestAsync("rtttl", "POST", obj.message).then((response) => {
-          this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
-        }).catch((error) => {
-          this.sendTo(obj.from, obj.command, { error }, obj.callback);
-        });
+        if (this.apiClient && this.apiClient.isConnected()) {
+          this.apiClient.requestAsync("rtttl", "POST", obj.message).then((response) => {
+            this.sendTo(obj.from, obj.command, { error: null, data: response.data }, obj.callback);
+          }).catch((error) => {
+            this.sendTo(obj.from, obj.command, { error }, obj.callback);
+          });
+        } else {
+          this.sendTo(obj.from, obj.command, { error: "API is not connected (device offline ?)" }, obj.callback);
+        }
       } else if (obj.command === "sendNotification" && typeof obj.message === "object") {
-        if (this.apiClient.isConnected()) {
+        if (this.apiClient && this.apiClient.isConnected()) {
           const notification = obj.message;
           const { instances } = notification.category;
           const messages = Object.entries(instances).map(([, entry]) => entry.messages.map((m) => m.message)).join(", ");
@@ -440,7 +444,7 @@ class AwtrixLight extends utils.Adapter {
                       }
                     }
                     svg += "\n</svg>";
-                    await this.setStateAsync("display.content", { val: svg, ack: true });
+                    await this.setState("display.content", { val: svg, ack: true });
                   }
                 }).catch((error) => {
                   this.log.debug(`(screen) received error: ${JSON.stringify(error)}`);
@@ -448,7 +452,7 @@ class AwtrixLight extends utils.Adapter {
               }
             }, this.config.downloadScreenContentInterval * 1e3);
           } else {
-            await this.setStateAsync("display.content", { val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`, ack: true, c: "Feature disabled", q: 1 });
+            await this.setState("display.content", { val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`, ack: true, c: "Feature disabled", q: 1 });
           }
         } catch (error) {
           this.log.error(`[setApiConnected] Unable to refresh settings, apps or indicators: ${error}`);
@@ -559,7 +563,7 @@ class AwtrixLight extends utils.Adapter {
           for (let i = 0; i < response.data.length; i++) {
             states[i] = response.data[i];
           }
-          this.extendObjectAsync("settings.appTransitionEffect", {
+          this.extendObject("settings.appTransitionEffect", {
             common: {
               states
             }
@@ -607,11 +611,12 @@ class AwtrixLight extends utils.Adapter {
               const isExpertApp = expertApps.includes(name);
               const app = this.findAppWithName(name);
               if (app) {
-                await this.extendObjectAsync(`apps.${name}`, {
+                await this.extendObject(`apps.${name}`, {
                   type: "channel",
                   common: {
                     name: `App ${name}`,
-                    desc: `${app.getDescription()} app`
+                    desc: `${app.getDescription()} app`,
+                    icon: app.getIconForObjectTree()
                   },
                   native: {
                     isNativeApp,
@@ -726,10 +731,8 @@ class AwtrixLight extends utils.Adapter {
     for (let i = 0; i < newParts.length; i++) {
       const a = ~~newParts[i];
       const b = ~~oldParts[i];
-      if (a > b)
-        return true;
-      if (a < b)
-        return false;
+      if (a > b) return true;
+      if (a < b) return false;
     }
     return false;
   }

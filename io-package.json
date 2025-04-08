@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "news": {
+      "1.7.0": {
+        "en": "Improved error handling when adapter is not ready (starting)\nAdded scroll speed to expert apps\nAdded icons for custom apps in object tree",
+        "de": "Verbesserte Fehlerbehandlung, wenn Adapter nicht bereit ist (Start)\nHinzufügen von Scroll-Geschwindigkeit zu Experten-Apps\nIcons für benutzerdefinierte Apps in Objektbaum hinzugefügt",
+        "ru": "Улучшенная обработка ошибок, когда адаптер не готов (начинается)\nДобавлена скорость прокрутки в экспертные приложения\nДобавлены значки для пользовательских приложений в объектном дереве",
+        "pt": "Melhor manuseio de erros quando o adaptador não está pronto (iniciar)\nVelocidade de rolagem adicionada para aplicações especializadas\nÍcones adicionados para aplicativos personalizados em árvore de objetos",
+        "nl": "Verbeterde foutafhandeling wanneer de adapter niet klaar is (start)\nSchuifsnelheid toegevoegd aan expert-apps\nPictogrammen toegevoegd voor aangepaste apps in objectboom",
+        "fr": "Amélioration du traitement des erreurs lorsque l'adaptateur n'est pas prêt (démarrage)\nAjout de la vitesse de défilement aux applications expertes\nAjout d'icônes pour les applications personnalisées dans l'arborescence des objets",
+        "it": "Miglioramento della gestione degli errori quando l'adattatore non è pronto (inizio)\nAggiunta velocità di scorrimento per applicazioni di esperti\nAggiunte icone per applicazioni personalizzate in albero di oggetti",
+        "es": "Mejor manejo de errores cuando el adaptador no está listo (comenzar)\nAñadido velocidad de desplazamiento a aplicaciones expertas\nAñadido iconos para aplicaciones personalizadas en árbol de objetos",
+        "pl": "Ulepszona obsługa błędów, gdy adapter nie jest gotowy (start)\nDodano prędkość przewijania do aplikacji ekspertów\nDodano ikony dla własnych aplikacji w drzewie obiektów",
+        "uk": "Поліпшення обробки помилок при переході адаптера не готовий (починання)\nДодано швидкість прокрутки до експертних додатків\nДодано іконки для користувацьких додатків в дереві об'єкта",
+        "zh-cn": "适配器未准备好时改进错误处理( 启动)\n向专家应用程序添加滚动速度\n在对象树上添加自定义应用程序的图标"
+      },
       "1.6.0": {
         "en": "Updated recommended firmware version to 0.98\n\n* Updated dependencies",
         "de": "Aktualisierte empfohlene Firmwareversion auf 0.98\n\n* Aktualisierte Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono niewłaściwe tłumaczenia w aplikacji ekspertów (czas trwania)\nDodano pasek postępu dla aplikacji eksperckich",
         "uk": "Виправлено неправильні переклади в експертних додатках (визначення)\nДодана панель прогресу для експертних додатків",
         "zh-cn": "固定错误的翻译 专家应用程序( 期限)\n为专家应用程序添加进度栏"
-      },
-      "1.1.0": {
-        "en": "Sync app activations (if enabled)",
-        "de": "Sync app Aktivierungen (falls aktiviert)",
-        "ru": "Активация приложений Sync (если включена)",
-        "pt": "Ativações de aplicativos de sincronização (se ativado)",
-        "nl": "App-activeringen synchroniseren (indien ingeschakeld)",
-        "fr": "Synchronisation des activations de l'application (si activé)",
-        "it": "Attivazioni di app Sync (se abilitate)",
-        "es": "Activaciones de aplicaciones de sincronización (si está habilitado)",
-        "pl": "Synchronizacja aktywacji aplikacji (jeśli włączona)",
-        "uk": "Sync активації програми (включено)",
-        "zh-cn": "同步应用程序激活( 如果启用)"
       }
     },
     "titleLang": {

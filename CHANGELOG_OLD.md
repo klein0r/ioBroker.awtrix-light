@@ -1,4 +1,8 @@
 # Older changes
+## 1.3.0 (2024-08-01)
+
+* (@klein0r) Added sentry plugin for error reporting
+
 ## 1.2.1 (2024-06-07)
 
 * (klein0r) Fixed Blockly definitions (removed warnings)

@@ -39,7 +39,7 @@ var AppType;
       const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
       this.isVisible = appVisibleState ? !!appVisibleState.val : true;
       if (appVisibleState && !(appVisibleState == null ? void 0 : appVisibleState.ack)) {
-        await this.adapter.setStateAsync(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "init" });
+        await this.adapter.setState(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "init" });
       }
       return this.isVisible;
     }
@@ -55,7 +55,7 @@ var AppType;
     async createObjects() {
       await super.createObjects();
       const appName = this.getName();
-      await this.adapter.extendObjectAsync(`apps.${appName}.visible`, {
+      await this.adapter.extendObject(`apps.${appName}.visible`, {
         type: "state",
         common: {
           name: {
@@ -104,10 +104,10 @@ var AppType;
             this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`);
             this.isVisible = !!state.val;
             await this.refresh();
-            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
           } else {
             this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
-            await this.adapter.setStateAsync(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
           }
         }
       }
