@@ -47,6 +47,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 
 * (@klein0r) Improved error handling when adapter is not ready (starting)
 * (@klein0r) Added scroll speed to expert apps
+* (@klein0r) Added icons for custom apps in object tree
 
 ### 1.6.0 (2025-01-27)
 

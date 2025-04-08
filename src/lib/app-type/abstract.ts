@@ -28,6 +28,8 @@ export namespace AppType {
 
         public abstract getDescription(): string;
 
+        public abstract getIconForObjectTree(): string;
+
         public getName(): string {
             return this.name;
         }

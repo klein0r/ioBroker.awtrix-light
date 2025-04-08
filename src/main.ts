@@ -806,6 +806,7 @@ export class AwtrixLight extends utils.Adapter {
                                         common: {
                                             name: `App ${name}`,
                                             desc: `${app.getDescription()} app`,
+                                            icon: app.getIconForObjectTree(),
                                         },
                                         native: {
                                             isNativeApp,
