@@ -4,9 +4,9 @@
 
 ## Requirements
 
-- nodejs 18 (or later)
+- nodejs 20 (or later)
 - js-controller 6.0.0 (or later)
-- Admin Adapter 6.6.0 (or later)
+- Admin Adapter 7.4.10 (or later)
 - _Awtrix 3_ device with firmware _0.98_ (or later) - e.g. Ulanzi TC001
 
 Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
@@ -173,6 +173,16 @@ Expert apps are available since apdater version 0.10.0. They allow to set all va
 After that, all controllable states for the app name `test` will be created in `awtrix-light.0.apps.test`. Just set values of `icon`, `text` and other states by using your own scripts and logic (e.g. JavaScript or Blockly).
 
 Example: [Weather App](weather-app.md)
+
+#### Base Object
+
+*Requires adapter version 2.0.0 (or newer)*
+
+The base object is a basic defition of an awtrix app to allow all possible attributes. *The base object will be extended with other attributes of the expert app.*
+
+Example: If you want to use the rainbow effect, but there is no state to set this feature directly, you can define this in the base object (as JSON): `{ "rainbow": true }`.
+
+See [documentation](https://blueforcer.github.io/awtrix3/#/api?id=custom-apps-and-notifications) for available attributes.
 
 ## Hide native apps
 

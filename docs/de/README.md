@@ -4,9 +4,9 @@
 
 ## Anforderungen
 
-- nodejs 18 (oder neuer)
+- nodejs 20 (oder neuer)
 - js-controller 6.0.0 (oder neuer)
-- Admin Adapter 6.6.0 (oder neuer)
+- Admin Adapter 7.4.10 (oder neuer)
 - _Awtrix 3_ Gerät mit Firmware-Version _0.98_ (oder neuer) - z.B. Ulanzi TC001
 
 Hier kaufen: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) oder hier: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
@@ -173,6 +173,16 @@ Experten-Apps sind seit Adapter-Version 0.10.0 verfügbar. Diese Apps erlauben e
 Danach werden alle steuerbaren Zustände der App `test` unter `awtrix-light.0.apps.test` erstellt. Um die jeweiligen Werte einer App zu verändern, kann einfach der Wert der Zustände `icon`, `text`, usw. mit eigenen Scripts (z.B. JavaScript oder Blockly) gesetzt werden.
 
 Beispiel: [Wetter-App](weather-app.md)
+
+#### Basisobjekte
+
+*Benötigt Adapter-Version 2.0.0 (und neuer)*
+
+Das Basisobjekt ist eine grundlegende Definition für eine Awtrix-App, um alle existierenden Optionen setzen zu können. *Das Basisobjekt wird mit allen anderen Attributen der Experten-App erweitert.*
+
+Beispiel: Du möchtest den Regenbogen-Effekt auf der Experten-App nutzen, aber es existiert kein vordefiniter Datenpunkt, um diese Funktion direkt zu nutzen. In diesem Fall kann das Attribut im Basis-Objekt definiert werden (als JSON): `{ "rainbow": true }`.
+
+Siehe [Dokumentation](https://blueforcer.github.io/awtrix3/#/api?id=custom-apps-and-notifications) für alle verfügbaren Attribute.
 
 ## Native Apps verstecken
 
