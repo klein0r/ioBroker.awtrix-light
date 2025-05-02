@@ -45,6 +45,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (@klein0r) Added base object for expert apps to allow all options
 * (@klein0r) Added responsive design for admin config
 
 ### 1.7.0 (2025-04-08)

@@ -8,6 +8,7 @@ export namespace AppType {
         private appDefinition: ExpertApp;
         private appStates: { [key: string]: ioBroker.StateValue };
         private refreshTimeout: ioBroker.Timeout | undefined;
+        private baseObject: AwtrixApi.App;
 
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, definition: ExpertApp) {
             super(apiClient, adapter, definition);
@@ -15,6 +16,7 @@ export namespace AppType {
             this.appDefinition = definition;
             this.appStates = {};
             this.refreshTimeout = undefined;
+            this.baseObject = {};
         }
 
         public override getDescription(): string {
@@ -35,12 +37,21 @@ export namespace AppType {
 
             // Find all available settings objects with settingsKey
             for (const appObj of appObjects.rows) {
-                if (appObj.value.type === 'state' && appObj.value?.native?.attribute) {
+                if (appObj.value.type === 'state') {
                     const appState = await this.adapter.getForeignStateAsync(appObj.id);
-                    if (appState) {
-                        this.appStates[appObj.value.native.attribute] = appState.val;
 
-                        // Copy values of main instance
+                    if (appState) {
+                        if (appObj.value?.native?.attribute) {
+                            this.appStates[appObj.value.native.attribute] = appState.val;
+                        } else if (appObj.value?.native?.isBaseObject) {
+                            try {
+                                this.baseObject = JSON.parse(appState.val as string);
+                            } catch (err) {
+                                this.adapter.log.error(`[init] Failed to parse base object for expert app "${appName}": ${appState.val} (${err})`);
+                            }
+                        }
+
+                        // Copy value of main instance
                         if (!this.isMainInstance()) {
                             const idOwnNamespace = this.getObjIdOwnNamespace(appObj.id);
                             await this.adapter.setState(idOwnNamespace, { val: appState.val, ack: true, c: 'init' });
@@ -61,6 +72,7 @@ export namespace AppType {
                 this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
 
                 const app: AwtrixApi.App = {
+                    ...this.baseObject,
                     text: typeof this.appStates.text === 'string' ? this.appStates.text : '',
                     textCase: 2, // show as sent
                     color: typeof this.appStates.color === 'string' ? this.appStates.color : '#FFFFFF',
@@ -95,6 +107,33 @@ export namespace AppType {
             await super.createObjects();
 
             const appName = this.getName();
+
+            await this.adapter.extendObject(`apps.${appName}.baseObject`, {
+                type: 'state',
+                common: {
+                    name: {
+                        en: 'Base object',
+                        de: 'Basisobjekt',
+                        ru: 'Базовый объект',
+                        pt: 'Objeto base',
+                        nl: 'Basisobject',
+                        fr: 'Objet de base',
+                        it: 'Oggetto di base',
+                        es: 'Objeto de base',
+                        pl: 'Obiekt bazowy',
+                        uk: "Об'єкт бази",
+                        'zh-cn': '基准对象',
+                    },
+                    type: 'string',
+                    role: 'json',
+                    read: true,
+                    write: this.isMainInstance(),
+                    def: '{}',
+                },
+                native: {
+                    isBaseObject: true,
+                },
+            });
 
             await this.adapter.extendObject(`apps.${appName}.text`, {
                 type: 'state',
@@ -366,6 +405,7 @@ export namespace AppType {
             });
 
             if (!this.isMainInstance()) {
+                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.baseObject`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.text`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.textColor`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
@@ -410,6 +450,26 @@ export namespace AppType {
                             this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
 
                             await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                        }
+                    } else if (obj && obj?.native?.isBaseObject) {
+                        try {
+                            this.adapter.log.debug(`[onStateChange] New base object for expert app "${appName}": ${state.val}`);
+
+                            this.baseObject = JSON.parse(state.val as string); // test parse
+
+                            if (!this.refreshTimeout) {
+                                this.refreshTimeout = this.adapter.setTimeout(async () => {
+                                    this.refreshTimeout = undefined;
+
+                                    await this.refresh();
+                                }, 100);
+                            }
+
+                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                        } catch (err) {
+                            this.adapter.log.error(`[onStateChange] Failed to parse base object for expert app "${appName}": ${state.val} (${err})`);
+
+                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: false, c: `onStateChange ${this.objPrefix} (error ${err})` });
                         }
                     }
                 }
