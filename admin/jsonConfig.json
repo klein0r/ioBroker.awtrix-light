@@ -437,7 +437,7 @@
                             "lg": 4,
                             "xl": 4,
                             "command": "getBackgroundEffects",
-                            "data": "all",
+                            "data": {},
                             "noTranslation": true,
                             "default": "BrickBreaker",
                             "label": "Background effect",
