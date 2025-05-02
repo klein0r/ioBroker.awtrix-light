@@ -28,11 +28,13 @@ var AppType;
     appDefinition;
     appStates;
     refreshTimeout;
+    baseObject;
     constructor(apiClient, adapter, definition) {
       super(apiClient, adapter, definition);
       this.appDefinition = definition;
       this.appStates = {};
       this.refreshTimeout = void 0;
+      this.baseObject = {};
     }
     getDescription() {
       return "expert";
@@ -41,17 +43,25 @@ var AppType;
       return "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTk2IDEyOGExMjggMTI4IDAgMSAxIDI1NiAwQTEyOCAxMjggMCAxIDEgOTYgMTI4ek0wIDQ4Mi4zQzAgMzgzLjggNzkuOCAzMDQgMTc4LjMgMzA0bDkxLjQgMEMzNjguMiAzMDQgNDQ4IDM4My44IDQ0OCA0ODIuM2MwIDE2LjQtMTMuMyAyOS43LTI5LjcgMjkuN0wyOS43IDUxMkMxMy4zIDUxMiAwIDQ5OC43IDAgNDgyLjN6TTUwNCAzMTJsMC02NC02NCAwYy0xMy4zIDAtMjQtMTAuNy0yNC0yNHMxMC43LTI0IDI0LTI0bDY0IDAgMC02NGMwLTEzLjMgMTAuNy0yNCAyNC0yNHMyNCAxMC43IDI0IDI0bDAgNjQgNjQgMGMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNGwtNjQgMCAwIDY0YzAgMTMuMy0xMC43IDI0LTI0IDI0cy0yNC0xMC43LTI0LTI0eiIvPjwvc3ZnPg==";
     }
     async init() {
-      var _a, _b;
+      var _a, _b, _c, _d;
       const appName = this.getName();
       const appObjects = await this.adapter.getObjectViewAsync("system", "state", {
         startkey: `${this.objPrefix}.apps.${appName}.`,
         endkey: `${this.objPrefix}.apps.${appName}.\u9999`
       });
       for (const appObj of appObjects.rows) {
-        if (appObj.value.type === "state" && ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute)) {
+        if (appObj.value.type === "state") {
           const appState = await this.adapter.getForeignStateAsync(appObj.id);
           if (appState) {
-            this.appStates[appObj.value.native.attribute] = appState.val;
+            if ((_b = (_a = appObj.value) == null ? void 0 : _a.native) == null ? void 0 : _b.attribute) {
+              this.appStates[appObj.value.native.attribute] = appState.val;
+            } else if ((_d = (_c = appObj.value) == null ? void 0 : _c.native) == null ? void 0 : _d.isBaseObject) {
+              try {
+                this.baseObject = JSON.parse(appState.val);
+              } catch (err) {
+                this.adapter.log.error(`[init] Failed to parse base object for expert app "${appName}": ${appState.val} (${err})`);
+              }
+            }
             if (!this.isMainInstance()) {
               const idOwnNamespace = this.getObjIdOwnNamespace(appObj.id);
               await this.adapter.setState(idOwnNamespace, { val: appState.val, ack: true, c: "init" });
@@ -67,6 +77,7 @@ var AppType;
       if (await super.refresh()) {
         this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
         const app = {
+          ...this.baseObject,
           text: typeof this.appStates.text === "string" ? this.appStates.text : "",
           textCase: 2,
           // show as sent
@@ -94,6 +105,32 @@ var AppType;
     async createObjects() {
       await super.createObjects();
       const appName = this.getName();
+      await this.adapter.extendObject(`apps.${appName}.baseObject`, {
+        type: "state",
+        common: {
+          name: {
+            en: "Base object",
+            de: "Basisobjekt",
+            ru: "\u0411\u0430\u0437\u043E\u0432\u044B\u0439 \u043E\u0431\u044A\u0435\u043A\u0442",
+            pt: "Objeto base",
+            nl: "Basisobject",
+            fr: "Objet de base",
+            it: "Oggetto di base",
+            es: "Objeto de base",
+            pl: "Obiekt bazowy",
+            uk: "\u041E\u0431'\u0454\u043A\u0442 \u0431\u0430\u0437\u0438",
+            "zh-cn": "\u57FA\u51C6\u5BF9\u8C61"
+          },
+          type: "string",
+          role: "json",
+          read: true,
+          write: this.isMainInstance(),
+          def: "{}"
+        },
+        native: {
+          isBaseObject: true
+        }
+      });
       await this.adapter.extendObject(`apps.${appName}.text`, {
         type: "state",
         common: {
@@ -354,6 +391,7 @@ var AppType;
         }
       });
       if (!this.isMainInstance()) {
+        await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.baseObject`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.text`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.textColor`);
         await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.backgroundColor`);
@@ -366,7 +404,7 @@ var AppType;
       }
     }
     async stateChanged(id, state) {
-      var _a, _b, _c;
+      var _a, _b, _c, _d;
       await super.stateChanged(id, state);
       if (id && state && !state.ack) {
         const appName = this.getName();
@@ -388,6 +426,21 @@ var AppType;
             } else {
               this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${(_c = obj == null ? void 0 : obj.native) == null ? void 0 : _c.attribute})`);
               await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+            }
+          } else if (obj && ((_d = obj == null ? void 0 : obj.native) == null ? void 0 : _d.isBaseObject)) {
+            try {
+              this.adapter.log.debug(`[onStateChange] New base object for expert app "${appName}": ${state.val}`);
+              this.baseObject = JSON.parse(state.val);
+              if (!this.refreshTimeout) {
+                this.refreshTimeout = this.adapter.setTimeout(async () => {
+                  this.refreshTimeout = void 0;
+                  await this.refresh();
+                }, 100);
+              }
+              await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+            } catch (err) {
+              this.adapter.log.error(`[onStateChange] Failed to parse base object for expert app "${appName}": ${state.val} (${err})`);
+              await this.adapter.setState(idOwnNamespace, { val: state.val, ack: false, c: `onStateChange ${this.objPrefix} (error ${err})` });
             }
           }
         }

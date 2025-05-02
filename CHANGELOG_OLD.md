@@ -1,4 +1,8 @@
 # Older changes
+## 1.4.0 (2024-11-20)
+
+* (@klein0r) Added support for notification manager
+
 ## 1.3.0 (2024-08-01)
 
 * (@klein0r) Added sentry plugin for error reporting

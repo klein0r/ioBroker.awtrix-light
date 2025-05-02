@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "1.7.0",
+    "version": "2.0.0",
     "news": {
+      "2.0.0": {
+        "en": "Added base object for expert apps to allow all options\nAdded responsive design for admin config",
+        "de": "Basisobjekt für Experten-Apps hinzugefügt, um alle Optionen zu ermöglichen\nZusätzlich responsive design für admin config",
+        "ru": "Добавлен базовый объект для экспертных приложений, позволяющий все варианты\nДобавлен адаптивный дизайн для admin config",
+        "pt": "Objeto base adicionado para aplicações especializadas para permitir todas as opções\nAdicionado design responsivo para admin config",
+        "nl": "Toegevoegd basisobject voor expert apps om alle opties mogelijk te maken\nToegevoegd responsief ontwerp voor admin configuratie",
+        "fr": "Ajout de l'objet de base pour les applications expertes pour permettre toutes les options\nAjout d'une conception réactive pour la configuration de l'administrateur",
+        "it": "Aggiunta oggetto di base per applicazioni di esperti per consentire tutte le opzioni\nAggiunto design reattivo per admin config",
+        "es": "Añadido objeto base para aplicaciones expertas para permitir todas las opciones\nDiseño receptivo añadido para el config admin",
+        "pl": "Dodano obiekt bazowy dla aplikacji ekspertów, aby umożliwić wszystkie opcje\nDodano responsywny projekt dla konfiguracji admin",
+        "uk": "Додано об'єкт бази для експертних додатків, щоб дозволити всі параметри\nДодано адаптивний дизайн для налаштування адміністратора",
+        "zh-cn": "添加专家应用程序的基础对象, 允许所有选项\n为管理员配置添加响应设计"
+      },
       "1.7.0": {
         "en": "Improved error handling when adapter is not ready (starting)\nAdded scroll speed to expert apps\nAdded icons for custom apps in object tree",
         "de": "Verbesserte Fehlerbehandlung, wenn Adapter nicht bereit ist (Start)\nHinzufügen von Scroll-Geschwindigkeit zu Experten-Apps\nIcons für benutzerdefinierte Apps in Objektbaum hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Poprawione definicje blokady (usunięte ostrzeżenia)\nAktualizacja zależności",
         "uk": "Виправлені помилкові визначення (видалення попередження)\nОновлені залежності",
         "zh-cn": "固定块定义(撤消警告)\n更新的依赖关系"
-      },
-      "1.2.0": {
-        "en": "Fixed wrong translations ins expert apps (duration)\nAdded progress bar for expert apps",
-        "de": "Behobene falsche Übersetzungen in Experten-Apps (Dauer)\nFortschrittsleiste für Experten-Apps hinzugefügt",
-        "ru": "Исправленные неправильные переводы в экспертных приложениях (продление)\nДобавить панель прогресса для экспертных приложений",
-        "pt": "Traduções erradas corrigidas em aplicações especializadas (duração)\nBarra de progresso adicionada para aplicações especializadas",
-        "nl": "Onjuiste vertalingen ins expert apps (duur)\nVoortgangsbalk toegevoegd voor expert-apps",
-        "fr": "Correction de traductions incorrectes dans des applications expertes (durée)\nAjout d'une barre de progression pour les applications expertes",
-        "it": "Risolto traduzioni sbagliate ins app di esperti (durata)\nBarra di avanzamento aggiuntiva per applicazioni di esperti",
-        "es": "Traducción incorrecta fija en aplicaciones expertas (duración)\nAñadido barra de progreso para aplicaciones expertas",
-        "pl": "Naprawiono niewłaściwe tłumaczenia w aplikacji ekspertów (czas trwania)\nDodano pasek postępu dla aplikacji eksperckich",
-        "uk": "Виправлено неправильні переклади в експертних додатках (визначення)\nДодана панель прогресу для експертних додатків",
-        "zh-cn": "固定错误的翻译 专家应用程序( 期限)\n为专家应用程序添加进度栏"
       }
     },
     "titleLang": {
