@@ -13,16 +13,20 @@
                     "type": "header",
                     "text": "Connection",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 6
                 },
                 "awtrixIp": {
                     "type": "text",
                     "label": "IP",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "help": "IP address of your Awtrix Light device",
                     "validator": "String(data.awtrixIp).length > 0 && !String(data.awtrixIp).startsWith('http')",
                     "validatorErrorText": "Invalid IP address",
@@ -31,18 +35,22 @@
                 "userName": {
                     "newLine": true,
                     "type": "text",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "label": "Username"
                 },
                 "userPassword": {
                     "type": "password",
                     "repeat": false,
                     "visible": false,
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "label": "Password"
                 },
                 "_headerOptionsScreen": {
@@ -50,34 +58,42 @@
                     "type": "header",
                     "text": "Screen",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "downloadScreenContent": {
                     "type": "checkbox",
                     "label": "Download screen content",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "downloadScreenContentInterval": {
                     "hidden": "!data.downloadScreenContent",
                     "type": "number",
                     "label": "Download interval (in seconds)",
                     "min": 1,
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "_headerOptionsSupport": {
                     "newLine": true,
                     "type": "header",
                     "text": "Support this project",
                     "size": 3,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "_buyDeviceLink": {
                     "newLine": true,
@@ -99,9 +115,11 @@
                     "button": true,
                     "variant": "contained",
                     "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuNC4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIzIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMCAyNEMwIDEwLjcgMTAuNyAwIDI0IDBINjkuNWMyMiAwIDQxLjUgMTIuOCA1MC42IDMyaDQxMWMyNi4zIDAgNDUuNSAyNSAzOC42IDUwLjRsLTQxIDE1Mi4zYy04LjUgMzEuNC0zNyA1My4zLTY5LjUgNTMuM0gxNzAuN2w1LjQgMjguNWMyLjIgMTEuMyAxMi4xIDE5LjUgMjMuNiAxOS41SDQ4OGMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNEgxOTkuN2MtMzQuNiAwLTY0LjMtMjQuNi03MC43LTU4LjVMNzcuNCA1NC41Yy0uNy0zLjgtNC02LjUtNy45LTYuNUgyNEMxMC43IDQ4IDAgMzcuMyAwIDI0ek0xMjggNDY0YTQ4IDQ4IDAgMSAxIDk2IDAgNDggNDggMCAxIDEgLTk2IDB6bTMzNi00OGE0OCA0OCAwIDEgMSAwIDk2IDQ4IDQ4IDAgMSAxIDAtOTZ6Ii8+PC9zdmc+",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "_buyDeviceLink2": {
                     "type": "staticLink",
@@ -122,16 +140,20 @@
                     "button": true,
                     "variant": "contained",
                     "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuNC4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIzIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNMCAyNEMwIDEwLjcgMTAuNyAwIDI0IDBINjkuNWMyMiAwIDQxLjUgMTIuOCA1MC42IDMyaDQxMWMyNi4zIDAgNDUuNSAyNSAzOC42IDUwLjRsLTQxIDE1Mi4zYy04LjUgMzEuNC0zNyA1My4zLTY5LjUgNTMuM0gxNzAuN2w1LjQgMjguNWMyLjIgMTEuMyAxMi4xIDE5LjUgMjMuNiAxOS41SDQ4OGMxMy4zIDAgMjQgMTAuNyAyNCAyNHMtMTAuNyAyNC0yNCAyNEgxOTkuN2MtMzQuNiAwLTY0LjMtMjQuNi03MC43LTU4LjVMNzcuNCA1NC41Yy0uNy0zLjgtNC02LjUtNy45LTYuNUgyNEMxMC43IDQ4IDAgMzcuMyAwIDI0ek0xMjggNDY0YTQ4IDQ4IDAgMSAxIDk2IDAgNDggNDggMCAxIDEgLTk2IDB6bTMzNi00OGE0OCA0OCAwIDEgMSAwIDk2IDQ4IDQ4IDAgMSAxIDAtOTZ6Ii8+PC9zdmc+",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "_ioBrokerKursBanner": {
                     "newLine": true,
                     "type": "staticImage",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "href": "https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-awtrix-light",
                     "src": "https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png"
                 }
@@ -147,9 +169,11 @@
                     "type": "header",
                     "text": "Use settings of other instance",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "foreignSettingsInstance": {
                     "newLine": true,
@@ -157,9 +181,11 @@
                     "label": "Copy app settings of",
                     "adapter": "awtrix-light",
                     "allowDeactivate": true,
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
                     "lg": 6,
+                    "xl": 6,
                     "validator": "data.foreignSettingsInstance === '' || data.foreignSettingsInstance !== `awtrix-light.${_instance}`",
                     "validatorErrorText": "Select another instance",
                     "validatorNoSaveOnError": true
@@ -168,9 +194,11 @@
                     "hidden": "data.foreignSettingsInstance === '' || data.foreignSettingsInstance === `awtrix-light.${_instance}`",
                     "type": "checkbox",
                     "label": "Activate same apps as in main instance",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "_headerCustomApps": {
                     "hidden": "!!data.foreignSettingsInstance",
@@ -178,26 +206,32 @@
                     "type": "header",
                     "text": "Custom Apps",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "customApps": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "xl": 12,
                     "items": [
                         {
                             "type": "text",
                             "attr": "name",
                             "label": "Name",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "custom",
                             "help": "Just lower case letters (a-z)",
                             "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temperature', 'humidity', 'battery'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps, ...globalData.expertApps].filter(app => app.name === data.name).length === 1",
@@ -208,9 +242,11 @@
                             "type": "text",
                             "attr": "icon",
                             "label": "Icon",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "",
                             "help": "Must be uploaded manually",
                             "helpLink": "https://blueforcer.github.io/awtrix3/#/icons"
@@ -219,9 +255,11 @@
                             "type": "number",
                             "attr": "duration",
                             "label": "Duration (sec)",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 0,
                             "min": 0,
                             "help": "0 = default"
@@ -230,9 +268,11 @@
                             "type": "number",
                             "attr": "repeat",
                             "label": "Repetitions",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 0,
                             "min": 0
                         },
@@ -240,9 +280,11 @@
                             "type": "text",
                             "attr": "text",
                             "label": "Text",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "%s %u",
                             "help": "%s will be replaced by value and %u by unit",
                             "validator": "data.objId.length == 0 || data.text.includes('%s')",
@@ -253,9 +295,11 @@
                             "type": "objectId",
                             "attr": "objId",
                             "label": "Object",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "",
                             "help": "Should be type of string or number",
                             "validator": "!data.text.includes('%s') || data.objId.length > 0",
@@ -266,9 +310,11 @@
                             "type": "number",
                             "attr": "decimals",
                             "label": "Decimals",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 3,
                             "help": "Numeric values will be rounded"
                         },
@@ -276,9 +322,11 @@
                             "type": "checkbox",
                             "attr": "dynamicRound",
                             "label": "Round dynamically",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": false,
                             "help": "Adjust digits to avoid scrolling"
                         },
@@ -288,27 +336,33 @@
                             "attr": "_textHeader",
                             "text": "Text options",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "newLine": true,
                             "type": "checkbox",
                             "attr": "rainbow",
                             "label": "Text in rainbow colors",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4
+                            "lg": 4,
+                            "xl": 4
                         },
                         {
                             "hidden": "!!data.rainbow",
                             "type": "color",
                             "attr": "textColor",
                             "label": "Text color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "#FFFFFF"
                         },
                         {
@@ -316,18 +370,22 @@
                             "type": "checkbox",
                             "attr": "noScroll",
                             "label": "Disable text scrolling",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4
+                            "lg": 4,
+                            "xl": 4
                         },
                         {
                             "hidden": "!!data.noScroll",
                             "type": "number",
                             "attr": "scrollSpeed",
                             "label": "Scroll speed",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": 0,
                             "min": 0,
                             "max": 100,
@@ -339,18 +397,22 @@
                             "attr": "_backgroundHeader",
                             "text": "Background options",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "newLine": true,
                             "type": "checkbox",
                             "attr": "useBackgroundEffect",
                             "label": "Use background effect",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": false
                         },
                         {
@@ -358,18 +420,22 @@
                             "type": "color",
                             "attr": "backgroundColor",
                             "label": "Background color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "#000000"
                         },
                         {
                             "hidden": "!data.useBackgroundEffect",
                             "type": "selectSendTo",
                             "attr": "backgroundEffect",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "command": "getBackgroundEffects",
                             "data": "all",
                             "noTranslation": true,
@@ -385,9 +451,11 @@
                             "attr": "_thresholdHeader",
                             "text": "Threshold overrides (type of state must be number)",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "hidden": "data.objId.length == 0",
@@ -395,18 +463,22 @@
                             "type": "checkbox",
                             "attr": "thresholdLtActive",
                             "label": "If value less than",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4
+                            "lg": 4,
+                            "xl": 4
                         },
                         {
                             "hidden": "!data.thresholdLtActive",
                             "type": "number",
                             "attr": "thresholdLtValue",
                             "label": "If value less than",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 0,
                             "step": 0.1,
                             "validator": "!isNaN(data.thresholdLtValue)",
@@ -418,9 +490,11 @@
                             "type": "text",
                             "attr": "thresholdLtIcon",
                             "label": "Icon",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdLtIcon || data.thresholdLtTextColor || data.thresholdLtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -431,9 +505,11 @@
                             "type": "color",
                             "attr": "thresholdLtTextColor",
                             "label": "Text color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdLtIcon || data.thresholdLtTextColor || data.thresholdLtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -444,9 +520,11 @@
                             "type": "color",
                             "attr": "thresholdLtBackgroundColor",
                             "label": "Background color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdLtIcon || data.thresholdLtTextColor || data.thresholdLtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -458,18 +536,22 @@
                             "type": "checkbox",
                             "attr": "thresholdGtActive",
                             "label": "If value greater than",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4
+                            "lg": 4,
+                            "xl": 4
                         },
                         {
                             "hidden": "!data.thresholdGtActive",
                             "type": "number",
                             "attr": "thresholdGtValue",
                             "label": "If value greater than",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 100,
                             "step": 0.1,
                             "validator": "!isNaN(data.thresholdGtValue)",
@@ -481,9 +563,11 @@
                             "type": "text",
                             "attr": "thresholdGtIcon",
                             "label": "Icon",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdGtIcon || data.thresholdGtTextColor || data.thresholdGtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -494,9 +578,11 @@
                             "type": "color",
                             "attr": "thresholdGtTextColor",
                             "label": "Text color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdGtIcon || data.thresholdGtTextColor || data.thresholdGtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -507,9 +593,11 @@
                             "type": "color",
                             "attr": "thresholdGtBackgroundColor",
                             "label": "Background color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "",
                             "validator": "data.thresholdGtIcon || data.thresholdGtTextColor || data.thresholdGtBackgroundColor",
                             "validatorErrorText": "Set icon, text color or background color override",
@@ -522,18 +610,22 @@
                             "attr": "_expertOptionsHeader",
                             "text": "Expert options",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "hidden": "!globalData.customPositions",
                             "type": "number",
                             "attr": "position",
                             "label": "Position",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": 0,
                             "min": 0,
                             "step": 1
@@ -545,9 +637,11 @@
                     "newLine": true,
                     "type": "number",
                     "min": 0,
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
+                    "xl": 4,
                     "label": "Ignore new values after state change (in seconds)",
                     "help": "Prevents too many requests for rapid state changes"
                 },
@@ -557,26 +651,32 @@
                     "type": "header",
                     "text": "History Apps",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "historyApps": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "xl": 12,
                     "items": [
                         {
                             "type": "text",
                             "attr": "name",
                             "label": "Name",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "history",
                             "help": "Just lower case letters (a-z)",
                             "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temperature', 'humidity', 'battery'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps, ...globalData.expertApps].filter(app => app.name === data.name).length === 1",
@@ -587,9 +687,11 @@
                             "type": "text",
                             "attr": "icon",
                             "label": "Icon",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "",
                             "help": "Must be uploaded manually",
                             "helpLink": "https://blueforcer.github.io/awtrix3/#/icons"
@@ -598,9 +700,11 @@
                             "type": "number",
                             "attr": "duration",
                             "label": "Duration (sec)",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 0,
                             "min": 0,
                             "help": "0 = default"
@@ -609,9 +713,11 @@
                             "type": "number",
                             "attr": "repeat",
                             "label": "Repetitions",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 0,
                             "min": 0
                         },
@@ -622,17 +728,21 @@
                             "label": "Source instance",
                             "adapter": "_dataSources",
                             "allowDeactivate": false,
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
-                            "lg": 4
+                            "lg": 4,
+                            "xl": 4
                         },
                         {
                             "type": "objectId",
                             "attr": "objId",
                             "label": "Object",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "",
                             "help": "Logging must be enabled for the selected ID",
                             "validator": "data.objId.length > 0",
@@ -643,9 +753,11 @@
                             "type": "color",
                             "attr": "lineColor",
                             "label": "Color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "#FF0000",
                             "help": "Line color of chart"
                         },
@@ -653,18 +765,22 @@
                             "type": "color",
                             "attr": "backgroundColor",
                             "label": "Background color",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": "#000000"
                         },
                         {
                             "newLine": true,
                             "attr": "display",
                             "type": "select",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "options": [
                                 {
                                     "label": "Line",
@@ -682,9 +798,11 @@
                             "newLine": true,
                             "attr": "mode",
                             "type": "select",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "options": [
                                 {
                                     "label": "Last values",
@@ -702,9 +820,11 @@
                             "hidden": "data.mode !== 'aggregate'",
                             "attr": "aggregation",
                             "type": "select",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "options": [
                                 {
                                     "label": "Average",
@@ -731,9 +851,11 @@
                             "type": "number",
                             "attr": "step",
                             "label": "Step size",
+                            "xs": 12,
                             "sm": 12,
                             "md": 2,
                             "lg": 2,
+                            "xl": 2,
                             "default": 3600,
                             "min": 1,
                             "help": "seconds"
@@ -745,18 +867,22 @@
                             "attr": "_expertOptionsHeader",
                             "text": "Expert options",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "hidden": "!globalData.customPositions",
                             "type": "number",
                             "attr": "position",
                             "label": "Position",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": 0,
                             "min": 0,
                             "step": 1
@@ -769,34 +895,42 @@
                     "label": "Refresh interval (in seconds)",
                     "min": 60,
                     "max": 86400,
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
-                    "lg": 4
+                    "lg": 4,
+                    "xl": 4
                 },
                 "_dividerBottom": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "divider",
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "autoDeleteForeignApps": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "checkbox",
                     "label": "Automatically delete unknown apps",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 },
                 "removeAppsOnStop": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "type": "checkbox",
                     "label": "Delete apps when instance is stopped",
+                    "xs": 12,
                     "sm": 12,
                     "md": 6,
-                    "lg": 6
+                    "lg": 6,
+                    "xl": 6
                 }
             }
         },
@@ -810,16 +944,20 @@
                     "label": "HTTP timeout",
                     "min": 1,
                     "max": 10,
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
-                    "lg": 4
+                    "lg": 4,
+                    "xl": 4
                 },
                 "numberFormat": {
                     "newLine": true,
                     "type": "select",
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
                     "lg": 4,
+                    "xl": 4,
                     "options": [
                         {
                             "label": "System",
@@ -850,9 +988,11 @@
                     "newLine": true,
                     "type": "checkbox",
                     "label": "Own position for each app",
+                    "xs": 12,
                     "sm": 12,
                     "md": 4,
-                    "lg": 4
+                    "lg": 4,
+                    "xl": 4
                 },
                 "_headerExpertApps": {
                     "hidden": "!!data.foreignSettingsInstance",
@@ -860,26 +1000,32 @@
                     "type": "header",
                     "text": "Expert Apps",
                     "size": 2,
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
-                    "lg": 12
+                    "lg": 12,
+                    "xl": 12
                 },
                 "expertApps": {
                     "hidden": "!!data.foreignSettingsInstance",
                     "newLine": true,
                     "type": "accordion",
                     "titleAttr": "name",
+                    "xs": 12,
                     "sm": 12,
                     "md": 12,
                     "lg": 12,
+                    "xl": 12,
                     "items": [
                         {
                             "type": "text",
                             "attr": "name",
                             "label": "Name",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": "expert",
                             "help": "Just lower case letters (a-z)",
                             "validator": "/^([a-z]{1,})$/.test(data.name) && !['time', 'date', 'temperature', 'humidity', 'battery'].includes(data.name) && [...globalData.customApps, ...globalData.historyApps, ...globalData.expertApps].filter(app => app.name === data.name).length === 1",
@@ -893,18 +1039,22 @@
                             "attr": "_expertOptionsHeader",
                             "text": "Expert options",
                             "size": 3,
+                            "xs": 12,
                             "sm": 12,
                             "md": 12,
-                            "lg": 12
+                            "lg": 12,
+                            "xl": 12
                         },
                         {
                             "hidden": "!globalData.customPositions",
                             "type": "number",
                             "attr": "position",
                             "label": "Position",
+                            "xs": 12,
                             "sm": 12,
                             "md": 4,
                             "lg": 4,
+                            "xl": 4,
                             "default": 0,
                             "min": 0,
                             "step": 1
