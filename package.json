@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.2.3",
-    "axios": "^1.8.4"
+    "axios": "^1.9.0"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^3.8.0",
@@ -34,7 +34,7 @@
     "@alcalzone/release-script-plugin-license": "^3.7.0",
     "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.24.0",
+    "@eslint/js": "^9.25.1",
     "@iobroker/adapter-dev": "^1.4.0",
     "@iobroker/testing": "^5.0.4",
     "@tsconfig/node20": "^20.1.5",
@@ -45,14 +45,14 @@
     "@types/proxyquire": "^1.3.31",
     "@types/sinon": "^17.0.4",
     "@types/sinon-chai": "^4.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.30.1",
-    "@typescript-eslint/parser": "^8.30.1",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
     "chai": "^4.5.0",
     "chai-as-promised": "^8.0.1",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
-    "mocha": "^11.1.0",
+    "mocha": "^11.2.2",
     "prettier": "^3.5.3",
     "proxyquire": "^2.1.3",
     "rimraf": "^6.0.1",
