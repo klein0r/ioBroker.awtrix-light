@@ -104,7 +104,9 @@ The message object supports all available options of the firmware. See [document
 
 ### Sounds
 
-To play a (previously created) sound file:
+**The sound files must be saved as RTTTL fomat in the folder MELODIES. The file extension of these files is .txt. When playing those files, the file extension must not be provided.**
+
+To play a (previously created) sound file `example.txt`:
 
 ```javascript
 sendTo('awtrix-light.0', 'sound', { sound: 'example' }, (res) => {

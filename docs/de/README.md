@@ -104,7 +104,9 @@ Das Nachrichten-Objekt unterstützt dabei alle Optionen, welche in der Firmware 
 
 ### Töne
 
-Um eine (vorher angelegte) Ton-Datei abzuspielen:
+**Die Sound-Dateien müssen im RTTTL-Format im Ordner MELODIES abgelegt werden. Die Dateiendung für diese Sounds ist .txt. Beim Abspielen der Sounds darf die Dateiendung nicht mit übergeben werden!**
+
+Um eine (vorher angelegte) Ton-Datei `beispiel.txt` abzuspielen:
 
 ```javascript
 sendTo('awtrix-light.0', 'sound', { sound: 'beispiel' }, (res) => {
