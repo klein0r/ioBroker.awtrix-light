@@ -36,7 +36,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.34.0",
     "@iobroker/adapter-dev": "^1.4.0",
-    "@iobroker/testing": "^5.1.0",
+    "@iobroker/testing": "^5.1.1",
     "@tsconfig/node20": "^20.1.6",
     "@types/chai": "^5.2.2",
     "@types/chai-as-promised": "^8.0.2",
