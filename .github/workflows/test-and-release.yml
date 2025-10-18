@@ -67,6 +67,7 @@ jobs:
     # Write permissions are required to create Github releases
     permissions:
       contents: write
+      id-token: write
 
     steps:
       - uses: ioBroker/testing-action-deploy@v1
@@ -75,7 +76,7 @@ jobs:
           # Uncomment the following line if your adapter cannot be installed using 'npm ci'
           # install-command: 'npm install'
           build: true
-          npm-token: ${{ secrets.NPM_TOKEN }}
+          # npm-token: ${{ secrets.NPM_TOKEN }}  # Commented out for migration to Trusted Publishing
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
           sentry: true
