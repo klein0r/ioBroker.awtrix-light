@@ -18,7 +18,7 @@ Lade die folgenden Icons über die Weboberfläche auf das Gerät:
 - `26088` (02n few clouds) - ein paar Wolken Nacht (11-25% Wolken)
 - `22378` (03d scattered clouds) - aufgelockerte Bewölkung Tag (25-50% Wolken)
 - `21907` (03n scattered clouds) - aufgelockerte Bewölkung Nacht (25-50% Wolken)
-- `13852` (04d broken clouds) - bewölkt Tag (51-100%)
+- `60742` (04d broken clouds) - bewölkt Tag (51-100%)
 - `52159` (04n broken clouds) - bewölkt Nacht (51-100%)
 - `43706` (09d shower rain) - Regenschauer Tag
 - `43739` (09n shower rain) - Regenschauer Nacht
@@ -38,7 +38,7 @@ Erstellt eine neue Experten-App mit dem Namen `weather`.
 ### Script
 
 ```javascript
-// v0.2
+// v0.3
 const displayTemp = true;
 
 const appName = 'weather';
@@ -53,7 +53,7 @@ const iconMapping = {
     '02n': '26088', // few clouds night
     '03d': '22378', // scattered clouds day
     '03n': '21907', // scattered clouds night
-    '04d': '13852', // broken clouds day
+    '04d': '60742', // broken clouds day
     '04n': '52159', // broken clouds night
     '09d': '43706', // shower rain day
     '09n': '43739', // shower rain night
