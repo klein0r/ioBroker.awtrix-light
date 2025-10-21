@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "news": {
+      "3.0.0": {
+        "en": "admin 7.6.17 and js-controller 6.0.11 (or later) are required",
+        "de": "admin 7.6.17 und js-controller 6.0.11 (oder später) sind erforderlich",
+        "ru": "admin 7.6.17 и js-контроллер 6.0.11 (или более поздние)",
+        "pt": "admin 7.6.17 e js-controller 6.0.11 (ou posterior) são necessários",
+        "nl": "admin 7.6.17 en js-controller 6.0.11 (of later) zijn vereist",
+        "fr": "admin 7.6.17 et js-contrôleur 6.0.11 (ou plus tard) sont requis",
+        "it": "admin 7.6.17 e js-controller 6.0.11 (o successivo) sono richiesti",
+        "es": "admin 7.6.17 y js-controller 6.0.11 (o posterior) son necesarios",
+        "pl": "wymagany jest admin 7.6.17 i kontroler js- 6.0.11 (lub późniejszy)",
+        "uk": "admin 7.6.17 та js-controller 6.0.11 (або пізніше) обов’язкові",
+        "zh-cn": "需要admin 7.6.17和js控制器 6.0.11(或以后)"
+      },
       "2.0.0": {
         "en": "Added base object for expert apps to allow all options\nAdded responsive design for admin config",
         "de": "Basisobjekt für Experten-Apps hinzugefügt, um alle Optionen zu ermöglichen\nZusätzlich responsive design für admin config",
@@ -80,19 +93,6 @@
         "pl": "Dodano wtyczkę do zgłaszania błędów",
         "uk": "Додано плагін відправки для повідомлення про помилку",
         "zh-cn": "为错误报告添加了哨兵插件"
-      },
-      "1.2.1": {
-        "en": "Fixed Blockly definitions (removed warnings)\nUpdated dependencies",
-        "de": "Feste blockweise Definitionen (entfernte Warnungen)\nAktualisierte Abhängigkeiten",
-        "ru": "Fixed Blockly definitions (removed warnings)\nОбновленные зависимости",
-        "pt": "Definições bloqueadas fixas (avisões remotas)\nDependências atualizadas",
-        "nl": "Vaste blokdefinities (verwijderde waarschuwingen)\nBijgewerkte afhankelijkheden",
-        "fr": "Définition fixe par blocs (avertissements supprimés)\nDépendances actualisées",
-        "it": "Definizioni Bloccate Fisse (avviso rimosso)\nDipendenze aggiornate",
-        "es": "Definiciones limitadas (removidas advertencias)\nDependencias actualizadas",
-        "pl": "Poprawione definicje blokady (usunięte ostrzeżenia)\nAktualizacja zależności",
-        "uk": "Виправлені помилкові визначення (видалення попередження)\nОновлені залежності",
-        "zh-cn": "固定块定义(撤消警告)\n更新的依赖关系"
       }
     },
     "titleLang": {

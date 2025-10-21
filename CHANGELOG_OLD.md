@@ -1,4 +1,8 @@
 # Older changes
+## 1.4.1 (2024-11-20)
+
+NodeJS >= 20.x and js-controller >= 6 is required
+
 ## 1.4.0 (2024-11-20)
 
 * (@klein0r) Added support for notification manager
