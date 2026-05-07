@@ -73,11 +73,11 @@ export namespace AppType {
 
                 const app: AwtrixApi.App = {
                     ...this.baseObject,
-                    text: typeof this.appStates.text === 'string' ? this.appStates.text : '',
+                    text: typeof this.appStates.text === 'string' && this.appStates.text !== '' ? this.appStates.text : (this.baseObject.text ?? ''),
                     textCase: 2, // show as sent
                     color: typeof this.appStates.color === 'string' ? this.appStates.color : '#FFFFFF',
                     background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
-                    icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
+                    icon: typeof this.appStates.icon === 'string' && this.appStates.icon !== '' ? this.appStates.icon : (this.baseObject.icon ?? ''),
                     duration: typeof this.appStates.duration === 'number' ? this.appStates.duration : 0,
                     scrollSpeed: typeof this.appStates.scrollSpeed === 'number' ? this.appStates.scrollSpeed : 100,
                     pos: this.appDefinition.position,
