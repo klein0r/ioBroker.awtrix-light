@@ -1,8 +1,9 @@
-import { AwtrixLight } from '../../../main';
-import { CustomApp } from '../../adapter-config';
-import { AwtrixApi } from '../../api';
+import type { AwtrixLight } from '../../../main';
+import type { CustomApp } from '../../adapter-config';
+import type { AwtrixApi } from '../../api';
 import { AppType as UserAppType } from '../user';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     type ObjCache = {
         val: string | ioBroker.StateValue | undefined;
@@ -68,18 +69,26 @@ export namespace AppType {
                             }
 
                             if (state && !state.ack) {
-                                this.adapter.log.info(`[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
+                                this.adapter.log.info(
+                                    `[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`,
+                                );
                             }
 
                             await this.adapter.subscribeForeignStatesAsync(objId);
                             await this.adapter.subscribeForeignObjectsAsync(objId);
 
-                            this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" (${obj.common.type}) with objId "${objId}" - subscribed to changes`);
+                            this.adapter.log.debug(
+                                `[initCustomApp] Init app "${this.appDefinition.name}" (${obj.common.type}) with objId "${objId}" - subscribed to changes`,
+                            );
                         } else {
-                            this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`);
+                            this.adapter.log.warn(
+                                `[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj?.type}`,
+                            );
                         }
                     } catch (error) {
-                        this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
+                        this.adapter.log.error(
+                            `[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`,
+                        );
                     }
                 } else {
                     this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with static text`);
@@ -184,7 +193,9 @@ export namespace AppType {
                     }
                 }
             } else if (this.appDefinition.thresholdLtActive || this.appDefinition.thresholdGtActive) {
-                this.adapter.log.warn(`[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`);
+                this.adapter.log.warn(
+                    `[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`,
+                );
             }
 
             return app;
@@ -197,7 +208,9 @@ export namespace AppType {
                 const text = String(this.appDefinition.text).trim();
 
                 if (this.objCache && !this.isStaticText) {
-                    this.adapter.log.debug(`[refreshCustomApp] Refreshing custom app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and text "${this.appDefinition.text}"`);
+                    this.adapter.log.debug(
+                        `[refreshCustomApp] Refreshing custom app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and text "${this.appDefinition.text}"`,
+                    );
 
                     try {
                         if (this.isVisible) {
@@ -208,14 +221,19 @@ export namespace AppType {
 
                                 if (this.objCache.type === 'number') {
                                     const realVal = typeof val !== 'number' ? parseFloat(val as string) : val;
-                                    const decimals = typeof this.appDefinition.decimals === 'string' ? parseInt(this.appDefinition.decimals) : (this.appDefinition.decimals ?? 3);
+                                    const decimals =
+                                        typeof this.appDefinition.decimals === 'string'
+                                            ? parseInt(this.appDefinition.decimals)
+                                            : (this.appDefinition.decimals ?? 3);
 
                                     if (!isNaN(realVal) && realVal % 1 !== 0) {
                                         const valParts = String(realVal).split('.');
                                         const countDigits = valParts[0].length;
                                         let countDecimals = valParts[1].length || 3;
 
-                                        this.adapter.log.debug(`[refreshCustomApp] value of objId "${this.appDefinition.objId}" has ${countDigits} digits and ${countDecimals} decimals`);
+                                        this.adapter.log.debug(
+                                            `[refreshCustomApp] value of objId "${this.appDefinition.objId}" has ${countDigits} digits and ${countDecimals} decimals`,
+                                        );
 
                                         if (countDecimals > decimals) {
                                             countDecimals = decimals; // limit
@@ -239,7 +257,9 @@ export namespace AppType {
                                             }
 
                                             // unit
-                                            maxLength -= this.objCache.unit ? text.trim().replace('%s', '').replace('%u', this.objCache.unit).length : 1;
+                                            maxLength -= this.objCache.unit
+                                                ? text.trim().replace('%s', '').replace('%u', this.objCache.unit).length
+                                                : 1;
 
                                             if (maxLength < countDecimals) {
                                                 countDecimals = maxLength >= 0 ? maxLength : 0;
@@ -268,34 +288,53 @@ export namespace AppType {
                                     .trim();
 
                                 if (displayText.length > 0) {
-                                    await this.apiClient!.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText, val)).catch((error) => {
-                                        this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
-                                    });
+                                    await this.apiClient
+                                        .appRequestAsync(
+                                            this.appDefinition.name,
+                                            this.createAppRequestObj(displayText, val),
+                                        )
+                                        .catch(error => {
+                                            this.adapter.log.warn(
+                                                `(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`,
+                                            );
+                                        });
 
                                     refreshed = true;
                                 } else {
                                     // Empty text => remove app
-                                    this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (empty text)`);
+                                    this.adapter.log.debug(
+                                        `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (empty text)`,
+                                    );
 
-                                    await this.apiClient!.removeAppAsync(this.appDefinition.name).catch((error) => {
-                                        this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (empty text): ${error}`);
+                                    await this.apiClient.removeAppAsync(this.appDefinition.name).catch(error => {
+                                        this.adapter.log.warn(
+                                            `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (empty text): ${error}`,
+                                        );
                                     });
                                 }
                             } else {
                                 // No state value => remove app
-                                this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (no state data)`);
+                                this.adapter.log.debug(
+                                    `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (no state data)`,
+                                );
 
-                                await this.apiClient!.removeAppAsync(this.appDefinition.name).catch((error) => {
-                                    this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (no state data): ${error}`);
+                                await this.apiClient.removeAppAsync(this.appDefinition.name).catch(error => {
+                                    this.adapter.log.warn(
+                                        `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (no state data): ${error}`,
+                                    );
                                 });
                             }
                         }
                     } catch (error) {
-                        this.adapter.log.error(`[refreshCustomApp] Unable to refresh app "${this.appDefinition.name}": ${error}`);
+                        this.adapter.log.error(
+                            `[refreshCustomApp] Unable to refresh app "${this.appDefinition.name}": ${error}`,
+                        );
                     }
                 } else if (this.isStaticText) {
                     // App with static text (no %s specified)
-                    this.adapter.log.debug(`[refreshCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`);
+                    this.adapter.log.debug(
+                        `[refreshCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`,
+                    );
 
                     if (this.appDefinition.objId) {
                         this.adapter.log.warn(
@@ -306,23 +345,35 @@ export namespace AppType {
                     const displayText = text.replace('%u', '').trim();
 
                     if (displayText.length > 0) {
-                        await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText)).catch((error) => {
-                            this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`);
-                        });
+                        await this.apiClient
+                            .appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText))
+                            .catch(error => {
+                                this.adapter.log.warn(
+                                    `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`,
+                                );
+                            });
 
                         refreshed = true;
                     } else {
                         // Empty text => remove app
-                        this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`);
+                        this.adapter.log.debug(
+                            `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`,
+                        );
 
-                        await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                            this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`);
+                        await this.apiClient.removeAppAsync(this.appDefinition.name).catch(error => {
+                            this.adapter.log.warn(
+                                `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`,
+                            );
                         });
                     }
                 } else if (this.isBackgroundOny) {
-                    await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj('')).catch((error) => {
-                        this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with background only: ${error}`);
-                    });
+                    await this.apiClient
+                        .appRequestAsync(this.appDefinition.name, this.createAppRequestObj(''))
+                        .catch(error => {
+                            this.adapter.log.warn(
+                                `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with background only: ${error}`,
+                            );
+                        });
 
                     refreshed = true;
                 }
@@ -339,7 +390,9 @@ export namespace AppType {
                     if (state.ack) {
                         // Just refresh if value has changed
                         if (state.val !== this.objCache.val) {
-                            this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`);
+                            this.adapter.log.debug(
+                                `[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`,
+                            );
 
                             if (this.objCache.ts + this.ignoreNewValueForAppInTimeRange * 1000 < state.ts) {
                                 this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
@@ -361,7 +414,8 @@ export namespace AppType {
                                         this.cooldownTimeout = undefined;
 
                                         if (this.objCache) {
-                                            this.objCache.val = this.objCache.type === 'mixed' ? String(state.val) : state.val;
+                                            this.objCache.val =
+                                                this.objCache.type === 'mixed' ? String(state.val) : state.val;
                                             this.objCache.ts = state.ts;
 
                                             this.refresh();
@@ -372,7 +426,9 @@ export namespace AppType {
                             }
                         }
                     } else {
-                        this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" ignoring state change of "${id}" to ${state.val} - ack is false`);
+                        this.adapter.log.debug(
+                            `[onStateChange] "${this.appDefinition.name}" ignoring state change of "${id}" to ${state.val} - ack is false`,
+                        );
                     }
                 }
             }

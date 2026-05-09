@@ -1,7 +1,8 @@
-import { AwtrixLight } from '../../main';
-import { AwtrixApi } from '../api';
+import type { AwtrixLight } from '../../main';
+import type { AwtrixApi } from '../api';
 import { AppType as AbstractAppType } from './abstract';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     export class Native extends AbstractAppType.AbstractApp {
         public constructor(apiClient: AwtrixApi.Client, adapter: AwtrixLight, name: string) {

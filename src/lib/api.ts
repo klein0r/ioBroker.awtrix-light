@@ -1,6 +1,8 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { AwtrixLight } from '../main';
+import type { AxiosInstance, AxiosResponse } from 'axios';
+import axios from 'axios';
+import type { AwtrixLight } from '../main';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AwtrixApi {
     export type App = {
         text?: string;
@@ -57,7 +59,14 @@ export namespace AwtrixApi {
         private apiConnected: boolean = false;
         private lastErrorCode: number = -1;
 
-        public constructor(adapter: AwtrixLight, ipAddress: string, port: number, httpTimeout: number, userName: string, userPassword: string) {
+        public constructor(
+            adapter: AwtrixLight,
+            ipAddress: string,
+            port: number,
+            httpTimeout: number,
+            userName: string,
+            userPassword: string,
+        ) {
             this.adapter = adapter;
 
             this.adapter.log.info(`Starting - connecting to http://${ipAddress}:${port}/`);
@@ -74,7 +83,7 @@ export namespace AwtrixApi {
                 baseURL: `http://${ipAddress}:${port}/api/`,
                 timeout: httpTimeout * 1000 || 3000,
                 auth: httpAuth,
-                validateStatus: (status) => {
+                validateStatus: status => {
                     return [200, 201].indexOf(status) > -1;
                 },
                 responseType: 'json',
@@ -88,7 +97,7 @@ export namespace AwtrixApi {
         public async getStatsAsync(): Promise<any> {
             return new Promise<any>((resolve, reject) => {
                 this.requestAsync('stats', 'GET')
-                    .then(async (response) => {
+                    .then(async response => {
                         if (response.status === 200) {
                             this.apiConnected = true;
                             resolve(response.data);
@@ -96,7 +105,7 @@ export namespace AwtrixApi {
                             reject(response);
                         }
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         this.apiConnected = false;
                         reject(error);
                     });
@@ -107,7 +116,7 @@ export namespace AwtrixApi {
             return new Promise<boolean>((resolve, reject) => {
                 if (this.apiConnected) {
                     this.appRequestAsync(name)
-                        .then((response) => {
+                        .then(response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.adapter.log.debug(`[removeApp] Removed customApp app "${name}"`);
                                 resolve(true);
@@ -137,7 +146,9 @@ export namespace AwtrixApi {
         public async requestAsync(url: string, method?: string, data?: object | string): Promise<AxiosResponse> {
             return new Promise<AxiosResponse>((resolve, reject) => {
                 if (data) {
-                    this.adapter.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
+                    this.adapter.log.debug(
+                        `sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`,
+                    );
                 } else {
                     this.adapter.log.debug(`sending "${method}" request to "${url}" without data`);
                 }
@@ -150,22 +161,28 @@ export namespace AwtrixApi {
                         'Content-Type': typeof data === 'string' ? 'text/plain' : 'application/json',
                     },
                 })
-                    .then((response) => {
-                        this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
+                    .then(response => {
+                        this.adapter.log.debug(
+                            `received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`,
+                        );
 
                         // no error - clear up reminder
                         this.lastErrorCode = -1;
 
                         resolve(response);
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         if (error.response) {
                             // The request was made and the server responded with a status code
 
                             if (error.response.status === 401) {
-                                this.adapter.log.warn('Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!');
+                                this.adapter.log.warn(
+                                    'Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!',
+                                );
                             } else {
-                                this.adapter.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+                                this.adapter.log.warn(
+                                    `received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`,
+                                );
                             }
                         } else if (error.request) {
                             // The request was made but no response was received

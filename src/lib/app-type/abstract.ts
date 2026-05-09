@@ -1,6 +1,7 @@
-import { AwtrixLight } from '../../main';
-import { AwtrixApi } from '../api';
+import type { AwtrixLight } from '../../main';
+import type { AwtrixApi } from '../api';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     export abstract class AbstractApp {
         private name: string;
@@ -39,7 +40,9 @@ export namespace AppType {
         }
 
         protected getObjIdOwnNamespace(id: string): string {
-            return this.adapter.removeNamespace(this.isMainInstance() ? id : id.replace(this.objPrefix, this.adapter.namespace));
+            return this.adapter.removeNamespace(
+                this.isMainInstance() ? id : id.replace(this.objPrefix, this.adapter.namespace),
+            );
         }
 
         private hasOwnActivateState(): boolean {
@@ -49,7 +52,9 @@ export namespace AppType {
         public async createObjects(): Promise<void> {
             const appName = this.getName();
 
-            this.adapter.log.debug(`[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? 'main' : this.objPrefix})`);
+            this.adapter.log.debug(
+                `[createObjects] Creating objects for app "${appName}" (${this.isMainInstance() ? 'main' : this.objPrefix})`,
+            );
 
             if (this.hasOwnActivateState()) {
                 await this.adapter.extendObject(`apps.${appName}.activate`, {
@@ -90,10 +95,15 @@ export namespace AppType {
                 // Handle default states for all apps
                 if (state && !state.ack) {
                     // activate app
-                    if (id === `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`) {
+                    if (
+                        id ===
+                        `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`
+                    ) {
                         if (state.val) {
-                            this.apiClient!.requestAsync('switch', 'POST', { name: appName }).catch((error) => {
-                                this.adapter.log.warn(`[onStateChange] ${appName}: (switch) Unable to execute action: ${error}`);
+                            this.apiClient.requestAsync('switch', 'POST', { name: appName }).catch(error => {
+                                this.adapter.log.warn(
+                                    `[onStateChange] ${appName}: (switch) Unable to execute action: ${error}`,
+                                );
                             });
                         } else {
                             this.adapter.log.warn(`[onStateChange] ${appName}: Received invalid value for state ${id}`);

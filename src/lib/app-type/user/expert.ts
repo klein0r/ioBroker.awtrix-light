@@ -1,8 +1,9 @@
-import { AwtrixLight } from '../../../main';
-import { ExpertApp } from '../../adapter-config';
-import { AwtrixApi } from '../../api';
+import type { AwtrixLight } from '../../../main';
+import type { ExpertApp } from '../../adapter-config';
+import type { AwtrixApi } from '../../api';
 import { AppType as UserAppType } from '../user';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     export class Expert extends UserAppType.UserApp {
         private appDefinition: ExpertApp;
@@ -47,7 +48,9 @@ export namespace AppType {
                             try {
                                 this.baseObject = JSON.parse(appState.val as string);
                             } catch (err) {
-                                this.adapter.log.error(`[init] Failed to parse base object for expert app "${appName}": ${appState.val} (${err})`);
+                                this.adapter.log.error(
+                                    `[init] Failed to parse base object for expert app "${appName}": ${appState.val} (${err})`,
+                                );
                             }
                         }
 
@@ -60,7 +63,9 @@ export namespace AppType {
                 }
             }
 
-            this.adapter.log.debug(`[initExpertApp] current states of app "${appName}": ${JSON.stringify(this.appStates)}`);
+            this.adapter.log.debug(
+                `[initExpertApp] current states of app "${appName}": ${JSON.stringify(this.appStates)}`,
+            );
 
             return super.init();
         }
@@ -69,7 +74,9 @@ export namespace AppType {
             let refreshed = false;
 
             if (await super.refresh()) {
-                this.adapter.log.debug(`[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`);
+                this.adapter.log.debug(
+                    `[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`,
+                );
 
                 const app: AwtrixApi.App = {
                     ...this.baseObject,
@@ -88,13 +95,17 @@ export namespace AppType {
                         app.progress = this.appStates.progress;
 
                         // colors
-                        app.progressC = typeof this.appStates.progressC === 'string' ? this.appStates.progressC : '#00FF00';
-                        app.progressBC = typeof this.appStates.progressBC === 'string' ? this.appStates.progressBC : '#FFFFFF';
+                        app.progressC =
+                            typeof this.appStates.progressC === 'string' ? this.appStates.progressC : '#00FF00';
+                        app.progressBC =
+                            typeof this.appStates.progressBC === 'string' ? this.appStates.progressBC : '#FFFFFF';
                     }
                 }
 
-                await this.apiClient!.appRequestAsync(this.appDefinition.name, app).catch((error) => {
-                    this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
+                await this.apiClient.appRequestAsync(this.appDefinition.name, app).catch(error => {
+                    this.adapter.log.warn(
+                        `(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`,
+                    );
                 });
 
                 refreshed = true;
@@ -414,7 +425,9 @@ export namespace AppType {
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.scrollSpeed`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.percent`);
                 await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.color`);
-                await this.adapter.subscribeForeignStatesAsync(`${this.objPrefix}.apps.${appName}.progress.backgroundColor`);
+                await this.adapter.subscribeForeignStatesAsync(
+                    `${this.objPrefix}.apps.${appName}.progress.backgroundColor`,
+                );
             }
         }
 
@@ -433,7 +446,9 @@ export namespace AppType {
                         const attr = obj.native.attribute as string;
 
                         if (this.appStates[attr] !== state.val) {
-                            this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}": "${state.val}" (${obj?.native?.attribute})`);
+                            this.adapter.log.debug(
+                                `[onStateChange] New value for expert app "${appName}": "${state.val}" (${obj?.native?.attribute})`,
+                            );
 
                             this.appStates[attr] = state.val;
 
@@ -445,15 +460,27 @@ export namespace AppType {
                                 }, 100);
                             }
 
-                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                            await this.adapter.setState(idOwnNamespace, {
+                                val: state.val,
+                                ack: true,
+                                c: `onStateChange ${this.objPrefix}`,
+                            });
                         } else {
-                            this.adapter.log.debug(`[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`);
+                            this.adapter.log.debug(
+                                `[onStateChange] New value for expert app "${appName}" IGNORED (not changed): "${state.val}" (${obj?.native?.attribute})`,
+                            );
 
-                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                            await this.adapter.setState(idOwnNamespace, {
+                                val: state.val,
+                                ack: true,
+                                c: `onStateChange ${this.objPrefix} (unchanged)`,
+                            });
                         }
                     } else if (obj && obj?.native?.isBaseObject) {
                         try {
-                            this.adapter.log.debug(`[onStateChange] New base object for expert app "${appName}": ${state.val}`);
+                            this.adapter.log.debug(
+                                `[onStateChange] New base object for expert app "${appName}": ${state.val}`,
+                            );
 
                             this.baseObject = JSON.parse(state.val as string); // test parse
 
@@ -465,11 +492,21 @@ export namespace AppType {
                                 }, 100);
                             }
 
-                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                            await this.adapter.setState(idOwnNamespace, {
+                                val: state.val,
+                                ack: true,
+                                c: `onStateChange ${this.objPrefix}`,
+                            });
                         } catch (err) {
-                            this.adapter.log.error(`[onStateChange] Failed to parse base object for expert app "${appName}": ${state.val} (${err})`);
+                            this.adapter.log.error(
+                                `[onStateChange] Failed to parse base object for expert app "${appName}": ${state.val} (${err})`,
+                            );
 
-                            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: false, c: `onStateChange ${this.objPrefix} (error ${err})` });
+                            await this.adapter.setState(idOwnNamespace, {
+                                val: state.val,
+                                ack: false,
+                                c: `onStateChange ${this.objPrefix} (error ${err})`,
+                            });
                         }
                     }
                 }

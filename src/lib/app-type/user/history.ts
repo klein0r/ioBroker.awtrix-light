@@ -1,8 +1,9 @@
-import { AwtrixLight } from '../../../main';
-import { HistoryApp } from '../../adapter-config';
-import { AwtrixApi } from '../../api';
+import type { AwtrixLight } from '../../../main';
+import type { HistoryApp } from '../../adapter-config';
+import type { AwtrixApi } from '../../api';
 import { AppType as UserAppType } from '../user';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     export type HistoryOptions = {
         start: number;
@@ -41,31 +42,49 @@ export namespace AppType {
 
         public override async init(): Promise<boolean> {
             if (this.appDefinition.sourceInstance) {
-                const sourceInstanceObj = await this.adapter.getForeignObjectAsync(`system.adapter.${this.appDefinition.sourceInstance}`);
+                const sourceInstanceObj = await this.adapter.getForeignObjectAsync(
+                    `system.adapter.${this.appDefinition.sourceInstance}`,
+                );
 
                 if (sourceInstanceObj && sourceInstanceObj.common?.getHistory) {
-                    const sourceInstanceAliveState = await this.adapter.getForeignStateAsync(`system.adapter.${this.appDefinition.sourceInstance}.alive`);
+                    const sourceInstanceAliveState = await this.adapter.getForeignStateAsync(
+                        `system.adapter.${this.appDefinition.sourceInstance}.alive`,
+                    );
 
                     if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
-                        this.adapter.log.debug(`[initHistoryApp] Found valid source instance for history data: ${this.appDefinition.sourceInstance}`);
+                        this.adapter.log.debug(
+                            `[initHistoryApp] Found valid source instance for history data: ${this.appDefinition.sourceInstance}`,
+                        );
 
                         this.isValidSourceInstance = true;
                     } else {
-                        this.adapter.log.warn(`[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": instance not running (stopped)`);
+                        this.adapter.log.warn(
+                            `[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": instance not running (stopped)`,
+                        );
                     }
                 } else {
-                    this.adapter.log.warn(`[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": no valid source for getHistory()`);
+                    this.adapter.log.warn(
+                        `[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": no valid source for getHistory()`,
+                    );
                 }
             }
 
             if (this.appDefinition.objId) {
-                this.adapter.log.debug(`[initHistoryApp] getting history data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" from ${this.appDefinition.sourceInstance}`);
+                this.adapter.log.debug(
+                    `[initHistoryApp] getting history data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" from ${this.appDefinition.sourceInstance}`,
+                );
 
                 try {
                     if (this.isValidSourceInstance) {
                         const sourceObj = await this.adapter.getForeignObjectAsync(this.appDefinition.objId);
 
-                        if (sourceObj && Object.prototype.hasOwnProperty.call(sourceObj?.common?.custom ?? {}, this.appDefinition.sourceInstance)) {
+                        if (
+                            sourceObj &&
+                            Object.prototype.hasOwnProperty.call(
+                                sourceObj?.common?.custom ?? {},
+                                this.appDefinition.sourceInstance,
+                            )
+                        ) {
                             this.isValidObjId = true;
                         } else {
                             this.adapter.log.info(
@@ -73,10 +92,14 @@ export namespace AppType {
                             );
                         }
                     } else {
-                        this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`);
+                        this.adapter.log.info(
+                            `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`,
+                        );
                     }
                 } catch (error) {
-                    this.adapter.log.error(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${error}`);
+                    this.adapter.log.error(
+                        `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${error}`,
+                    );
                 }
             }
 
@@ -140,29 +163,39 @@ export namespace AppType {
                         moreOptions.line = graphData;
                     }
 
-                    await this.apiClient!.appRequestAsync(this.appDefinition.name, {
-                        color: this.appDefinition.lineColor || '#FF0000',
-                        background: this.appDefinition.backgroundColor || '#000000',
-                        autoscale: true,
-                        icon: this.appDefinition.icon,
-                        lifetime: this.adapter.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
-                        pos: this.appDefinition.position,
-                        ...moreOptions,
-                    }).catch((error) => {
-                        this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`);
-                    });
+                    await this.apiClient
+                        .appRequestAsync(this.appDefinition.name, {
+                            color: this.appDefinition.lineColor || '#FF0000',
+                            background: this.appDefinition.backgroundColor || '#000000',
+                            autoscale: true,
+                            icon: this.appDefinition.icon,
+                            lifetime: this.adapter.config.historyAppsRefreshInterval + 60, // Remove app if there is no update in configured interval (+ buffer)
+                            pos: this.appDefinition.position,
+                            ...moreOptions,
+                        })
+                        .catch(error => {
+                            this.adapter.log.warn(
+                                `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`,
+                            );
+                        });
 
                     refreshed = true;
                 } else {
-                    this.adapter.log.debug(`[refreshHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`);
+                    this.adapter.log.debug(
+                        `[refreshHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`,
+                    );
 
-                    await this.apiClient!.removeAppAsync(this.appDefinition.name).catch((error) => {
-                        this.adapter.log.warn(`[refreshHistoryApp] Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`);
+                    await this.apiClient.removeAppAsync(this.appDefinition.name).catch(error => {
+                        this.adapter.log.warn(
+                            `[refreshHistoryApp] Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`,
+                        );
                     });
                 }
             }
 
-            this.adapter.log.debug(`re-creating history apps timeout (${this.adapter.config.historyAppsRefreshInterval ?? 300} seconds)`);
+            this.adapter.log.debug(
+                `re-creating history apps timeout (${this.adapter.config.historyAppsRefreshInterval ?? 300} seconds)`,
+            );
             this.refreshTimeout =
                 this.refreshTimeout ||
                 this.adapter.setTimeout(

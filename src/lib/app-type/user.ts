@@ -1,8 +1,9 @@
-import { AwtrixLight } from '../../main';
-import { DefaultApp } from '../adapter-config';
-import { AwtrixApi } from '../api';
+import type { AwtrixLight } from '../../main';
+import type { DefaultApp } from '../adapter-config';
+import type { AwtrixApi } from '../api';
 import { AppType as AbstractAppType } from './abstract';
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace AppType {
     export abstract class UserApp extends AbstractAppType.AbstractApp {
         private definition: DefaultApp;
@@ -20,7 +21,9 @@ export namespace AppType {
 
         public async init(): Promise<boolean> {
             const appName = this.getName();
-            const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
+            const appVisibleState = await this.adapter.getForeignStateAsync(
+                `${this.objPrefix}.apps.${appName}.visible`,
+            );
             this.isVisible = appVisibleState ? !!appVisibleState.val : true;
 
             // Ack if changed while instance was stopped
@@ -35,7 +38,7 @@ export namespace AppType {
             if (!this.isVisible && this.apiClient.isConnected()) {
                 // Hide app automatically
                 const appName = this.getName();
-                this.apiClient.removeAppAsync(appName).catch((error) => {
+                this.apiClient.removeAppAsync(appName).catch(error => {
                     this.adapter.log.warn(`[refreshApp] Unable to remove hidden app "${appName}": ${error}`);
                 });
             }
@@ -83,7 +86,7 @@ export namespace AppType {
                 this.adapter.log.info(`[onUnload] Deleting app on awtrix light with name "${this.definition.name}"`);
 
                 try {
-                    await this.apiClient.removeAppAsync(this.definition.name).catch((error) => {
+                    await this.apiClient.removeAppAsync(this.definition.name).catch(error => {
                         this.adapter.log.warn(`Unable to remove unknown app "${this.definition.name}": ${error}`);
                     });
                 } catch (error) {
@@ -100,16 +103,28 @@ export namespace AppType {
 
                 if (id === `${this.objPrefix}.apps.${appName}.visible`) {
                     if (state.val !== this.isVisible) {
-                        this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`);
+                        this.adapter.log.debug(
+                            `[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`,
+                        );
 
                         this.isVisible = !!state.val;
 
                         await this.refresh();
-                        await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+                        await this.adapter.setState(idOwnNamespace, {
+                            val: state.val,
+                            ack: true,
+                            c: `onStateChange ${this.objPrefix}`,
+                        });
                     } else {
-                        this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
+                        this.adapter.log.debug(
+                            `[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`,
+                        );
 
-                        await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+                        await this.adapter.setState(idOwnNamespace, {
+                            val: state.val,
+                            ack: true,
+                            c: `onStateChange ${this.objPrefix} (unchanged)`,
+                        });
                     }
                 }
             }

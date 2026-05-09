@@ -7,5 +7,5 @@ export function rgb565to888(val: number): number {
 }
 
 export function rgb565to888Str(val: number): string {
-    return '#' + rgb565to888(val).toString(16).toUpperCase().padStart(6, '0');
+    return `#${rgb565to888(val).toString(16).toUpperCase().padStart(6, '0')}`;
 }
