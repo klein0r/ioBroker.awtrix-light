@@ -1074,6 +1074,7 @@
       }
     },
     {
+      "_id": "meta",
       "type": "channel",
       "common": {
         "name": {
