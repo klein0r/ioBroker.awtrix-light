@@ -208,7 +208,7 @@ class AwtrixLight extends utils.Adapter {
       if (this.apiClient.isConnected()) {
         if (idNoNamespace === "settings.overlay") {
           this.log.debug(`changing overlay to ${state.val}`);
-          this.apiClient.requestAsync("settings", "POST", { overlay: state.val }).then(async (response) => {
+          this.apiClient.requestAsync("settings", "POST", { OVERLAY: state.val }).then(async (response) => {
             if (response.status === 200 && response.data === "OK") {
               await this.setState(idNoNamespace, { val: state.val, ack: true });
             }
