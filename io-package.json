@@ -1069,10 +1069,11 @@
           "frost": "frost"
         }
       },
-      "native": {}
+      "native": {
+        "settingsKey": "OVERLAY"
+      }
     },
     {
-      "_id": "meta",
       "type": "channel",
       "common": {
         "name": {
