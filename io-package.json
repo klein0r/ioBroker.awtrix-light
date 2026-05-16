@@ -1038,6 +1038,42 @@
       }
     },
     {
+      "_id": "settings.overlay",
+      "type": "state",
+      "common": {
+        "name": {
+          "en": "Overlay effect",
+          "de": "Overlay-Effekt",
+          "ru": "Эффект наложения",
+          "pt": "Efeito de sobreposição",
+          "nl": "Overlay-effect",
+          "fr": "Effet de superposition",
+          "it": "Effetto overlay",
+          "es": "Efecto de superposición",
+          "pl": "Efekt nakładki",
+          "uk": "Ефект накладення",
+          "zh-cn": "叠加效果"
+        },
+        "type": "string",
+        "role": "text",
+        "read": true,
+        "write": true,
+        "def": "clear",
+        "states": {
+          "clear": "clear",
+          "rain": "rain",
+          "drizzle": "drizzle",
+          "snow": "snow",
+          "storm": "storm",
+          "thunder": "thunder",
+          "frost": "frost"
+        }
+      },
+      "native": {
+        "settingsKey": "OVERLAY"
+      }
+    },
+    {
       "_id": "meta",
       "type": "channel",
       "common": {
