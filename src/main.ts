@@ -326,7 +326,7 @@ export class AwtrixLight extends utils.Adapter {
                             }
                         })
                         .catch(error => {
-                            this.log.warn(`(power) Unable to execute action: ${error}`);
+                            this.log.warn(`(sleep) Unable to execute action: ${error}`);
                         });
                 } else if (idNoNamespace.startsWith('display.moodlight.')) {
                     this.updateMoodlightByStates()
