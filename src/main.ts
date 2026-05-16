@@ -284,7 +284,19 @@ export class AwtrixLight extends utils.Adapter {
             this.log.debug(`state ${idNoNamespace} changed: ${state.val}`);
 
             if (this.apiClient!.isConnected()) {
-                if (idNoNamespace.startsWith('settings.')) {
+                if (idNoNamespace === 'settings.overlay') {
+                    this.log.debug(`changing overlay to ${state.val}`);
+
+                    this.apiClient!.requestAsync('settings', 'POST', { OVERLAY: state.val })
+                        .then(async response => {
+                            if (response.status === 200 && response.data === 'OK') {
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        })
+                        .catch(error => {
+                            this.log.warn(`(settings.overlay) Unable to execute action: ${error}`);
+                        });
+                } else if (idNoNamespace.startsWith('settings.')) {
                     this.log.debug(`changing setting ${idNoNamespace} power to ${state.val}`);
 
                     const settingsObj = await this.getObjectAsync(idNoNamespace);
