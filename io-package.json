@@ -1042,17 +1042,17 @@
       "type": "state",
       "common": {
         "name": {
-          "en": "Overlay effect",
-          "de": "Overlay-Effekt",
-          "ru": "Эффект наложения",
-          "pt": "Efeito de sobreposição",
-          "nl": "Overlay-effect",
-          "fr": "Effet de superposition",
-          "it": "Effetto overlay",
-          "es": "Efecto de superposición",
-          "pl": "Efekt nakładki",
-          "uk": "Ефект накладення",
-          "zh-cn": "叠加效果"
+          "en": "Overlay effect (global)",
+          "de": "Overlay-Effekt (global)",
+          "ru": "Эффект наложения (глобальный)",
+          "pt": "Efeito de sobreposição (global)",
+          "nl": "Overlay-effect (globaal)",
+          "fr": "Effet de recouvrement (global)",
+          "it": "Effetto sovrapposizione (globale)",
+          "es": "Efecto superpuesto (global)",
+          "pl": "Efekt ogólny",
+          "uk": "Накладка ефекту (глобальне)",
+          "zh-cn": "重叠效应(全球)"
         },
         "type": "string",
         "role": "text",

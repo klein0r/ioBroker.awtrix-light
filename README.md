@@ -45,6 +45,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 -->
 ### **WORK IN PROGRESS**
 
+* (Brainbug01) Added option/setting for global overlay
 * (copilot) Adapter requires node.js >= 22 now
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 
