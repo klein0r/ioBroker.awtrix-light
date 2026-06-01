@@ -695,7 +695,9 @@ export class AwtrixLight extends utils.Adapter {
                 this.currentVersion = undefined;
 
                 this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
-                await this.setApiConnected(false);
+                this.setApiConnected(false).catch(error => {
+                    this.log.warn(`[refreshState] Set API connected to false failed`);
+                });
             });
 
         this.log.debug('re-creating refresh state timeout');
