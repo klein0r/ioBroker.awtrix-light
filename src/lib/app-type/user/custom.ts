@@ -399,7 +399,7 @@ export namespace AppType {
                                 this.objCache.ts = state.ts;
 
                                 this.clearCooldownTimeout();
-                                this.refresh();
+                                await this.refresh();
                             } else {
                                 this.adapter.log.debug(
                                     `[onStateChange] "${this.appDefinition.name}" ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${
@@ -410,7 +410,7 @@ export namespace AppType {
                                 // Set this value as the new value if no new value arrives
                                 this.clearCooldownTimeout();
                                 this.cooldownTimeout = this.adapter.setTimeout(
-                                    () => {
+                                    async () => {
                                         this.cooldownTimeout = undefined;
 
                                         if (this.objCache) {
@@ -418,7 +418,7 @@ export namespace AppType {
                                                 this.objCache.type === 'mixed' ? String(state.val) : state.val;
                                             this.objCache.ts = state.ts;
 
-                                            this.refresh();
+                                            await this.refresh();
                                         }
                                     },
                                     (this.ignoreNewValueForAppInTimeRange + 1) * 1000, // +1 seconds
@@ -443,7 +443,7 @@ export namespace AppType {
                         this.objCache.type = obj?.common.type;
                         this.objCache.unit = obj?.common?.unit;
 
-                        this.refresh();
+                        await this.refresh();
                     }
                 }
             }

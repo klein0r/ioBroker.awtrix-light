@@ -97,17 +97,17 @@ export namespace AwtrixApi {
         public async getStatsAsync(): Promise<any> {
             return new Promise<any>((resolve, reject) => {
                 this.requestAsync('stats', 'GET')
-                    .then(async response => {
+                    .then(response => {
                         if (response.status === 200) {
                             this.apiConnected = true;
                             resolve(response.data);
                         } else {
-                            reject(response);
+                            reject(new Error(`Request failed with status ${response.status}`, { cause: response }));
                         }
                     })
                     .catch(error => {
                         this.apiConnected = false;
-                        reject(error);
+                        reject(error instanceof Error ? error : new Error(String(error)));
                     });
             });
         }
@@ -121,12 +121,12 @@ export namespace AwtrixApi {
                                 this.adapter.log.debug(`[removeApp] Removed customApp app "${name}"`);
                                 resolve(true);
                             } else {
-                                reject(`${response.status}: ${response.data}`);
+                                reject(new Error(`${response.status}: ${response.data}`, { cause: response }));
                             }
                         })
                         .catch(reject);
                 } else {
-                    reject('API not connected');
+                    reject(new Error('API not connected'));
                 }
             });
         }
@@ -201,7 +201,7 @@ export namespace AwtrixApi {
                             this.adapter.log.error(error.message);
                         }
 
-                        reject(error);
+                        reject(error instanceof Error ? error : new Error(String(error)));
                     });
             });
         }

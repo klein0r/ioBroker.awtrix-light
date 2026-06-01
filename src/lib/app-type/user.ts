@@ -34,6 +34,7 @@ export namespace AppType {
             return this.isVisible;
         }
 
+        // eslint-disable-next-line @typescript-eslint/require-await
         public async refresh(): Promise<boolean> {
             if (!this.isVisible && this.apiClient.isConnected()) {
                 // Hide app automatically

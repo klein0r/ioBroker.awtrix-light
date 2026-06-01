@@ -136,7 +136,7 @@ export class AwtrixLight extends utils.Adapter {
     }
 
     private async onReady(): Promise<void> {
-        this.setApiConnected(false);
+        await this.setApiConnected(false);
 
         await this.upgradeFromPreviousVersion();
         await this.subscribeStatesAsync('*');
@@ -322,7 +322,7 @@ export class AwtrixLight extends utils.Adapter {
                         .then(async response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 await this.setState(idNoNamespace, { val: state.val, ack: true });
-                                this.setApiConnected(false);
+                                await this.setApiConnected(false);
                             }
                         })
                         .catch(error => {
@@ -345,7 +345,7 @@ export class AwtrixLight extends utils.Adapter {
                         .then(async response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('started firmware update');
-                                this.setApiConnected(false);
+                                await this.setApiConnected(false);
                             }
                         })
                         .catch(error => {
@@ -358,7 +358,7 @@ export class AwtrixLight extends utils.Adapter {
                         .then(async response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('rebooting device');
-                                this.setApiConnected(false);
+                                await this.setApiConnected(false);
                             }
                         })
                         .catch(error => {
@@ -366,7 +366,7 @@ export class AwtrixLight extends utils.Adapter {
                         });
                 } else if (idNoNamespace === 'notification.dismiss') {
                     this.apiClient!.requestAsync('notify/dismiss', 'POST')
-                        .then(async response => {
+                        .then(response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('dismissed notifications');
                             }
@@ -664,7 +664,7 @@ export class AwtrixLight extends utils.Adapter {
                 this.currentVersion = String(content.version);
 
                 if (this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
-                    this.registerNotification(
+                    await this.registerNotification(
                         'awtrix-light',
                         'deviceUpdate',
                         `Firmware update: ${this.currentVersion} -> ${this.supportedVersion}`,
@@ -695,7 +695,7 @@ export class AwtrixLight extends utils.Adapter {
                 this.currentVersion = undefined;
 
                 this.log.debug(`(stats) received error - API is now offline: ${JSON.stringify(error)}`);
-                this.setApiConnected(false);
+                await this.setApiConnected(false);
             });
 
         this.log.debug('re-creating refresh state timeout');
@@ -737,7 +737,7 @@ export class AwtrixLight extends utils.Adapter {
                                 if (knownSettings[settingsKey].role === 'level.color.rgb') {
                                     const newVal = rgb565to888Str(val as number);
                                     this.log.debug(
-                                        `[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${newVal} (converted from ${val})`,
+                                        `[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${newVal} (converted from ${String(val)})`,
                                     );
 
                                     await this.setStateChangedAsync(knownSettings[settingsKey].id, {
@@ -747,7 +747,7 @@ export class AwtrixLight extends utils.Adapter {
                                     });
                                 } else {
                                     this.log.debug(
-                                        `[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${val}`,
+                                        `[refreshSettings] updating settings value "${knownSettings[settingsKey].id}" to ${String(val)}`,
                                     );
 
                                     await this.setStateChangedAsync(knownSettings[settingsKey].id, {

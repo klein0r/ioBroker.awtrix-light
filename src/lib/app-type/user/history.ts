@@ -199,9 +199,9 @@ export namespace AppType {
             this.refreshTimeout =
                 this.refreshTimeout ||
                 this.adapter.setTimeout(
-                    () => {
+                    async () => {
                         this.refreshTimeout = undefined;
-                        this.refresh();
+                        await this.refresh();
                     },
                     this.adapter.config.historyAppsRefreshInterval * 1000 || 5 * 60 * 1000,
                 );
