@@ -80,13 +80,13 @@ export namespace AppType {
 
                 const app: AwtrixApi.App = {
                     ...this.baseObject,
-                    text: typeof this.appStates.text === 'string' ? this.appStates.text : '',
+                    text: typeof this.appStates.text === 'string' && this.appStates.text !== '' ? this.appStates.text : (this.baseObject.text ?? ''),
                     textCase: 2, // show as sent
-                    color: typeof this.appStates.color === 'string' ? this.appStates.color : '#FFFFFF',
-                    background: typeof this.appStates.background === 'string' ? this.appStates.background : '#000000',
-                    icon: typeof this.appStates.icon === 'string' ? this.appStates.icon : '',
-                    duration: typeof this.appStates.duration === 'number' ? this.appStates.duration : 0,
-                    scrollSpeed: typeof this.appStates.scrollSpeed === 'number' ? this.appStates.scrollSpeed : 100,
+                    color: typeof this.appStates.color === 'string' && this.appStates.color !== '' ? this.appStates.color : (this.baseObject.color ?? '#FFFFFF'),
+                    background: typeof this.appStates.background === 'string' && this.appStates.background !== '' ? this.appStates.background : (this.baseObject.background ?? '#000000'),
+                    icon: typeof this.appStates.icon === 'string' && this.appStates.icon !== '' ? this.appStates.icon : (this.baseObject.icon ?? ''),
+                    duration: typeof this.appStates.duration === 'number' && this.appStates.duration !== 0 ? this.appStates.duration : (this.baseObject.duration ?? 0),
+                    scrollSpeed: typeof this.appStates.scrollSpeed === 'number' && this.appStates.scrollSpeed !== 100 ? this.appStates.scrollSpeed : (this.baseObject.scrollSpeed ?? 100),
                     pos: this.appDefinition.position,
                 };
 
@@ -96,9 +96,9 @@ export namespace AppType {
 
                         // colors
                         app.progressC =
-                            typeof this.appStates.progressC === 'string' ? this.appStates.progressC : '#00FF00';
+                            typeof this.appStates.progressC === 'string' && this.appStates.progressC !== '' ? this.appStates.progressC : (this.baseObject.progressC ?? '#00FF00');
                         app.progressBC =
-                            typeof this.appStates.progressBC === 'string' ? this.appStates.progressBC : '#FFFFFF';
+                            typeof this.appStates.progressBC === 'string' && this.appStates.progressBC !== '' ? this.appStates.progressBC : (this.baseObject.progressBC ?? '#FFFFFF');
                     }
                 }
 
