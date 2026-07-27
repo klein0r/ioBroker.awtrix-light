@@ -955,24 +955,25 @@ export class AwtrixLight extends utils.Adapter {
             {},
         );
 
-        const postObj: AwtrixApi.Indicator = {
-            color: indicatorValues[`indicator.${index}.color`] as string,
-        };
+        if (indicatorValues[`indicator.${index}.active`]) {
+            const indicator: AwtrixApi.Indicator = {
+                color: indicatorValues[`indicator.${index}.color`] as string,
+            };
 
-        if (postObj.color !== '0') {
-            const blink = indicatorValues[`indicator.${index}.blink`] as number;
-            if (blink > 0) {
-                postObj.blink = blink;
-            } else {
-                const fade = indicatorValues[`indicator.${index}.fade`] as number;
-                postObj.fade = fade;
+            if (indicator.color !== '0') {
+                const blink = indicatorValues[`indicator.${index}.blink`] as number;
+                if (blink > 0) {
+                    indicator.blink = blink;
+                } else {
+                    const fade = indicatorValues[`indicator.${index}.fade`] as number;
+                    indicator.fade = fade;
+                }
             }
-        }
 
-        return this.apiClient!.indicatorRequestAsync(
-            index,
-            indicatorValues[`indicator.${index}.active`] ? postObj : undefined,
-        );
+            return this.apiClient!.indicatorRequestAsync(index, indicator);
+        } else {
+            return this.apiClient!.indicatorRequestAsync(index, undefined);
+        }
     }
 
     private async updateMoodlightByStates(): Promise<AxiosResponse> {
