@@ -101,7 +101,8 @@ export namespace AppType {
                             this.apiClient.requestAsync('switch', 'POST', { name: appName })
                                 .then(async response => {
                                     if (response.status === 200 && response.data === 'OK') {
-                                        await this.adapter.setForeignStateAsync(id, { val: state.val, ack: true });
+                                        const idOwnNamespace = this.getObjIdOwnNamespace(id);
+                                        await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true });
                                     }
                                 })
                                 .catch(error => {
