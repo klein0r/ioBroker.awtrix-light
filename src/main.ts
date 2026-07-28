@@ -358,6 +358,8 @@ export class AwtrixLight extends utils.Adapter {
                         .then(async response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('rebooting device');
+
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
                                 await this.setApiConnected(false);
                             }
                         })
@@ -366,9 +368,11 @@ export class AwtrixLight extends utils.Adapter {
                         });
                 } else if (idNoNamespace === 'notification.dismiss') {
                     this.apiClient!.requestAsync('notify/dismiss', 'POST')
-                        .then(response => {
+                        .then(async response => {
                             if (response.status === 200 && response.data === 'OK') {
                                 this.log.info('dismissed notifications');
+
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
                             }
                         })
                         .catch(error => {
@@ -377,15 +381,27 @@ export class AwtrixLight extends utils.Adapter {
                 } else if (idNoNamespace === 'apps.next') {
                     this.log.debug('switching to next app');
 
-                    this.apiClient!.requestAsync('nextapp', 'POST').catch(error => {
-                        this.log.warn(`(nextapp) Unable to execute action: ${error}`);
-                    });
+                    this.apiClient!.requestAsync('nextapp', 'POST')
+                        .then(async response => {
+                            if (response.status === 200) {
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        })
+                        .catch(error => {
+                            this.log.warn(`(nextapp) Unable to execute action: ${error}`);
+                        });
                 } else if (idNoNamespace === 'apps.prev') {
                     this.log.debug('switching to previous app');
 
-                    this.apiClient!.requestAsync('previousapp', 'POST').catch(error => {
-                        this.log.warn(`(previousapp) Unable to execute action: ${error}`);
-                    });
+                    this.apiClient!.requestAsync('previousapp', 'POST')
+                        .then(async response => {
+                            if (response.status === 200) {
+                                await this.setState(idNoNamespace, { val: state.val, ack: true });
+                            }
+                        })
+                        .catch(error => {
+                            this.log.warn(`(previousapp) Unable to execute action: ${error}`);
+                        });
                 } else if (idNoNamespace.match(/indicator\.[0-9]{1}\..*$/g)) {
                     const matches = idNoNamespace.match(/indicator\.([0-9]{1})\.(.*)$/);
                     const indicatorNo = matches ? parseInt(matches[1]) : undefined;
@@ -988,16 +1004,16 @@ export class AwtrixLight extends utils.Adapter {
             {},
         );
 
-        const postObj: AwtrixApi.Moodlight = {
-            brightness: moodlightValues['display.moodlight.brightness'] as number,
-            color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
-        };
+        if (moodlightValues['display.moodlight.active']) {
+            const moodlight: AwtrixApi.Moodlight = {
+                brightness: moodlightValues['display.moodlight.brightness'] as number,
+                color: String(moodlightValues['display.moodlight.color']).toUpperCase(),
+            };
 
-        return this.apiClient!.requestAsync(
-            'moodlight',
-            'POST',
-            moodlightValues['display.moodlight.active'] ? postObj : undefined,
-        );
+            return this.apiClient!.requestAsync('moodlight', 'POST', moodlight);
+        } else {
+            return this.apiClient!.requestAsync('moodlight', 'POST', undefined);
+        }
     }
 
     public removeNamespace(id: string): string {

@@ -90,8 +90,6 @@ export namespace AppType {
             const appName = this.getName();
 
             if (id) {
-                this.adapter.log.debug(`[onStateChange] ${appName}: State change "${id}": ${JSON.stringify(state)}`);
-
                 // Handle default states for all apps
                 if (state && !state.ack) {
                     // activate app
