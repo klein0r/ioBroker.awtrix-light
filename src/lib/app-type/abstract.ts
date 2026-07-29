@@ -98,7 +98,8 @@ export namespace AppType {
                         `${this.hasOwnActivateState() ? this.adapter.namespace : this.objPrefix}.apps.${appName}.activate`
                     ) {
                         if (state.val) {
-                            this.apiClient.requestAsync('switch', 'POST', { name: appName })
+                            this.apiClient
+                                .requestAsync('switch', 'POST', { name: appName })
                                 .then(async response => {
                                     if (response.status === 200 && response.data === 'OK') {
                                         const idOwnNamespace = this.getObjIdOwnNamespace(id);

@@ -987,9 +987,9 @@ export class AwtrixLight extends utils.Adapter {
             }
 
             return this.apiClient!.indicatorRequestAsync(index, indicator);
-        } else {
-            return this.apiClient!.indicatorRequestAsync(index, undefined);
         }
+
+        return this.apiClient!.indicatorRequestAsync(index, undefined);
     }
 
     private async updateMoodlightByStates(): Promise<AxiosResponse> {
@@ -1011,9 +1011,9 @@ export class AwtrixLight extends utils.Adapter {
             };
 
             return this.apiClient!.requestAsync('moodlight', 'POST', moodlight);
-        } else {
-            return this.apiClient!.requestAsync('moodlight', 'POST', undefined);
         }
+
+        return this.apiClient!.requestAsync('moodlight', 'POST', undefined);
     }
 
     public removeNamespace(id: string): string {
