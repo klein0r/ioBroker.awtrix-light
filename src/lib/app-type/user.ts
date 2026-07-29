@@ -1,4 +1,4 @@
-import type { AwtrixLight } from '../../main';
+import type { AwtrixLight } from '../../awtrix-light';
 import type { DefaultApp } from '../adapter-config';
 import type { AwtrixApi } from '../api';
 import { AppType as AbstractAppType } from './abstract';

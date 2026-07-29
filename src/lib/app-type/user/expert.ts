@@ -1,4 +1,4 @@
-import type { AwtrixLight } from '../../../main';
+import type { AwtrixLight } from '../../../awtrix-light';
 import type { ExpertApp } from '../../adapter-config';
 import type { AwtrixApi } from '../../api';
 import { AppType as UserAppType } from '../user';
