@@ -2,7 +2,7 @@
  * Created with @iobroker/create-adapter v2.5.0
  */
 
-import * as utils from '@iobroker/adapter-core';
+import type * as utils from '@iobroker/adapter-core';
 import { AwtrixLight } from './awtrix-light';
 
 if (require.main !== module) {
