@@ -360,7 +360,7 @@
           "zh-cn": "延长期限"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "sec",
         "read": true,
         "write": true,
@@ -388,7 +388,7 @@
           "zh-cn": "二. 向下一份报告过渡速度"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -521,7 +521,7 @@
           "zh-cn": "B. 权利"
         },
         "type": "number",
-        "role": "value",
+        "role": "level",
         "read": true,
         "write": true,
         "min": 0,
@@ -601,7 +601,7 @@
           "zh-cn": "过渡效果"
         },
         "type": "number",
-        "role": "value",
+        "role": "state",
         "read": true,
         "write": true,
         "def": 0
@@ -628,7 +628,7 @@
           "zh-cn": "时间的选择"
         },
         "type": "number",
-        "role": "value",
+        "role": "state",
         "read": true,
         "write": true,
         "def": 1
@@ -999,11 +999,12 @@
           "zh-cn": "案文加速"
         },
         "type": "number",
-        "role": "value",
+        "role": "level",
         "read": true,
         "write": true,
         "min": 1,
-        "max": 100
+        "max": 100,
+        "unit": "%"
       },
       "native": {
         "settingsKey": "SSPEED"
@@ -1027,7 +1028,7 @@
           "zh-cn": "声音的音量"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.volume",
         "read": true,
         "write": true,
         "min": 0,
@@ -1326,7 +1327,7 @@
           "zh-cn": "时间"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.timer",
         "read": true,
         "write": false,
         "unit": "sec"
@@ -1351,8 +1352,8 @@
           "zh-cn": "Sleep模式"
         },
         "type": "number",
-        "role": "value",
-        "read": false,
+        "role": "level.timer.sleep",
+        "read": true,
         "write": true,
         "unit": "sec"
       },
@@ -1396,7 +1397,7 @@
           "zh-cn": "照 传"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.brightness",
         "unit": "Lux",
         "read": true,
         "write": false
@@ -1421,7 +1422,7 @@
           "zh-cn": "模范"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.temperature",
         "unit": "°C",
         "read": true,
         "write": false
@@ -1446,7 +1447,7 @@
           "zh-cn": "死 情"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.humidity",
         "unit": "%",
         "read": true,
         "write": false
@@ -1491,7 +1492,7 @@
           "zh-cn": "B. 引起争议"
         },
         "type": "boolean",
-        "role": "indicator",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": true
@@ -1529,7 +1530,7 @@
           "zh-cn": "B. 通过环境改变光明"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.brightness",
         "read": true,
         "write": false
       },
@@ -1610,7 +1611,7 @@
           "zh-cn": "精算师"
         },
         "type": "boolean",
-        "role": "indicator",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": false
@@ -1635,7 +1636,7 @@
           "zh-cn": "B. 权利"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.brightness",
         "read": true,
         "write": true,
         "def": 0,
@@ -1807,7 +1808,7 @@
           "zh-cn": "精算师"
         },
         "type": "boolean",
-        "role": "indicator",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": false
@@ -1832,7 +1833,7 @@
           "zh-cn": "B. 联系"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -1859,7 +1860,7 @@
           "zh-cn": "间隔"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -1944,7 +1945,7 @@
           "zh-cn": "精算师"
         },
         "type": "boolean",
-        "role": "indicator",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": false
@@ -1969,7 +1970,7 @@
           "zh-cn": "B. 联系"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -1996,7 +1997,7 @@
           "zh-cn": "间隔"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -2081,7 +2082,7 @@
           "zh-cn": "精算师"
         },
         "type": "boolean",
-        "role": "indicator",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": false
@@ -2106,7 +2107,7 @@
           "zh-cn": "B. 联系"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,
@@ -2133,7 +2134,7 @@
           "zh-cn": "间隔"
         },
         "type": "number",
-        "role": "value",
+        "role": "level.timer",
         "unit": "ms",
         "read": true,
         "write": true,

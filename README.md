@@ -22,7 +22,7 @@
 
 Integrate your [Awtrix 3 (Awtrix Light)](https://github.com/Blueforcer/awtrix3) device (e.g. Ulanzi TC001) via HTTP
 
-Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
+Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amazon.de](https://haus-auto.com/p/amz/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
 ## Sponsored by
 
@@ -49,6 +49,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ul
 * (copilot) Adapter requires node.js >= 22 now
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
 * (@klein0r) Acknowledge new values of buttons (for admin ui)
+* (@klein0r) Fixed state object role definitions
 
 ### 3.0.0 (2025-10-21)
 
