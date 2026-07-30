@@ -64,16 +64,16 @@ var AwtrixApi;
     }
     async getStatsAsync() {
       return new Promise((resolve, reject) => {
-        this.requestAsync("stats", "GET").then(async (response) => {
+        this.requestAsync("stats", "GET").then((response) => {
           if (response.status === 200) {
             this.apiConnected = true;
             resolve(response.data);
           } else {
-            reject(response);
+            reject(new Error(`Request failed with status ${response.status}`, { cause: response }));
           }
         }).catch((error) => {
           this.apiConnected = false;
-          reject(error);
+          reject(error instanceof Error ? error : new Error(String(error)));
         });
       });
     }
@@ -85,11 +85,11 @@ var AwtrixApi;
               this.adapter.log.debug(`[removeApp] Removed customApp app "${name}"`);
               resolve(true);
             } else {
-              reject(`${response.status}: ${response.data}`);
+              reject(new Error(`${response.status}: ${response.data}`, { cause: response }));
             }
           }).catch(reject);
         } else {
-          reject("API not connected");
+          reject(new Error("API not connected"));
         }
       });
     }
@@ -105,7 +105,9 @@ var AwtrixApi;
     async requestAsync(url, method, data) {
       return new Promise((resolve, reject) => {
         if (data) {
-          this.adapter.log.debug(`sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`);
+          this.adapter.log.debug(
+            `sending "${method}" request to "${url}" with data: ${JSON.stringify(data)}`
+          );
         } else {
           this.adapter.log.debug(`sending "${method}" request to "${url}" without data`);
         }
@@ -117,15 +119,21 @@ var AwtrixApi;
             "Content-Type": typeof data === "string" ? "text/plain" : "application/json"
           }
         }).then((response) => {
-          this.adapter.log.debug(`received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`);
+          this.adapter.log.debug(
+            `received ${response.status} response from "${url}" with content: ${JSON.stringify(response.data)}`
+          );
           this.lastErrorCode = -1;
           resolve(response);
         }).catch((error) => {
           if (error.response) {
             if (error.response.status === 401) {
-              this.adapter.log.warn("Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!");
+              this.adapter.log.warn(
+                "Unable to perform request. Looks like the device is protected with username / password. Check instance configuration!"
+              );
             } else {
-              this.adapter.log.warn(`received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`);
+              this.adapter.log.warn(
+                `received ${error.response.status} response from ${url} with content: ${JSON.stringify(error.response.data)}`
+              );
             }
           } else if (error.request) {
             if (error.code === this.lastErrorCode) {
@@ -137,7 +145,7 @@ var AwtrixApi;
           } else {
             this.adapter.log.error(error.message);
           }
-          reject(error);
+          reject(error instanceof Error ? error : new Error(String(error)));
         });
       });
     }

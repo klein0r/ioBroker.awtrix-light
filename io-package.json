@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "news": {
+      "4.0.0": {
+        "en": "Added option/setting for global overlay\nAdapter requires node.js >= 22 now\nadmin 7.6.20 and js-controller 6.0.11 (or later) are required\nAcknowledge new values of buttons (for admin ui)\nFixed state object role definitions",
+        "de": "Option / Einstellung für globales Overlay hinzugefügt\nAdapter benötigt node.js >= 22 jetzt\nadmin 7.6.20 und js-controller 6.0.11 (oder höher) sind erforderlich\nNeue Werte von Buttons anerkennen (für admin ui)\nRollendefinitionen für Festkörperobjekte",
+        "ru": "Добавлен вариант/настройка для глобального наложения\nАдаптер требует node.js >= 22 сейчас\nadmin 7.6.20 и js-контроллер 6.0.11 (или более поздний)\nПризнать новые значения кнопок (для admin ui)\nОпределения роли фиксированного состояния объекта",
+        "pt": "Adicionada opção/configuração para sobreposição global\nAdaptador requer nod.js >= 22 agora\nadmin 7.6.20 e js-controller 6.0.11 (ou posterior) são necessários\nReconhecer os novos valores dos botões (para o administrador ui)\nDefinições de função de objeto de estado fixo",
+        "nl": "Toegevoegd optie/instelling voor globale overlay\nVoor de adapter zijn node.js < 22 nu nodig\nadmin 7.6.20 en js-controller 6.0.11 (of later) zijn vereist\nOntvang nieuwe waarden van knoppen (voor admin ui)\nRoldefinities van vaste toestand van objecten",
+        "fr": "Ajout d'option/de réglage pour la superposition mondiale\nAdaptateur nécessite node.js >= 22 maintenant\nadmin 7.6.20 et js-controller 6.0.11 (ou plus tard) sont requis\nReconnaissez de nouvelles valeurs de boutons (pour admin ui)\nDéfinition des rôles des objets de l'état fixe",
+        "it": "Aggiunta opzione / impostazione per sovrapposizione globale\nAdattatore richiede node.js >= 22 ora\nadmin 7.6.20 e js-controller 6.0.11 (o più tardi) sono richiesti\nRiconoscere nuovi valori di pulsanti (per admin ui)\nDefinizioni dei ruoli degli oggetti di stato fissi",
+        "es": "Añadido opción/ajuste para superposición global\nAdaptador requiere node.js ю= 22 ahora\nadmin 7.6.20 y js-controller 6.0.11 (o posterior) son necesarios\nReconocer nuevos valores de botones (para admin ui)\nDefiniciones del papel de objeto estatal fijo",
+        "pl": "Dodano opcję / ustawienie globalnego narzutu\nAdapter wymaga node.js > = 22\nwymagane jest admin 7.6.20 i js- controller 6.0.11 (lub później)\nPotwierdź nowe wartości przycisków (dla admin ui)\nDefinicja roli obiektu w stanie ustalonym",
+        "uk": "Додана опція / налаштування глобальної накладки\nАдаптер вимагає node.js >= 22 тепер\nadmin 7.6.20 і js-controller 6.0.11 (або пізніше) обов'язкові\nAcknowledge нові значення кнопок (для адміністратора ui)\nВиправлені визначення ролі об’єкта держави",
+        "zh-cn": "全局叠加的选项/设置\n适配器需要节点.js 现在22\n需要admin 7.6.20和js控制器 6.0.11(或以后)\n确认按钮的新值( 对于管理员 ui)\n固定状态对象角色定义"
+      },
       "3.0.0": {
         "en": "admin 7.6.17 and js-controller 6.0.11 (or later) are required",
         "de": "admin 7.6.17 und js-controller 6.0.11 (oder später) sind erforderlich",
@@ -80,19 +93,6 @@
         "pl": "NodeJS > = 20 x i kontroler js- > = 6 jest wymagane",
         "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий",
         "zh-cn": "节点JS20x和js控制器QQ 需要6个"
-      },
-      "1.3.0": {
-        "en": "Added sentry plugin for error reporting",
-        "de": "Das Plugin für die Fehlermeldung hinzugefügt",
-        "ru": "Добавлен плагин для отчетов об ошибках",
-        "pt": "Adicionado plugin sentinela para relatórios de erro",
-        "nl": "Toegevoegd wachtwoord plugin voor foutmelding",
-        "fr": "Ajout du plugin sentiry pour rapport d'erreur",
-        "it": "Aggiunto plugin per la segnalazione di errore",
-        "es": "Añadido plugin de centry para reportar errores",
-        "pl": "Dodano wtyczkę do zgłaszania błędów",
-        "uk": "Додано плагін відправки для повідомлення про помилку",
-        "zh-cn": "为错误报告添加了哨兵插件"
       }
     },
     "titleLang": {

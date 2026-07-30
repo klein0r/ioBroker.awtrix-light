@@ -29,7 +29,7 @@ function rgb565to888(val) {
   return r << 16 | g << 8 | b;
 }
 function rgb565to888Str(val) {
-  return "#" + rgb565to888(val).toString(16).toUpperCase().padStart(6, "0");
+  return `#${rgb565to888(val).toString(16).toUpperCase().padStart(6, "0")}`;
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

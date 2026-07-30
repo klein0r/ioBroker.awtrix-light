@@ -36,13 +36,16 @@ var AppType;
     }
     async init() {
       const appName = this.getName();
-      const appVisibleState = await this.adapter.getForeignStateAsync(`${this.objPrefix}.apps.${appName}.visible`);
+      const appVisibleState = await this.adapter.getForeignStateAsync(
+        `${this.objPrefix}.apps.${appName}.visible`
+      );
       this.isVisible = appVisibleState ? !!appVisibleState.val : true;
       if (appVisibleState && !(appVisibleState == null ? void 0 : appVisibleState.ack)) {
         await this.adapter.setState(`apps.${appName}.visible`, { val: this.isVisible, ack: true, c: "init" });
       }
       return this.isVisible;
     }
+    // eslint-disable-next-line @typescript-eslint/require-await
     async refresh() {
       if (!this.isVisible && this.apiClient.isConnected()) {
         const appName = this.getName();
@@ -101,13 +104,25 @@ var AppType;
         const idOwnNamespace = this.getObjIdOwnNamespace(id);
         if (id === `${this.objPrefix}.apps.${appName}.visible`) {
           if (state.val !== this.isVisible) {
-            this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`);
+            this.adapter.log.debug(
+              `[onStateChange] ${appName}: Visibility of app ${appName} changed to ${state.val}`
+            );
             this.isVisible = !!state.val;
             await this.refresh();
-            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix}` });
+            await this.adapter.setState(idOwnNamespace, {
+              val: state.val,
+              ack: true,
+              c: `onStateChange ${this.objPrefix}`
+            });
           } else {
-            this.adapter.log.debug(`[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`);
-            await this.adapter.setState(idOwnNamespace, { val: state.val, ack: true, c: `onStateChange ${this.objPrefix} (unchanged)` });
+            this.adapter.log.debug(
+              `[onStateChange] ${appName}: Visibility of app "${appName}" IGNORED (not changed): ${state.val}`
+            );
+            await this.adapter.setState(idOwnNamespace, {
+              val: state.val,
+              ack: true,
+              c: `onStateChange ${this.objPrefix} (unchanged)`
+            });
           }
         }
       }

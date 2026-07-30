@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 4.0.0 (2026-07-30)
 
 * (@Brainbug01) Added option/setting for global overlay
 * (copilot) Adapter requires node.js >= 22 now
@@ -69,12 +69,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
 ### 1.6.0 (2025-01-27)
 
 Updated recommended firmware version to 0.98
-
-* (@klein0r) Updated dependencies
-
-### 1.5.0 (2025-01-07)
-
-Updated recommended firmware version to 0.97
 
 * (@klein0r) Updated dependencies
 

@@ -45,25 +45,40 @@ var AppType;
     async init() {
       var _a, _b, _c;
       if (this.appDefinition.sourceInstance) {
-        const sourceInstanceObj = await this.adapter.getForeignObjectAsync(`system.adapter.${this.appDefinition.sourceInstance}`);
+        const sourceInstanceObj = await this.adapter.getForeignObjectAsync(
+          `system.adapter.${this.appDefinition.sourceInstance}`
+        );
         if (sourceInstanceObj && ((_a = sourceInstanceObj.common) == null ? void 0 : _a.getHistory)) {
-          const sourceInstanceAliveState = await this.adapter.getForeignStateAsync(`system.adapter.${this.appDefinition.sourceInstance}.alive`);
+          const sourceInstanceAliveState = await this.adapter.getForeignStateAsync(
+            `system.adapter.${this.appDefinition.sourceInstance}.alive`
+          );
           if (sourceInstanceAliveState && sourceInstanceAliveState.val) {
-            this.adapter.log.debug(`[initHistoryApp] Found valid source instance for history data: ${this.appDefinition.sourceInstance}`);
+            this.adapter.log.debug(
+              `[initHistoryApp] Found valid source instance for history data: ${this.appDefinition.sourceInstance}`
+            );
             this.isValidSourceInstance = true;
           } else {
-            this.adapter.log.warn(`[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": instance not running (stopped)`);
+            this.adapter.log.warn(
+              `[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": instance not running (stopped)`
+            );
           }
         } else {
-          this.adapter.log.warn(`[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": no valid source for getHistory()`);
+          this.adapter.log.warn(
+            `[initHistoryApp] Unable to get history data of "${this.appDefinition.sourceInstance}": no valid source for getHistory()`
+          );
         }
       }
       if (this.appDefinition.objId) {
-        this.adapter.log.debug(`[initHistoryApp] getting history data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" from ${this.appDefinition.sourceInstance}`);
+        this.adapter.log.debug(
+          `[initHistoryApp] getting history data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" from ${this.appDefinition.sourceInstance}`
+        );
         try {
           if (this.isValidSourceInstance) {
             const sourceObj = await this.adapter.getForeignObjectAsync(this.appDefinition.objId);
-            if (sourceObj && Object.prototype.hasOwnProperty.call((_c = (_b = sourceObj == null ? void 0 : sourceObj.common) == null ? void 0 : _b.custom) != null ? _c : {}, this.appDefinition.sourceInstance)) {
+            if (sourceObj && Object.prototype.hasOwnProperty.call(
+              (_c = (_b = sourceObj == null ? void 0 : sourceObj.common) == null ? void 0 : _b.custom) != null ? _c : {},
+              this.appDefinition.sourceInstance
+            )) {
               this.isValidObjId = true;
             } else {
               this.adapter.log.info(
@@ -71,10 +86,14 @@ var AppType;
               );
             }
           } else {
-            this.adapter.log.info(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`);
+            this.adapter.log.info(
+              `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": source invalid or unavailable`
+            );
           }
         } catch (error) {
-          this.adapter.log.error(`[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${error}`);
+          this.adapter.log.error(
+            `[initHistoryApp] Unable to get data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${error}`
+          );
         }
       }
       return super.init();
@@ -130,21 +149,29 @@ var AppType;
             pos: this.appDefinition.position,
             ...moreOptions
           }).catch((error) => {
-            this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`);
+            this.adapter.log.warn(
+              `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`
+            );
           });
           refreshed = true;
         } else {
-          this.adapter.log.debug(`[refreshHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`);
+          this.adapter.log.debug(
+            `[refreshHistoryApp] Going to remove app "${this.appDefinition.name}" (no history data)`
+          );
           await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-            this.adapter.log.warn(`[refreshHistoryApp] Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`);
+            this.adapter.log.warn(
+              `[refreshHistoryApp] Unable to remove app "${this.appDefinition.name}" (no history data): ${error}`
+            );
           });
         }
       }
-      this.adapter.log.debug(`re-creating history apps timeout (${(_a = this.adapter.config.historyAppsRefreshInterval) != null ? _a : 300} seconds)`);
+      this.adapter.log.debug(
+        `re-creating history apps timeout (${(_a = this.adapter.config.historyAppsRefreshInterval) != null ? _a : 300} seconds)`
+      );
       this.refreshTimeout = this.refreshTimeout || this.adapter.setTimeout(
-        () => {
+        async () => {
           this.refreshTimeout = void 0;
-          this.refresh();
+          await this.refresh();
         },
         this.adapter.config.historyAppsRefreshInterval * 1e3 || 5 * 60 * 1e3
       );

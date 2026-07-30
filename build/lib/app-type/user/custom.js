@@ -73,16 +73,24 @@ var AppType;
                 );
               }
               if (state && !state.ack) {
-                this.adapter.log.info(`[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`);
+                this.adapter.log.info(
+                  `[initCustomApp] State value of app "${this.appDefinition.name}" (${objId}) is not acknowledged (ack: false) - waiting for new value`
+                );
               }
               await this.adapter.subscribeForeignStatesAsync(objId);
               await this.adapter.subscribeForeignObjectsAsync(objId);
-              this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" (${obj.common.type}) with objId "${objId}" - subscribed to changes`);
+              this.adapter.log.debug(
+                `[initCustomApp] Init app "${this.appDefinition.name}" (${obj.common.type}) with objId "${objId}" - subscribed to changes`
+              );
             } else {
-              this.adapter.log.warn(`[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj == null ? void 0 : obj.type}`);
+              this.adapter.log.warn(
+                `[initCustomApp] App "${this.appDefinition.name}" was configured with invalid objId "${objId}": Invalid type ${obj == null ? void 0 : obj.type}`
+              );
             }
           } catch (error) {
-            this.adapter.log.error(`[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`);
+            this.adapter.log.error(
+              `[initCustomApp] Unable to get object information for app "${this.appDefinition.name}": ${error}`
+            );
           }
         } else {
           this.adapter.log.debug(`[initCustomApp] Init app "${this.appDefinition.name}" with static text`);
@@ -165,7 +173,9 @@ var AppType;
           }
         }
       } else if (this.appDefinition.thresholdLtActive || this.appDefinition.thresholdGtActive) {
-        this.adapter.log.warn(`[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`);
+        this.adapter.log.warn(
+          `[createAppRequestObj] Found enabled thresholds for custom app "${this.appDefinition.name}" - data type is invalid (${typeof val})`
+        );
       }
       return app;
     }
@@ -175,7 +185,9 @@ var AppType;
       if (await super.refresh()) {
         const text = String(this.appDefinition.text).trim();
         if (this.objCache && !this.isStaticText) {
-          this.adapter.log.debug(`[refreshCustomApp] Refreshing custom app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and text "${this.appDefinition.text}"`);
+          this.adapter.log.debug(
+            `[refreshCustomApp] Refreshing custom app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and text "${this.appDefinition.text}"`
+          );
           try {
             if (this.isVisible) {
               const val = this.objCache.val;
@@ -188,7 +200,9 @@ var AppType;
                     const valParts = String(realVal).split(".");
                     const countDigits = valParts[0].length;
                     let countDecimals = valParts[1].length || 3;
-                    this.adapter.log.debug(`[refreshCustomApp] value of objId "${this.appDefinition.objId}" has ${countDigits} digits and ${countDecimals} decimals`);
+                    this.adapter.log.debug(
+                      `[refreshCustomApp] value of objId "${this.appDefinition.objId}" has ${countDigits} digits and ${countDecimals} decimals`
+                    );
                     if (countDecimals > decimals) {
                       countDecimals = decimals;
                     }
@@ -223,28 +237,45 @@ var AppType;
                 }
                 const displayText = text.replace("%s", newVal).replace("%u", (_b = this.objCache.unit) != null ? _b : "").trim();
                 if (displayText.length > 0) {
-                  await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText, val)).catch((error) => {
-                    this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`);
+                  await this.apiClient.appRequestAsync(
+                    this.appDefinition.name,
+                    this.createAppRequestObj(displayText, val)
+                  ).catch((error) => {
+                    this.adapter.log.warn(
+                      `(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`
+                    );
                   });
                   refreshed = true;
                 } else {
-                  this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (empty text)`);
+                  this.adapter.log.debug(
+                    `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (empty text)`
+                  );
                   await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                    this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (empty text): ${error}`);
+                    this.adapter.log.warn(
+                      `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (empty text): ${error}`
+                    );
                   });
                 }
               } else {
-                this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (no state data)`);
+                this.adapter.log.debug(
+                  `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" (no state data)`
+                );
                 await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-                  this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (no state data): ${error}`);
+                  this.adapter.log.warn(
+                    `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" (no state data): ${error}`
+                  );
                 });
               }
             }
           } catch (error) {
-            this.adapter.log.error(`[refreshCustomApp] Unable to refresh app "${this.appDefinition.name}": ${error}`);
+            this.adapter.log.error(
+              `[refreshCustomApp] Unable to refresh app "${this.appDefinition.name}": ${error}`
+            );
           }
         } else if (this.isStaticText) {
-          this.adapter.log.debug(`[refreshCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`);
+          this.adapter.log.debug(
+            `[refreshCustomApp] Creating app "${this.appDefinition.name}" with icon "${this.appDefinition.icon}" and static text "${this.appDefinition.text}"`
+          );
           if (this.appDefinition.objId) {
             this.adapter.log.warn(
               `[refreshCustomApp] App "${this.appDefinition.name}" was defined with objId "${this.appDefinition.objId}" but "%s" is not used in the text - state changes will be ignored`
@@ -253,18 +284,26 @@ var AppType;
           const displayText = text.replace("%u", "").trim();
           if (displayText.length > 0) {
             await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj(displayText)).catch((error) => {
-              this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`);
+              this.adapter.log.warn(
+                `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with static text: ${error}`
+              );
             });
             refreshed = true;
           } else {
-            this.adapter.log.debug(`[refreshCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`);
+            this.adapter.log.debug(
+              `[refreshCustomApp] Going to remove app "${this.appDefinition.name}" with static text (empty text)`
+            );
             await this.apiClient.removeAppAsync(this.appDefinition.name).catch((error) => {
-              this.adapter.log.warn(`[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`);
+              this.adapter.log.warn(
+                `[refreshCustomApp] Unable to remove app "${this.appDefinition.name}" with static text (empty text): ${error}`
+              );
             });
           }
         } else if (this.isBackgroundOny) {
           await this.apiClient.appRequestAsync(this.appDefinition.name, this.createAppRequestObj("")).catch((error) => {
-            this.adapter.log.warn(`(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with background only: ${error}`);
+            this.adapter.log.warn(
+              `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}" with background only: ${error}`
+            );
           });
           refreshed = true;
         }
@@ -277,24 +316,26 @@ var AppType;
         if (id && state && id === this.appDefinition.objId) {
           if (state.ack) {
             if (state.val !== this.objCache.val) {
-              this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`);
+              this.adapter.log.debug(
+                `[onStateChange] "${this.appDefinition.name}" received state change of objId "${id}" from ${this.objCache.val} to ${state.val} (ts: ${state.ts})`
+              );
               if (this.objCache.ts + this.ignoreNewValueForAppInTimeRange * 1e3 < state.ts) {
                 this.objCache.val = this.objCache.type === "mixed" ? String(state.val) : state.val;
                 this.objCache.ts = state.ts;
                 this.clearCooldownTimeout();
-                this.refresh();
+                await this.refresh();
               } else {
                 this.adapter.log.debug(
                   `[onStateChange] "${this.appDefinition.name}" ignoring customApps state change of objId "${id}" to ${state.val} - refreshes too fast (within ${this.ignoreNewValueForAppInTimeRange} seconds) - Last update: ${this.adapter.formatDate(this.objCache.ts, "YYYY-MM-DD hh:mm:ss.sss")}`
                 );
                 this.clearCooldownTimeout();
                 this.cooldownTimeout = this.adapter.setTimeout(
-                  () => {
+                  async () => {
                     this.cooldownTimeout = void 0;
                     if (this.objCache) {
                       this.objCache.val = this.objCache.type === "mixed" ? String(state.val) : state.val;
                       this.objCache.ts = state.ts;
-                      this.refresh();
+                      await this.refresh();
                     }
                   },
                   (this.ignoreNewValueForAppInTimeRange + 1) * 1e3
@@ -303,7 +344,9 @@ var AppType;
               }
             }
           } else {
-            this.adapter.log.debug(`[onStateChange] "${this.appDefinition.name}" ignoring state change of "${id}" to ${state.val} - ack is false`);
+            this.adapter.log.debug(
+              `[onStateChange] "${this.appDefinition.name}" ignoring state change of "${id}" to ${state.val} - ack is false`
+            );
           }
         }
       }
@@ -317,7 +360,7 @@ var AppType;
           } else {
             this.objCache.type = obj == null ? void 0 : obj.common.type;
             this.objCache.unit = (_a = obj == null ? void 0 : obj.common) == null ? void 0 : _a.unit;
-            this.refresh();
+            await this.refresh();
           }
         }
       }
