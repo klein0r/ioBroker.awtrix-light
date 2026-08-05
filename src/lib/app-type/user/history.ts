@@ -124,11 +124,15 @@ export namespace AppType {
 
                 if (this.appDefinition.mode == 'aggregate') {
                     options.aggregate = this.appDefinition.aggregation;
-                    options.step = this.appDefinition.step ? this.appDefinition.step * 1000 : 3600;
+                    options.step = this.appDefinition.step ? this.appDefinition.step * 1_000 : 3_600_000;
                 } else {
                     // mode = last
                     options.aggregate = 'none';
                 }
+
+                this.adapter.log.debug(
+                    `[refreshHistoryApp] Getting history for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" with options: ${JSON.stringify(options)}`,
+                );
 
                 const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, 'getHistory', {
                     id: this.appDefinition.objId,
@@ -140,7 +144,7 @@ export namespace AppType {
                     .slice(itemCount * -1);
 
                 this.adapter.log.debug(
-                    `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`,
+                    `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`,
                 );
 
                 if (graphData.length > 0) {
