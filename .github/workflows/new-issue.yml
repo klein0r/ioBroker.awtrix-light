@@ -21,7 +21,7 @@ jobs:
           NUMBER: ${{ github.event.issue.number }}
       - name: Setup node
         id: setup_node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Get package name
