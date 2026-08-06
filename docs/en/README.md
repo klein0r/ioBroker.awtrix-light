@@ -9,7 +9,7 @@
 - Admin Adapter 7.6.20 (or later)
 - _Awtrix 3_ device with firmware _0.98_ (or later) - e.g. Ulanzi TC001
 
-Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
+Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amazon.de](https://haus-auto.com/p/amz/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
 ## Getting started
 
