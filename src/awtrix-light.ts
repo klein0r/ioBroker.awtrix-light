@@ -675,7 +675,11 @@ export class AwtrixLight extends utils.Adapter {
 
                 this.currentVersion = String(content.version);
 
-                if (this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
+                if (
+                    this.currentVersion &&
+                    this.isNewerVersion(this.currentVersion, this.supportedVersion) &&
+                    !this.displayedVersionWarning
+                ) {
                     await this.registerNotification(
                         'awtrix-light',
                         'deviceUpdate',
