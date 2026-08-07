@@ -109,17 +109,17 @@ Blockly.Words['awtrix-light_repeat'] = {
     'zh-cn': '重复',
 };
 Blockly.Words['awtrix-light_duration'] = {
-    en: 'Duration',
-    de: 'Dauer',
-    ru: 'Продолжительность',
-    pt: 'Duração',
-    nl: 'Vertaling:',
-    fr: 'Durée',
-    it: 'Durata',
-    es: 'Duración',
-    pl: 'Duracja',
-    uk: 'Тривалість',
-    'zh-cn': '期间',
+    en: 'Duration (sec)',
+    de: 'Dauer (sek)',
+    ru: 'Продолжительность (sec)',
+    pt: 'Duração (sec)',
+    nl: 'Vertaling (sec)',
+    fr: 'Durée (sec)',
+    it: 'Durata (sec)',
+    es: 'Duración (sec)',
+    pl: 'Duracja (sec)',
+    uk: 'Тривалість (sec)',
+    'zh-cn': '期间 (sec)',
 };
 Blockly.Words['awtrix-light_rainbow'] = {
     en: 'Rainbow text',
