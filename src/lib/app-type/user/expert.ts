@@ -75,7 +75,7 @@ export namespace AppType {
 
             if (await super.refresh()) {
                 this.adapter.log.debug(
-                    `[refresh] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`,
+                    `[refreshExpertApp] Refreshing app with values "${this.appDefinition.name}": ${JSON.stringify(this.appStates)}`,
                 );
 
                 const app: AwtrixApi.App = {
@@ -104,7 +104,7 @@ export namespace AppType {
 
                 await this.apiClient.appRequestAsync(this.appDefinition.name, app).catch(error => {
                     this.adapter.log.warn(
-                        `(custom?name=${this.appDefinition.name}) Unable to update custom app "${this.appDefinition.name}": ${error}`,
+                        `[refreshExpertApp] Unable to update expert app "${this.appDefinition.name}": ${error}`,
                     );
                 });
 
