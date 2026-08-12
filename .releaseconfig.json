@@ -1,6 +1,7 @@
 {
     "plugins": ["iobroker", "license", "manual-review"],
     "exec": {
+        "before_check": "npm run lint",
         "before_commit": "npm run build"
     }
 }
