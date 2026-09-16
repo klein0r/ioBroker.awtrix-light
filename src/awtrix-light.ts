@@ -613,6 +613,8 @@ export class AwtrixLight extends utils.Adapter {
                             `[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`,
                         );
 
+                        const downloadInterval = Math.min(this.config.downloadScreenContentInterval, 86_400) * 1_000;
+
                         this.downloadScreenContentInterval = this.setInterval(() => {
                             if (this.apiClient!.isConnected()) {
                                 this.apiClient!.requestAsync('screen', 'GET')
@@ -643,7 +645,7 @@ export class AwtrixLight extends utils.Adapter {
                                         this.log.debug(`(screen) received error: ${JSON.stringify(error)}`);
                                     });
                             }
-                        }, this.config.downloadScreenContentInterval * 1000);
+                        }, downloadInterval);
                     } else {
                         await this.setState('display.content', {
                             val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`,
