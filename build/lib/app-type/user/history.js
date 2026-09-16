@@ -114,17 +114,20 @@ var AppType;
         };
         if (this.appDefinition.mode == "aggregate") {
           options.aggregate = this.appDefinition.aggregation;
-          options.step = this.appDefinition.step ? this.appDefinition.step * 1e3 : 3600;
+          options.step = this.appDefinition.step ? this.appDefinition.step * 1e3 : 36e5;
         } else {
           options.aggregate = "none";
         }
+        this.adapter.log.debug(
+          `[refreshHistoryApp] Getting history for app "${this.appDefinition.name}" of "${this.appDefinition.objId}" with options: ${JSON.stringify(options)}`
+        );
         const historyData = await this.adapter.sendToAsync(this.appDefinition.sourceInstance, "getHistory", {
           id: this.appDefinition.objId,
           options
         });
         const graphData = historyData == null ? void 0 : historyData.result.filter((state) => typeof state.val === "number" && state.ack).map((state) => Math.round(state.val)).slice(itemCount * -1);
         this.adapter.log.debug(
-          `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}: ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`
+          `[refreshHistoryApp] Data for app "${this.appDefinition.name}" of "${this.appDefinition.objId}": ${JSON.stringify(historyData)} - filtered: ${JSON.stringify(graphData)}`
         );
         if (graphData.length > 0) {
           const moreOptions = {};
@@ -150,7 +153,7 @@ var AppType;
             ...moreOptions
           }).catch((error) => {
             this.adapter.log.warn(
-              `(custom?name=${this.appDefinition.name}) Unable to create app "${this.appDefinition.name}": ${error}`
+              `[refreshHistoryApp] Unable to create app "${this.appDefinition.name}": ${error}`
             );
           });
           refreshed = true;

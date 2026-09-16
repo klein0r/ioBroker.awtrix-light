@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "news": {
+      "4.0.1": {
+        "en": "Improved state object role definitions",
+        "de": "Bessere Status-Rollendefinitionen",
+        "ru": "Улучшенные определения ролей объектов состояния",
+        "pt": "Melhor definição de função de objeto de estado",
+        "nl": "Verbeterde definities van de rol van staatsobjecten",
+        "fr": "Définition améliorée des rôles des objets d'état",
+        "it": "Definizioni dei ruoli State Object migliorate",
+        "es": "Definiciones mejoradas de rol de objeto estatal",
+        "pl": "Ulepszone definicje ról obiektu stanu",
+        "uk": "Покращено визначення ролі об'єкта стану",
+        "zh-cn": "改进了状态对象角色定义"
+      },
       "4.0.0": {
         "en": "Added option/setting for global overlay\nAdapter requires node.js >= 22 now\nadmin 7.6.20 and js-controller 6.0.11 (or later) are required\nAcknowledge new values of buttons (for admin ui)\nFixed state object role definitions",
         "de": "Option / Einstellung für globales Overlay hinzugefügt\nAdapter benötigt node.js >= 22 jetzt\nadmin 7.6.20 und js-controller 6.0.11 (oder höher) sind erforderlich\nNeue Werte von Buttons anerkennen (für admin ui)\nRollendefinitionen für Festkörperobjekte",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacja zalecanej wersji firmware do 0.97\n\n* Aktualizacja zależności",
         "uk": "Оновлено рекомендовану версію прошивки до 0.97\n\nІм'я * Оновлені залежності",
         "zh-cn": "最新推荐的固件版本为0.97\n\n* 《大会正式记录,第五十八届会议,补编第5号》(A/C.6/61/Rev.1)。 更新的依赖关系"
-      },
-      "1.4.1": {
-        "en": "NodeJS >= 20.x and js-controller >= 6 is required",
-        "de": "NodeJS >= 20.x und js-Controller >= 6 ist erforderlich",
-        "ru": "NodeJS >= 20.x и js-controller >= 6 требуется",
-        "pt": "NodeJS >= 20.x e js-controller >= 6 é necessário",
-        "nl": "Van niet-gelegeerd staal 6 is vereist",
-        "fr": "NodeJS >= 20.x et js-controller >= 6 est nécessaire",
-        "it": "NodeJS >= 20.x e js-controller >= 6 è richiesto",
-        "es": "NodeJS ю= 20.x y js-controller Se requiere 6",
-        "pl": "NodeJS > = 20 x i kontroler js- > = 6 jest wymagane",
-        "uk": "NodeJS >= 20.x та js-controller >= 6 обов'язковий",
-        "zh-cn": "节点JS20x和js控制器QQ 需要6个"
       }
     },
     "titleLang": {

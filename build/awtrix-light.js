@@ -477,6 +477,7 @@ class AwtrixLight extends utils.Adapter {
             this.log.debug(
               `[setApiConnected] Downloading screen contents every ${this.config.downloadScreenContentInterval} seconds`
             );
+            const downloadInterval = Math.min(this.config.downloadScreenContentInterval, 86400) * 1e3;
             this.downloadScreenContentInterval = this.setInterval(() => {
               if (this.apiClient.isConnected()) {
                 this.apiClient.requestAsync("screen", "GET").then(async (response) => {
@@ -502,7 +503,7 @@ class AwtrixLight extends utils.Adapter {
                   this.log.debug(`(screen) received error: ${JSON.stringify(error)}`);
                 });
               }
-            }, this.config.downloadScreenContentInterval * 1e3);
+            }, downloadInterval);
           } else {
             await this.setState("display.content", {
               val: `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160"/>`,
@@ -528,7 +529,7 @@ class AwtrixLight extends utils.Adapter {
     this.apiClient.getStatsAsync().then(async (content) => {
       await this.setApiConnected(true);
       this.currentVersion = String(content.version);
-      if (this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
+      if (this.currentVersion && this.isNewerVersion(this.currentVersion, this.supportedVersion) && !this.displayedVersionWarning) {
         await this.registerNotification(
           "awtrix-light",
           "deviceUpdate",
@@ -672,7 +673,7 @@ class AwtrixLight extends utils.Adapter {
             const existingApps = content.map((a) => a.name);
             const allApps = [...NATIVE_APPS, ...customApps, ...historyApps, ...expertApps];
             this.log.debug(
-              `[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`
+              `[createAppObjects] existing apps in Awtrix: ${JSON.stringify(existingApps)}`
             );
             const appsAll = [];
             const appsKeep = [];

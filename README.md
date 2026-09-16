@@ -43,7 +43,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 4.0.1 (2026-09-16)
 
 * (@klein0r) Improved state object role definitions
 
@@ -69,12 +69,6 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
 * (@klein0r) Improved error handling when adapter is not ready (starting)
 * (@klein0r) Added scroll speed to expert apps
 * (@klein0r) Added icons for custom apps in object tree
-
-### 1.6.0 (2025-01-27)
-
-Updated recommended firmware version to 0.98
-
-* (@klein0r) Updated dependencies
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 
