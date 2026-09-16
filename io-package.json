@@ -1277,7 +1277,7 @@
           "zh-cn": "WiFi信号强力"
         },
         "type": "number",
-        "role": "value",
+        "role": "value.rssi",
         "read": true,
         "write": false,
         "unit": "dBm"
