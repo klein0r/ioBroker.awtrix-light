@@ -43,6 +43,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Adapter requires admin >= 7.8.23 now
+
 ### 4.0.1 (2026-09-16)
 
 * (@klein0r) Improved state object role definitions
