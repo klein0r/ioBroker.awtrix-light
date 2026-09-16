@@ -43,6 +43,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@klein0r) Improved state object role definitions
+
 ### 4.0.0 (2026-07-30)
 
 * (@Brainbug01) Added option/setting for global overlay
