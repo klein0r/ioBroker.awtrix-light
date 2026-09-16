@@ -549,7 +549,7 @@
           "zh-cn": "光明"
         },
         "type": "boolean",
-        "role": "state",
+        "role": "switch",
         "read": true,
         "write": true
       },
