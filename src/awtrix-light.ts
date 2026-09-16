@@ -865,7 +865,7 @@ export class AwtrixLight extends utils.Adapter {
                             const allApps = [...NATIVE_APPS, ...customApps, ...historyApps, ...expertApps];
 
                             this.log.debug(
-                                `[createAppObjects] existing apps on awtrix light: ${JSON.stringify(existingApps)}`,
+                                `[createAppObjects] existing apps in Awtrix: ${JSON.stringify(existingApps)}`,
                             );
 
                             const appsAll = [];
