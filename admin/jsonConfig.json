@@ -638,6 +638,7 @@
                     "newLine": true,
                     "type": "number",
                     "min": 0,
+                    "max": 10,
                     "xs": 12,
                     "sm": 12,
                     "md": 4,

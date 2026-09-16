@@ -15,7 +15,7 @@ export namespace AppType {
             super(apiClient, adapter, definition.name);
 
             this.definition = definition;
-            this.ignoreNewValueForAppInTimeRange = adapter.config.ignoreNewValueForAppInTimeRange;
+            this.ignoreNewValueForAppInTimeRange = Math.min(adapter.config.ignoreNewValueForAppInTimeRange, 10);
             this.isVisible = false;
         }
 
