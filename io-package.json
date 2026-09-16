@@ -442,7 +442,7 @@
           "zh-cn": "B. 日 失"
         },
         "type": "boolean",
-        "role": "state",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": true
@@ -575,7 +575,7 @@
           "zh-cn": "自动转换"
         },
         "type": "boolean",
-        "role": "state",
+        "role": "switch",
         "read": true,
         "write": true
       },
@@ -815,7 +815,7 @@
           "zh-cn": "A. 有形但顿"
         },
         "type": "boolean",
-        "role": "state",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": false
@@ -842,7 +842,7 @@
           "zh-cn": "评 注"
         },
         "type": "boolean",
-        "role": "state",
+        "role": "switch",
         "read": true,
         "write": true,
         "def": true
