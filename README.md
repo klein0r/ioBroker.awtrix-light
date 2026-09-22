@@ -24,6 +24,13 @@ Integrate your [Awtrix 3 (Awtrix Light)](https://github.com/Blueforcer/awtrix3) 
 
 Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amazon.de](https://haus-auto.com/p/amz/UlanziTC001) or here: [ulanzi.de](https://haus-auto.com/p/ula/UlanziTC001) (Affiliate-Links)
 
+> [!NOTE]
+> **Switch to Awtrix NG firmware.** Awtrix 3 has been replaced by a more modern version: [Awtrix NG](https://github.com/Blueforcer/awtrix-ng).
+> Most of the known issues and feature request are implemented in that firmware.
+>
+> After flashing the new firmware, you have to install a different ioBroker adapter which is compatible with that
+> software: [ioBroker.awtrix-ng](https://github.com/klein0r/ioBroker.awtrix-ng).
+
 ## Sponsored by
 
 [![ioBroker Master Kurs](https://haus-automatisierung.com/images/ads/ioBroker-Kurs.png?2024)](https://haus-automatisierung.com/iobroker-kurs/?refid=iobroker-awtrix-light)
