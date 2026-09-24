@@ -95,6 +95,7 @@ class AwtrixLight extends utils.Adapter {
   }
   async onReady() {
     await this.setApiConnected(false);
+    this.log.info(`[Notice] Development of AWTRIX 3 has ended. The successor is Awtrix NG.`);
     await this.upgradeFromPreviousVersion();
     await this.subscribeStatesAsync("*");
     if (!this.config.awtrixIp) {

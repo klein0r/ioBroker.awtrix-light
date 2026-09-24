@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "awtrix-light",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "news": {
+      "4.0.2": {
+        "en": "Adapter requires admin >= 7.8.23 now\nAdded EOL notice on startup",
+        "de": "Adapter benötigt jetzt admin >= 7.8.23\nEOL-Hinweis beim Start hinzugefügt",
+        "ru": "Для адаптера теперь требуется администратор >= 7.8.23\nДобавлено уведомление EOL при запуске",
+        "pt": "Adapter exige admin >= 7.8.23 agora\nAdição de aviso EOL ao iniciar",
+        "nl": "Adapter vereist nu admin >= 7.8.23\nEOL-melding toegevoegd bij het opstarten",
+        "fr": "Adapter nécessite admin >= 7.8.23\nAvis EOL ajouté au démarrage",
+        "it": "Adapter richiede admin >= 7.8.23 ora\nAvviso EOL aggiunto all'avvio",
+        "es": "El adaptador necesita admin >= 7.8.23 ahora\nSe añadió un aviso de EOL al inicio",
+        "pl": "Adapter wymaga administratora >= 7.8.23 teraz\nDodano powiadomienie EOL podczas uruchamiania",
+        "uk": "Адаптер вимагає адміністратора >= 7.8.23 зараз\nДодано повідомлення EOL при запуску",
+        "zh-cn": "适配器现在需要管理员 >= 7.8.23\n在启动时添加了 EOL 通知"
+      },
       "4.0.1": {
         "en": "Improved state object role definitions",
         "de": "Bessere Status-Rollendefinitionen",
@@ -80,19 +93,6 @@
         "pl": "Aktualizacja zalecanej wersji firmware do 0.98\n\n* Aktualizacja zależności",
         "uk": "Оновлено рекомендовану версію мікропрограми до 0.98\n\nІм'я * Оновлені залежності",
         "zh-cn": "最新推荐的固件版本为0.98\n\n* 《大会正式记录,第五十八届会议,补编第5号》(A/C.6/61/Rev.1)。 更新的依赖关系"
-      },
-      "1.5.0": {
-        "en": "Updated recommended firmware version to 0.97\n\n* Updated dependencies",
-        "de": "Aktualisierte empfohlene Firmwareversion auf 0.97\n\n* Aktualisierte Abhängigkeiten",
-        "ru": "Обновленная рекомендуемая версия прошивки до 0,97\n\n* Обновленные зависимости",
-        "pt": "Versão de firmware recomendada atualizada para 0.97\n\n* Dependências atualizadas",
-        "nl": "Bijgewerkt aanbevolen firmware versie naar 0.97\n\n* Bijgewerkte afhankelijkheden",
-        "fr": "Mise à jour de la version firmware recommandée à 0.97\n\n* Dépendances actualisées",
-        "it": "Versione firmware consigliata aggiornata a 0.97\n\n# Dipendenze aggiornate",
-        "es": "Versión actualizada de firmware recomendada a 0.97\n\n* Dependencias actualizadas",
-        "pl": "Aktualizacja zalecanej wersji firmware do 0.97\n\n* Aktualizacja zależności",
-        "uk": "Оновлено рекомендовану версію прошивки до 0.97\n\nІм'я * Оновлені залежності",
-        "zh-cn": "最新推荐的固件版本为0.97\n\n* 《大会正式记录,第五十八届会议,补编第5号》(A/C.6/61/Rev.1)。 更新的依赖关系"
       }
     },
     "titleLang": {
