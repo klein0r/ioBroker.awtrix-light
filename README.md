@@ -53,6 +53,7 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
 ### **WORK IN PROGRESS**
 
 * (@klein0r) Adapter requires admin >= 7.8.23 now
+* (@klein0r) Added EOL notice on startup
 
 ### 4.0.1 (2026-09-16)
 

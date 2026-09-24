@@ -134,6 +134,8 @@ export class AwtrixLight extends utils.Adapter {
     private async onReady(): Promise<void> {
         await this.setApiConnected(false);
 
+        this.log.info(`[Notice] Development of AWTRIX 3 has ended. The successor is Awtrix NG.`);
+
         await this.upgradeFromPreviousVersion();
         await this.subscribeStatesAsync('*');
 
