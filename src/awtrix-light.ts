@@ -691,7 +691,7 @@ export class AwtrixLight extends utils.Adapter {
                     );
 
                     this.log.warn(
-                        `You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`,
+                        `You should update your Awtrix 3 firmware - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`,
                     );
                     this.displayedVersionWarning = true; // Just show once
                 }
