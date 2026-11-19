@@ -152,7 +152,8 @@
     "blockly": true,
     "supportedMessages": {
       "custom": true,
-      "notifications": true
+      "notifications": true,
+      "help": true
     },
     "plugins": {
       "sentry": {

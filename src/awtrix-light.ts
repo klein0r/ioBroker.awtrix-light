@@ -2,6 +2,7 @@ import * as utils from '@iobroker/adapter-core';
 import type { AxiosResponse } from 'axios';
 
 import { rgb565to888Str } from './lib/color-convert';
+import { COMMANDS, HELP } from './lib/help';
 
 import { AwtrixApi } from './lib/api';
 import type { AppType as AppTypeAbstract } from './lib/app-type/abstract';
@@ -438,6 +439,14 @@ export class AwtrixLight extends utils.Adapter {
 
     private onMessage(obj: ioBroker.Message): void {
         this.log.debug(`[onMessage] received command "${obj.command}" with message: ${JSON.stringify(obj.message)}`);
+
+        if (obj.command === 'help') {
+            // A description of all commands for AI agents and script authors, also while the device is offline
+            if (obj.callback) {
+                this.sendTo(obj.from, obj.command, { help: HELP, commands: COMMANDS }, obj.callback);
+            }
+            return;
+        }
 
         if (obj && obj.message) {
             if (obj.command === 'getBackgroundEffects') {

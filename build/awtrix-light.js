@@ -33,6 +33,7 @@ __export(awtrix_light_exports, {
 module.exports = __toCommonJS(awtrix_light_exports);
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_color_convert = require("./lib/color-convert");
+var import_help = require("./lib/help");
 var import_api = require("./lib/api");
 var import_native = require("./lib/app-type/native");
 var import_user = require("./lib/app-type/user");
@@ -343,6 +344,12 @@ class AwtrixLight extends utils.Adapter {
   }
   onMessage(obj) {
     this.log.debug(`[onMessage] received command "${obj.command}" with message: ${JSON.stringify(obj.message)}`);
+    if (obj.command === "help") {
+      if (obj.callback) {
+        this.sendTo(obj.from, obj.command, { help: import_help.HELP, commands: import_help.COMMANDS }, obj.callback);
+      }
+      return;
+    }
     if (obj && obj.message) {
       if (obj.command === "getBackgroundEffects") {
         this.sendTo(
@@ -537,7 +544,7 @@ class AwtrixLight extends utils.Adapter {
           `Firmware update: ${this.currentVersion} -> ${this.supportedVersion}`
         );
         this.log.warn(
-          `You should update your Awtrix Light - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`
+          `You should update your Awtrix 3 firmware - supported version of this adapter is ${this.supportedVersion} (or later). Your current version is ${this.currentVersion}`
         );
         this.displayedVersionWarning = true;
       }
