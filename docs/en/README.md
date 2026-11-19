@@ -130,6 +130,10 @@ sendTo('awtrix-light.0', 'rtttl', 'Beep: d=32,o=7,b=120: a,P,c#', (res) => {
 });
 ```
 
+### Help for scripts and AI agents
+
+`sendTo('awtrix-light.0', 'help', {})` answers `{ help, commands }`: a description of all messages and of the states for AI agents (e.g. pi-agent) and script authors, and the list of all commands with `write` (`true` if the command has an effect on the device).
+
 ## Apps
 
 **App names must be lowercase (a-z) and unique. No numbers, no capital letters, no special characters, no whitespaces.**

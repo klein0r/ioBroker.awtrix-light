@@ -50,6 +50,10 @@ Buy here: [Aliexpress.com](https://haus-auto.com/p/ali/UlanziTC001), here: [Amaz
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+
+* (@GermanBluefox) Added the message "help": a description of all messages for AI agents (e.g. pi-agent), and common.supportedMessages.help
+
 ### 4.0.2 (2026-09-24)
 
 * (@klein0r) Adapter requires admin >= 7.8.23 now
